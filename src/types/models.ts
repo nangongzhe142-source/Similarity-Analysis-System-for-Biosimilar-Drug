@@ -48,6 +48,155 @@ export interface DetectionMethod {
   rawSourceText: LocalizedText;
 }
 
+// ---------------------------------------------------------------------------
+// Reference cases — concrete worked examples attached to a characterization
+// item, so that the abstract judging principles become tangible.
+// ---------------------------------------------------------------------------
+
+/** Reliability tier of a reference case. Drives how the UI labels it, so that
+ *  a reader can always tell verified regulatory data from an illustration.
+ *  Never upgrade a level to make a case look stronger. */
+export type ReferenceCaseEvidenceLevel =
+  /** Complete reviewer statistics table: mean + lot count + quality range. */
+  | "regulatory-verified"
+  /** Real values quoted in the review narrative, but without lot counts or
+   *  quality ranges (the underlying source table was not reproduced). */
+  | "regulatory-narrative"
+  /** Schematic illustration only — NOT real measured data. Used to explain how
+   *  an item is normally assessed when no case data exists. */
+  | "illustrative";
+
+/** Statistical tier assigned by the regulator in the source case.
+ *  Tier 1 = equivalence testing, Tier 2 = quality range, Tier 3 = descriptive. */
+export type ReferenceCaseTier = "tier-1" | "tier-2" | "tier-3" | "not-tiered";
+
+/** Provenance of a reference case. Mandatory for verified/narrative levels so
+ *  that every number can be traced back to its source document. */
+export interface ReferenceCaseSource {
+  /** Candidate (proposed biosimilar) product, e.g. "GP2015（依那西普）". */
+  candidateProduct: LocalizedText;
+  /** Reference product(s), e.g. "US-licensed Enbrel / EU-approved Enbrel". */
+  referenceProduct: LocalizedText;
+  /** Source document, e.g. "FDA 多学科审评报告（BLA 761042）". */
+  documentTitle: LocalizedText;
+  /** Table/figure/section reference inside the source document. */
+  citation: LocalizedText;
+  /** Workspace-relative path of the local source file, for traceability. */
+  localSourcePath: string;
+}
+
+/** One row of a reference-case comparison table. Values are kept as raw
+ *  strings so that ranges, lot counts and "<LOQ" style entries survive
+ *  verbatim from the source document without lossy numeric parsing. */
+export interface ReferenceCaseDataRow {
+  /** Row label, e.g. "相对效价 %（原液）" or "均值（批次数）". */
+  label: LocalizedText;
+  /** Candidate product value, verbatim from the source. */
+  candidateValue: string;
+  /** US reference product value; empty string when not reported separately. */
+  referenceUsValue: string;
+  /** EU reference product value; empty string when not reported separately. */
+  referenceEuValue: string;
+}
+
+export interface ReferenceCaseDataTable {
+  caption: LocalizedText;
+  rows: ReferenceCaseDataRow[];
+}
+
+/** Schematic figure variants. These are hand-drawn SVG illustrations, never
+ *  rendered from real measurements. */
+export type SchematicFigureVariant =
+  | "dose-response"
+  | "spr-sensorgram"
+  | "chromatogram"
+  | "spectrum-overlay";
+
+export interface SchematicFigure {
+  variant: SchematicFigureVariant;
+  caption: LocalizedText;
+  /** What the reader should take away from the illustration. */
+  explanation: LocalizedText;
+}
+
+/** Whether the transcribed values have been reconciled against the original
+ *  English source document, rather than only against the Chinese translation.
+ *  The translation is an intermediate artefact, not the base of truth. */
+export type EnglishSourceCheckStatus =
+  | "not-checked"
+  | "checked"
+  | "discrepancy-found";
+
+/** Audit trail that makes transcription errors mechanically detectable.
+ *  `scripts/verify_reference_cases.mjs` greps every `verifiableValues` entry in
+ *  the listed `sourceChunks`; a miss means the value was mistyped, or attributed
+ *  to the wrong source file. */
+export interface ReferenceCaseVerification {
+  /** Chunk file names inside the translation output directory that contain the
+   *  values of this case, e.g. ["chunk_16.md", "chunk_17.md"]. */
+  sourceChunks: string[];
+  /** Distinctive value strings that must appear verbatim in `sourceChunks`.
+   *  Pick unambiguous tokens (e.g. "101.7 (7)", "0.9143"), not bare integers. */
+  verifiableValues: string[];
+  englishSourceCheck: EnglishSourceCheckStatus;
+  /** True when a value here is known to be OCR-damaged and not yet reconciled
+   *  against the source PDF. Such a case must never be presented as reliable. */
+  hasUnresolvedOcrDamage: boolean;
+  /** Who transcribed the values, for audit. */
+  transcribedBy: string;
+  /** ISO date of transcription. */
+  transcribedOn: string;
+}
+
+interface ReferenceCaseCommon {
+  id: string;
+  tier: ReferenceCaseTier;
+  /** The method actually used in the case, which may differ from the
+   *  framework's preferred method for this item. */
+  methodUsed: LocalizedText;
+  /** Set when the case method is not equivalent to the framework's preferred
+   *  method, or when the item mapping needs human review. */
+  methodDeviationNote?: LocalizedText;
+  /** One-line takeaway shown on the collapsed card. */
+  headline: LocalizedText;
+  /** Comparison tables; empty for illustrative cases. */
+  dataTables: ReferenceCaseDataTable[];
+  /** Qualitative finding, used when the source reports no usable numbers. */
+  qualitativeFinding?: LocalizedText;
+  /** Acceptance criterion applied in the case. */
+  acceptanceCriterion: LocalizedText;
+  /** Reviewer's assessment, including the reasoning chain where available. */
+  reviewerConclusion: LocalizedText;
+  schematicFigure?: SchematicFigure;
+}
+
+/** A case carrying real measured values. Provenance, limitations and the
+ *  verification audit trail are all mandatory: a real number without the
+ *  context that qualifies it is a rigour failure, not a shortcut. */
+export interface RegulatoryReferenceCase extends ReferenceCaseCommon {
+  evidenceLevel: "regulatory-verified" | "regulatory-narrative";
+  source: ReferenceCaseSource;
+  /** Mandatory. Record everything that limits the strength of these values:
+   *  expired lots, regulator redactions, declared method variability, which
+   *  batch set the numbers belong to, missing lot counts or quality ranges.
+   *  If the source genuinely reports no limitation, say so explicitly. */
+  dataCaveat: LocalizedText;
+  verification: ReferenceCaseVerification;
+}
+
+/** A schematic explanation used when no citable measured values exist.
+ *  Carries no provenance by construction, and must carry a figure. */
+export interface IllustrativeReferenceCase extends ReferenceCaseCommon {
+  evidenceLevel: "illustrative";
+  /** Illustrations have no measured data, so provenance is not applicable. */
+  source?: never;
+  verification?: never;
+  dataCaveat?: LocalizedText;
+  schematicFigure: SchematicFigure;
+}
+
+export type ReferenceCase = RegulatoryReferenceCase | IllustrativeReferenceCase;
+
 /** Placeholder slots reserved for the future real similarity analysis.
  *  No analysis logic is implemented in the current phase. */
 export interface AnalysisPlaceholder {
