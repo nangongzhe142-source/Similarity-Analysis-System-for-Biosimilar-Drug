@@ -62,6 +62,93 @@ export interface UiMessages {
     previousItem: string;
     nextItem: string;
   };
+  liveDemo: {
+    badge: string;
+    title: string;
+    runButton: string;
+    rerunButton: string;
+    syntheticTag: string;
+    publicSequenceTag: string;
+    disclaimer: string;
+    sopStillPending: string;
+    sequenceLabel: string;
+    disulfideLabel: string;
+    residueCountLabel: string;
+    cysteineCountLabel: string;
+    reducedMassLabel: string;
+    oxidizedMassLabel: string;
+    recoveredMassLabel: string;
+    deviationLabel: string;
+    chargeLabel: string;
+    hexoseShiftLabel: string;
+    candidateMassLabel: string;
+    observedShiftLabel: string;
+    attributableLabel: string;
+    envelopeCaption: string;
+    passLabel: string;
+    failLabel: string;
+    peptideCountLabel: string;
+    coverageLabel: string;
+    unmatchedLabel: string;
+    substitutionLabel: string;
+    substitutionDetectedLabel: string;
+    substitutionMissedLabel: string;
+    referenceLotsLabel: string;
+    candidateLotsLabel: string;
+    scenarioSimilar: string;
+    scenarioShifted: string;
+    sigmaMultiplierLabel: string;
+    thresholdLabel: string;
+    meanLabel: string;
+    sdLabel: string;
+    qrLabel: string;
+    withinLabel: string;
+    outOfRangeLabel: string;
+    supportsSimilarity: string;
+    doesNotSupport: string;
+    editHint: string;
+    provenanceTitle: string;
+    provenanceWhatItIs: string;
+    provenanceWhatItIsNot: string;
+    provenanceDataSource: string;
+    provenancePrinciple: string;
+    provenanceCheck: string;
+    provenanceOracle: string;
+    provenanceFiles: string;
+    provenanceLinks: string;
+  };
+  methodContent: {
+    sectionTitle: string;
+    principleLabel: string;
+    pendingFieldsTitle: string;
+    pendingSamplePreparation: string;
+    pendingInstrumentParameters: string;
+    pendingSystemSuitability: string;
+    pendingDataInterpretation: string;
+    pendingSimilarityAssessmentLink: string;
+    disclaimer: string;
+  };
+  methodTools: {
+    sectionTitle: string;
+    notSurveyedTitle: string;
+    notSurveyedText: string;
+    gapTitle: string;
+    surveyedOnLabel: string;
+    licenseLabel: string;
+    stackLabel: string;
+    capabilityLabel: string;
+    deploymentLabel: string;
+    notSupportedLabel: string;
+    evidenceLabel: string;
+    repositoryLabel: string;
+    statsLabel: string;
+    recommendationPreferred: string;
+    recommendationAlternative: string;
+    recommendationConditional: string;
+    recommendationNotRecommended: string;
+    deploymentUnverifiedWarning: string;
+    disclaimer: string;
+  };
   regulatoryPage: {
     title: string;
     description: string;
@@ -193,7 +280,8 @@ export const uiMessages: Record<Locale, UiMessages> = {
       remarkLabel: "备注",
       emptyFieldPlaceholder: "—",
       methodSectionTitle: "检测方法",
-      methodSectionDescription: "选择一个方法查看其检测内容（本期为占位，待后续嵌入）。",
+      methodSectionDescription:
+        "选择一个方法查看检测内容。带「实机演示」标记的方法可在本页当场计算（合成数据）。",
       primaryMethodLabel: "首选",
       orthogonalMethodLabel: "正交/补充",
       methodContentPlaceholderTitle: "检测内容待嵌入",
@@ -213,6 +301,99 @@ export const uiMessages: Record<Locale, UiMessages> = {
       uploadPlaceholderAction: "上传数据（暂未开放）",
       previousItem: "上一项",
       nextItem: "下一项",
+    },
+    liveDemo: {
+      badge: "实机演示",
+      title: "实机演示（浏览器当场计算）",
+      runButton: "运行演示",
+      rerunButton: "重新计算",
+      syntheticTag: "合成数据",
+      publicSequenceTag: "公开序列 UniProt P02769",
+      disclaimer:
+        "本演示在浏览器内当场计算，使用公开序列或合成数据。工具能运行不等于方法学已验证，更不等于符合 GxP；数值接近不等于生物类似性成立。样品制备与仪器参数仍待嵌入。",
+      sopStillPending:
+        "本页上方已给出方法原理；样品制备、仪器参数、系统适用性等正文仍待嵌入。",
+      sequenceLabel: "氨基酸序列",
+      disulfideLabel: "二硫键对数",
+      residueCountLabel: "残基数",
+      cysteineCountLabel: "半胱氨酸数",
+      reducedMassLabel: "全还原态平均质量",
+      oxidizedMassLabel: "氧化态理论质量（真值）",
+      recoveredMassLabel: "从电荷态包络回收的质量",
+      deviationLabel: "回收偏差",
+      chargeLabel: "主峰推断电荷",
+      hexoseShiftLabel: "人为引入的己糖差异",
+      candidateMassLabel: "候选药模拟质量",
+      observedShiftLabel: "头对头质量差",
+      attributableLabel: "该差异可归因为已知糖型",
+      envelopeCaption: "合成电荷态包络（m/z vs 相对强度），不是实测谱图。",
+      passLabel: "通过",
+      failLabel: "未通过",
+      peptideCountLabel: "理论肽段数",
+      coverageLabel: "序列覆盖率",
+      unmatchedLabel: "未匹配肽段（覆盖替换位点）",
+      substitutionLabel: "人为氨基酸替换",
+      substitutionDetectedLabel: "替换已在肽图中暴露为未匹配肽段",
+      substitutionMissedLabel: "替换未被检出",
+      referenceLotsLabel: "参照药批次（mol SH/mol protein）",
+      candidateLotsLabel: "候选药批次",
+      scenarioSimilar: "相似情景",
+      scenarioShifted: "偏移情景",
+      sigmaMultiplierLabel: "X（σ 倍数）",
+      thresholdLabel: "落入比例阈值",
+      meanLabel: "均值 μ",
+      sdLabel: "标准差 σ",
+      qrLabel: "质量范围 QR",
+      withinLabel: "落入 QR 的批次",
+      outOfRangeLabel: "超出 QR 的批次",
+      supportsSimilarity: "按框架规则：可支持该属性相似",
+      doesNotSupport: "按框架规则：不支持该属性相似",
+      editHint: "数值可编辑。用空格、逗号或换行分隔。",
+      provenanceTitle: "数据来源与计算原理",
+      provenanceWhatItIs: "这是什么（为何不是虚构）",
+      provenanceWhatItIsNot: "这不是什么",
+      provenanceDataSource: "数据来源",
+      provenancePrinciple: "计算原理",
+      provenanceCheck: "独立校验",
+      provenanceOracle: "可对照的已知数值",
+      provenanceFiles: "本仓库中的实现与证据文件",
+      provenanceLinks: "外部可核验链接",
+    },
+    methodContent: {
+      sectionTitle: "方法学正文",
+      principleLabel: "原理",
+      pendingFieldsTitle: "以下正文字段仍待嵌入",
+      pendingSamplePreparation: "样品制备",
+      pendingInstrumentParameters: "仪器参数",
+      pendingSystemSuitability: "系统适用性",
+      pendingDataInterpretation: "数据解读",
+      pendingSimilarityAssessmentLink: "与相似性评价的衔接",
+      disclaimer:
+        "原理为方法学说明，不是可直接执行的 SOP，也未经方法学验证；不得据此判定生物类似性。",
+    },
+    methodTools: {
+      sectionTitle: "开源工具与部署实录",
+      notSurveyedTitle: "该方法尚未调研",
+      notSurveyedText:
+        "本方法所属大类的开源工具调研尚未开展，此处不给出任何未经验证的结论。",
+      gapTitle: "调研结论：缺口",
+      surveyedOnLabel: "调研日期",
+      licenseLabel: "许可证",
+      stackLabel: "技术栈",
+      capabilityLabel: "能力层级",
+      deploymentLabel: "实际部署层级",
+      notSupportedLabel: "明确不支持",
+      evidenceLabel: "本机实测证据",
+      repositoryLabel: "仓库",
+      statsLabel: "仓库数据",
+      recommendationPreferred: "首选",
+      recommendationAlternative: "备选",
+      recommendationConditional: "条件推荐",
+      recommendationNotRecommended: "不推荐",
+      deploymentUnverifiedWarning:
+        "未在本机部署验证，以下判断仅来自文档与仓库页面。",
+      disclaimer:
+        "「工具能运行」不等于「方法学已验证」，更不等于「符合 GxP / 21 CFR Part 11」；「两组数据数值接近」不等于「生物类似性成立」。本栏仅说明工具可行性，不提供任何分析能力。",
     },
     regulatoryPage: {
       title: "法规框架",
@@ -356,7 +537,7 @@ export const uiMessages: Record<Locale, UiMessages> = {
       emptyFieldPlaceholder: "—",
       methodSectionTitle: "Detection Methods",
       methodSectionDescription:
-        "Select a method to view its detection content (placeholder in this phase; to be embedded later).",
+        "Select a method to view its detection content. Methods marked Live demo compute on this page (synthetic data).",
       primaryMethodLabel: "Primary",
       orthogonalMethodLabel: "Orthogonal / supplementary",
       methodContentPlaceholderTitle: "Detection content to be embedded",
@@ -377,6 +558,100 @@ export const uiMessages: Record<Locale, UiMessages> = {
       uploadPlaceholderAction: "Upload data (not yet available)",
       previousItem: "Previous",
       nextItem: "Next",
+    },
+    liveDemo: {
+      badge: "Live demo",
+      title: "Live demo (computed in the browser)",
+      runButton: "Run demo",
+      rerunButton: "Recompute",
+      syntheticTag: "Synthetic data",
+      publicSequenceTag: "Public sequence UniProt P02769",
+      disclaimer:
+        "This demo computes in the browser from a public sequence or synthetic data. That the tool runs does not mean the method is validated, still less GxP-compliant; numerical closeness does not establish biosimilarity. Sample preparation and instrument parameters are still to be embedded.",
+      sopStillPending:
+        "The method principle is given above; sample preparation, instrument parameters and system suitability are still to be embedded.",
+      sequenceLabel: "Amino-acid sequence",
+      disulfideLabel: "Disulfide-bond count",
+      residueCountLabel: "Residue count",
+      cysteineCountLabel: "Cysteine count",
+      reducedMassLabel: "Fully reduced average mass",
+      oxidizedMassLabel: "Oxidised theoretical mass (ground truth)",
+      recoveredMassLabel: "Mass recovered from the charge envelope",
+      deviationLabel: "Recovery deviation",
+      chargeLabel: "Inferred charge of the base peak",
+      hexoseShiftLabel: "Deliberately introduced hexose difference",
+      candidateMassLabel: "Simulated candidate mass",
+      observedShiftLabel: "Head-to-head mass difference",
+      attributableLabel: "Difference attributable to a known glycoform",
+      envelopeCaption:
+        "Synthetic charge-state envelope (m/z vs relative intensity), not a measured spectrum.",
+      passLabel: "Pass",
+      failLabel: "Fail",
+      peptideCountLabel: "Theoretical peptide count",
+      coverageLabel: "Sequence coverage",
+      unmatchedLabel: "Unmatched peptides spanning the substitution",
+      substitutionLabel: "Deliberate amino-acid substitution",
+      substitutionDetectedLabel: "The substitution is exposed as unmatched peptides",
+      substitutionMissedLabel: "The substitution was not detected",
+      referenceLotsLabel: "Reference lots (mol SH/mol protein)",
+      candidateLotsLabel: "Candidate lots",
+      scenarioSimilar: "Similar scenario",
+      scenarioShifted: "Shifted scenario",
+      sigmaMultiplierLabel: "X (σ multiplier)",
+      thresholdLabel: "Within-range fraction threshold",
+      meanLabel: "Mean μ",
+      sdLabel: "SD σ",
+      qrLabel: "Quality range QR",
+      withinLabel: "Lots inside QR",
+      outOfRangeLabel: "Lots outside QR",
+      supportsSimilarity: "Per the framework rule: similarity of this attribute can be supported",
+      doesNotSupport: "Per the framework rule: similarity of this attribute is not supported",
+      editHint: "Values are editable. Separate them with spaces, commas or newlines.",
+      provenanceTitle: "Data source and calculation principle",
+      provenanceWhatItIs: "What this is (why it is not fictional)",
+      provenanceWhatItIsNot: "What this is not",
+      provenanceDataSource: "Data source",
+      provenancePrinciple: "Calculation principle",
+      provenanceCheck: "Independent check",
+      provenanceOracle: "Oracle values that can be checked",
+      provenanceFiles: "Implementation and evidence files in this repository",
+      provenanceLinks: "External verifiable links",
+    },
+    methodContent: {
+      sectionTitle: "Method SOP body",
+      principleLabel: "Principle",
+      pendingFieldsTitle: "SOP fields still to be embedded",
+      pendingSamplePreparation: "Sample preparation",
+      pendingInstrumentParameters: "Instrument parameters",
+      pendingSystemSuitability: "System suitability",
+      pendingDataInterpretation: "Data interpretation",
+      pendingSimilarityAssessmentLink: "Link to similarity assessment",
+      disclaimer:
+        "The principle is explanatory method text, not an executable SOP, and has not been validated; biosimilarity must not be concluded from it.",
+    },
+    methodTools: {
+      sectionTitle: "Open-source tools and deployment record",
+      notSurveyedTitle: "This method has not been surveyed",
+      notSurveyedText:
+        "The open-source tool survey for this method's category has not started; no unverified conclusion is offered here.",
+      gapTitle: "Survey conclusion: gap",
+      surveyedOnLabel: "Surveyed on",
+      licenseLabel: "Licence",
+      stackLabel: "Stack",
+      capabilityLabel: "Capability levels",
+      deploymentLabel: "Deployment level reached",
+      notSupportedLabel: "Explicitly not supported",
+      evidenceLabel: "Local verification evidence",
+      repositoryLabel: "Repository",
+      statsLabel: "Repository metrics",
+      recommendationPreferred: "Preferred",
+      recommendationAlternative: "Alternative",
+      recommendationConditional: "Conditional",
+      recommendationNotRecommended: "Not recommended",
+      deploymentUnverifiedWarning:
+        "Not deployed or verified locally; the assessment below comes from documentation and the repository page only.",
+      disclaimer:
+        "\"The tool runs\" does not mean \"the method is validated\", still less \"GxP / 21 CFR Part 11 compliant\"; \"the two datasets are numerically close\" does not mean \"biosimilarity is established\". This panel describes tool feasibility only and provides no analytical capability.",
     },
     regulatoryPage: {
       title: "Regulatory Framework",

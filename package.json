@@ -9,7 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "verify:cases": "node scripts/verify_reference_cases.mjs",
-    "check": "npm run typecheck && npm run lint && npm run verify:cases"
+    "verify:demo": "node scripts/verify_live_demo.mjs",
+    "verify:method-content": "node scripts/verify_method_content.mjs",
+    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content"
   },
   "dependencies": {
     "next": "16.3.0",

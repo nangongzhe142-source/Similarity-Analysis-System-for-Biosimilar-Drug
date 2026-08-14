@@ -34,18 +34,122 @@ export interface Category {
   order: number;
 }
 
+/** Optional method-SOP body. Kept in `src/data/method-content.ts` (not in the
+ *  Excel-generated items file) and keyed by `DetectionMethod.id`.
+ *  `principle` is the first field to fill; the rest may remain absent until
+ *  a later step. Absence of a field means "not yet embedded", not "not applicable". */
+export interface DetectionMethodContent {
+  /** Method principle and when it is used. */
+  principle: LocalizedText;
+  samplePreparation?: LocalizedText;
+  instrumentParameters?: LocalizedText;
+  systemSuitability?: LocalizedText;
+  dataInterpretation?: LocalizedText;
+  similarityAssessmentLink?: LocalizedText;
+}
+
 /** A single detection method (primary or orthogonal/supplementary).
- *  Real detection content will be embedded in a later phase. */
+ *  Real detection content is attached via `src/data/method-content.ts`. */
 export interface DetectionMethod {
   id: string;
   /** Method name, e.g. "LC-ESI-MS（高分辨QTOF/Orbitrap等）". */
   name: LocalizedText;
   /** "primary" = 分析方法（首选）; "orthogonal" = 正交/补充方法. */
   type: "primary" | "orthogonal";
-  /** Marker: the real detection content of this method is to be embedded. */
+  /** Marker: SOP fields other than those already in method-content.ts remain open. */
   contentPlaceholder: true;
   /** Fallback: the original unsplit source text this method was parsed from. */
   rawSourceText: LocalizedText;
+}
+
+// ---------------------------------------------------------------------------
+// Method tools — open-source software surveyed for a detection method, with
+// the deployment level that was actually reached on a real machine.
+//
+// The point of these fields is to stop a reader from mistaking "we found a
+// repository" for "this works". Never raise `deploymentLevel` beyond what the
+// evidence files under `docs/tool-survey/evidence/` actually show.
+// ---------------------------------------------------------------------------
+
+/** Where a tool sits in the analysis chain. A tool may span several levels.
+ *  A = raw data reading / format conversion
+ *  B = peak detection, quantitation, feature extraction
+ *  C = cleaning, batch normalisation, alignment
+ *  D = candidate vs. reference product comparison
+ *  E = equivalence testing / quality range / confidence intervals
+ *  F = plots and reports
+ *  G = end-to-end workflow or platform
+ *  H = illustrative feasibility explanation only */
+export type ToolCapabilityLevel = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
+
+/** How far the tool was actually taken on a real machine, evidence-backed.
+ *  L0  = not deployed, documentation judgement only (UNVERIFIED)
+ *  L1  = installed, version number printed
+ *  L1+ = ran on official sample data, but no authoritative expected output
+ *        exists to check correctness against
+ *  L2  = official sample data reproduced documented output
+ *  L3  = ran on synthetic or public data with sensible, explainable output
+ *  L4  = ran against the target data shape of a framework detection item
+ *  L5  = output structured as JSON that the frontend can consume
+ *  L6  = wired into Next.js with automated tests */
+export type ToolDeploymentLevel = "L0" | "L1" | "L1+" | "L2" | "L3" | "L4" | "L5" | "L6";
+
+/** How strongly the tool is recommended for this framework. */
+export type ToolRecommendation =
+  | "preferred"
+  | "alternative"
+  | "conditional"
+  | "not-recommended";
+
+/** Repository metrics snapshot. Values move over time, so the query date is
+ *  mandatory; a metric without a date is not evidence. */
+export interface ToolRepositoryStats {
+  stars: number;
+  forks: number;
+  /** ISO date of the most recent push, from the public GitHub API. */
+  lastPushedOn: string;
+  /** ISO date the metrics above were queried. */
+  queriedOn: string;
+}
+
+/** One surveyed tool attached to one or more detection methods. */
+export interface MethodTool {
+  id: string;
+  /** Tool name, kept in its original (usually English) form. */
+  name: string;
+  repositoryUrl: string;
+  /** SPDX identifier where available, otherwise the licence as declared.
+   *  "NOASSERTION" means GitHub could not classify it and the licence file
+   *  must be read manually before any distribution decision. */
+  license: string;
+  /** Language / runtime, so the reader can judge integration cost. */
+  stack: string;
+  capabilityLevels: ToolCapabilityLevel[];
+  deploymentLevel: ToolDeploymentLevel;
+  /** One-line statement of what the tool does for this method. */
+  summary: LocalizedText;
+  /** What the tool explicitly does NOT do. As important as `summary`:
+   *  omitting it is how a survey misleads. */
+  notSupported: LocalizedText;
+  /** How the deployment level was established on this machine. Empty only
+   *  when `deploymentLevel` is "L0". */
+  deploymentEvidence: LocalizedText;
+  /** Workspace-relative paths of logs / outputs backing the claim above. */
+  evidencePaths: string[];
+  recommendation: ToolRecommendation;
+  repositoryStats?: ToolRepositoryStats;
+}
+
+/** Result of surveying one detection method: either tools were found, or the
+ *  gap is recorded explicitly. An empty tool list with no `gapNote` would be
+ *  indistinguishable from "not yet surveyed", which is why `gapNote` exists. */
+export interface MethodToolSurvey {
+  tools: MethodTool[];
+  /** Set when no suitable open-source tool was found, or when the method is
+   *  instrument-bound and no software can cover it. */
+  gapNote?: LocalizedText;
+  /** ISO date the survey for this method was carried out. */
+  surveyedOn: string;
 }
 
 // ---------------------------------------------------------------------------

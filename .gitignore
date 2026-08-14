@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 工具可行性验证：虚拟环境与运行产物不入库，脚本与锁文件入库以保证可复现
+/tools-poc/.venv/
+/tools-poc/output/
+__pycache__/

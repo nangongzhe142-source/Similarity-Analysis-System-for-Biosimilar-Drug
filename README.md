@@ -20,7 +20,7 @@
 
 | 维度 | 要求 |
 |------|------|
-| 方法内容 | 替换 `contentPlaceholder`，填入 `DetectionMethodContent` 各字段 |
+| 方法内容 | 在 `src/data/method-content.ts` 按方法 id 填入 `DetectionMethodContent` 各字段（原理已完成一级结构 33/33） |
 | 分析路径 | 从样品到结论的完整流程可逐步阅读，与框架中的判定原则/数值限度对齐 |
 | 可行性证明 | 至少满足以下之一：监管审评参考案例（`reference-cases`）、已发表方法学文献引用、或明确标注的示意性说明 |
 | 可追溯性 | 真实数据案例须带来源、局限性说明与 `npm run verify:cases` 可校验的溯源字段 |
@@ -156,8 +156,10 @@ npm run build        # 生产构建（全部页面静态生成）
 npm run start        # 运行生产构建
 npm run lint         # ESLint 检查
 npm run typecheck    # TypeScript 类型检查
-npm run verify:cases # 参考案例溯源校验
-npm run check        # typecheck + lint + verify:cases
+npm run verify:cases          # 参考案例溯源校验
+npm run verify:demo           # 实机演示公式与 PoC 预言机比对
+npm run verify:method-content # 方法学正文（原理）覆盖与 id 链接校验
+npm run check                 # 以上四项全部执行
 ```
 
 ## 目录结构
@@ -220,6 +222,29 @@ python scripts/generate_data.py
 - UI 外壳文案在 `src/i18n/messages.ts` 维护，`zh` / `en` 完整。
 - 正文数据的每个文本字段均为 `{ zh, en }` 结构：`zh` 来自 Excel 或人工撰写；`en` 为机器翻译占位（**待校对**）。
 - 语言切换在页面右上角，选择持久化于 `localStorage`。
+
+## 开源工具调研与可行性证明
+
+除方法内容嵌入外，另有一条并行工作线：调研每类分析方法可用的开源工具，**在本机真正装起来跑一遍**，
+用可复现的日志与输出说明它能做到哪一步、在哪一步卡住，并把结论嵌入对应方法的展示位。
+
+- 执行计划与逐步进度：[`docs/tool-survey/implementation-plan.md`](docs/tool-survey/implementation-plan.md)
+- 一级结构大类报告：[`docs/tool-survey/01-primary-structure.md`](docs/tool-survey/01-primary-structure.md)
+- 可复现的验证脚本与环境：[`tools-poc/`](tools-poc/README.md)
+- 运行日志与证据：`docs/tool-survey/evidence/`
+
+工具信息按 `DetectionMethod.id` 维护在 `src/data/method-tools.ts`，由 `MethodToolPanel` 渲染在方法内容嵌入位下方。
+有可运行链路的方法，在检测方法模块内嵌**实机演示**（点击即在浏览器当场计算），演示下方有可展开的数据来源、计算原理与独立校验说明。后续大类必须遵守计划中的 S14、S15，不得只交调研文字。
+
+| 大类 | 状态 | 最高部署层级 | 实机演示 |
+|------|------|--------------|----------|
+| 一级结构（11 项 / 33 方法） | 已完成 | L4（3 条链路） | 完整质量 / 肽图 / QR |
+| 其余 7 个大类 | 未开始 | — | — |
+
+`tools-poc/` 与 Next.js 应用隔离。网站演示为浏览器端计算，不调用 Python、不上传质谱文件。
+
+> 「工具能运行」≠「方法学已验证」≠「符合 GxP / 21 CFR Part 11」；
+> 「两组数据数值接近」≠「生物类似性成立」。
 
 ## 本期明确不做
 

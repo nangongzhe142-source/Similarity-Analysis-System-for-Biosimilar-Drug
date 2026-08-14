@@ -3,15 +3,21 @@
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import type { DetectionMethod } from "@/types/models";
+import { MethodLiveDemo } from "@/components/live-demo/MethodLiveDemo";
+import { MethodContentPanel } from "@/components/MethodContentPanel";
 import { MethodContentPlaceholder } from "@/components/MethodContentPlaceholder";
+import { MethodToolPanel } from "@/components/MethodToolPanel";
+import { getLiveDemoKind } from "@/data/live-demos";
+import { getMethodContent } from "@/data/method-content";
 
 interface MethodSelectorProps {
   methods: DetectionMethod[];
 }
 
 /** Renders the primary + orthogonal methods of an item as a selectable list.
- *  The first primary method is selected by default; selecting a method shows
- *  its content-embedding placeholder panel below. */
+ *  Selecting a method shows, in order: the method SOP body (when embedded),
+ *  the live demo (when one exists), then the surveyed-tool panel. The dashed
+ *  placeholder appears only when neither SOP body nor demo exists. */
 export function MethodSelector({ methods }: MethodSelectorProps) {
   const { localize, messages } = useLanguage();
   const [selectedMethodId, setSelectedMethodId] = useState<string | null>(
@@ -28,6 +34,8 @@ export function MethodSelector({ methods }: MethodSelectorProps) {
 
   const selectedMethod =
     methods.find((method) => method.id === selectedMethodId) ?? methods[0];
+  const hasMethodContent = getMethodContent(selectedMethod.id) !== undefined;
+  const hasSelectedLiveDemo = getLiveDemoKind(selectedMethod.id) !== undefined;
 
   return (
     <div className="flex flex-col gap-4">
@@ -38,6 +46,7 @@ export function MethodSelector({ methods }: MethodSelectorProps) {
             method.type === "primary"
               ? messages.itemPage.primaryMethodLabel
               : messages.itemPage.orthogonalMethodLabel;
+          const hasLiveDemo = getLiveDemoKind(method.id) !== undefined;
           return (
             <li key={method.id}>
               <button
@@ -60,12 +69,22 @@ export function MethodSelector({ methods }: MethodSelectorProps) {
                   {typeLabel}
                 </span>
                 <span className="font-medium">{localize(method.name)}</span>
+                {hasLiveDemo ? (
+                  <span className="shrink-0 rounded bg-emerald-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                    {messages.liveDemo.badge}
+                  </span>
+                ) : null}
               </button>
             </li>
           );
         })}
       </ul>
-      <MethodContentPlaceholder method={selectedMethod} />
+      {hasMethodContent ? <MethodContentPanel method={selectedMethod} /> : null}
+      <MethodLiveDemo method={selectedMethod} />
+      {!hasMethodContent && !hasSelectedLiveDemo ? (
+        <MethodContentPlaceholder method={selectedMethod} />
+      ) : null}
+      <MethodToolPanel methodId={selectedMethod.id} />
     </div>
   );
 }

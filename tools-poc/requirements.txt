@@ -1,0 +1,20 @@
+# 一级结构大类 PoC 的直接依赖（已锁定版本，2026-08-14 实测可用）。
+# 完整依赖树见 requirements.lock.txt（35 个包，虚拟环境总计约 925 MB）。
+#
+# 安装方式（不做全局安装，不污染系统 PATH）：
+#   python -m venv tools-poc/.venv
+#   tools-poc/.venv/Scripts/python.exe -m pip install -r tools-poc/requirements.txt
+#
+# 许可证：
+#   numpy     BSD-3-Clause
+#   scipy     BSD-3-Clause
+#   pyteomics Apache-2.0
+#   pyopenms  BSD-3-Clause（OpenMS 主仓库 GitHub 标为 NOASSERTION，需以发行包内 LICENSE 为准）
+#   unidec    修改版 BSD-3-Clause（GitHub 标为 NOASSERTION，README 声明允许商业使用与再分发）
+# 上述许可证判定见 docs/tool-survey/01-primary-structure.md，标注为需法务复核。
+
+numpy==2.2.6
+scipy==1.15.3
+pyteomics==5.0.1
+pyopenms==3.5.0
+unidec==8.2.1
