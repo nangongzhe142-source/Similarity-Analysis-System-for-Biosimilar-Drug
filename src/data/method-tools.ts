@@ -196,7 +196,7 @@ const PLINK2: MethodTool = {
   id: "plink2",
   name: "pLink 2 (pLink-SS)",
   repositoryUrl: "https://github.com/pFindStudio/pLink2",
-  license: "无许可证文件（学术免费，商业条款不明）",
+  license: "无 SPDX 许可证文件；README 写明 pLink 2.3.11 授权到期日 2025-01-10（P14 复核时已过期）",
   stack: "C++ / Windows 桌面程序",
   capabilityLevels: ["B", "D"],
   deploymentLevel: "L0",
@@ -209,12 +209,37 @@ const PLINK2: MethodTool = {
     en: "Has no licence file and unclear commercial terms; as a Windows desktop program it can only be integrated via exported files and cannot be embedded in a web page; the repository has few stars and a relatively large number of open issues.",
   },
   deploymentEvidence: {
-    zh: "未部署（L0，未验证）。未部署的原因是：仓库无许可证文件，按本项目准入规则属高风险，需先完成许可证澄清才应投入安装工作量。领域内公认度高，因此仍如实列出，不因 star 数低而略过。",
-    en: "Not deployed (L0, unverified). The reason is that the repository has no licence file, which makes it high risk under this project's admission rules; licence clarification should precede any installation effort. It is nonetheless listed honestly given its strong recognition in the field, rather than skipped for having few stars.",
+    zh: "未部署（L0）。P14（2026-08-21）经 GitHub API 复核：license 字段为 null；README 写明 2.3.11 授权到期 2025-01-10，当日已过期。按准入规则不得安装，也未跑官方示例。",
+    en: "Not deployed (L0). P14 (2026-08-21) re-checked via the GitHub API: license is null; the README sets the 2.3.11 licence expiry at 2025-01-10, which has passed. Admission rules forbid installation; no official example was run.",
   },
-  evidencePaths: [],
+  evidencePaths: ["docs/tool-survey/evidence/p14_disulfide_license_check.json"],
   recommendation: "conditional",
-  repositoryStats: { stars: 25, forks: 1, lastPushedOn: "2025-01-11", queriedOn: SURVEYED_ON },
+  repositoryStats: { stars: 25, forks: 1, lastPushedOn: "2025-01-11", queriedOn: "2026-08-21" },
+};
+
+const PLINK3: MethodTool = {
+  id: "plink3",
+  name: "pLink 3",
+  repositoryUrl: "https://github.com/pFindStudio/pLink3",
+  license: "无 SPDX 许可证文件（GitHub license 字段为 null；需厂商注册授权）",
+  stack: "Windows 桌面程序 / 发行包",
+  capabilityLevels: ["B", "D"],
+  deploymentLevel: "L0",
+  summary: {
+    zh: "pLink 2 的后继交联肽搜索引擎。官方 README 要求改用 pLink 3。",
+    en: "Successor to pLink 2 for cross-linked peptide search. The official README directs users to pLink 3.",
+  },
+  notSupported: {
+    zh: "仓库无 SPDX 许可证；发行包需向 pFind 注册授权，不能作为本项目可再分发依赖。",
+    en: "No SPDX licence on the repository; binary releases require pFind registration and cannot be a redistributable dependency of this project.",
+  },
+  deploymentEvidence: {
+    zh: "未部署（L0）。P14（2026-08-21）GitHub API：license=null，language=null，13 star，41 个开放 issue。未下载安装包。",
+    en: "Not deployed (L0). P14 (2026-08-21) GitHub API: license=null, language=null, 13 stars, 41 open issues. The installer was not downloaded.",
+  },
+  evidencePaths: ["docs/tool-survey/evidence/p14_disulfide_license_check.json"],
+  recommendation: "conditional",
+  repositoryStats: { stars: 13, forks: 0, lastPushedOn: "2025-05-21", queriedOn: "2026-08-21" },
 };
 
 const DIBBY: MethodTool = {
@@ -234,12 +259,12 @@ const DIBBY: MethodTool = {
     en: "No licence, no releases, last push 2021-11-21, single maintainer, and its README describes it as a research prototype slated for a rewrite; it is not fit for production use.",
   },
   deploymentEvidence: {
-    zh: "未部署（L0，未验证）。列出它是为了如实反映「二硫键定位缺少可用开源工具」这一现状，而不是推荐使用。",
-    en: "Not deployed (L0, unverified). It is listed to faithfully reflect the shortage of usable open-source tools for disulfide localisation, not as a recommendation.",
+    zh: "未部署（L0）。P14（2026-08-21）GitHub API 复核：license 仍为 null，最后推送仍为 2021-11-21。列出它是为了如实反映缺口，不是推荐使用。",
+    en: "Not deployed (L0). P14 (2026-08-21) GitHub API re-check: license is still null and the last push is still 2021-11-21. It is listed to record the gap, not as a recommendation.",
   },
-  evidencePaths: [],
+  evidencePaths: ["docs/tool-survey/evidence/p14_disulfide_license_check.json"],
   recommendation: "not-recommended",
-  repositoryStats: { stars: 1, forks: 0, lastPushedOn: "2021-11-21", queriedOn: SURVEYED_ON },
+  repositoryStats: { stars: 1, forks: 0, lastPushedOn: "2021-11-21", queriedOn: "2026-08-21" },
 };
 
 // ---------------------------------------------------------------------------
@@ -297,12 +322,12 @@ function buildSurveyMap(): Record<string, MethodToolSurvey> {
   // 二硫键连接图谱的首选方法：技术上仍是非还原肽图，但需要交联肽搜索能力，
   // 通用肽图工具无法胜任，因此单独成组并明写缺口。
   surveys["disulfide-bonds-primary-1"] = {
-    tools: [PLINK2, DIBBY, PYOPENMS],
+    tools: [PLINK2, PLINK3, DIBBY, PYOPENMS],
     gapNote: {
-      zh: "缺口：二硫键连接肽鉴定没有「维护活跃 + 许可证清晰 + 已验证」三者兼备的开源工具。领域内公认的 pLink-SS 无许可证文件，dibby 已停更三年余，pyOpenMS 只能提供理论质量与酶切支持、不含交联肽搜索算法。本项目若要覆盖该分析点，需先完成 pLink 2 的许可证澄清，或自研交联肽匹配模块。",
-      en: "Gap: no open-source tool for identifying disulfide-linked peptides combines active maintenance, a clear licence and verification. The field-recognised pLink-SS has no licence file, dibby has been dormant for over three years, and pyOpenMS offers only theoretical mass and digestion support without a cross-linked peptide search algorithm. Covering this analysis point requires either clarifying the pLink 2 licence or developing a cross-linked peptide matching module in-house.",
+      zh: "Blocked/L0。P14（2026-08-21）复核：pLink 2/3 GitHub license 均为 null；pLink 2.3.11 授权已于 2025-01-10 过期；dibby 无许可证且停更至 2021-11-21；pyOpenMS 无交联肽搜索。按准入规则未安装任何上述工具，也未跑官方示例。D17 另禁止在分析面板对该项跑分析。",
+      en: "Blocked/L0. P14 (2026-08-21) re-check: pLink 2/3 GitHub license fields are null; the pLink 2.3.11 licence expired on 2025-01-10; dibby has no licence and last pushed on 2021-11-21; pyOpenMS has no cross-linked peptide search. Admission rules forbade installing any of these tools or running an official example. D17 separately forbids running analysis for this item in the analysis panel.",
     },
-    surveyedOn: SURVEYED_ON,
+    surveyedOn: "2026-08-21",
   };
 
   // 游离巯基首选方法为化学显色/荧光法，产出直接是标量数值，不涉及质谱软件。

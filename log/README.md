@@ -17,4 +17,4 @@
 | `docs/tool-survey/evidence/*.log` | Python PoC 脚本的**运行 stdout**（S07–S09 安装与端到端） |
 | `docs/tool-survey/implementation-plan.md` | 工具调研**计划正文**与进度 Done 日志（S0–S16） |
 
-**当前覆盖范围**：一级结构（`primary-structure`）网站嵌入阶段 S11、S14–S16。PoC 与报告见 `docs/tool-survey/`。
+**当前覆盖范围**：一级结构网站嵌入 S11、S14–S16；一级结构分析软件 P0–P16（检查点 5）以及检查点之后的 P17（含 P17-2）、P18、P19、P20、P21、P22、P24。PoC 与工具调研见 `docs/tool-survey/`。分析审计见 [`../docs/primary-structure-analysis/16-final-audit.md`](../docs/primary-structure-analysis/16-final-audit.md)（P0–P16 基线；其后变更以本目录 `2026-08-21-p17` 起各篇为准）。

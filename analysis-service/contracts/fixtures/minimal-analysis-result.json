@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "ruleSetVersion": "v2-sheet3-8bd6b18f",
+  "jobId": "00000000-0000-4000-8000-000000000001",
+  "itemId": "intact-mass",
+  "methodId": "intact-mass-primary-1",
+  "profile": "intact-mass",
+  "inputEvidence": {
+    "dataSource": "official-example",
+    "evidenceLevel": "raw-data-analysis",
+    "candidateFiles": [
+      {
+        "fileName": "candidate.mzML",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000001",
+        "format": "mzML",
+        "byteSize": 25600,
+        "role": "candidate"
+      }
+    ],
+    "referenceFiles": [
+      {
+        "fileName": "reference.mzML",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000002",
+        "format": "mzML",
+        "byteSize": 25600,
+        "role": "reference"
+      }
+    ],
+    "sequenceFiles": [],
+    "samplePairing": {
+      "candidateLabel": "fixture-candidate",
+      "referenceLabel": "fixture-reference",
+      "description": {
+        "zh": "契约测试用占位配对，不是生物类似药头对头设计。",
+        "en": "Placeholder pairing for contract tests; not a head-to-head biosimilar design."
+      },
+      "isHeadToHeadBiosimilarDesign": false
+    }
+  },
+  "extractedFeatures": {
+    "deconvolvedMassesDa": [66398.19],
+    "deltaDa": [0.0],
+    "deltaPpm": [0.0]
+  },
+  "ruleEvaluation": [
+    {
+      "ruleId": "intact-mass-sheet3-row2",
+      "sourceSheet": "3.特性鉴定相似性评价方案",
+      "sourceRow": 2,
+      "sourceCells": ["G2", "N2"],
+      "outcome": "NOT_APPLICABLE",
+      "rationale": {
+        "zh": "契约测试占位；真实规则评价在 P7 实现。",
+        "en": "Contract-test placeholder; real rule evaluation lands in P7."
+      }
+    }
+  ],
+  "verdict": "REVIEW",
+  "verdictRationale": {
+    "zh": "契约测试占位结果，不得当作任何判定结论。",
+    "en": "Contract-test placeholder; not a decision conclusion."
+  },
+  "artifacts": {},
+  "evidence": {
+    "toolVersions": {
+      "pyOpenMS": "3.5.0"
+    },
+    "parameters": {
+      "massConstantSource": "pyOpenMS-3.5.0-AASequence.getAverageWeight"
+    },
+    "traceId": "trace-fixture-001",
+    "startedAt": "2026-08-20T08:00:00+00:00",
+    "completedAt": "2026-08-20T08:00:01+00:00"
+  },
+  "provenance": {
+    "summary": {
+      "zh": "契约测试最小样例",
+      "en": "Minimal contract-test sample"
+    },
+    "whatItIs": {
+      "zh": "验证 AnalysisResult JSON 可被 Pydantic 与前端类型共同解析。",
+      "en": "Verifies AnalysisResult JSON parses under Pydantic and the TS contract."
+    },
+    "whatItIsNot": {
+      "zh": "不是任何真实测量或判定结论。",
+      "en": "Not a measured result or a decision conclusion."
+    },
+    "dataSource": {
+      "zh": "official-example 占位",
+      "en": "official-example placeholder"
+    },
+    "samplePairing": {
+      "zh": "两侧样本均为 fixture 标签，非候选药/参照药头对头设计。",
+      "en": "Both sides are fixture labels, not a candidate/reference head-to-head design."
+    },
+    "sourceFiles": ["analysis-service/contracts/fixtures/minimal-analysis-result.json"],
+    "inputHashes": [
+      {
+        "label": "candidate.mzML",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000001"
+      }
+    ],
+    "externalLinks": []
+  },
+  "warnings": [],
+  "limitations": [
+    "Contract-test fixture only."
+  ],
+  "disclaimer": {
+    "zh": "本 JSON 仅用于契约测试，不得用于监管申报或相似性判定。",
+    "en": "This JSON is for contract testing only; not for regulatory submission or similarity decisions."
+  }
+}

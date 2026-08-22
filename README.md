@@ -10,9 +10,11 @@
 
 - 为每个方法写明**可操作的分析路径**（原理、样品制备、仪器参数、系统适用性、数据解读、相似性判定衔接）；
 - 用**监管审评案例**、**开源工具部署实录**或**浏览器实机演示**证明该路径在生物类似药比对中的**可行性与可接受性**；
-- **不要求**在本阶段实现真实的计算引擎、文件上传、GxP 合规或监管结论。
+- **不要求**对其余 7 个大类实现计算引擎；**不实现** GxP 合规或监管结论。
 
-换言之：本阶段交付的是**结构化方法知识库 + 可追溯的可行性证据**，而非自动化分析软件。
+一级结构中 V2 Sheet3 **规则完整的 7 个项目**已接入可运行的分析服务（计划 P0–P16，其后纠错见 P17–P22）：网页经 `/api/analysis` 转发到 FastAPI（8765）→ pyOpenMS / UniDec / Comet / 图片降级。其余 4 个一级结构项目按 D17 **不跑分析**。清单、版本与缺口见 [`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md)。
+
+知识库线（S0–S16）与分析软件线（P0–P16）**不互相覆盖**。
 
 > 「工具能运行」≠「方法学已验证」≠「符合 GxP / 21 CFR Part 11」；  
 > 「两组数据数值接近」≠「生物类似性成立」。
@@ -39,8 +41,9 @@
 | 检测方法条目 | 184 条 | 框架已建立；**一级结构 33/33 已嵌入原理 + 工具 + 演示**；其余 151 条待嵌入 |
 | 法规框架 | CTD 申报要求 9 条 + 相似性评价关系 9 条 | 已完成 |
 | 参考案例 | 35 / 61 项已挂载案例 | 进行中（GP2015 试点） |
-| 相似性分析槽位 | 61 项均已预留 | 占位阶段，本期不实现 |
+| 相似性分析槽位 | 61 项均有入口 | 一级结构 7 项接分析面板；其余大类仍为占位 |
 | 开源工具 PoC | 一级结构 3 条 L4 链路 | 已完成（见 `tools-poc/`） |
+| 一级结构分析服务 | 7 个规则完整项目 / 20 条可分析方法 | 已完成（P0–P16，检查点 5） |
 
 **一级结构（`primary-structure`）网站嵌入进度**
 
@@ -62,12 +65,13 @@
 │  展示层  Next.js App Router + React 19 + Tailwind CSS 4     │
 ├─────────────────────────────────────────────────────────────┤
 │  组件层  ItemDetailView / MethodSelector / MethodContentPanel │
-│          MethodLiveDemo / MethodToolPanel / ReferenceCase…    │
+│          MethodAnalysisPanel / MethodLiveDemo / MethodToolPanel │
 ├─────────────────────────────────────────────────────────────┤
 │  数据层  src/data/  （全站唯一内容来源，数据驱动渲染）        │
 │    ├── characterization-items.ts   ← 61 项 + 184 方法（生成） │
 │    ├── method-content.ts           ← 方法学正文 sidecar       │
 │    ├── method-tools.ts             ← 开源工具调研 sidecar     │
+│    ├── method-analysis-config.ts   ← 33 条方法分析状态        │
 │    ├── live-demos.ts               ← 实机演示路由与默认数据   │
 │    ├── live-demo-provenance.ts     ← 演示溯源条目             │
 │    ├── reference-cases*.ts         ← 可行性证明案例           │
@@ -75,10 +79,10 @@
 │    └── categories.ts               ← 8 大类定义               │
 ├─────────────────────────────────────────────────────────────┤
 │  计算层  src/lib/live-demo/        ← 浏览器演示公式（非后端） │
+│          analysis-service/         ← FastAPI 8765（一级结构） │
 ├─────────────────────────────────────────────────────────────┤
 │  生成层  scripts/generate_data.py  ← Excel → TypeScript     │
-│  校验层  verify_reference_cases.mjs                           │
-│          verify_live_demo.mjs / verify_method_content.mjs     │
+│  校验层  verify_*.mjs + verify:primary-analysis（pytest）    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -87,11 +91,12 @@
 1. **评价字段** — 检测指标、相似性评价方法、判定原则、数值限度（来自 Excel）
 2. **检测方法** — 首选/正交方法切换；选中后在同一区块内按顺序展示：
    - **方法学正文**（`MethodContentPanel`，原理已嵌入时）
+   - **分析面板**（`MethodAnalysisPanel`，一级结构 33 条方法均有配置；可分析项可上传）
    - **实机演示**（`MethodLiveDemo`，有演示时；含可展开溯源）
    - **虚线占位**（仅当既无正文又无演示时）
    - **开源工具与部署实录**（`MethodToolPanel`）
 3. **参考案例** — 监管审评实例或示意性说明
-4. **相似性分析预留区** — 候选药/参照药数据录入与结果展示槽位（本期占位）
+4. **相似性分析预留区** — 非一级结构项目仍为槽位占位
 
 ## 分析方法嵌入路径
 
@@ -120,9 +125,12 @@ interface DetectionMethodContent {
 |------|------|----------|
 | 方法学正文 | `src/data/method-content.ts` | `npm run verify:method-content` |
 | 工具调研 | `src/data/method-tools.ts` | — |
+| 分析面板配置 | `src/data/method-analysis-config.ts` | `npm run verify:analysis-config` |
 | 实机演示映射 | `src/data/live-demos.ts` + `src/lib/live-demo/*` | `npm run verify:demo` |
 | 演示溯源 | `src/data/live-demo-provenance.ts` | — |
 | 参考案例 | `src/data/reference-cases*.ts` | `npm run verify:cases` |
+| 分析契约 | `src/types/analysis-contract.ts` | `npm run verify:analysis-contract` |
+| 分析服务测试 | `analysis-service/tests/` | `npm run verify:primary-analysis` |
 
 **大类全覆盖规则**：某大类只要有一条方法写了原理，`verify:method-content` 会强制该大类**全部**方法都有原理。
 
@@ -131,8 +139,9 @@ interface DetectionMethodContent {
 ```
 方法标签
   → MethodContentPanel     （getMethodContent(id) 有值）
+  → MethodAnalysisPanel    （一级结构：method-analysis-config）
   → MethodLiveDemo         （getLiveDemoKind(id) 有值）
-  → MethodContentPlaceholder （两者皆无）
+  → MethodContentPlaceholder （正文与演示皆无）
   → MethodToolPanel        （始终）
 ```
 
@@ -161,7 +170,7 @@ interface DetectionMethodContent {
 - **国际化**：自研 i18n（React Context + `localStorage` 持久化）
 - **数据生成**：Python 3 + openpyxl
 - **工具 PoC**：Python 3.10 虚拟环境（`tools-poc/.venv`，与 Next.js 隔离）
-- **质量校验**：ESLint + TypeScript + 三项机械校验脚本（见下）
+- **质量校验**：ESLint + TypeScript + `verify:*.mjs` + 分析服务 pytest（`verify:primary-analysis`）
 
 ## 安装与运行
 
@@ -186,8 +195,14 @@ npm run typecheck             # TypeScript
 npm run verify:cases          # 参考案例溯源（grep 翻译 chunk）
 npm run verify:demo           # 实机演示公式 vs PoC 预言机
 npm run verify:method-content # 方法学正文覆盖与 method id 链接
+npm run verify:schemes        # V2 相似性方案结构
+npm run verify:analysis-config
+npm run verify:analysis-contract
+npm run verify:primary-analysis  # 分析服务默认 pytest + 面板结构
 npm run check                 # 以上全部
 ```
+
+本地分析服务启动命令见 [`analysis-service/README.md`](analysis-service/README.md)。
 
 ## 目录结构
 
@@ -200,9 +215,11 @@ src/
 │   └── regulatory/                   # 法规框架
 ├── components/
 │   ├── MethodContentPanel.tsx        # 方法学正文（原理 + 待嵌入标签）
+│   ├── MethodAnalysisPanel.tsx       # 一级结构上传 / 任务 / 结果
 │   ├── MethodContentPlaceholder.tsx  # 无正文且无演示时的虚线占位
-│   ├── MethodSelector.tsx            # 方法切换 + 四层堆叠
+│   ├── MethodSelector.tsx            # 方法切换 + 堆叠面板
 │   ├── MethodToolPanel.tsx           # 开源工具与部署实录
+│   ├── analysis/                     # 镜像谱 / 覆盖图 / 溯源 SVG
 │   ├── live-demo/                    # 实机演示与溯源 UI
 │   ├── reference-case/
 │   └── views/
@@ -210,12 +227,14 @@ src/
 │   ├── characterization-items.ts     # 61 项 + 184 方法（脚本生成，勿手改）
 │   ├── method-content.ts             # 方法学正文 sidecar
 │   ├── method-tools.ts               # 工具调研 sidecar
+│   ├── method-analysis-config.ts     # 分析面板状态 sidecar
 │   ├── live-demos.ts                 # 演示 kind 映射
 │   ├── live-demo-provenance.ts       # 演示溯源
 │   ├── reference-cases*.ts
 │   ├── regulatory-framework.ts
 │   └── categories.ts
 ├── lib/live-demo/                    # 浏览器演示计算（非 UniDec/pyOpenMS）
+├── lib/analysis-service-client.ts
 ├── i18n/
 └── types/models.ts
 scripts/
@@ -223,9 +242,15 @@ scripts/
 ├── verify_reference_cases.mjs
 ├── verify_live_demo.mjs
 ├── verify_method_content.mjs
+├── verify_similarity_schemes.mjs
+├── verify_method_analysis_config.mjs
+├── verify_analysis_contract.mjs
+├── verify_primary_analysis.mjs
 └── requirements.txt
+analysis-service/                     # FastAPI 分析服务（端口 8765）
+docs/primary-structure-analysis/      # P0–P16 计划与最终审计
 docs/tool-survey/                     # 工具调研计划、大类报告、PoC 证据
-tools-poc/                            # Python 隔离环境与 s09 链路
+tools-poc/                            # Python 隔离环境与 s09 链路（含分析服务 venv）
 log/                                  # 网站交付变更日志（非 PoC stdout）
 ```
 
@@ -265,6 +290,8 @@ python scripts/generate_data.py
 | 资源 | 路径 |
 |------|------|
 | 执行计划与进度（S0–S16） | [`docs/tool-survey/implementation-plan.md`](docs/tool-survey/implementation-plan.md) |
+| 一级结构分析软件（P0–P16） | [`docs/primary-structure-analysis/implementation-plan.md`](docs/primary-structure-analysis/implementation-plan.md) |
+| 一级结构分析最终审计 | [`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md) |
 | 一级结构大类报告 | [`docs/tool-survey/01-primary-structure.md`](docs/tool-survey/01-primary-structure.md) |
 | PoC 环境与脚本 | [`tools-poc/`](tools-poc/README.md) |
 | PoC 运行 stdout | `docs/tool-survey/evidence/*.log` |
@@ -277,17 +304,20 @@ python scripts/generate_data.py
 | 一级结构（11 项 / 33 方法） | 已完成 | L4（3 条链路） | 27 / 33 | 33 / 33 |
 | 其余 7 个大类 | 未开始 | — | — | — |
 
-浏览器演示使用 TypeScript 当场计算（公开序列 UniProt P02769 或明示合成数据），**不**调用 `tools-poc` 中的 Python 进程，**不**上传质谱 RAW 文件。
+浏览器演示使用 TypeScript 当场计算（公开序列 UniProt P02769 或明示合成数据），**不**调用 `tools-poc` 中的 Python 进程。质谱 RAW / mzML 上传走 `MethodAnalysisPanel` → `analysis-service`，与演示层分离。
+
+分析软件审计：[`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md)。
 
 ## 本期明确不做
 
-- 不实现面向生产的相似性判定、统计等效性检验或 GxP 合规流程；
-- 不做真实文件上传与后端存储（预留槽位为禁用占位）；
-- 不在参考案例或演示中冒充实测图谱或监管结论；
-- 不把 UniDec / pyOpenMS 接入 Next.js 运行时；
+- 不实现面向生产的相似性判定、统计等效性检验或 GxP / 21 CFR Part 11 合规流程；
+- 不对其余 7 个大类、以及一级结构中规则未定义的 4 个项目运行分析（D17）；
+- 不在参考案例、演示或图片降级中冒充实测图谱或监管结论；
+- 不把 UniDec / pyOpenMS / Comet 接入 Next.js 运行时（计算在 FastAPI 进程）；
+- 不根据图像相似度直接判定生物类似性；
 - 页面组件不硬编码业务内容，全部来自 `src/data/` 与 sidecar。
 
-（浏览器 QR 演示仅复现 PoC 判定**公式**与合成批次，不等于已完成方法学验证。）
+（浏览器 QR 演示仅复现 PoC 判定**公式**与合成批次，不等于已完成方法学验证，也不进入分析服务。）
 
 ## 路线图
 
@@ -295,8 +325,8 @@ python scripts/generate_data.py
 |------|------|------|
 | V0.1 | 框架搭建：61 项 + 184 方法 + 法规 + 双语 UI | 已完成 |
 | V0.2 | 方法嵌入：184 条正文 + 工具实录 + 演示 + 61 项可行性证明 | **进行中**（一级结构网站层 S11/S14–S16 已完成） |
-| V0.3 | 相似性分析接入：候选药/参照药数据录入与结果展示 | 规划中 |
-| V1.0 | 真实计算引擎与统计判定 | 远期 |
+| V0.3 | 一级结构分析软件：7 个规则完整项目全链路 | **已完成**（P0–P16，检查点 5） |
+| V1.0 | 其余大类引擎、统计判定、GxP | 远期 |
 
 ## 许可证
 

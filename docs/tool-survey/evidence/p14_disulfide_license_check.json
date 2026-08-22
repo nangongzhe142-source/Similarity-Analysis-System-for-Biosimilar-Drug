@@ -1,0 +1,54 @@
+{
+  "check": "P14 disulfide-search licence and repository status",
+  "queriedOn": "2026-08-21",
+  "query": "GitHub REST API GET /repos/{owner}/{repo}",
+  "decision": "Blocked/L0 — no install, no official-example PoC, no analysis adapter",
+  "decisionReasons": [
+    "D17: disulfide-bonds runs no analysis in the MethodAnalysisPanel",
+    "pFindStudio/pLink2 license field is null; README sets pLink 2.3.11 expiry to 2025-01-10, which has passed",
+    "pFindStudio/pLink3 license field is null; binary releases require vendor licence registration",
+    "Eugleo/dibby license field is null; last push 2021-11-21",
+    "pLinkSS/pLink-SS is GPL-3.0 but last push 2014-12-03 and is not the current pLink-SS product"
+  ],
+  "repos": [
+    {
+      "fullName": "pFindStudio/pLink2",
+      "htmlUrl": "https://github.com/pFindStudio/pLink2",
+      "licenseSpdx": null,
+      "stargazers": 25,
+      "forks": 1,
+      "pushedAt": "2025-01-11T10:57:43Z",
+      "openIssues": 31,
+      "readmeExpiry": "2025-01-10",
+      "readmeExpirySource": "https://raw.githubusercontent.com/pFindStudio/pLink2/master/README.md"
+    },
+    {
+      "fullName": "pFindStudio/pLink3",
+      "htmlUrl": "https://github.com/pFindStudio/pLink3",
+      "licenseSpdx": null,
+      "stargazers": 13,
+      "forks": 0,
+      "pushedAt": "2025-05-21T03:21:33Z",
+      "openIssues": 41
+    },
+    {
+      "fullName": "Eugleo/dibby",
+      "htmlUrl": "https://github.com/Eugleo/dibby",
+      "licenseSpdx": null,
+      "stargazers": 1,
+      "forks": 0,
+      "pushedAt": "2021-11-21T13:29:22Z",
+      "openIssues": 0
+    },
+    {
+      "fullName": "pLinkSS/pLink-SS",
+      "htmlUrl": "https://github.com/pLinkSS/pLink-SS",
+      "licenseSpdx": "GPL-3.0",
+      "stargazers": 1,
+      "forks": 2,
+      "pushedAt": "2014-12-03T03:35:13Z",
+      "openIssues": 0,
+      "note": "Abandoned 2014 snapshot; not treated as a maintained disulfide search engine."
+    }
+  ]
+}

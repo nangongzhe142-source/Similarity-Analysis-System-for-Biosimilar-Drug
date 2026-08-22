@@ -1,0 +1,37 @@
+{
+  "purpose": "Project-local Tesseract language data, referenced through TESSDATA_PREFIX",
+  "createdOn": "2026-08-20",
+  "variantForDownloads": "tessdata_best",
+  "variantRationale": "Figure axis labels are short strings where one wrong digit corrupts a calibration, so accuracy is preferred over speed.",
+  "tessdataPrefix": "D:\\生物类似药判别系统\\生物类似药相似性分析系统\\analysis-service\\tessdata",
+  "hostTesseract": "5.5.0.20241111 at C:\\Program Files\\Tesseract-OCR",
+  "files": [
+    {
+      "language": "eng",
+      "fileName": "eng.traineddata",
+      "bytes": 4113088,
+      "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+      "origin": "C:\\Program Files\\Tesseract-OCR\\tessdata\\eng.traineddata",
+      "variant": "host-install (Tesseract 5.5.0 bundled)",
+      "license": "Apache-2.0 (tesseract-ocr project)"
+    },
+    {
+      "language": "osd",
+      "fileName": "osd.traineddata",
+      "bytes": 10562727,
+      "sha256": "9cf5d576fcc47564f11265841e5ca839001e7e6f38ff7f7aacf46d15a96b00ff",
+      "origin": "C:\\Program Files\\Tesseract-OCR\\tessdata\\osd.traineddata",
+      "variant": "host-install (Tesseract 5.5.0 bundled)",
+      "license": "Apache-2.0 (tesseract-ocr project)"
+    },
+    {
+      "language": "chi_sim",
+      "fileName": "chi_sim.traineddata",
+      "bytes": 13077423,
+      "sha256": "4fef2d1306c8e87616d4d3e4c6c67faf5d44be3342290cf8f2f0f6e3aa7e735b",
+      "origin": "https://github.com/tesseract-ocr/tessdata_best/raw/main/chi_sim.traineddata",
+      "variant": "tessdata_best",
+      "license": "Apache-2.0 (tesseract-ocr project)"
+    }
+  ]
+}

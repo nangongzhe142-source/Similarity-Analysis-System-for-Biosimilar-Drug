@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE — do not edit by hand.
-// Source of truth: 生物类似药评价指导原则/V0.1生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表(1).xlsx
+// Source of truth: 生物类似药评价指导原则/V2-生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表.xlsx
 //   sheet: 1.法规框架 (read via openpyxl with data_only=True)
 // Regenerate with: python scripts/generate_data.py
 // NOTE: all `en` strings are machine-translation placeholders.

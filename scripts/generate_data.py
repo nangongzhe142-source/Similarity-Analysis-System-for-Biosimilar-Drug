@@ -11,6 +11,18 @@ framework website from the source Excel workbook (single source of truth).
 `zh` text comes verbatim from the Excel cells (openpyxl, data_only=True).
 `en` text comes from en_translations.py (machine-translation placeholders,
 TODO: 校对英文).
+
+Source workbook history
+-----------------------
+This script originally read the V0.1 workbook, which is no longer present in the
+workspace. Sheets 1 and 2 of the V2 workbook carry the same content, so the path
+now points at V2. Sheet "2.特性鉴定" differs in layout only: V2 inserts two
+leading columns (A 项目来源, B CTD章节（页码）) ahead of the V0.1 layout, so every
+V0.1 column index is shifted by COLUMN_OFFSET_V2. Sheet "1.法规框架" is unchanged.
+
+Verified on 2026-08-20: reading V2 with this offset reproduces both committed
+TypeScript files line for line (61 items, 9 supplementary, 184 detection methods,
+9 regulatory requirements, 9 relations, all translations resolved).
 """
 import json
 import os
@@ -21,7 +33,10 @@ import openpyxl
 
 from en_translations import FIELD_EN, METHOD_EN, REGULATORY_EN
 
-EXCEL_PATH = r"d:\生物类似药判别系统\生物类似药评价指导原则\V0.1生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表(1).xlsx"
+SOURCE_WORKBOOK_NAME = "V2-生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表.xlsx"
+EXCEL_PATH = os.path.join(
+    r"d:\生物类似药判别系统\生物类似药评价指导原则", SOURCE_WORKBOOK_NAME
+)
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_ITEMS = os.path.join(PROJECT_ROOT, "src", "data", "characterization-items.ts")
 OUT_REGULATORY = os.path.join(PROJECT_ROOT, "src", "data", "regulatory-framework.ts")
@@ -29,18 +44,25 @@ OUT_REGULATORY = os.path.join(PROJECT_ROOT, "src", "data", "regulatory-framework
 CHARACTERIZATION_SHEET = "2.特性鉴定"
 REGULATORY_SHEET = "1.法规框架"
 
-# Column indices (1-based) of sheet "2.特性鉴定"
-COL_GUIDELINE_TERM = 1
-COL_ITEM_NAME = 2
-COL_APPLICABILITY = 3
-COL_PURPOSE = 4
-COL_PRIMARY_METHOD = 5
-COL_ORTHOGONAL_METHOD = 6
-COL_DETECTION_INDICATORS = 7
-COL_SIMILARITY_METHOD = 8
-COL_JUDGING_PRINCIPLE = 9
-COL_NUMERIC_LIMIT = 10
-COL_REMARK = 11
+# V2 sheet "2.特性鉴定" prepends two columns that V0.1 did not have:
+#   A 项目来源, B CTD章节（页码）
+# Everything after them keeps the V0.1 order, so one offset covers the whole sheet.
+COLUMN_OFFSET_V2 = 2
+COL_ITEM_SOURCE = 1        # A 项目来源        — V2 only, not consumed
+COL_CTD_SECTION = 2        # B CTD章节（页码） — V2 only, not consumed
+
+# Column indices (1-based) of sheet "2.特性鉴定", V0.1 order plus the V2 offset.
+COL_GUIDELINE_TERM = 1 + COLUMN_OFFSET_V2
+COL_ITEM_NAME = 2 + COLUMN_OFFSET_V2
+COL_APPLICABILITY = 3 + COLUMN_OFFSET_V2
+COL_PURPOSE = 4 + COLUMN_OFFSET_V2
+COL_PRIMARY_METHOD = 5 + COLUMN_OFFSET_V2
+COL_ORTHOGONAL_METHOD = 6 + COLUMN_OFFSET_V2
+COL_DETECTION_INDICATORS = 7 + COLUMN_OFFSET_V2
+COL_SIMILARITY_METHOD = 8 + COLUMN_OFFSET_V2
+COL_JUDGING_PRINCIPLE = 9 + COLUMN_OFFSET_V2
+COL_NUMERIC_LIMIT = 10 + COLUMN_OFFSET_V2
+COL_REMARK = 11 + COLUMN_OFFSET_V2
 
 FIELD_COLUMNS = {
     "guidelineTerm": COL_GUIDELINE_TERM,
@@ -196,8 +218,43 @@ def build_methods(sheet, item_id: str, source_row: int) -> list[dict]:
     return methods
 
 
+# Header row 1 of sheet "2.特性鉴定" as it must appear for COLUMN_OFFSET_V2 to be
+# correct. Checked before any cell is read, so that another inserted column fails
+# loudly here instead of silently shifting every field by one.
+EXPECTED_HEADERS = {
+    COL_ITEM_SOURCE: "项目来源",
+    COL_CTD_SECTION: "CTD章节（页码）",
+    COL_GUIDELINE_TERM: "指南原词",
+    COL_ITEM_NAME: "表征项目",
+    COL_APPLICABILITY: "适用性",
+    COL_PURPOSE: "评价目的",
+    COL_PRIMARY_METHOD: "分析方法（首选）",
+    COL_ORTHOGONAL_METHOD: "正交/补充方法",
+    COL_DETECTION_INDICATORS: "检测指标",
+    COL_SIMILARITY_METHOD: "相似性评价方法",
+    COL_JUDGING_PRINCIPLE: "判定原则",
+    COL_NUMERIC_LIMIT: "数值限度/判定边界",
+    COL_REMARK: "备注",
+}
+
+
+def assert_expected_layout(sheet) -> None:
+    mismatches = []
+    for column_number, expected in EXPECTED_HEADERS.items():
+        actual = cell_text(sheet, 1, column_number)
+        if actual != expected:
+            letter = openpyxl.utils.get_column_letter(column_number)
+            mismatches.append(f"{letter}1: expected {expected!r}, found {actual!r}")
+    if mismatches:
+        raise AssertionError(
+            "Sheet '%s' layout changed; COLUMN_OFFSET_V2=%d is no longer valid:\n  %s"
+            % (CHARACTERIZATION_SHEET, COLUMN_OFFSET_V2, "\n  ".join(mismatches))
+        )
+
+
 def build_characterization_items(workbook) -> list[dict]:
     sheet = workbook[CHARACTERIZATION_SHEET]
+    assert_expected_layout(sheet)
     items: list[dict] = []
 
     for excel_row, item_id, category_key in ROW_CONFIG:
@@ -330,7 +387,7 @@ def build_regulatory_framework(workbook) -> dict:
 
 HEADER_TEMPLATE = """\
 // AUTO-GENERATED FILE — do not edit by hand.
-// Source of truth: 生物类似药评价指导原则/V0.1生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表(1).xlsx
+// Source of truth: 生物类似药评价指导原则/{workbook_name}
 //   sheet: {sheet_name} (read via openpyxl with data_only=True)
 // Regenerate with: python scripts/generate_data.py
 // NOTE: all `en` strings are machine-translation placeholders.
@@ -341,7 +398,9 @@ HEADER_TEMPLATE = """\
 def write_typescript(path: str, sheet_name: str, import_line: str, declaration: str, payload) -> None:
     body = json.dumps(payload, ensure_ascii=False, indent=2)
     content = (
-        HEADER_TEMPLATE.format(sheet_name=sheet_name)
+        HEADER_TEMPLATE.format(
+            sheet_name=sheet_name, workbook_name=SOURCE_WORKBOOK_NAME
+        )
         + import_line + "\n\n"
         + declaration + " = " + body + ";\n"
     )

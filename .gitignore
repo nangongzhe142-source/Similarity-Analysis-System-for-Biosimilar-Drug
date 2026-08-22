@@ -44,3 +44,22 @@ next-env.d.ts
 /tools-poc/.venv/
 /tools-poc/output/
 __pycache__/
+
+# 分析服务：质谱 fixture 数据体（GB 级）不入库；
+# manifest.json + download_fixtures.py + fixtures.lock.json 入库以保证可复现
+/analysis-service/.venv/
+/analysis-service/fixtures/PXD*/
+/analysis-service/fixtures/**/*.mzML
+/analysis-service/fixtures/**/*.mzXML
+/analysis-service/fixtures/**/*.mgf
+/analysis-service/fixtures/**/*.raw
+/analysis-service/fixtures/**/*.wiff
+/analysis-service/fixtures/**/*.wiff.scan
+/analysis-service/fixtures/**/*.wiff2
+/analysis-service/fixtures/**/*.part
+/analysis-service/fixtures/download.log
+/analysis-service/workspaces/
+
+# Tesseract 语言数据（26 MB）不入库；fetch_tessdata.py + tessdata.manifest.json
+# 入库，凭其中的 SHA-256 可复现同一份语言数据
+/analysis-service/tessdata/*.traineddata

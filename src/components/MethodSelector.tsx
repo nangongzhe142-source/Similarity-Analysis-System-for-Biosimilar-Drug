@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import type { DetectionMethod } from "@/types/models";
 import { MethodLiveDemo } from "@/components/live-demo/MethodLiveDemo";
+import { MethodAnalysisPanel } from "@/components/MethodAnalysisPanel";
 import { MethodContentPanel } from "@/components/MethodContentPanel";
 import { MethodContentPlaceholder } from "@/components/MethodContentPlaceholder";
 import { MethodToolPanel } from "@/components/MethodToolPanel";
@@ -11,14 +12,15 @@ import { getLiveDemoKind } from "@/data/live-demos";
 import { getMethodContent } from "@/data/method-content";
 
 interface MethodSelectorProps {
+  itemId: string;
   methods: DetectionMethod[];
 }
 
 /** Renders the primary + orthogonal methods of an item as a selectable list.
  *  Selecting a method shows, in order: the method SOP body (when embedded),
- *  the live demo (when one exists), then the surveyed-tool panel. The dashed
- *  placeholder appears only when neither SOP body nor demo exists. */
-export function MethodSelector({ methods }: MethodSelectorProps) {
+ *  the analysis panel (P11), the live demo (when one exists), then the surveyed-tool
+ *  panel. The dashed placeholder appears only when neither SOP body nor demo exists. */
+export function MethodSelector({ itemId, methods }: MethodSelectorProps) {
   const { localize, messages } = useLanguage();
   const [selectedMethodId, setSelectedMethodId] = useState<string | null>(
     methods.length > 0 ? methods[0].id : null,
@@ -80,6 +82,7 @@ export function MethodSelector({ methods }: MethodSelectorProps) {
         })}
       </ul>
       {hasMethodContent ? <MethodContentPanel method={selectedMethod} /> : null}
+      <MethodAnalysisPanel key={selectedMethod.id} itemId={itemId} method={selectedMethod} />
       <MethodLiveDemo method={selectedMethod} />
       {!hasMethodContent && !hasSelectedLiveDemo ? (
         <MethodContentPlaceholder method={selectedMethod} />

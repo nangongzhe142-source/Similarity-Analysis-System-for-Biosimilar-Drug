@@ -1,0 +1,976 @@
+{
+  "$defs": {
+    "AnalysisArtifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "mirrorPlot": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mirrorplot"
+        },
+        "overlayPlot": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Overlayplot"
+        },
+        "differencePlot": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Differenceplot"
+        },
+        "sequenceCoveragePlot": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sequencecoverageplot"
+        },
+        "fragmentIonPlot": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fragmentionplot"
+        },
+        "peakTable": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Peaktable"
+        }
+      },
+      "title": "AnalysisArtifacts",
+      "type": "object"
+    },
+    "AnalysisChromatogramPeak": {
+      "additionalProperties": false,
+      "properties": {
+        "retentionTime": {
+          "title": "Retentiontime",
+          "type": "number"
+        },
+        "intensity": {
+          "title": "Intensity",
+          "type": "number"
+        },
+        "area": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Area"
+        }
+      },
+      "required": [
+        "retentionTime",
+        "intensity"
+      ],
+      "title": "AnalysisChromatogramPeak",
+      "type": "object"
+    },
+    "AnalysisDataSource": {
+      "enum": [
+        "measured",
+        "exported-table",
+        "public",
+        "official-example",
+        "synthetic-demo",
+        "image-only"
+      ],
+      "title": "AnalysisDataSource",
+      "type": "string"
+    },
+    "AnalysisEvidenceLevel": {
+      "enum": [
+        "raw-data-analysis",
+        "structured-export-analysis",
+        "image-only-exploratory"
+      ],
+      "title": "AnalysisEvidenceLevel",
+      "type": "string"
+    },
+    "AnalysisExternalLink": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "href": {
+          "title": "Href",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "href"
+      ],
+      "title": "AnalysisExternalLink",
+      "type": "object"
+    },
+    "AnalysisExtractedFeatures": {
+      "additionalProperties": false,
+      "properties": {
+        "deconvolvedMassesDa": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deconvolvedmassesda"
+        },
+        "deltaDa": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deltada"
+        },
+        "deltaPpm": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deltappm"
+        },
+        "chromatogramPeaks": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AnalysisChromatogramPeak"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chromatogrampeaks"
+        },
+        "matchedPeptides": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Matchedpeptides"
+        },
+        "unmatchedPeptides": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unmatchedpeptides"
+        },
+        "coveragePercent": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coveragepercent"
+        },
+        "coverageDefinition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CoverageDefinition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "coveragePercentByDefinition": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coveragepercentbydefinition"
+        },
+        "uncoveredRegions": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Uncoveredregions"
+        },
+        "fragmentIons": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AnalysisFragmentIon"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fragmentions"
+        },
+        "imageMetrics": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AnalysisImageMetrics"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "imageComparison": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AnalysisImageComparison"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "AnalysisExtractedFeatures",
+      "type": "object"
+    },
+    "AnalysisFragmentIon": {
+      "additionalProperties": false,
+      "properties": {
+        "ionType": {
+          "title": "Iontype",
+          "type": "string"
+        },
+        "ordinal": {
+          "title": "Ordinal",
+          "type": "integer"
+        },
+        "theoreticalMz": {
+          "title": "Theoreticalmz",
+          "type": "number"
+        },
+        "observedMz": {
+          "title": "Observedmz",
+          "type": "number"
+        },
+        "errorPpm": {
+          "title": "Errorppm",
+          "type": "number"
+        }
+      },
+      "required": [
+        "ionType",
+        "ordinal",
+        "theoreticalMz",
+        "observedMz",
+        "errorPpm"
+      ],
+      "title": "AnalysisFragmentIon",
+      "type": "object"
+    },
+    "AnalysisImageComparison": {
+      "additionalProperties": false,
+      "description": "The image-level observation, kept apart from the regulatory verdict.\n\n`driver_metric` names the single metric the outcome rests on. It is recorded\nbecause the other metrics are reported too and are not equivalent: measured\nover like-for-like and cross-analyte pairs, profile correlation separated them\ncompletely while SSIM and DTW did not separate them at all.",
+      "properties": {
+        "outcome": {
+          "$ref": "#/$defs/ImageComparisonOutcome"
+        },
+        "driverMetric": {
+          "title": "Drivermetric",
+          "type": "string"
+        },
+        "driverValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Drivervalue"
+        },
+        "consistentThreshold": {
+          "title": "Consistentthreshold",
+          "type": "number"
+        },
+        "differenceThreshold": {
+          "title": "Differencethreshold",
+          "type": "number"
+        },
+        "thresholdKind": {
+          "$ref": "#/$defs/ThresholdKind"
+        },
+        "nonDiscriminatingMetrics": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Nondiscriminatingmetrics",
+          "type": "array"
+        },
+        "rationale": {
+          "$ref": "#/$defs/LocalizedText"
+        }
+      },
+      "required": [
+        "outcome",
+        "driverMetric",
+        "consistentThreshold",
+        "differenceThreshold",
+        "thresholdKind",
+        "nonDiscriminatingMetrics",
+        "rationale"
+      ],
+      "title": "AnalysisImageComparison",
+      "type": "object"
+    },
+    "AnalysisImageMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "calibrationReliable": {
+          "title": "Calibrationreliable",
+          "type": "boolean"
+        },
+        "ssim": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ssim"
+        },
+        "correlation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Correlation"
+        },
+        "dtwDistance": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dtwdistance"
+        }
+      },
+      "required": [
+        "calibrationReliable"
+      ],
+      "title": "AnalysisImageMetrics",
+      "type": "object"
+    },
+    "AnalysisInputEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "dataSource": {
+          "$ref": "#/$defs/AnalysisDataSource"
+        },
+        "evidenceLevel": {
+          "$ref": "#/$defs/AnalysisEvidenceLevel"
+        },
+        "candidateFiles": {
+          "items": {
+            "$ref": "#/$defs/AnalysisInputFileDescriptor"
+          },
+          "title": "Candidatefiles",
+          "type": "array"
+        },
+        "referenceFiles": {
+          "items": {
+            "$ref": "#/$defs/AnalysisInputFileDescriptor"
+          },
+          "title": "Referencefiles",
+          "type": "array"
+        },
+        "sequenceFiles": {
+          "items": {
+            "$ref": "#/$defs/AnalysisInputFileDescriptor"
+          },
+          "title": "Sequencefiles",
+          "type": "array"
+        },
+        "samplePairing": {
+          "$ref": "#/$defs/AnalysisSamplePairing"
+        }
+      },
+      "required": [
+        "dataSource",
+        "evidenceLevel",
+        "candidateFiles",
+        "referenceFiles",
+        "sequenceFiles",
+        "samplePairing"
+      ],
+      "title": "AnalysisInputEvidence",
+      "type": "object"
+    },
+    "AnalysisInputFileDescriptor": {
+      "additionalProperties": false,
+      "properties": {
+        "fileName": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "format": {
+          "title": "Format",
+          "type": "string"
+        },
+        "byteSize": {
+          "title": "Bytesize",
+          "type": "integer"
+        },
+        "role": {
+          "$ref": "#/$defs/AnalysisInputFileRole"
+        }
+      },
+      "required": [
+        "fileName",
+        "sha256",
+        "format",
+        "byteSize",
+        "role"
+      ],
+      "title": "AnalysisInputFileDescriptor",
+      "type": "object"
+    },
+    "AnalysisInputFileRole": {
+      "enum": [
+        "candidate",
+        "reference",
+        "sequence",
+        "calibration"
+      ],
+      "title": "AnalysisInputFileRole",
+      "type": "string"
+    },
+    "AnalysisInputHash": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "sha256"
+      ],
+      "title": "AnalysisInputHash",
+      "type": "object"
+    },
+    "AnalysisProfileId": {
+      "enum": [
+        "intact-mass",
+        "peptide-map",
+        "ms1-coverage",
+        "msms-sequence"
+      ],
+      "title": "AnalysisProfileId",
+      "type": "string"
+    },
+    "AnalysisQualityGate": {
+      "additionalProperties": false,
+      "description": "A numeric cut-off that may only decide whether a measurement is usable.\n\n`threshold_kind` is required so a reader cannot treat the value as a\nsimilarity boundary. Sheet3 column K supplies no universal numerical limit.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "thresholdKind": {
+          "$ref": "#/$defs/ThresholdKind"
+        },
+        "purpose": {
+          "$ref": "#/$defs/LocalizedText"
+        }
+      },
+      "required": [
+        "name",
+        "thresholdKind",
+        "purpose"
+      ],
+      "title": "AnalysisQualityGate",
+      "type": "object"
+    },
+    "AnalysisResultProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "whatItIs": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "whatItIsNot": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "dataSource": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "samplePairing": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "sourceFiles": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sourcefiles",
+          "type": "array"
+        },
+        "inputHashes": {
+          "items": {
+            "$ref": "#/$defs/AnalysisInputHash"
+          },
+          "title": "Inputhashes",
+          "type": "array"
+        },
+        "externalLinks": {
+          "items": {
+            "$ref": "#/$defs/AnalysisExternalLink"
+          },
+          "title": "Externallinks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "summary",
+        "whatItIs",
+        "whatItIsNot",
+        "dataSource",
+        "samplePairing",
+        "sourceFiles",
+        "inputHashes",
+        "externalLinks"
+      ],
+      "title": "AnalysisResultProvenance",
+      "type": "object"
+    },
+    "AnalysisRuleEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "ruleId": {
+          "title": "Ruleid",
+          "type": "string"
+        },
+        "sourceSheet": {
+          "title": "Sourcesheet",
+          "type": "string"
+        },
+        "sourceRow": {
+          "title": "Sourcerow",
+          "type": "integer"
+        },
+        "sourceCells": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sourcecells",
+          "type": "array"
+        },
+        "outcome": {
+          "$ref": "#/$defs/RuleEvaluationOutcome"
+        },
+        "rationale": {
+          "$ref": "#/$defs/LocalizedText"
+        }
+      },
+      "required": [
+        "ruleId",
+        "sourceSheet",
+        "sourceRow",
+        "sourceCells",
+        "outcome",
+        "rationale"
+      ],
+      "title": "AnalysisRuleEvaluation",
+      "type": "object"
+    },
+    "AnalysisRunEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "toolVersions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Toolversions",
+          "type": "object"
+        },
+        "parameters": {
+          "additionalProperties": true,
+          "title": "Parameters",
+          "type": "object"
+        },
+        "qualityGates": {
+          "items": {
+            "$ref": "#/$defs/AnalysisQualityGate"
+          },
+          "title": "Qualitygates",
+          "type": "array"
+        },
+        "traceId": {
+          "title": "Traceid",
+          "type": "string"
+        },
+        "startedAt": {
+          "title": "Startedat",
+          "type": "string"
+        },
+        "completedAt": {
+          "title": "Completedat",
+          "type": "string"
+        }
+      },
+      "required": [
+        "toolVersions",
+        "parameters",
+        "traceId",
+        "startedAt",
+        "completedAt"
+      ],
+      "title": "AnalysisRunEvidence",
+      "type": "object"
+    },
+    "AnalysisSamplePairing": {
+      "additionalProperties": false,
+      "properties": {
+        "candidateLabel": {
+          "title": "Candidatelabel",
+          "type": "string"
+        },
+        "referenceLabel": {
+          "title": "Referencelabel",
+          "type": "string"
+        },
+        "description": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "isHeadToHeadBiosimilarDesign": {
+          "title": "Isheadtoheadbiosimilardesign",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "candidateLabel",
+        "referenceLabel",
+        "description",
+        "isHeadToHeadBiosimilarDesign"
+      ],
+      "title": "AnalysisSamplePairing",
+      "type": "object"
+    },
+    "AnalysisVerdict": {
+      "enum": [
+        "SUPPORTED_BY_THIS_ATTRIBUTE",
+        "REVIEW",
+        "DIFFERENCE_DETECTED",
+        "RULE_NOT_DEFINED"
+      ],
+      "title": "AnalysisVerdict",
+      "type": "string"
+    },
+    "CoverageDefinition": {
+      "enum": [
+        "control",
+        "analyte",
+        "combined",
+        "common",
+        "analyte-unique"
+      ],
+      "title": "CoverageDefinition",
+      "type": "string"
+    },
+    "ImageComparisonOutcome": {
+      "description": "How alike two curves look on a rendered figure.\n\nThis is a statement about pictures, not about products. It exists so the\ninterface can show at a glance what the operator would see anyway, while the\nregulatory verdict stays REVIEW.",
+      "enum": [
+        "CONSISTENT",
+        "INCONCLUSIVE",
+        "DIFFERENCE_OBSERVED",
+        "NOT_APPLICABLE"
+      ],
+      "title": "ImageComparisonOutcome",
+      "type": "string"
+    },
+    "LocalizedText": {
+      "additionalProperties": false,
+      "properties": {
+        "zh": {
+          "title": "Zh",
+          "type": "string"
+        },
+        "en": {
+          "title": "En",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zh",
+        "en"
+      ],
+      "title": "LocalizedText",
+      "type": "object"
+    },
+    "RuleEvaluationOutcome": {
+      "enum": [
+        "PASS",
+        "REVIEW",
+        "FAIL",
+        "NOT_APPLICABLE",
+        "RULE_NOT_DEFINED"
+      ],
+      "title": "RuleEvaluationOutcome",
+      "type": "string"
+    },
+    "ThresholdKind": {
+      "description": "What a numeric cut-off is entitled to decide.\n\n`ALGORITHM_QUALITY_GATE` marks a value chosen so an algorithm can operate —\nit may gate whether a measurement is usable, and nothing else.\n`SIMILARITY_BOUNDARY` marks a limit that decides biosimilarity, which may only\ncome from the workbook or from a validated method. The distinction is carried\nin the contract so that a reader cannot mistake one for the other.",
+      "enum": [
+        "algorithmQualityGate",
+        "similarityBoundary"
+      ],
+      "title": "ThresholdKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "ruleSetVersion": {
+      "const": "v2-sheet3-8bd6b18f",
+      "title": "Rulesetversion",
+      "type": "string"
+    },
+    "jobId": {
+      "title": "Jobid",
+      "type": "string"
+    },
+    "itemId": {
+      "title": "Itemid",
+      "type": "string"
+    },
+    "methodId": {
+      "title": "Methodid",
+      "type": "string"
+    },
+    "profile": {
+      "$ref": "#/$defs/AnalysisProfileId"
+    },
+    "inputEvidence": {
+      "$ref": "#/$defs/AnalysisInputEvidence"
+    },
+    "extractedFeatures": {
+      "$ref": "#/$defs/AnalysisExtractedFeatures"
+    },
+    "ruleEvaluation": {
+      "items": {
+        "$ref": "#/$defs/AnalysisRuleEvaluation"
+      },
+      "title": "Ruleevaluation",
+      "type": "array"
+    },
+    "verdict": {
+      "$ref": "#/$defs/AnalysisVerdict"
+    },
+    "verdictRationale": {
+      "$ref": "#/$defs/LocalizedText"
+    },
+    "artifacts": {
+      "$ref": "#/$defs/AnalysisArtifacts"
+    },
+    "evidence": {
+      "$ref": "#/$defs/AnalysisRunEvidence"
+    },
+    "provenance": {
+      "$ref": "#/$defs/AnalysisResultProvenance"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "disclaimer": {
+      "$ref": "#/$defs/LocalizedText"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "ruleSetVersion",
+    "jobId",
+    "itemId",
+    "methodId",
+    "profile",
+    "inputEvidence",
+    "extractedFeatures",
+    "ruleEvaluation",
+    "verdict",
+    "verdictRationale",
+    "artifacts",
+    "evidence",
+    "provenance",
+    "warnings",
+    "limitations",
+    "disclaimer"
+  ],
+  "title": "AnalysisResult",
+  "type": "object"
+}

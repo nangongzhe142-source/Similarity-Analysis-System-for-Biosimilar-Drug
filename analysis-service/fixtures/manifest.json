@@ -1,0 +1,224 @@
+{
+  "$comment": [
+    "Declarative fixture manifest for the primary-structure analysis service.",
+    "The data files themselves are gitignored; this manifest plus download_fixtures.py",
+    "is what makes the fixture set reproducible.",
+    "PRIDE FTP is blocked on the development host, so HTTPS with Range resume is mandatory.",
+    "Selection is by rule (extension) plus an explicit list of large files, so that the",
+    "exact plan-B subset is reproducible without hardcoding 36 CSV filenames.",
+    "Revised 2026-08-20 after decision D17: the four items with no V2 rule (free thiol,",
+    "disulfide bonds, N/C-terminal sequence, CDR signature peptides) run no analysis at",
+    "all, so the 625 MB disulfide RAW lost its consumer and was removed. See removedFiles."
+  ],
+  "manifestVersion": "1.1.0",
+  "createdOn": "2026-08-20",
+  "revisedOn": "2026-08-20",
+  "downloadPlan": "B (revised: disulfide RAW dropped per D17)",
+  "diskBudgetBytes": 16106127360,
+  "expectedTotalBytesApprox": 1950000000,
+  "repository": {
+    "name": "PRIDE Archive",
+    "apiBase": "https://www.ebi.ac.uk/pride/ws/archive/v3",
+    "fileBase": "https://ftp.pride.ebi.ac.uk/pride/data/archive",
+    "ftpBlockedOnThisHost": true,
+    "ftpFailureEvidence": "urlopen error [WinError 10060] connection timed out, 2026-08-20"
+  },
+  "datasets": [
+    {
+      "accession": "PXD023358",
+      "pathPrefix": "2021/02/PXD023358",
+      "title": "Comprehensive Analysis of Tryptic Peptides Arising from Disulfide Linkages in NISTmAb",
+      "product": "NISTmAb (NIST RM 8671), humanised IgG1k reference material",
+      "experimentType": "partially-reduced / non-reduced tryptic nanoLC-MS/MS, disulfide-linked peptides",
+      "instruments": ["Orbitrap Fusion Lumos", "Q Exactive"],
+      "license": "CC0",
+      "publicationDate": "2021-02-08",
+      "reference": "Dong Q, Yan X, Liang Y, Markey SP, Sheetlin SL, Remoroza CA, Wallace WE, Stein SE. J Proteome Res. 2021;20(3):1612-1629",
+      "fullSetFiles": 75,
+      "fullSetBytes": 30172831744,
+      "servesProfiles": ["theoretical-sequence-source"],
+      "retainedFor": "NISTmAb.fasta only, as the authoritative theoretical sequence",
+      "notes": [
+        "RETAINED ONLY AS A SEQUENCE SOURCE. Under decision D17 the disulfide-map profile",
+        "runs no analysis, so the disulfide identification tables and the RAW are not",
+        "consumed by any adapter. The dataset stays in the manifest because of the FASTA.",
+        "NISTmAb.fasta is the AUTHORITATIVE NISTmAb sequence for this project (450 aa HC,",
+        "213 aa LC). The MW= value in its heavy-chain header (49579.26) is WRONG by about",
+        "+28 Da versus the sequence-derived mass; use the sequence, never the header MW.",
+        "It is also the reference that exposed the defective 449 aa NIST_HC in PXD063988.",
+        "The 36 CSV files are real disulfide-linked peptide identification tables (columns",
+        "RUNID PROTID SPOS CLASS DSB CYS CLEV Z SEQ MODS NCE MASS CLUNUM MZ MZDIFF CLURTH",
+        "CLUAB SCANNUM SCMZSAMP SCMS2RT, with pairings such as HC22-HC97 and _S-S_ linked",
+        "sequences). They are kept because they cost 8.8 MB in total and are the only real",
+        "disulfide connectivity data available, should D17 ever be revisited. They must NOT",
+        "be wired to any adapter while D17 stands."
+      ],
+      "selectByExtension": ["csv", "fasta", "txt"],
+      "excludeFiles": [
+        {
+          "fileName": "README.txt",
+          "reason": "The PRIDE API reports 4596 bytes for this file but the HTTPS endpoint serves 19353 bytes, so the downloader's size assertion correctly refuses it on every attempt. It is PRIDE-generated boilerplate describing the deposition, carries no analytical content, and is excluded rather than having the size check weakened. Verified 2026-08-20: GET returns 200 with Content-Length 19353, and a Range request returns 206 with the same 19353 bytes, so the content is stable and it is the API metadata that is stale."
+        }
+      ],
+      "removedFiles": [
+        {
+          "fileName": "2014-05-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.raw",
+          "observedBytes": 655283843,
+          "observedMagicHex": "01a1460069006e00",
+          "downloadedOn": "2026-08-20",
+          "deletedOn": "2026-08-20",
+          "originalPurpose": "single Thermo RAW for P6 msconvert verification via the pwiz container",
+          "removalReason": "Decision D17 removed the disulfide-map analysis, leaving this 625 MB file without a consumer. All 36 .raw files in this dataset are 425 MB or larger, so there is no cheap in-dataset substitute; per decision D21 a dedicated small Thermo RAW fixture is sourced separately for P6 instead. The magic bytes 01a1460069006e00 recorded here stay valid for RAW type validation without holding the file."
+        }
+      ]
+    },
+    {
+      "accession": "PXD054948",
+      "pathPrefix": "2025/02/PXD054948",
+      "title": "Multi-level - Intact, Subunits, and Peptides - Characterization of Antibody-Based Therapeutics by a Single-Column LC-MS setup",
+      "product": "NISTmAb, Enbrel (etanercept), RG7221",
+      "experimentType": "intact / subunit middle-up and middle-down / bottom-up peptide mapping",
+      "instruments": ["SCIEX ZenoTOF 7600"],
+      "license": "CC0",
+      "publicationDate": "2025-02-26",
+      "reference": null,
+      "fullSetFiles": 49,
+      "fullSetBytes": 1395864371,
+      "servesProfiles": ["intact-mass", "peptide-map"],
+      "notes": [
+        "Directly matches DOCX figure 2 (intact mAb / reduced LC / reduced HC /",
+        "deglycosylated HC / Fc / Fab). Contains Enbrel, the reference product of the",
+        "existing GP2015 reference case in src/data/reference-cases.ts.",
+        "SCIEX WIFF is an OLE2 compound document and carries NO spectra on its own:",
+        "every .wiff MUST be downloaded together with its matching .wiff.scan, otherwise",
+        "msconvert cannot read it. P6 upload validation has to handle this multi-file",
+        "single-logical-sample case."
+      ],
+      "selectByExtension": ["xlsx", "txt"],
+      "wiffPairs": [
+        "20230110_Enbrel-desialylated_25ng",
+        "20221212_Enbrel-IdeS-DTT_100ng_20mins",
+        "20230421_CM-RG7221-IdeS-DTT_100ng"
+      ]
+    },
+    {
+      "accession": "PXD063988",
+      "pathPrefix": "2026/03/PXD063988",
+      "title": "Deep Coverage and Extended Sequence Reads Obtained with a Single Archaeal Protease Expedite de novo Protein Sequencing by Mass Spectrometry",
+      "product": "NISTmAb, Trastuzumab, Cetuximab, patient-derived antibodies",
+      "experimentType": "multi-protease bottom-up peptide mapping with EAD / EAciD / CID, targeting CDR coverage",
+      "instruments": ["SCIEX ZenoTOF 7600"],
+      "license": "CC0",
+      "publicationDate": "2026-03-17",
+      "reference": "Perez Paneda L, Kadava T, Shamorkina TM, Schulte D, Pribil P, Heidelberger S, Narlock-Brand AM, Yannone SM, Snijder J, Heck AJR. Cell Syst. 2026:101536",
+      "fullSetFiles": 151,
+      "fullSetBytes": 67222572171,
+      "servesProfiles": ["peptide-map", "ms1-coverage", "msms-sequence"],
+      "notes": [
+        "The ONLY antibody dataset in this shortlist that ships ready-made mzML, so it is",
+        "the only path to raw-data-analysis without vendor conversion.",
+        "WARNING: 4ABS_DB.fasta contains a DEFECTIVE NIST_HC entry of 449 aa, missing one",
+        "Glu at position 360 (PPSREEMTK written as PPSREMTK). That deletion falls exactly",
+        "on the HT35 EEMTK peptide shown in DOCX figure 5. Use this FASTA ONLY for the",
+        "Trastuzumab and Cetuximab sequences, and take NISTmAb from PXD023358 instead.",
+        "Any downloaded FASTA must be cross-checked against an independent source before",
+        "being used as a theoretical sequence."
+      ],
+      "selectByExtension": ["fasta", "csv", "txt"],
+      "explicitFiles": [
+        {
+          "fileName": "20241115_Z1_UM1_shamo002_EXT00_SA_TRYPSIN_EACID_RCE_KE9_100ng_03.mzML",
+          "observedBytes": 701961275,
+          "observedMagicHex": "3c3f786d6c207665",
+          "purpose": "tryptic EAciD run; primary raw-data-analysis fixture"
+        },
+        {
+          "fileName": "20241115_Z1_UM1_shamo002_EXT00_SA_CHYMO_CID_100ng_02.mzML",
+          "observedBytes": null,
+          "observedMagicHex": null,
+          "purpose": "chymotryptic CID run; second sample so head-to-head comparison can be exercised on real data"
+        }
+      ]
+    }
+  ],
+  "toolFixtures": [
+    {
+      "name": "pwiz-thermo",
+      "purpose": "P6 msconvert RAW-to-mzML verification (decision D12 requires a real successful conversion before RAW may be marked supported)",
+      "localDir": "analysis-service/fixtures/pwiz-thermo",
+      "source": "ProteoWizard/pwiz GitHub repository, path pwiz/data/vendor_readers/Thermo/Reader_Thermo_Test.data",
+      "urlBase": "https://raw.githubusercontent.com/ProteoWizard/pwiz/master/pwiz/data/vendor_readers/Thermo/Reader_Thermo_Test.data/",
+      "license": "Apache-2.0 (ProteoWizard)",
+      "downloadedOn": "2026-08-20",
+      "rationale": [
+        "These are the Thermo vendor reader's own regression fixtures, so a failure to",
+        "read them means msconvert itself is broken rather than the sample being odd.",
+        "That makes them a stronger P6 test than an arbitrary production RAW, at 1.04 MB",
+        "instead of 625 MB. Decision D21.",
+        "All four were verified to carry the Thermo magic bytes 01a1460069006e00, byte",
+        "for byte identical to the leading bytes observed on the deleted 625 MB",
+        "production RAW, so they exercise the same type-validation path.",
+        "BSA-FT-HCD.raw also aligns with the existing BSA demo (verify:demo reproduces",
+        "BSA 66398.19 Da), giving the conversion output a known protein context."
+      ],
+      "files": [
+        {
+          "fileName": "BSA-FT-HCD.raw",
+          "bytes": 351135,
+          "sha256": "45dbaea253856f3fe02c71ebf4abc747874f3fe6e3214ef0521809062164e381",
+          "magicHex": "01a1460069006e00",
+          "purpose": "primary P6 conversion fixture; FT HCD on BSA"
+        },
+        {
+          "fileName": "BSA-FT-ETD.raw",
+          "bytes": 348555,
+          "sha256": "d63a86285709d16115b7cc13453652b72589d6d428adc912df9b0ba6063190b3",
+          "magicHex": "01a1460069006e00",
+          "purpose": "second activation type, so conversion is not verified on a single fragmentation mode"
+        },
+        {
+          "fileName": "FT-HCD-MSX.raw",
+          "bytes": 78309,
+          "sha256": "b3d97b3856dd1e8dd6846d21c58b1b1824c309480908fe4c2dfabe152bd6dd7b",
+          "magicHex": "01a1460069006e00",
+          "purpose": "multiplexed precursor edge case; smallest fixture at 76.5 KB"
+        },
+        {
+          "fileName": "IT-HCD-SPS.raw",
+          "bytes": 285750,
+          "sha256": "c18f8d01e3400702c551b7258d2bc15e2fb78452ac98108709b0956c41d4c465",
+          "magicHex": "01a1460069006e00",
+          "purpose": "ion-trap detector plus SPS, so the reader is exercised beyond the FT analyser"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "accession": "PXD025299",
+      "product": "Trastuzumab, Adalimumab, IgG",
+      "fullSetBytes": 19112737996,
+      "reason": "All 6 data files are .uep, a Waters UNIFI proprietary project package. ProteoWizard msconvert does not support it and no open-source reader exists, so the data is unusable despite the on-target products."
+    },
+    {
+      "accession": "PXD067004",
+      "product": "Trastuzumab Biosimilar, Avastin, Enbrel, Eylea, Entyvio, RoActemra",
+      "fullSetBytes": 1539000000000,
+      "reason": "Subject is host cell protein residue (process-related impurities category, not primary structure), and single mzML files reach 7.6-16.6 GB which exceeds both the 2 GB per-file upload cap and the 15 GB disk budget. The 39 .mzid files (292.9 MB) are recorded for possible future use in the process-impurities category."
+    }
+  ],
+  "knownGaps": [
+    {
+      "profile": "free-thiol",
+      "gap": "Superseded by decision D17: the free-thiol profile now runs no analysis at all, so the missing public dataset is no longer a blocker. Recorded for the day D17 is revisited. No public dataset exists because Ellman-assay lot data is not mass-spectrometry data and public proteomics repositories do not hold it; it normally appears only as a statistics table inside a regulatory review."
+    },
+    {
+      "profile": "disulfide-map",
+      "gap": "Superseded by decision D17: the disulfide profile now runs no analysis. The only real connectivity data known is the 36 CSV tables retained in PXD023358, which must stay unwired to any adapter while D17 stands."
+    },
+    {
+      "profile": "all",
+      "gap": "None of the three datasets is a candidate-versus-reference head-to-head biosimilar design, and the comparisons cited in the DOCX (CT-P13 vs RMP, HLX03 vs CN-Humira) are not in public repositories. Per decision D20 this is acceptable: the requirement is that two sides can be compared at all, not that they be a candidate drug and its reference product. The provenance panel must still state which two samples were compared and that the pairing is not a head-to-head biosimilar design."
+    }
+  ]
+}

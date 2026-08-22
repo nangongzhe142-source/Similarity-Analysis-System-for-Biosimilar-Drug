@@ -1,0 +1,750 @@
+{
+  "LocalizedText": {
+    "zh": {
+      "pythonName": "zh",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "en": {
+      "pythonName": "en",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisInputFileDescriptor": {
+    "fileName": {
+      "pythonName": "file_name",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "sha256": {
+      "pythonName": "sha256",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "format": {
+      "pythonName": "format",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "byteSize": {
+      "pythonName": "byte_size",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "role": {
+      "pythonName": "role",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    }
+  },
+  "AnalysisSamplePairing": {
+    "candidateLabel": {
+      "pythonName": "candidate_label",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "referenceLabel": {
+      "pythonName": "reference_label",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "description": {
+      "pythonName": "description",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "isHeadToHeadBiosimilarDesign": {
+      "pythonName": "is_head_to_head_biosimilar_design",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisInputEvidence": {
+    "dataSource": {
+      "pythonName": "data_source",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "evidenceLevel": {
+      "pythonName": "evidence_level",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "candidateFiles": {
+      "pythonName": "candidate_files",
+      "required": true,
+      "kind": "array",
+      "nested": "AnalysisInputFileDescriptor"
+    },
+    "referenceFiles": {
+      "pythonName": "reference_files",
+      "required": true,
+      "kind": "array",
+      "nested": "AnalysisInputFileDescriptor"
+    },
+    "sequenceFiles": {
+      "pythonName": "sequence_files",
+      "required": true,
+      "kind": "array",
+      "nested": "AnalysisInputFileDescriptor"
+    },
+    "samplePairing": {
+      "pythonName": "sample_pairing",
+      "required": true,
+      "kind": "object",
+      "nested": "AnalysisSamplePairing"
+    }
+  },
+  "AnalysisChromatogramPeak": {
+    "retentionTime": {
+      "pythonName": "retention_time",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "intensity": {
+      "pythonName": "intensity",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "area": {
+      "pythonName": "area",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisFragmentIon": {
+    "ionType": {
+      "pythonName": "ion_type",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "ordinal": {
+      "pythonName": "ordinal",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "theoreticalMz": {
+      "pythonName": "theoretical_mz",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "observedMz": {
+      "pythonName": "observed_mz",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "errorPpm": {
+      "pythonName": "error_ppm",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisImageMetrics": {
+    "calibrationReliable": {
+      "pythonName": "calibration_reliable",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "ssim": {
+      "pythonName": "ssim",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "correlation": {
+      "pythonName": "correlation",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "dtwDistance": {
+      "pythonName": "dtw_distance",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisImageComparison": {
+    "outcome": {
+      "pythonName": "outcome",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "driverMetric": {
+      "pythonName": "driver_metric",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "driverValue": {
+      "pythonName": "driver_value",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "consistentThreshold": {
+      "pythonName": "consistent_threshold",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "differenceThreshold": {
+      "pythonName": "difference_threshold",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "thresholdKind": {
+      "pythonName": "threshold_kind",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "nonDiscriminatingMetrics": {
+      "pythonName": "non_discriminating_metrics",
+      "required": true,
+      "kind": "array",
+      "nested": null
+    },
+    "rationale": {
+      "pythonName": "rationale",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    }
+  },
+  "AnalysisExtractedFeatures": {
+    "deconvolvedMassesDa": {
+      "pythonName": "deconvolved_masses_da",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "deltaDa": {
+      "pythonName": "delta_da",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "deltaPpm": {
+      "pythonName": "delta_ppm",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "chromatogramPeaks": {
+      "pythonName": "chromatogram_peaks",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "matchedPeptides": {
+      "pythonName": "matched_peptides",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "unmatchedPeptides": {
+      "pythonName": "unmatched_peptides",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "coveragePercent": {
+      "pythonName": "coverage_percent",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "coverageDefinition": {
+      "pythonName": "coverage_definition",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "coveragePercentByDefinition": {
+      "pythonName": "coverage_percent_by_definition",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "uncoveredRegions": {
+      "pythonName": "uncovered_regions",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "fragmentIons": {
+      "pythonName": "fragment_ions",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "imageMetrics": {
+      "pythonName": "image_metrics",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "imageComparison": {
+      "pythonName": "image_comparison",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisRuleEvaluation": {
+    "ruleId": {
+      "pythonName": "rule_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "sourceSheet": {
+      "pythonName": "source_sheet",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "sourceRow": {
+      "pythonName": "source_row",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "sourceCells": {
+      "pythonName": "source_cells",
+      "required": true,
+      "kind": "array",
+      "nested": null
+    },
+    "outcome": {
+      "pythonName": "outcome",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "rationale": {
+      "pythonName": "rationale",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    }
+  },
+  "AnalysisArtifacts": {
+    "mirrorPlot": {
+      "pythonName": "mirror_plot",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "overlayPlot": {
+      "pythonName": "overlay_plot",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "differencePlot": {
+      "pythonName": "difference_plot",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "sequenceCoveragePlot": {
+      "pythonName": "sequence_coverage_plot",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "fragmentIonPlot": {
+      "pythonName": "fragment_ion_plot",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "peakTable": {
+      "pythonName": "peak_table",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisQualityGate": {
+    "name": {
+      "pythonName": "name",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "value": {
+      "pythonName": "value",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "unit": {
+      "pythonName": "unit",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "thresholdKind": {
+      "pythonName": "threshold_kind",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "purpose": {
+      "pythonName": "purpose",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    }
+  },
+  "AnalysisRunEvidence": {
+    "toolVersions": {
+      "pythonName": "tool_versions",
+      "required": true,
+      "kind": "object",
+      "nested": null
+    },
+    "parameters": {
+      "pythonName": "parameters",
+      "required": true,
+      "kind": "object",
+      "nested": null
+    },
+    "qualityGates": {
+      "pythonName": "quality_gates",
+      "required": false,
+      "kind": "array",
+      "nested": "AnalysisQualityGate"
+    },
+    "traceId": {
+      "pythonName": "trace_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "startedAt": {
+      "pythonName": "started_at",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "completedAt": {
+      "pythonName": "completed_at",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisInputHash": {
+    "label": {
+      "pythonName": "label",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "sha256": {
+      "pythonName": "sha256",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisExternalLink": {
+    "label": {
+      "pythonName": "label",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "href": {
+      "pythonName": "href",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisResultProvenance": {
+    "summary": {
+      "pythonName": "summary",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "whatItIs": {
+      "pythonName": "what_it_is",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "whatItIsNot": {
+      "pythonName": "what_it_is_not",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "dataSource": {
+      "pythonName": "data_source",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "samplePairing": {
+      "pythonName": "sample_pairing",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "sourceFiles": {
+      "pythonName": "source_files",
+      "required": true,
+      "kind": "array",
+      "nested": null
+    },
+    "inputHashes": {
+      "pythonName": "input_hashes",
+      "required": true,
+      "kind": "array",
+      "nested": "AnalysisInputHash"
+    },
+    "externalLinks": {
+      "pythonName": "external_links",
+      "required": true,
+      "kind": "array",
+      "nested": "AnalysisExternalLink"
+    }
+  },
+  "AnalysisResult": {
+    "schemaVersion": {
+      "pythonName": "schema_version",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "ruleSetVersion": {
+      "pythonName": "rule_set_version",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "jobId": {
+      "pythonName": "job_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "itemId": {
+      "pythonName": "item_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "methodId": {
+      "pythonName": "method_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "profile": {
+      "pythonName": "profile",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "inputEvidence": {
+      "pythonName": "input_evidence",
+      "required": true,
+      "kind": "object",
+      "nested": "AnalysisInputEvidence"
+    },
+    "extractedFeatures": {
+      "pythonName": "extracted_features",
+      "required": true,
+      "kind": "object",
+      "nested": "AnalysisExtractedFeatures"
+    },
+    "ruleEvaluation": {
+      "pythonName": "rule_evaluation",
+      "required": true,
+      "kind": "array",
+      "nested": "AnalysisRuleEvaluation"
+    },
+    "verdict": {
+      "pythonName": "verdict",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "verdictRationale": {
+      "pythonName": "verdict_rationale",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    },
+    "artifacts": {
+      "pythonName": "artifacts",
+      "required": true,
+      "kind": "object",
+      "nested": "AnalysisArtifacts"
+    },
+    "evidence": {
+      "pythonName": "evidence",
+      "required": true,
+      "kind": "object",
+      "nested": "AnalysisRunEvidence"
+    },
+    "provenance": {
+      "pythonName": "provenance",
+      "required": true,
+      "kind": "object",
+      "nested": "AnalysisResultProvenance"
+    },
+    "warnings": {
+      "pythonName": "warnings",
+      "required": true,
+      "kind": "array",
+      "nested": null
+    },
+    "limitations": {
+      "pythonName": "limitations",
+      "required": true,
+      "kind": "array",
+      "nested": null
+    },
+    "disclaimer": {
+      "pythonName": "disclaimer",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    }
+  },
+  "AnalysisJobProgress": {
+    "phase": {
+      "pythonName": "phase",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "percent": {
+      "pythonName": "percent",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "message": {
+      "pythonName": "message",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    }
+  },
+  "AnalysisJobError": {
+    "code": {
+      "pythonName": "code",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "message": {
+      "pythonName": "message",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "safeMessage": {
+      "pythonName": "safe_message",
+      "required": true,
+      "kind": "object",
+      "nested": "LocalizedText"
+    }
+  },
+  "AnalysisJobSnapshot": {
+    "jobId": {
+      "pythonName": "job_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "status": {
+      "pythonName": "status",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "itemId": {
+      "pythonName": "item_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "methodId": {
+      "pythonName": "method_id",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "profile": {
+      "pythonName": "profile",
+      "required": true,
+      "kind": "enum",
+      "nested": null
+    },
+    "createdAt": {
+      "pythonName": "created_at",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "updatedAt": {
+      "pythonName": "updated_at",
+      "required": true,
+      "kind": "scalar",
+      "nested": null
+    },
+    "progress": {
+      "pythonName": "progress",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "error": {
+      "pythonName": "error",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    },
+    "result": {
+      "pythonName": "result",
+      "required": false,
+      "kind": "scalar",
+      "nested": null
+    }
+  }
+}

@@ -11,7 +11,11 @@
     "verify:cases": "node scripts/verify_reference_cases.mjs",
     "verify:demo": "node scripts/verify_live_demo.mjs",
     "verify:method-content": "node scripts/verify_method_content.mjs",
-    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content"
+    "verify:schemes": "node scripts/verify_similarity_schemes.mjs",
+    "verify:analysis-config": "node scripts/verify_method_analysis_config.mjs",
+    "verify:analysis-contract": "node scripts/verify_analysis_contract.mjs",
+    "verify:primary-analysis": "node scripts/verify_primary_analysis.mjs",
+    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content && npm run verify:schemes && npm run verify:analysis-config && npm run verify:analysis-contract && npm run verify:primary-analysis"
   },
   "dependencies": {
     "next": "16.3.0",

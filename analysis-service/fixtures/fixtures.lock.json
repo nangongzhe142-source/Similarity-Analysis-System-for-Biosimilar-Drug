@@ -1,0 +1,412 @@
+{
+  "lockVersion": "1.0.0",
+  "datasets": {
+    "PXD023358": {
+      "pathPrefix": "2021/02/PXD023358",
+      "license": "CC0",
+      "files": {
+        "NISTmAb.fasta": {
+          "bytes": 1107,
+          "sha256": "755f3550147f04de08071823b423c3efce87e44d049daeb17ac4424f908922e7",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/NISTmAb.fasta",
+          "downloadedOn": "2026-08-20T04:20:48Z"
+        },
+        "2018-05-14_01_NISTIgG_GuanRT_TCEP1_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 3150,
+          "sha256": "ca7312f17da18990bcc84a88be7f24c6f705f0e1896518f66cce2275afd73a75",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_01_NISTIgG_GuanRT_TCEP1_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:20:49Z"
+        },
+        "2018-05-14_04_NISTIgG_GuanRT_TCEP1_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 4288,
+          "sha256": "52cf76538ddab939136ddec7a15016390abb5c2daeed0a5123bc0b91facf9efe",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_04_NISTIgG_GuanRT_TCEP1_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:20:50Z"
+        },
+        "2018-05-14_07_NISTIgG_GuanRT_TCEP1_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 5224,
+          "sha256": "14d33d761c8fb1b62a3d6da5be8bd9418aa0bf3310e1f7c9319eb2e864c70518",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_07_NISTIgG_GuanRT_TCEP1_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:21:13Z"
+        },
+        "checksum.txt": {
+          "bytes": 14326,
+          "sha256": "832de20d33dad402561e86b9c22b40c9feb066f457e279d9413fcea0f2f51a2a",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/checksum.txt",
+          "downloadedOn": "2026-08-20T04:21:14Z"
+        },
+        "2018-05-14_05_NISTIgG_GuanRT_TCEP1_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 27892,
+          "sha256": "4f7a5f4f02c6fdadbf9b404ce4e8e237bc5db9d63610dc1e604b9d25c9e19e5c",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_05_NISTIgG_GuanRT_TCEP1_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:21:36Z"
+        },
+        "2018-05-14_02_NISTIgG_GuanRT_TCEP1_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 46869,
+          "sha256": "fbe6bd154738a95c724ad31d522927c2ef4050161a6be000f8b18f5b2af8431f",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_02_NISTIgG_GuanRT_TCEP1_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:21:37Z"
+        },
+        "2018-05-14_08_NISTIgG_GuanRT_TCEP1_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 51060,
+          "sha256": "0a5e21130eb3679713adcbfeafa39d21e68f8078b9cf3f6ebfcd4175a44a68ca",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_08_NISTIgG_GuanRT_TCEP1_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:21:39Z"
+        },
+        "2018-05-11_07_NISTIgG_GuanRT_NoDTT_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 51561,
+          "sha256": "98819529aca4bae0ec1eb3b49ff9ed7957bcbcd9b1dd10807b71256ed76d63ff",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_07_NISTIgG_GuanRT_NoDTT_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:21:41Z"
+        },
+        "2018-05-14_06_NISTIgG_GuanRT_TCEP1_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 59750,
+          "sha256": "a335b688f77124a772bf10c227f7625069a946059173d5966479a3882f13c059",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_06_NISTIgG_GuanRT_TCEP1_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:21:42Z"
+        },
+        "2018-05-11_04_NISTIgG_GuanRT_NoDTT_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 60453,
+          "sha256": "d02c10713a03a1933a02884ff751ed66089f9002940ce5a088dbdf0b3b50d866",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_04_NISTIgG_GuanRT_NoDTT_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:22:04Z"
+        },
+        "2014-09-04_18_IgG8670_GuanRT_NoDTTIAA_15min_QE_ms10msms_HCD32_Res17k_1ul.csv": {
+          "bytes": 66910,
+          "sha256": "484726589f7a3d01f3b5050085294886a302ea3ab67e541949fe66ab7a1832ef",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_18_IgG8670_GuanRT_NoDTTIAA_15min_QE_ms10msms_HCD32_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:22:06Z"
+        },
+        "2018-05-14_09_NISTIgG_GuanRT_TCEP1_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 66957,
+          "sha256": "4bc2d3269fb955e56fa309a558bbea41662598cd7bc7c4148864a7b6c297f9a8",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_09_NISTIgG_GuanRT_TCEP1_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:22:08Z"
+        },
+        "2018-05-14_03_NISTIgG_GuanRT_TCEP1_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 76294,
+          "sha256": "e15160859b170e3de43cc330d7f02ddcd4040ec79ce908ebab8a0d62004762ba",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-14_03_NISTIgG_GuanRT_TCEP1_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:22:09Z"
+        },
+        "2018-05-11_01_NISTIgG_GuanRT_NoDTT_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 83242,
+          "sha256": "b96c4d3256c2740890c693022105d50e0752b7a371acc844f2f0e7b1b9ba3c89",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_01_NISTIgG_GuanRT_NoDTT_NEM_15min_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:22:11Z"
+        },
+        "2014-05-11_08_IgG8670_GuanRT_TCEP_2h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 99539,
+          "sha256": "2650e46ad887d943c1ed491e6023a4b9539df660c4afa1f3505c43b854248002",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-05-11_08_IgG8670_GuanRT_TCEP_2h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:22:13Z"
+        },
+        "2014-05-13_08_IgG8670_GuanRT_TCEP_15min_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 107628,
+          "sha256": "5833994c4511797bf29ac1475edb0c0fc8c93dd2ea287572da03c75638a142ef",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-05-13_08_IgG8670_GuanRT_TCEP_15min_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:22:15Z"
+        },
+        "2014-04-13_08_IgG8670_GuanRT_TCEP_15min_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 131234,
+          "sha256": "07311f3a7fe2e5be9a6830b59cf39acd426319cd9b094da7e2f921123dc4e782",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-04-13_08_IgG8670_GuanRT_TCEP_15min_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:23:17Z"
+        },
+        "2014-04-03_08_IgG8670_GuanRT_TCEP_15min_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_115min_1ul.csv": {
+          "bytes": 144087,
+          "sha256": "60a0c26d4ad9741ea0b70513e4ef2480a285c7d722fcf4beb9c06443cc03cc0d",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-04-03_08_IgG8670_GuanRT_TCEP_15min_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_115min_1ul.csv",
+          "downloadedOn": "2026-08-20T04:23:19Z"
+        },
+        "2014-04-11_08_IgG8670_GuanRT_TCEP_2h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 196956,
+          "sha256": "4ac73532ffc8569d6bdd884f934039e0906e9fa3a2ec1d7d63ef5243c0a92974",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-04-11_08_IgG8670_GuanRT_TCEP_2h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:23:21Z"
+        },
+        "2014-09-04_16_IgG8670_GuanRT_NoDTTIAA_15min_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 218220,
+          "sha256": "eb03de31ce368d6ca0c79f7f44567a33ef31b635af00fe91737afe2119783b64",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_16_IgG8670_GuanRT_NoDTTIAA_15min_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:23:23Z"
+        },
+        "2018-05-11_09_NISTIgG_GuanRT_NoDTT_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 221585,
+          "sha256": "3b755a78ae6b6e23ef64849e352143171c8fb5215a1c831a0c8582fb07094b54",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_09_NISTIgG_GuanRT_NoDTT_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:23:25Z"
+        },
+        "2014-09-04_14_IgG8670_GuanRT_NoDTTIAA_15min_QE_ms10msms_HCD16_Res17k_1ul.csv": {
+          "bytes": 238716,
+          "sha256": "5d19a37bb3664ec33f177ea51076c5ce0cbbbf8a56baf2c71f460e46a88794b2",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_14_IgG8670_GuanRT_NoDTTIAA_15min_QE_ms10msms_HCD16_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:23:27Z"
+        },
+        "2018-05-11_03_NISTIgG_GuanRT_NoDTT_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 263863,
+          "sha256": "e38a200ab72abc3d461e3aebe1cb60634091427420eece627875de95ee20b0b7",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_03_NISTIgG_GuanRT_NoDTT_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:23:29Z"
+        },
+        "2018-05-11_05_NISTIgG_GuanRT_NoDTT_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 271383,
+          "sha256": "66610b44a6255a8ec233b8bad5fe0f4891a3a640bde239a115f5b5b13c72e00b",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_05_NISTIgG_GuanRT_NoDTT_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:23:32Z"
+        },
+        "2014-04-03_08_IgG8670_GuanRT_TCEP_2h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 282428,
+          "sha256": "4b7e19620a5a50405d0592997455fce0d7f5b0940212a4c4b3e389ef948e4722",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-04-03_08_IgG8670_GuanRT_TCEP_2h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:23:34Z"
+        },
+        "2018-05-11_06_NISTIgG_GuanRT_NoDTT_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 305856,
+          "sha256": "993be6f8d7990b895764eebd9fbc722ec22b85700c9dd2c7ab9c47eb4588521f",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_06_NISTIgG_GuanRT_NoDTT_NEM_18h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:23:36Z"
+        },
+        "2018-05-11_08_NISTIgG_GuanRT_NoDTT_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 364681,
+          "sha256": "78cd5d78a26f984f5ee161b2c79cdbba3184d2e31825c10002d2a16b7bd6bbca",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_08_NISTIgG_GuanRT_NoDTT_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:24:26Z"
+        },
+        "2014-09-04_12_IgG8670_GuanRT_NoDTTIAA_2h_QE_ms10msms_HCD32_Res17k_1ul.csv": {
+          "bytes": 383149,
+          "sha256": "d6bd2746b13e2b42909d0ade0567000b54faa706446aa34a3e5dc2abb4f03762",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_12_IgG8670_GuanRT_NoDTTIAA_2h_QE_ms10msms_HCD32_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:25:09Z"
+        },
+        "2014-09-04_06_IgG8670_GuanRT_NoDTTIAA_18h_QE_ms10msms_HCD32_Res17k_1ul.csv": {
+          "bytes": 400778,
+          "sha256": "285bd1dd2743b6ab4555aee5be447216a3f66a0d08116da12fc3dc22003f194d",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_06_IgG8670_GuanRT_NoDTTIAA_18h_QE_ms10msms_HCD32_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:25:12Z"
+        },
+        "2018-05-11_02_NISTIgG_GuanRT_NoDTT_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv": {
+          "bytes": 404024,
+          "sha256": "3b33f730efd20f0693f422130c504a212525bb5c7848dad5b297f5b4a8e744ab",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2018-05-11_02_NISTIgG_GuanRT_NoDTT_NEM_2h_Lumos_HCD24_MS15_MS120k_msms30k_ET10s_IW2_2h_5ul_Pos.csv",
+          "downloadedOn": "2026-08-20T04:25:35Z"
+        },
+        "2014-05-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 414755,
+          "sha256": "44130b362e25cb13069d695074ca8b7ac6223d1b69144fe6964c037db0989b1a",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-05-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:25:37Z"
+        },
+        "2014-09-04_10_IgG8670_GuanRT_NoDTTIAA_2h_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 631834,
+          "sha256": "e1e8be23197067431e6b5b61c42912853f0efd1204b5a60a1c7825a79ae35e27",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_10_IgG8670_GuanRT_NoDTTIAA_2h_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:26:00Z"
+        },
+        "2014-09-04_02_IgG8670_GuanRT_NoDTTIAA_18h_QE_ms10msms_HCD16_Res17k_1ul.csv": {
+          "bytes": 643242,
+          "sha256": "79f81dc63deaaaee71d521fe2dc7b539bf9d46c26b27b1f0894fe8cad06d4864",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_02_IgG8670_GuanRT_NoDTTIAA_18h_QE_ms10msms_HCD16_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:26:24Z"
+        },
+        "2014-04-03_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 672074,
+          "sha256": "1651589252077c2fa6dc6727a4a1fa599f711165906fcfe9906501bb7b6404ee",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-04-03_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:26:27Z"
+        },
+        "2014-09-04_08_IgG8670_GuanRT_NoDTTIAA_2h_QE_ms10msms_HCD16_Res17k_1ul.csv": {
+          "bytes": 705332,
+          "sha256": "498d2369d7aa8fe77db73ad7539c3ec755e0c03bb37a993ca9e14eb434361868",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_08_IgG8670_GuanRT_NoDTTIAA_2h_QE_ms10msms_HCD16_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:26:56Z"
+        },
+        "2014-09-04_04_IgG8670_GuanRT_NoDTTIAA_18h_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 732133,
+          "sha256": "f25dc4609bef78160bb9bbe80d7513e4bb87ba6536bd763a91a7d3746f47d25a",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-09-04_04_IgG8670_GuanRT_NoDTTIAA_18h_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:27:00Z"
+        },
+        "2014-04-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv": {
+          "bytes": 823880,
+          "sha256": "37ea810c247dcc304dc07617f9b17e313a752f5ca65add97d3f110b9dae1ddff",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-04-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.csv",
+          "downloadedOn": "2026-08-20T04:27:03Z"
+        }
+      },
+      "deletedFiles": {
+        "2014-05-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.raw": {
+          "bytes": 655283843,
+          "sha256": "41c646e3910471ba2fa2266f234ee43c3a72e6b93e4af078e70455c4fca74fe1",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2021/02/PXD023358/2014-05-09_08_IgG8670_GuanRT_TCEP_18h_LabeledPeptidesSpiked_3-24Sample_QE_ms10msms_HCD24_Res17k_1ul.raw",
+          "downloadedOn": "2026-08-20T04:54:55Z",
+          "deletedOn": "2026-08-20",
+          "deletionReason": "Decisions D17 and D21. The file was fully downloaded and hashed, so the sha256 above is real evidence of what was on disk, but D17 removed the disulfide analysis that was its only consumer and D21 replaced it with the 1.04 MB pwiz Thermo fixture set for P6 conversion verification."
+        }
+      }
+    },
+    "PXD054948": {
+      "pathPrefix": "2025/02/PXD054948",
+      "license": "CC0",
+      "files": {
+        "Etanercept_Half_Fc_DesiaIdeS_SubUnitAnalysis_Results.xlsx": {
+          "bytes": 5208,
+          "sha256": "842d8ce7b64595f8e9fcf5289f73d89160ffd18b80c248e53d6646a67127a4e8",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/Etanercept_Half_Fc_DesiaIdeS_SubUnitAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:07Z"
+        },
+        "Etanercept_Half_Fc_DesiaIdeS_DTTSubUnitAnalysis_Results.xlsx": {
+          "bytes": 5210,
+          "sha256": "df284cb84ae008311718ff864a5c062777fefe0d23b7bc4af23b30229b1beb1a",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/Etanercept_Half_Fc_DesiaIdeS_DTTSubUnitAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:08Z"
+        },
+        "RG7221_IntactMassAnalysis_Results.xlsx": {
+          "bytes": 5674,
+          "sha256": "571cd277ad4a7a71e6842a01d01655fcb4482c29a0b824e5f6643f5e5b395ed6",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/RG7221_IntactMassAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:09Z"
+        },
+        "RG7221_SubUnitAnalysis_Results.xlsx": {
+          "bytes": 6873,
+          "sha256": "f18ae214963d09f918b2a7c1ccdeab11c50eee5ff22eef99191a0352cf6c6b29",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/RG7221_SubUnitAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:30Z"
+        },
+        "checksum.txt": {
+          "bytes": 7192,
+          "sha256": "6f4d79caa4630e2c03e7429324257d15f092c03be1b061cb4d588450b249798f",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/checksum.txt",
+          "downloadedOn": "2026-08-20T04:56:32Z"
+        },
+        "EtanerceptTNFR_DesiaIdeS_DTTSubUnitAnalysis_Results.xlsx": {
+          "bytes": 9672,
+          "sha256": "54141f9d8ad25edcda0a4da8458c26a3d94ad26e973978cab3a9fc470dac51f3",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/EtanerceptTNFR_DesiaIdeS_DTTSubUnitAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:33Z"
+        },
+        "Etanercept_Desialylated_IntactMassAnalysis_Results.xlsx": {
+          "bytes": 9916,
+          "sha256": "7ad540b31d97b524069e989fe14110a246c0a6e08ff52f3803e04234873e7d2a",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/Etanercept_Desialylated_IntactMassAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:34Z"
+        },
+        "Metadata.xlsx": {
+          "bytes": 10847,
+          "sha256": "2857343eb5c6b5f703141fda44b88f083ddebf4cba86138861bfaacc81987a7d",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/Metadata.xlsx",
+          "downloadedOn": "2026-08-20T04:56:35Z"
+        },
+        "NISTmAb_IntactMassAnalysis_Results.xlsx": {
+          "bytes": 21449,
+          "sha256": "1d6cfc06bf568ccad69f460712b33e6206741684fe776ed4cd5df010f3de99c3",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/NISTmAb_IntactMassAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:56:37Z"
+        },
+        "EtanerceptTNFR_DesiaIdeS_SubUnitAnalysis_Results.xlsx": {
+          "bytes": 28591,
+          "sha256": "832a2c7d984b09164957caef1ee6ffab56ed2689cd257c4fd85b1fa7913ec740",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/EtanerceptTNFR_DesiaIdeS_SubUnitAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:57:18Z"
+        },
+        "NISTmAb_SubUnitAnalysis_Results.xlsx": {
+          "bytes": 92943,
+          "sha256": "3e5cd2e435204da81f5c0998ae89637d13215b45b902eaa07fb74b259bb99bea",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/NISTmAb_SubUnitAnalysis_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:57:20Z"
+        },
+        "20230110_Enbrel-desialylated_25ng.wiff": {
+          "bytes": 115200,
+          "sha256": "9348b08be798fb6807a4f8dc49e3eb636ad0a0ec043237882065103fa25c5de1",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/20230110_Enbrel-desialylated_25ng.wiff",
+          "downloadedOn": "2026-08-20T04:57:22Z"
+        },
+        "20221212_Enbrel-IdeS-DTT_100ng_20mins.wiff": {
+          "bytes": 194048,
+          "sha256": "bc4fb25b0fd5942954cc7e624734a9687b130cf20657a30532b7c3f7d4500817",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/20221212_Enbrel-IdeS-DTT_100ng_20mins.wiff",
+          "downloadedOn": "2026-08-20T04:57:24Z"
+        },
+        "20230421_CM-RG7221-IdeS-DTT_100ng.wiff": {
+          "bytes": 194048,
+          "sha256": "5973b8f8ff84fb1e07b72af0509983d6430c0f3177e614f6c6c407def82d40b1",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/20230421_CM-RG7221-IdeS-DTT_100ng.wiff",
+          "downloadedOn": "2026-08-20T04:57:26Z"
+        },
+        "Etanercept_C4_bottomup_EAD_Results.xlsx": {
+          "bytes": 448305,
+          "sha256": "46ab16bf96a48bcfde5c61bee03ef873b11ce66299c4d46dcdda60b8379772ca",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/Etanercept_C4_bottomup_EAD_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:57:50Z"
+        },
+        "NISTmAb_bottomup_EAD_Results.xlsx": {
+          "bytes": 465108,
+          "sha256": "0245c58a6296857bcdd051dea436cacb198dc195344e575001419caa38b09d30",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/NISTmAb_bottomup_EAD_Results.xlsx",
+          "downloadedOn": "2026-08-20T04:57:58Z"
+        },
+        "20230110_Enbrel-desialylated_25ng.wiff.scan": {
+          "bytes": 7313233,
+          "sha256": "9df3d6103edcccc34686234dbb445d5398c88f30bb041f30f3dee7e5cd3b49be",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/20230110_Enbrel-desialylated_25ng.wiff.scan",
+          "downloadedOn": "2026-08-20T05:17:17Z"
+        },
+        "20221212_Enbrel-IdeS-DTT_100ng_20mins.wiff.scan": {
+          "bytes": 31097422,
+          "sha256": "4bb6dc5c4398f4080dcb417fa49847b078e81a4afa0ebcf4cc405d98c6e4b659",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/20221212_Enbrel-IdeS-DTT_100ng_20mins.wiff.scan",
+          "downloadedOn": "2026-08-20T05:18:46Z"
+        },
+        "20230421_CM-RG7221-IdeS-DTT_100ng.wiff.scan": {
+          "bytes": 316821841,
+          "sha256": "27f0474464c6e7366c516363bcd37b9599f3f88abbe579a2d0823edf6ab49231",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2025/02/PXD054948/20230421_CM-RG7221-IdeS-DTT_100ng.wiff.scan",
+          "downloadedOn": "2026-08-20T05:31:21Z"
+        }
+      }
+    },
+    "PXD063988": {
+      "pathPrefix": "2026/03/PXD063988",
+      "license": "CC0",
+      "files": {
+        "4ABS_DB.fasta": {
+          "bytes": 3431,
+          "sha256": "2173780eb353b6ca2beb7dff08dbed35f88b2a585f2457239d1c91064546aaa3",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/03/PXD063988/4ABS_DB.fasta",
+          "downloadedOn": "2026-08-20T05:31:34Z"
+        },
+        "checksum.txt": {
+          "bytes": 27934,
+          "sha256": "e92c0ce471af257971cddd333a360d7bf33fa5d1d5a09e86962822ada73ec67a",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/03/PXD063988/checksum.txt",
+          "downloadedOn": "2026-08-20T05:32:09Z"
+        },
+        "Vesuvius_EAciD_Peptide_Quantification.csv": {
+          "bytes": 1054891,
+          "sha256": "0d928e2ff3d0a5ce8060b04b7668756f685b9f7acf66296f824998de196b8120",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/03/PXD063988/Vesuvius_EAciD_Peptide_Quantification.csv",
+          "downloadedOn": "2026-08-20T05:32:13Z"
+        },
+        "Krakatoa_EAciD_Peptide_Quantification.csv": {
+          "bytes": 1295722,
+          "sha256": "e0972b54b6d20be1160b7f545d27c11a733fcfe2901a146b90171ad91562cd5d",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/03/PXD063988/Krakatoa_EAciD_Peptide_Quantification.csv",
+          "downloadedOn": "2026-08-20T05:32:18Z"
+        },
+        "20241115_Z1_UM1_shamo002_EXT00_SA_TRYPSIN_EACID_RCE_KE9_100ng_03.mzML": {
+          "bytes": 701961275,
+          "sha256": "a539c3dbd3b2fb1e8d8a18f4caed36bcfe91ebddacafe8549b2df043810bddda",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/03/PXD063988/20241115_Z1_UM1_shamo002_EXT00_SA_TRYPSIN_EACID_RCE_KE9_100ng_03.mzML",
+          "downloadedOn": "2026-08-20T06:10:46Z"
+        },
+        "20241115_Z1_UM1_shamo002_EXT00_SA_CHYMO_CID_100ng_02.mzML": {
+          "bytes": 797649988,
+          "sha256": "ba789ac58831adb1c27dd55030125293c8c1a62c18b6c386a84dd45967d52bf4",
+          "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2026/03/PXD063988/20241115_Z1_UM1_shamo002_EXT00_SA_CHYMO_CID_100ng_02.mzML",
+          "downloadedOn": "2026-08-20T06:43:05Z"
+        }
+      }
+    }
+  },
+  "updatedOn": "2026-08-20T06:43:05Z"
+}

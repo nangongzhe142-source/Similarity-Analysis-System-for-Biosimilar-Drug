@@ -85,7 +85,7 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
         <p className="mb-3 mt-1 text-sm text-slate-500">
           {messages.itemPage.methodSectionDescription}
         </p>
-        <MethodSelector methods={item.methods} />
+        <MethodSelector itemId={item.id} methods={item.methods} />
       </section>
 
       <section>

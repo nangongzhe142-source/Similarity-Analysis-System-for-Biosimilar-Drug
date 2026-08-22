@@ -149,6 +149,116 @@ export interface UiMessages {
     deploymentUnverifiedWarning: string;
     disclaimer: string;
   };
+  methodAnalysis: {
+    sectionTitle: string;
+    statusLabels: Record<
+      "analyzable" | "blocked-by-tool" | "not-yet-supported" | "display-only" | "rule-not-defined",
+      string
+    >;
+    verdictLabels: Record<
+      "SUPPORTED_BY_THIS_ATTRIBUTE" | "REVIEW" | "DIFFERENCE_DETECTED" | "RULE_NOT_DEFINED",
+      string
+    >;
+    jobStatusValues: Record<
+      "QUEUED" | "VALIDATING" | "RUNNING" | "SUCCEEDED" | "FAILED" | "CANCELLED",
+      string
+    >;
+    ruleCompleteTag: string;
+    rulePartialTag: string;
+    ruleAbsentTag: string;
+    sheet3RuleUndefined: string;
+    plannedInLabel: string;
+    blockedByLabel: string;
+    uploadHint: string;
+    candidateLabelField: string;
+    referenceLabelField: string;
+    headToHeadLabel: string;
+    comparisonFileLabel: string;
+    comparisonFileHint: string;
+    comparisonSelectedFirst: string;
+    comparisonSelectedSecond: string;
+    sequenceFileLabel: string;
+    inputFilesBoxTitle: string;
+    fileEmptyPlaceholder: string;
+    syntheticFallbackNote: string;
+    runButton: string;
+    runningButton: string;
+    cancelButton: string;
+    jobStatusLabel: string;
+    serviceOfflineTitle: string;
+    serviceOfflineText: string;
+    genericError: string;
+    syntheticDemoTag: string;
+    imageOnlyTag: string;
+    massesLabel: string;
+    deltaDaLabel: string;
+    coverageLabel: string;
+    matchedPeptidesLabel: string;
+    unmatchedPeptidesLabel: string;
+    ruleEvaluationTitle: string;
+    warningsTitle: string;
+    limitationsTitle: string;
+    downloadJson: string;
+    downloadPng: string;
+    mirrorPlotTitle: string;
+    overlayPlotTitle: string;
+    referenceOnlyPlotTitle: string;
+    candidateOnlyPlotTitle: string;
+    coveragePlotTitle: string;
+    coveragePlotCaption: string;
+    fragmentPlotTitle: string;
+    peakTableTitle: string;
+    peptideColumn: string;
+    ppmColumn: string;
+    plotHoverHint: string;
+    referenceTrace: string;
+    candidateTrace: string;
+    notRetentionTimeNote: string;
+    retentionTimeLabel: string;
+    normalizedColumnLabel: string;
+    provenanceTitle: string;
+    provenanceWhatItIs: string;
+    provenanceWhatItIsNot: string;
+    provenanceDataSource: string;
+    provenancePairing: string;
+    notHeadToHeadNote: string;
+    toolVersionsTitle: string;
+    parametersTitle: string;
+    inputHashesTitle: string;
+    disclaimer: string;
+    regulatoryVerdictTitle: string;
+    imageComparisonTitle: string;
+    imageComparisonOutcomes: Record<
+      "CONSISTENT" | "INCONCLUSIVE" | "DIFFERENCE_OBSERVED" | "NOT_APPLICABLE",
+      string
+    >;
+    qualityGatesTitle: string;
+    qualityGateKindLabel: string;
+    v2RuleConditionsTitle: string;
+    v2DecisionMethodLabel: string;
+    v2NumericBoundaryLabel: string;
+    v2FinalRuleLabel: string;
+    imagePeakTableTitle: string;
+    imagePeakMatchedColumn: string;
+    imagePeakShiftColumn: string;
+    figureLibraryMismatch: string;
+    figureLibraryExcluded: string;
+    figureLibraryAnnotation: string;
+    imageCalibrationTitle: string;
+    imageCalibrationHint: string;
+    imageCalibrationAxisMass: string;
+    imageCalibrationAxisMz: string;
+    imageCalibrationAxisRt: string;
+    imageCalibrationPointOne: string;
+    imageCalibrationPointTwo: string;
+    imageCalibrationValuePlaceholder: string;
+    imageCalibrationSpanTooSmall: string;
+    imageCalibrationReady: string;
+    imageCalibrationOptional: string;
+    imageCalibrationClear: string;
+    imagePeakAxisColumn: string;
+    imageCalibrationLoadFailed: string;
+  };
   regulatoryPage: {
     title: string;
     description: string;
@@ -394,6 +504,134 @@ export const uiMessages: Record<Locale, UiMessages> = {
         "未在本机部署验证，以下判断仅来自文档与仓库页面。",
       disclaimer:
         "「工具能运行」不等于「方法学已验证」，更不等于「符合 GxP / 21 CFR Part 11」；「两组数据数值接近」不等于「生物类似性成立」。本栏仅说明工具可行性，不提供任何分析能力。",
+    },
+    methodAnalysis: {
+      sectionTitle: "程序分析",
+      statusLabels: {
+        analyzable: "可运行分析",
+        "blocked-by-tool": "工具未验证，暂不可用",
+        "not-yet-supported": "尚未支持",
+        "display-only": "仅展示（无上传入口）",
+        "rule-not-defined": "规则未定义 — 不运行分析",
+      },
+      verdictLabels: {
+        SUPPORTED_BY_THIS_ATTRIBUTE: "本属性支持一致",
+        REVIEW: "需复核",
+        DIFFERENCE_DETECTED: "检出差异",
+        RULE_NOT_DEFINED: "规则未定义",
+      },
+      jobStatusValues: {
+        QUEUED: "排队中",
+        VALIDATING: "校验输入",
+        RUNNING: "运行中",
+        SUCCEEDED: "已完成",
+        FAILED: "失败",
+        CANCELLED: "已取消",
+      },
+      ruleCompleteTag: "V2 Sheet3 规则完整",
+      rulePartialTag: "V2 Sheet3 规则部分",
+      ruleAbsentTag: "V2 Sheet3 无可用规则",
+      sheet3RuleUndefined: "Sheet3 未定义该项程序规则",
+      plannedInLabel: "计划步骤",
+      blockedByLabel: "阻塞工具",
+      uploadHint:
+        "比对文件与 DOCX 5.1.1 一致：可上传一张已含两侧的图/表，或按顺序选两个独立谱文件；序列 FASTA 另传。留空则运行合成演示。",
+      candidateLabelField: "候选样品标签",
+      referenceLabelField: "参照样品标签",
+      headToHeadLabel: "声明为候选药与参照药头对头生物类似药设计",
+      comparisonFileLabel: "候选/参照比对文件",
+      comparisonFileHint:
+        "1 个文件：镜像谱、TIC 镜像、A/B 双面板或两侧同表的合成图。2 个文件须在同一对话框内一次选中：第 1 个=候选，第 2 个=参照（mzML、TXT/CSV；请先自行把 RAW/WIFF 转为 mzML）。",
+      comparisonSelectedFirst: "第 1 个（候选，或合成图）",
+      comparisonSelectedSecond: "第 2 个（参照）",
+      sequenceFileLabel: "序列 FASTA（可选）",
+      inputFilesBoxTitle: "输入文件",
+      fileEmptyPlaceholder: "未选择文件",
+      syntheticFallbackNote:
+        "未上传比对文件时使用合成演示，verdict 为 REVIEW。只传一个非图片谱文件时无法拆出两侧，同样退回合成演示。",
+      runButton: "创建并运行分析",
+      runningButton: "分析进行中…",
+      cancelButton: "取消任务",
+      jobStatusLabel: "任务状态",
+      serviceOfflineTitle: "分析服务未连接",
+      serviceOfflineText:
+        "请在本机启动 analysis-service（默认 http://127.0.0.1:8765）。网页经本站 /api/analysis 转发，不直连 8765。例如：cd analysis-service && uvicorn app.main:app --port 8765",
+      genericError: "分析请求失败，请检查服务日志。",
+      syntheticDemoTag: "合成演示",
+      imageOnlyTag: "仅图片",
+      massesLabel: "去卷积质量",
+      deltaDaLabel: "ΔDa",
+      coverageLabel: "序列覆盖率",
+      matchedPeptidesLabel: "匹配肽段（节选）",
+      unmatchedPeptidesLabel: "未匹配肽段",
+      ruleEvaluationTitle: "V2 规则评价",
+      warningsTitle: "警告",
+      limitationsTitle: "局限性",
+      downloadJson: "下载 AnalysisResult JSON",
+      downloadPng: "下载产物",
+      mirrorPlotTitle: "完整质量镜像比对",
+      overlayPlotTitle: "LC-MS 色谱叠加比对",
+      referenceOnlyPlotTitle: "参照样品",
+      candidateOnlyPlotTitle: "候选样品",
+      coveragePlotTitle: "序列覆盖图",
+      coveragePlotCaption: "每行 50 残基；灰底为已覆盖，白底为未覆盖。覆盖率百分比不是合格线。",
+      fragmentPlotTitle: "MS/MS 碎片离子（b 上 / y 下）",
+      peakTableTitle: "峰匹配表",
+      peptideColumn: "肽段",
+      ppmColumn: "Δppm",
+      plotHoverHint: "悬停查看数值。前端为交互 SVG；PNG 由后端 matplotlib 生成。",
+      referenceTrace: "参照",
+      candidateTrace: "候选",
+      notRetentionTimeNote: "横轴是图片列方向的归一化坐标，不是保留时间。",
+      retentionTimeLabel: "RT (min)",
+      normalizedColumnLabel: "normalized column",
+      provenanceTitle: "分析溯源",
+      provenanceWhatItIs: "这是什么",
+      provenanceWhatItIsNot: "这不是什么",
+      provenanceDataSource: "数据来源",
+      provenancePairing: "样本配对",
+      notHeadToHeadNote: "当前配对未声明为候选药与参照药头对头生物类似药设计。",
+      toolVersionsTitle: "工具版本",
+      parametersTitle: "运行参数",
+      inputHashesTitle: "输入 SHA-256",
+      disclaimer:
+        "本面板连接 FastAPI 分析服务，输出的是单项质量属性的程序评价，不是整体生物类似性结论，也不代表 GxP 合规。",
+      regulatoryVerdictTitle: "法规判定（V2 Sheet3）",
+      imageComparisonTitle: "图像比对观察（只描述图片）",
+      imageComparisonOutcomes: {
+        CONSISTENT: "形状一致（图像层）",
+        INCONCLUSIVE: "证据不足，不下结论",
+        DIFFERENCE_OBSERVED: "图像层可见差异",
+        NOT_APPLICABLE: "无两条可比曲线",
+      },
+      qualityGatesTitle: "算法质量门（不是相似性限度）",
+      qualityGateKindLabel: "种类",
+      v2RuleConditionsTitle: "V2 Sheet3 规则条件",
+      v2DecisionMethodLabel: "判定方法",
+      v2NumericBoundaryLabel: "数值边界",
+      v2FinalRuleLabel: "最终程序规则",
+      imagePeakTableTitle: "图像层峰配对（像素列，非实测 Da）",
+      imagePeakMatchedColumn: "配对",
+      imagePeakShiftColumn: "归一化位移",
+      figureLibraryMismatch:
+        "所选文件在图谱库中归属于其他检测项目，分析仍会运行，但药物体系可能对不上。",
+      figureLibraryExcluded: "该图已从第一阶段映射中排除（V2 Sheet3 无对应项目）。",
+      figureLibraryAnnotation: "图谱库标注",
+      imageCalibrationTitle: "坐标轴两点校准（可选）",
+      imageCalibrationHint:
+        "在图上点选横轴上两个已知刻度，并填入印刷值。两点像素间距须 ≥ 20。未校准则只做形状比对，不输出 Da / m·z⁻¹ / min。OCR 读数不能替代这一步。",
+      imageCalibrationAxisMass: "质量 (Da)",
+      imageCalibrationAxisMz: "m/z (Da)",
+      imageCalibrationAxisRt: "保留时间 (min)",
+      imageCalibrationPointOne: "点 1",
+      imageCalibrationPointTwo: "点 2",
+      imageCalibrationValuePlaceholder: "轴值",
+      imageCalibrationSpanTooSmall: "两点过近，无法定标。请点选相距更远的刻度。",
+      imageCalibrationReady: "两点校准已就绪，将随本次分析提交。",
+      imageCalibrationOptional: "未完成两点校准：本次运行不输出物理单位。",
+      imageCalibrationClear: "清除校准点",
+      imagePeakAxisColumn: "轴值",
+      imageCalibrationLoadFailed: "预览未能显示该图，无法在图上取点。请重新选择文件后再试。",
     },
     regulatoryPage: {
       title: "法规框架",
@@ -652,6 +890,139 @@ export const uiMessages: Record<Locale, UiMessages> = {
         "Not deployed or verified locally; the assessment below comes from documentation and the repository page only.",
       disclaimer:
         "\"The tool runs\" does not mean \"the method is validated\", still less \"GxP / 21 CFR Part 11 compliant\"; \"the two datasets are numerically close\" does not mean \"biosimilarity is established\". This panel describes tool feasibility only and provides no analytical capability.",
+    },
+    methodAnalysis: {
+      sectionTitle: "Program analysis",
+      statusLabels: {
+        analyzable: "Analysis available",
+        "blocked-by-tool": "Blocked — tool not verified",
+        "not-yet-supported": "Not yet supported",
+        "display-only": "Display only — no upload",
+        "rule-not-defined": "Rule not defined — no analysis runs",
+      },
+      verdictLabels: {
+        SUPPORTED_BY_THIS_ATTRIBUTE: "Supported for this attribute",
+        REVIEW: "Review required",
+        DIFFERENCE_DETECTED: "Difference detected",
+        RULE_NOT_DEFINED: "Rule not defined",
+      },
+      jobStatusValues: {
+        QUEUED: "Queued",
+        VALIDATING: "Validating",
+        RUNNING: "Running",
+        SUCCEEDED: "Succeeded",
+        FAILED: "Failed",
+        CANCELLED: "Cancelled",
+      },
+      ruleCompleteTag: "V2 sheet 3 rule complete",
+      rulePartialTag: "V2 sheet 3 rule partial",
+      ruleAbsentTag: "No usable V2 sheet 3 rule",
+      sheet3RuleUndefined: "Sheet 3 defines no program rule for this item",
+      plannedInLabel: "Planned in",
+      blockedByLabel: "Blocked by",
+      uploadHint:
+        "Comparison files follow DOCX 5.1.1: one combined figure/table with both sides, or two separate spectra in order. FASTA is separate. Leave empty for the synthetic demo.",
+      candidateLabelField: "Candidate label",
+      referenceLabelField: "Reference label",
+      headToHeadLabel: "Declare head-to-head biosimilar candidate vs reference design",
+      comparisonFileLabel: "Candidate/reference comparison file",
+      comparisonFileHint:
+        "One file: a combined mirror, TIC overlay, A/B panels, or a two-sided table. Two files must be chosen in the same dialog: first = candidate, second = reference (mzML or TXT/CSV; convert RAW/WIFF to mzML yourself first).",
+      comparisonSelectedFirst: "1st (candidate, or combined figure)",
+      comparisonSelectedSecond: "2nd (reference)",
+      sequenceFileLabel: "Sequence FASTA (optional)",
+      inputFilesBoxTitle: "Input files",
+      fileEmptyPlaceholder: "No file selected",
+      syntheticFallbackNote:
+        "With no comparison file the service uses the synthetic demo and verdict is REVIEW. A single non-image spectrum cannot be split into two sides, so it also falls back to the demo.",
+      runButton: "Create and run analysis",
+      runningButton: "Analysis running…",
+      cancelButton: "Cancel job",
+      jobStatusLabel: "Job status",
+      serviceOfflineTitle: "Analysis service offline",
+      serviceOfflineText:
+        "Start analysis-service locally (default http://127.0.0.1:8765). The page talks to /api/analysis on this site, not to port 8765 directly. Example: cd analysis-service && uvicorn app.main:app --port 8765",
+      genericError: "Analysis request failed; check the service log.",
+      syntheticDemoTag: "Synthetic demo",
+      imageOnlyTag: "Image only",
+      massesLabel: "Deconvolved masses",
+      deltaDaLabel: "ΔDa",
+      coverageLabel: "Sequence coverage",
+      matchedPeptidesLabel: "Matched peptides (sample)",
+      unmatchedPeptidesLabel: "Unmatched peptides",
+      ruleEvaluationTitle: "V2 rule evaluation",
+      warningsTitle: "Warnings",
+      limitationsTitle: "Limitations",
+      downloadJson: "Download AnalysisResult JSON",
+      downloadPng: "Download artifact",
+      mirrorPlotTitle: "Intact-mass mirror comparison",
+      overlayPlotTitle: "LC-MS chromatogram overlay comparison",
+      referenceOnlyPlotTitle: "Reference sample",
+      candidateOnlyPlotTitle: "Candidate sample",
+      coveragePlotTitle: "Sequence coverage map",
+      coveragePlotCaption:
+        "50 residues per row; grey is covered, white is uncovered. Coverage % is not an acceptance threshold.",
+      fragmentPlotTitle: "MS/MS fragment ions (b up / y down)",
+      peakTableTitle: "Peak match table",
+      peptideColumn: "Peptide",
+      ppmColumn: "Δppm",
+      plotHoverHint: "Hover for values. The SVG is interactive; PNGs are rendered by matplotlib.",
+      referenceTrace: "Reference",
+      candidateTrace: "Candidate",
+      notRetentionTimeNote: "The x-axis is a normalized image column, not retention time.",
+      retentionTimeLabel: "RT (min)",
+      normalizedColumnLabel: "normalized column",
+      provenanceTitle: "Analysis provenance",
+      provenanceWhatItIs: "What this is",
+      provenanceWhatItIsNot: "What this is not",
+      provenanceDataSource: "Data source",
+      provenancePairing: "Sample pairing",
+      notHeadToHeadNote:
+        "This pairing is not declared as a head-to-head biosimilar candidate-versus-reference design.",
+      toolVersionsTitle: "Tool versions",
+      parametersTitle: "Run parameters",
+      inputHashesTitle: "Input SHA-256",
+      disclaimer:
+        "This panel calls the FastAPI analysis service. Output is a programmatic view on one quality attribute, not overall biosimilarity or GxP compliance.",
+      regulatoryVerdictTitle: "Regulatory verdict (V2 sheet 3)",
+      imageComparisonTitle: "Image-level observation (pictures only)",
+      imageComparisonOutcomes: {
+        CONSISTENT: "Shape consistent (image layer)",
+        INCONCLUSIVE: "Inconclusive",
+        DIFFERENCE_OBSERVED: "Difference visible at image level",
+        NOT_APPLICABLE: "No comparable pair of curves",
+      },
+      qualityGatesTitle: "Algorithm quality gates (not similarity limits)",
+      qualityGateKindLabel: "Kind",
+      v2RuleConditionsTitle: "V2 sheet 3 rule conditions",
+      v2DecisionMethodLabel: "Decision method",
+      v2NumericBoundaryLabel: "Numeric boundary",
+      v2FinalRuleLabel: "Final program rule",
+      imagePeakTableTitle: "Image-level peak pairs (pixel column, not measured Da)",
+      imagePeakMatchedColumn: "Paired",
+      imagePeakShiftColumn: "Normalised shift",
+      figureLibraryMismatch:
+        "This file is catalogued under a different analysis item. The run still proceeds, but the drug system may not match.",
+      figureLibraryExcluded:
+        "This figure is excluded from the first-phase mapping (no matching V2 sheet 3 item).",
+      figureLibraryAnnotation: "Library annotation",
+      imageCalibrationTitle: "Two-point axis calibration (optional)",
+      imageCalibrationHint:
+        "Click two known ticks on the horizontal axis and type the printed values. The pixel span must be ≥ 20. Without this, only shape comparison is reported — no Da / m·z⁻¹ / min. OCR readings cannot replace this step.",
+      imageCalibrationAxisMass: "Mass (Da)",
+      imageCalibrationAxisMz: "m/z (Da)",
+      imageCalibrationAxisRt: "Retention time (min)",
+      imageCalibrationPointOne: "Point 1",
+      imageCalibrationPointTwo: "Point 2",
+      imageCalibrationValuePlaceholder: "Axis value",
+      imageCalibrationSpanTooSmall:
+        "The two points are too close to fix a scale. Click ticks farther apart.",
+      imageCalibrationReady: "Two-point calibration is ready and will be sent with this run.",
+      imageCalibrationOptional: "No complete two-point calibration: this run withholds physical units.",
+      imageCalibrationClear: "Clear calibration points",
+      imagePeakAxisColumn: "Axis value",
+      imageCalibrationLoadFailed:
+        "The figure preview failed to load, so points cannot be picked. Reselect the file and try again.",
     },
     regulatoryPage: {
       title: "Regulatory Framework",

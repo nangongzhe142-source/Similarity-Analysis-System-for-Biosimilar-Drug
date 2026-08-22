@@ -392,3 +392,254 @@ export interface RegulatoryFramework {
   requirements: RegulatoryCtdRequirement[];
   relations: RegulatoryCtdRelation[];
 }
+
+// ---------------------------------------------------------------------------
+// Similarity evaluation schemes (V2 workbook sheet "3.特性鉴定相似性评价方案")
+//
+// This is a sidecar to characterization-items.ts, not a replacement. The item
+// and method data still comes from the V0.1 workbook; only the programmable
+// decision rules come from V2 sheet 3.
+// ---------------------------------------------------------------------------
+
+/** Which cell of the source worksheet a field came from.
+ *  Every scheme field must be traceable to a coordinate, because a rule that
+ *  cannot be pointed at in the source workbook must not drive a verdict. */
+export interface SimilaritySchemeProvenance {
+  /** Source workbook file name. */
+  sourceWorkbook: string;
+  /** SHA-256 of the source workbook, so a silent edit is detectable. */
+  sourceWorkbookSha256: string;
+  /** Worksheet name, e.g. "3.特性鉴定相似性评价方案". */
+  sourceSheet: string;
+  /** 1-based worksheet row. */
+  sourceRow: number;
+  /** Column letter for each populated field, e.g. { decisionMethod: "J" }. */
+  sourceCells: Partial<Record<SimilaritySchemeField, string>>;
+  /** Column letters that are empty for this row. A rule cannot be considered
+   *  complete while this is non-empty. */
+  missingCells: string[];
+}
+
+/** The V2 sheet-3 columns that carry rule content (columns G through N). */
+export type SimilaritySchemeField =
+  /** G 识别内容 */
+  | "recognizedContent"
+  /** H 比较基准 */
+  | "comparisonBaseline"
+  /** I 判定规则类型 */
+  | "ruleType"
+  /** J 判定方法 */
+  | "decisionMethod"
+  /** K 数值边界 */
+  | "numericBoundary"
+  /** L 超界处理 */
+  | "overflowHandling"
+  /** M 主要依据 */
+  | "basis"
+  /** N 最终程序规则 */
+  | "finalProgramRule";
+
+/** Basic decision types defined in §2 of 生物类似药药学评价比较.docx. */
+export type SimilarityRuleType =
+  /** 2.1 身份/结构一致 */
+  | "identity-structure"
+  /** 2.2 图谱/构象相似 */
+  | "profile-similarity"
+  /** 2.3 定量分布（质量范围法） */
+  | "quantitative-distribution";
+
+/** Whether sheet 3 actually contains a usable programmable rule for this item.
+ *
+ *  `complete`         — columns A through N populated; the rule can drive a verdict.
+ *  `partial`          — some columns populated but at least one of G through N is
+ *                       missing, so no verdict may be derived.
+ *  `placeholder-only` — the row exists but carries only a title.
+ *  `absent`           — sheet 3 has no row for this item at all. */
+export type SimilaritySchemeCompleteness =
+  | "complete"
+  | "partial"
+  | "placeholder-only"
+  | "absent";
+
+/** One programmable similarity evaluation scheme, keyed to a characterization
+ *  item and to the detection methods it governs. */
+export interface SimilarityScheme {
+  /** Matches CharacterizationItem.id. */
+  itemId: string;
+  /** Detection method ids this scheme governs. Empty when the scheme is not
+   *  programmable, so that no method can silently inherit an absent rule. */
+  methodIds: string[];
+  completeness: SimilaritySchemeCompleteness;
+
+  /** C 指南原词, verbatim from the worksheet. */
+  guidelineTerm: LocalizedText;
+  /** D 表征项目, verbatim from the worksheet. */
+  characterizationItem: LocalizedText;
+  /** E 分析方法（首选） */
+  preferredMethod?: LocalizedText;
+  /** F 结果类型 */
+  resultType?: LocalizedText;
+
+  /** G 识别内容 — what the analysis must extract. */
+  recognizedContent?: LocalizedText;
+  /** H 比较基准 — what the result is compared against. */
+  comparisonBaseline?: LocalizedText;
+  /** I 判定规则类型, verbatim, plus the parsed decision types. */
+  ruleType?: LocalizedText;
+  ruleTypes?: SimilarityRuleType[];
+  /** J 判定方法 — the numbered decision steps. */
+  decisionMethod?: LocalizedText;
+  /** K 数值边界. For every primary-structure item in V2 this states that no
+   *  universal numerical similarity limit applies; it must never be rendered
+   *  as a threshold. */
+  numericBoundary?: LocalizedText;
+  /** L 超界处理 */
+  overflowHandling?: LocalizedText;
+  /** M 主要依据 — the guidelines the rule rests on. */
+  basis?: LocalizedText;
+  /** N 最终程序规则 — the PASS / REVIEW / FAIL mapping. */
+  finalProgramRule?: LocalizedText;
+
+  /** Why this scheme cannot drive a verdict. Mandatory whenever completeness is
+   *  not "complete", so the UI always has something concrete to display instead
+   *  of an empty rule. */
+  notDefinedReason?: LocalizedText;
+
+  provenance: SimilaritySchemeProvenance;
+}
+
+// ---------------------------------------------------------------------------
+// Method analysis configuration
+//
+// One entry per primary-structure detection method, declaring what the analysis
+// panel may do for that method. This is a sidecar to characterization-items.ts:
+// the methods themselves still come from the workbook, and this file only says
+// which of them the software can actually analyse.
+//
+// The point of stating a status per method rather than per item is that a single
+// item mixes methods of very different tractability: 完整分子量 can be analysed
+// from its primary LC-ESI-MS method, while its 相互印证 orthogonal method is a
+// cross-check over other results, and 端基分析 has no machine-readable output at
+// all. Collapsing those into one item-level flag would either overclaim or
+// underclaim.
+// ---------------------------------------------------------------------------
+
+/** The analysis workflow a method is served by.
+ *
+ *  Each profile corresponds to one adapter in the Python service and one result
+ *  shape in the UI. A method belongs to exactly one profile, so the panel never
+ *  has to guess which renderer to use. */
+export type AnalysisProfileId =
+  /** Deconvoluted intact and subunit mass spectra; DOCX figures 1 and 2. */
+  | "intact-mass"
+  /** LC-MS peptide map chromatogram comparison; DOCX figure 3. */
+  | "peptide-map"
+  /** MS1 peptide mass matching and sequence coverage; DOCX figure 4. */
+  | "ms1-coverage"
+  /** MS/MS fragment spectra and sequence confirmation; DOCX figures 5 and 6. */
+  | "msms-sequence";
+
+/** What the panel is allowed to do for a method.
+ *
+ *  `analyzable`        — a complete V2 rule exists, an adapter exists, and the
+ *                        tools it needs are verified. The panel runs the
+ *                        analysis and may render a rule verdict.
+ *  `blocked-by-tool`   — rule and adapter exist, but a required external tool is
+ *                        not yet verified on this host. Must state which tool.
+ *  `not-yet-supported` — in scope for a later step; the panel says so plainly
+ *                        instead of offering a form that cannot deliver.
+ *  `display-only`      — the method's output is not machine-readable at all
+ *                        (wet-lab or instrument-only), so no input can be
+ *                        accepted. Not a scheduling statement: this will not
+ *                        become analyzable by writing more code.
+ *  `rule-not-defined`  — V2 sheet 3 carries no usable rule for the parent item,
+ *                        so under decision D17 no analysis runs at all. */
+export type MethodAnalysisStatus =
+  | "analyzable"
+  | "blocked-by-tool"
+  | "not-yet-supported"
+  | "display-only"
+  | "rule-not-defined";
+
+/** Accepted input kinds, in the order the evidence hierarchy prefers them. */
+export type AnalysisInputKind =
+  /** Vendor-neutral raw spectra: mzML, mzXML. Highest evidence. */
+  | "raw-spectra"
+  /** Vendor raw formats needing conversion first. Not offered until the
+   *  analysis adapter actually invokes msconvert. WIFF is unverified. */
+  | "vendor-raw"
+  /** Peak lists: MGF. */
+  | "peak-list"
+  /** Instrument or software exports: CSV, TSV, TXT peak and peptide tables. */
+  | "structured-export"
+  /** Theoretical sequence: FASTA. */
+  | "sequence"
+  /** Screenshot of a figure. Degraded mode only. */
+  | "figure-image";
+
+/** How much a result may claim, given what was fed in. Mirrors the levels in
+ *  the P1 figure matrix so the UI and the service cannot drift apart. */
+export type AnalysisEvidenceLevel =
+  | "raw-data-analysis"
+  | "structured-export-analysis"
+  | "image-only-exploratory";
+
+/** An external tool a profile depends on, and whether it has been proven to
+ *  work on this host. A method may only be `analyzable` when every tool it
+ *  needs is verified. */
+export interface AnalysisToolDependency {
+  /** Tool name as invoked, e.g. "msconvert", "comet". */
+  tool: string;
+  /** Why the profile needs it. */
+  purpose: LocalizedText;
+  /** Plan step that verifies it, e.g. "P6". */
+  verifiedBy: string;
+  /** True only after a real run succeeded on this host. Never set optimistically. */
+  verified: boolean;
+}
+
+/** Per-profile input contract and limits. */
+export interface AnalysisProfileConfig {
+  id: AnalysisProfileId;
+  title: LocalizedText;
+  /** What the analysis extracts and compares. */
+  summary: LocalizedText;
+  /** Input kinds this profile accepts, most preferred first. */
+  acceptedInputs: AnalysisInputKind[];
+  /** Input kinds without which the analysis cannot run at all. */
+  requiredInputs: AnalysisInputKind[];
+  /** Evidence level reached per input kind. Absent means the input is auxiliary
+   *  and does not by itself set a level. */
+  evidenceByInput: Partial<Record<AnalysisInputKind, AnalysisEvidenceLevel>>;
+  /** External tools this profile needs before it can be called analyzable. */
+  toolDependencies: AnalysisToolDependency[];
+  /** DOCX figure numbers this profile reproduces, for traceability. */
+  docxFigures: number[];
+  /** Statements the profile must never make, carried into the UI verbatim so a
+   *  reviewer can check them against the rendered panel. */
+  scientificBoundaries: LocalizedText[];
+}
+
+/** One primary-structure detection method and what may be done with it. */
+export interface MethodAnalysisConfig {
+  /** Matches DetectionMethod.id in characterization-items.ts. */
+  methodId: string;
+  /** Matches CharacterizationItem.id, for cross-checking the linkage. */
+  itemId: string;
+  status: MethodAnalysisStatus;
+  /** Absent exactly when the status admits no analysis workflow, that is for
+   *  `display-only` and `rule-not-defined`. */
+  profile?: AnalysisProfileId;
+  /** Mandatory whenever status is not `analyzable`, so the panel always has a
+   *  concrete sentence to show instead of an inert control. */
+  statusReason?: LocalizedText;
+  /** Tool names blocking this method. Non-empty exactly when status is
+   *  `blocked-by-tool`. */
+  blockedBy?: string[];
+  /** Whether a figure image may be accepted for this method at all. Always
+   *  false unless the method is analyzable or blocked, because degraded image
+   *  analysis of a method with no rule would produce numbers nobody may use. */
+  allowsImageFallback: boolean;
+  /** Plan step that will implement or unblock this method, when applicable. */
+  plannedIn?: string;
+}
