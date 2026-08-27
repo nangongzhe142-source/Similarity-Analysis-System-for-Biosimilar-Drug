@@ -18,24 +18,24 @@ export function ItemCard({ item }: ItemCardProps) {
   return (
     <Link
       href={`/item/${item.id}`}
-      className="group flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-teal-400 hover:shadow-md"
+      className="surface-card group flex flex-col gap-2 p-5 transition-shadow duration-150 hover:shadow-[var(--shadow-raised)]"
     >
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-semibold text-slate-900 group-hover:text-teal-800">
+        <h3 className="text-base font-semibold text-navy-900 group-hover:text-brand-800">
           {localize(item.itemName)}
         </h3>
         {item.isSupplementary && <SupplementaryTag />}
       </div>
-      <p className="text-xs text-slate-500">{localize(item.guidelineTerm)}</p>
+      <p className="text-xs font-medium text-ink-secondary">{localize(item.guidelineTerm)}</p>
       <div className="flex flex-wrap items-center gap-2">
         <ApplicabilityBadge applicability={item.applicability} compact />
         {showReferenceCaseTag && (
-          <span className="rounded-md border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-800">
+          <span className="rounded-sm border border-cyan-700 bg-cyan-100 px-2 py-0.5 text-[11px] font-semibold text-cyan-800">
             {messages.referenceCase.hasCaseTag}
           </span>
         )}
       </div>
-      <p className="truncate text-sm text-slate-600" title={localize(item.purpose)}>
+      <p className="line-clamp-2 text-sm leading-relaxed text-ink" title={localize(item.purpose)}>
         {localize(item.purpose)}
       </p>
     </Link>

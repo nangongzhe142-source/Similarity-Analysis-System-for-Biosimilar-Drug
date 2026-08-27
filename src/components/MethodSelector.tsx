@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import type { DetectionMethod } from "@/types/models";
 import { MethodLiveDemo } from "@/components/live-demo/MethodLiveDemo";
@@ -10,6 +10,10 @@ import { MethodContentPlaceholder } from "@/components/MethodContentPlaceholder"
 import { MethodToolPanel } from "@/components/MethodToolPanel";
 import { getLiveDemoKind } from "@/data/live-demos";
 import { getMethodContent } from "@/data/method-content";
+import {
+  publishAssistantPageContext,
+  resetAssistantPageContext,
+} from "@/lib/assistant/page-context";
 
 interface MethodSelectorProps {
   itemId: string;
@@ -25,8 +29,21 @@ export function MethodSelector({ itemId, methods }: MethodSelectorProps) {
   const [selectedMethodId, setSelectedMethodId] = useState<string | null>(
     methods.length > 0 ? methods[0].id : null,
   );
+  const selectedMethod =
+    methods.find((method) => method.id === selectedMethodId) ?? methods[0];
 
-  if (methods.length === 0) {
+  useEffect(() => {
+    if (!selectedMethod) return;
+    publishAssistantPageContext({
+      methodId: selectedMethod.id,
+      methodName: localize(selectedMethod.name),
+    });
+    return () => {
+      resetAssistantPageContext(["methodId", "methodName"]);
+    };
+  }, [localize, selectedMethod]);
+
+  if (methods.length === 0 || selectedMethod === undefined) {
     return (
       <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-500">
         {messages.itemPage.noMethodsPlaceholder}
@@ -34,8 +51,6 @@ export function MethodSelector({ itemId, methods }: MethodSelectorProps) {
     );
   }
 
-  const selectedMethod =
-    methods.find((method) => method.id === selectedMethodId) ?? methods[0];
   const hasMethodContent = getMethodContent(selectedMethod.id) !== undefined;
   const hasSelectedLiveDemo = getLiveDemoKind(selectedMethod.id) !== undefined;
 

@@ -1,0 +1,793 @@
+# 综合相似性判别 — 实施计划
+
+> 范围：在 `生物类似药相似性分析系统` 新增独立演示页 `/comprehensive-analysis`。
+> 性质：交互式总体证据汇总演示。不声称监管认定，不输出「该产品是生物类似药」。
+> 约束：不修改 `src/data/characterization-items.ts`；不改变现有单项目分析服务、上传流程与 `AnalysisResultView` 语义；不新增后端与持久化；每次只改一个文件。
+
+## 已核实现状（实施前只读）
+
+- 技术栈：Next.js 16.3.0 App Router、React 19.2.8、TypeScript 5.9.3 strict、Tailwind CSS 4.3.3。
+- 国际化：`src/i18n/LanguageProvider.tsx` + `src/i18n/messages.ts`（`zh` / `en` 成对）。
+- 导航：`src/components/layout/SiteHeader.tsx`（总览 / 特性鉴定 / 法规框架）。
+- 数据：`characterizationItems` 共 61 项、9 个补充项；`categories` 共 8 类，数量为 11 / 15 / 7 / 2 / 7 / 3 / 11 / 5。
+- 校验：无 Jest/Vitest；现有方式为 `scripts/verify_*.mjs`，由 `npm run check` 串联。
+- 页面样例：`src/app/regulatory/page.tsx` → 客户端 View 组件。
+
+## 冻结实现约定（避免科学性误导）
+
+1. 适用性与演示状态并存：`isApplicable === false` 或 `demoStatus === "not-applicable"` 均视为不适用；不适用项不进总体分母，但非补充项缺少不适用原因时视为未完成。
+2. 参与汇总：非补充 ∧ 适用。补充项可展示，永不参与总体结论。
+3. 适用项完成条件：已选择支持/不支持/证据不足，且候选描述、参照描述、比对说明在 zh 或 en 任一语种有非空白文本。完整度与结论不随界面语言切换变化。
+4. 保守汇总优先级：任一参与项「不支持相似」→ 不支持相似性证据；否则若无参与项、或存在证据不足/未选状态/必要文本缺失/不适用缺原因 → 证据不足；仅当全部参与项均为「支持相似」且无上述缺口 → 支持相似性证据。
+5. 自由文本不驱动判定：禁止关键词分析；演示状态只来自选择器。演示图形由 `itemId` + 演示状态的确定性函数生成，并标注「演示流程 / 尚未接入真实计算 / 不参与监管判断」。
+6. 演示数据独立模块，产品名明确为 illustrative/demo，不复用审评案例数值，不写入 `AnalysisResult`。
+
+## 步骤
+
+### 步骤 1：创建本实施计划并冻结实现约定
+
+Done
+
+本文件列出只读核对结果、科学性边界与有序文件级步骤，作为后续唯一实施顺序。
+未改任何业务代码；`characterization-items.ts` 保持只读，现有分析页语义不变。
+
+### 步骤 2：新增综合判别类型与状态常量
+
+文件：`src/types/comprehensive-analysis.ts`
+
+Done
+
+集中定义演示状态、总体结论、完成缺口与会话/汇总结构，全部为字面量常量而非魔术字符串。
+未引入 `any`，也未改动 `models.ts` 或现有分析契约类型。
+
+### 步骤 3：实现无副作用汇总纯函数
+
+文件：`src/lib/comprehensive-analysis/summarize.ts`
+
+Done
+
+实现保守优先级汇总：不支持优先，其次证据不足/未完成，全部支持才给出支持相似性证据。
+函数无 I/O、无随机数、无加权；补充项与不适用项按约定排除在总体分母之外。
+
+### 步骤 4：实现确定性演示流程派生函数
+
+文件：`src/lib/comprehensive-analysis/demo-process.ts`
+
+Done
+
+七步过程视图与示意图形均由 `itemId` 与演示状态确定性派生，相同输入得到相同输出。
+图形不把自由文本当作检测值，也不根据关键词改写项目结论。
+
+### 步骤 5：新增独立演示数据模块
+
+文件：`src/data/comprehensive-analysis-demo.ts`
+
+Done
+
+演示会话由 `characterizationItems` 生成并覆盖支持/不支持/证据不足/不适用四态，产品名标明 illustrative。
+补充项可展示但不作为总体结论来源；清空与恢复均返回深拷贝，避免污染真实分析数据。
+
+### 步骤 6：扩展中英文 UI 文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+导航增加「综合判别 / Integrated Assessment」，并补齐结论、表单、总览、过程步骤与免责声明的中英文。
+未改动既有页面文案键，避免影响现有界面语义。
+
+### 步骤 7：状态字形组件
+
+文件：`src/components/comprehensive-analysis/AssessmentStatusGlyph.tsx`
+
+Done
+
+支持、不支持、证据不足、不适用与未选择分别使用圆、八角、方、菱与虚线圆，并同时给出文本标签。
+颜色只作为辅助，不作为唯一状态通道。
+
+### 步骤 8：基础信息录入表单
+
+文件：`src/components/comprehensive-analysis/ProductPairForm.tsx`
+
+Done
+
+基础信息六项均有 label，编辑写入当前语言字段；提供清空并重新录入与恢复演示数据操作。
+状态仍由父组件持有，本组件不引入后端或持久化。
+
+### 步骤 9：顶部总体证据结论区
+
+文件：`src/components/comprehensive-analysis/OverallEvidencePanel.tsx`
+
+Done
+
+结论区位于明细之前，含大号状态字形与文本、产品对、依据、计数、完整度、关键项目锚点与免责声明。
+关键项目使用业务 ID 作为链接目标，不把颜色当作唯一状态表达。
+
+### 步骤 10：直观比对总览
+
+文件：`src/components/comprehensive-analysis/ComparisonOverview.tsx`
+
+Done
+
+总览用 CSS 条形与大类卡片展示状态计数、完成占比及候选/参照并列，不引入图表依赖。
+点击大类卡片滚动并聚焦到对应明细锚点 `#category-{key}`。
+
+### 步骤 11：项目比对过程面板
+
+文件：`src/components/comprehensive-analysis/ItemComparisonProcess.tsx`
+
+Done
+
+按固定七步展示输入、演示预处理、并列示意、文本层差异、框架判定原则、项目结论与来源限制。
+未接入真实计算的步骤均标注演示流程，示意图形不冒充实测图谱。
+
+### 步骤 12：检测项目卡片
+
+文件：`src/components/comprehensive-analysis/ItemAssessmentCard.tsx`
+
+Done
+
+每个项目卡片展示名称、补充标记、适用性、演示状态、完整度与摘要，列表 key 使用 `item.id`。
+展开过程区使用 `aria-expanded` 与 `aria-controls`；表单控件均有 label。
+
+### 步骤 13：质量属性大类区块
+
+文件：`src/components/comprehensive-analysis/CategoryAssessmentSection.tsx`
+
+Done
+
+按现有 `categories` 分组渲染，折叠按钮提供 `aria-expanded` 与 `aria-controls`。
+存在「不支持相似」或「证据不足」的大类通过 `defaultExpanded` 默认展开。
+
+### 步骤 14：页面主视图
+
+文件：`src/components/comprehensive-analysis/ComprehensiveAnalysisView.tsx`
+
+Done
+
+主视图预载演示会话，按结论→总览→表单→八大类明细排列，并用 `useMemo` 计算汇总。
+清空与恢复通过深拷贝替换会话并重置折叠状态；状态仅存在于前端内存。
+
+### 步骤 15：新增路由页面
+
+文件：`src/app/comprehensive-analysis/page.tsx`
+
+Done
+
+新增 App Router 页面 `/comprehensive-analysis`，挂载综合判别主视图。
+未改动既有路由与单项分析页。
+
+### 步骤 16：导航入口
+
+文件：`src/components/layout/SiteHeader.tsx`
+
+Done
+
+导航增加中文「综合判别」与英文「Integrated Assessment」，当前路径高亮。
+页头与导航允许换行，避免移动端入口被挤出可视区。
+
+### 步骤 17：汇总规则自动化校验脚本
+
+文件：`scripts/verify_comprehensive_analysis.mjs`
+
+Done
+
+校验脚本直接调用汇总纯函数，覆盖不支持、证据不足、未完成、全部支持、全部不适用、补充项、缺原因、演示稳定性、自由文本与语言无关性。
+10 个场景已在本地运行通过，失败时以非零退出码终止。
+
+### 步骤 18：接入项目检查流程
+
+文件：`package.json`
+
+Done
+
+新增 `verify:comprehensive-analysis`，并将其串入 `npm run check` 末尾。
+未关闭既有校验，也未忽略错误。
+
+### 步骤 19：运行既有检查命令
+
+命令：`npm run typecheck`、`npm run lint`、`npm run check`、`npm run build`
+
+Done
+
+typecheck、lint、check（含新增 10 场景校验）与 build 均以退出码 0 通过；`/comprehensive-analysis` 已进入静态路由。
+检查过程中清除了未使用类型导入，并将总体结论大号文案改为「支持/不支持相似性证据」，未忽略任何失败项。
+
+---
+
+## FDA 风格视觉升级
+
+> 目标：权威监管网站 + 现代科研数据平台的视觉品质。参考 USWDS 的层级、对比度与页头结构，不复制 FDA 标志、名称、政府横幅或官方隶属关系。
+> 约束：不改汇总算法、上传/分析语义、演示数据逻辑；不引入外部字体/图片/脚本；每次只改一个文件。
+
+### 视觉令牌（冻结）
+
+- 海军：`#0b1a2e` / `#112f4e`；品牌蓝：`#0b5cab`；青蓝：`#0e7490`；强调红：`#b42318`。
+- 画布：`#eef3f8`；纸面：`#ffffff`；正文：`#1a232d`；次级文字：`#3a4654`（对比度目标 ≥ 4.5:1）。
+- 圆角 4px / 8px；阴影克制；过渡 180ms；`prefers-reduced-motion` 下过渡为 0。
+
+### 步骤 V1：写入本升级章节并冻结令牌
+
+Done
+
+在计划中记录只读审计、令牌、复用链与单文件改造顺序，作为视觉升级唯一执行清单。
+未改业务代码；相似性汇总规则与分析服务语义保持不变。
+
+### 步骤 V2：补齐视觉升级所需中英文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+补齐跳转主内容、移动菜单、非官方声明、Hero 双操作与综合判别入口的中英文，未改业务语义文案。
+未删除既有键；综合判别免责声明原文保持不变。
+
+### 步骤 V3：建立全局 CSS 设计令牌
+
+文件：`src/app/globals.css`
+
+Done
+
+以 `@theme` 定义海军/品牌蓝/青蓝/信号红与画布、阴影、圆角；加入 Hero 网格、焦点环与减动效。
+未引入外部字体或脚本；修正了 `.tap-target` 选择器写法。
+
+### 步骤 V4：根布局接入跳转主内容与画布
+
+文件：`src/app/layout.tsx`
+
+Done
+
+`main` 设置 `id="main-content"` 作为跳转目标，body 使用画布网格背景与 `text-ink`。
+未改 metadata 与 LanguageProvider 结构；跳转链接放在客户端页头以便双语。
+
+### 步骤 V5：语言切换器适配深色顶栏
+
+文件：`src/components/LanguageSwitcher.tsx`
+
+Done
+
+增加 `light` / `dark` 变体与 44px 触控目标，语言切换仍写入现有 localStorage 机制。
+未改 Locale 类型与默认语言。
+
+### 步骤 V6：双层权威页头与移动导航
+
+文件：`src/components/layout/SiteHeader.tsx`
+
+Done
+
+海军品牌条 + 品牌蓝底边主导航；移动端为独立抽屉而非仅换行；含跳到主要内容与 Escape 关闭。
+分类菜单展示序号与数量；声明条明确本站非政府官方网站，无 FDA 标志。
+
+### 步骤 V7：页脚对比度与层级
+
+文件：`src/components/layout/SiteFooter.tsx`
+
+Done
+
+页脚改为海军底与品牌蓝顶边，来源与免责文字使用高对比浅色。
+保留法规来源字段与既有免责声明语义，并并列非官方网站说明。
+
+### 步骤 V8：面包屑
+
+文件：`src/components/Breadcrumb.tsx`
+
+Done
+
+链接使用品牌蓝与可见焦点，当前页文字改为 `text-ink` 以满足对比度。
+路由 `href` 与条目结构未改。
+
+### 步骤 V9：大类线性图标
+
+文件：`src/components/CategoryMark.tsx`
+
+Done
+
+8 个大类各有序号与内联线性 SVG，图形随 `currentColor` 着色，不请求外部资源。
+图标仅为视觉识别，不新增业务数据。
+
+### 步骤 V10：分类卡片
+
+文件：`src/components/CategoryCard.tsx`
+
+Done
+
+卡片加入序号图标、品牌蓝左边框与始终可见的详情入口，悬停仅加强阴影。
+链接仍指向 `/category/{key}`，项目数量来自既有 props。
+
+### 步骤 V11：检测项目卡片
+
+文件：`src/components/ItemCard.tsx`
+
+Done
+
+项目卡改用纸面层级与 `line-clamp-2` 目的摘要，参考案例标签改青蓝高对比。
+仍以 `item.id` 链接详情，数据字段未改。
+
+### 步骤 V12：适用性徽章
+
+文件：`src/components/ApplicabilityBadge.tsx`
+
+Done
+
+徽章改为品牌蓝边与海军文字，完整文本仍通过 `title` 与可见文字提供。
+未改 `applicability` 数据源。
+
+### 步骤 V13：补充项标签
+
+文件：`src/components/SupplementaryTag.tsx`
+
+Done
+
+补充项同时使用菱形色块与文字，边框与海军文字保证对比度。
+标签文案仍来自 `common.supplementaryTag`。
+
+### 步骤 V14：评价字段块
+
+文件：`src/components/FieldBlock.tsx`
+
+Done
+
+判定关键字段用品牌蓝左边框强调，正文改为 `text-ink`。
+仍只渲染传入的 `LocalizedText`，空值占位逻辑不变。
+
+### 步骤 V15：首页 Hero、指标与双入口
+
+文件：`src/components/views/HomeView.tsx`
+
+Done
+
+Hero 使用海军到品牌蓝渐变与网格纹理，指标为高对比数字卡，并提供综合判别与大类锚点主操作。
+免责声明改为次级纸面区块；未编造新的统计数字。
+
+### 步骤 V16：大类列表页
+
+文件：`src/components/views/CategoryView.tsx`
+
+Done
+
+标题区改为纸面卡 + 大类图标与序号；补充项说明改为海军文字以满足对比度。
+列表仍由 `getItemsByCategory` 驱动。
+
+### 步骤 V17：项目详情页外壳
+
+文件：`src/components/views/ItemDetailView.tsx`
+
+Done
+
+详情页标题区改为纸面卡与品牌左边框；分区标题与前后项导航使用海军/品牌蓝。
+MethodSelector 与参考案例数据流未改。
+
+### 步骤 V18：法规框架页
+
+文件：`src/components/views/RegulatoryView.tsx`
+
+Done
+
+法规页标题区使用青蓝左边框以区别于特性鉴定，来源文字提高对比度。
+两张表格的数据源仍为 `regulatoryFramework`。
+
+### 步骤 V19：法规表格
+
+文件：`src/components/RegulatoryTable.tsx`
+
+Done
+
+表头改为海军底白字；关系徽章同时使用形状与文字；窄屏保留横向滚动。
+行 `id` 与单元格数据映射未改。
+
+### 步骤 V20：单项分析占位槽
+
+文件：`src/components/SimilarityAnalysisPlaceholder.tsx`
+
+Done
+
+占位槽对齐画布色与虚线边框，禁用按钮仍不可用且文案不变。
+未开放上传，也未改 `analysisPlaceholder` 槽位过滤。
+
+### 步骤 V21：综合判别页外壳
+
+文件：`src/components/comprehensive-analysis/ComprehensiveAnalysisView.tsx`
+
+Done
+
+标题区改为纸面卡与 44px 主操作按钮，清空/恢复仍调用既有会话工厂。
+`useMemo` 汇总与 `sessionEpoch` 逻辑未改。
+
+### 步骤 V22：总体证据面板
+
+文件：`src/components/comprehensive-analysis/OverallEvidencePanel.tsx`
+
+Done
+
+计数区改为指标卡，链接与免责声明容器改用品牌色边框。
+`copy.disclaimer` 与 `copy.demoUseBanner` 原文及汇总字段未改。
+
+### 步骤 V23：比对总览
+
+文件：`src/components/comprehensive-analysis/ComparisonOverview.tsx`
+
+Done
+
+计量条与大类入口改为纸面卡、品牌色条与 `CategoryMark`，完成度条使用品牌蓝。
+计数仍读取 `inventorySupportsCount` 等 inventory 字段，跳转与 `role="meter"` 未改。
+
+### 步骤 V24：基础信息表单
+
+文件：`src/components/comprehensive-analysis/ProductPairForm.tsx`
+
+Done
+
+表单容器改为纸面卡，输入框与 44px 按钮使用品牌色与 `border-line`。
+`updateLocalizedField` 与各字段 `onProductPairChange` 写入路径未改。
+
+### 步骤 V25：大类判别区块
+
+文件：`src/components/comprehensive-analysis/CategoryAssessmentSection.tsx`
+
+Done
+
+区块改为纸面卡与品牌左边框，折叠按钮使用 44px 触控目标，标题旁加入 `CategoryMark`。
+`useState(defaultExpanded)`、`createFallbackItemEntry` 与 `aria-expanded` 逻辑未改。
+
+### 步骤 V26：项目判别卡片
+
+文件：`src/components/comprehensive-analysis/ItemAssessmentCard.tsx`
+
+Done
+
+卡片改为纸面卡，表单控件与单选标签使用 44px 触控目标与 `border-line`。
+适用性、演示状态与文本字段的 `onEntryChange` 语义未改。
+
+### 步骤 V27：状态字形配色对齐令牌
+
+文件：`src/components/comprehensive-analysis/AssessmentStatusGlyph.tsx`
+
+Done
+
+配色改为品牌蓝、信号红、海军蓝与墨色次级令牌。
+圆形对号、八边形叉号、方块问号、菱形横线与虚线圆形状及旁注文字均保留。
+
+### 步骤 V28：运行自动化检查
+
+命令：`npm run typecheck`、`npm run lint`、`npm run check`、`npm run build`
+
+Done
+
+`typecheck`、`lint`、`check`、`build` 均以退出码 0 通过；页头改为随 `pathname` 重挂载以关闭菜单，去掉 effect 内同步 `setState`。
+localhost 首页、综合判别、法规与大类页均返回 200，并含 skip-link 与 `main#main-content`；综合判别 10 场景校验仍通过。
+
+---
+
+## Dify Chatflow AI 助手
+
+> 范围：在本站用本机 Dify 1.14.1 创建可追溯 Chatflow，经本站服务端代理嵌入右下角悬浮窗口。
+> 性质：解释系统资料与已有分析结果。不构成生物类似药认定或监管建议。
+> 约束：不改分析服务、上传流程、`AnalysisResult` 契约与 `characterization-items.ts`；不把 Dify API Key 写入前端或 `NEXT_PUBLIC_*`；不直接改 Dify PostgreSQL；每次只改一个文件。
+
+### 已核实现状（实施前只读，2026-08-27）
+
+- 目标项目：`d:\生物类似药判别系统\生物类似药相似性分析系统`。
+- 技术栈：Next.js 16.3.0 App Router、React 19.2.8、TypeScript 5.9.3 strict、Tailwind CSS 4.3.3；无 Jest/Vitest，校验为 `scripts/verify_*.mjs` + `npm run check`。
+- 网页：`src/app/layout.tsx` 挂 `LanguageProvider` + `SiteHeader` + `main#main-content` + `SiteFooter`。路由为 `/`、`/category/[key]`、`/item/[id]`、`/regulatory`、`/comprehensive-analysis`。站点无任何 assistant/chat/dify 代码；无 `src/app/api/**` 路由（分析走 `next.config.ts` rewrite `/api/analysis` → `http://127.0.0.1:8765`）。
+- 页面上下文缺口：`MethodSelector` 的 `selectedMethodId` 与 `MethodAnalysisPanel` 的 `snapshot` 均为组件本地 state，布局级悬浮窗当前读不到方法与分析结果。
+- 分析结果类型：`src/types/analysis-contract.ts` 的 `AnalysisResult` / `AnalysisJobSnapshot`（`schemaVersion` 1.0.0，`ruleSetVersion` `v2-sheet3-8bd6b18f`）。
+- 国际化：`src/i18n/LanguageProvider.tsx`，locale `zh`/`en`，默认 `zh`，localStorage 键 `biosimilar-framework.locale`。
+- Dify：Compose 目录 `D:\LECHENG POLICY AI AGENT\docker`，镜像 `langgenius/dify-api:1.14.1` 与 `langgenius/dify-web:1.14.1`，容器 healthy。控制台 `http://localhost/`（nginx 80/443）；Service API `http://localhost/v1`。`GET /console/api/setup` → `step=finished`（2026-05-15）。`GET /console/api/system-features` → `app_dsl_version=0.6.0`，邮箱密码登录开启，禁止注册、禁止新建工作区。无鉴权时 `GET /console/api/apps` 与 `POST /v1/chat-messages` 均 401。未取得登录信息，故不能列举工作区、已有应用、知识库或 API Key。
+- Chat API（官方文档）：`POST {api_base}/chat-messages`，必填 `inputs`、`query`、`user`；`response_mode` 为 `streaming` 或 `blocking`；`conversation_id` 空则新会话。鉴权 `Authorization: Bearer {api_key}`。
+- 知识资料实存（`d:\生物类似药判别系统\生物类似药评价指导原则`）：
+  - `V2-生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表.xlsx`（40273 B，SHA-256 `8bd6b18f08d3b9a3b99c61cdb8eeff24ceef75a54a43b9f7d14d1709b703051f`，与 `similarity-schemes.ts` 一致）
+  - `《生物类似药相似性评价和适应症外推技术指导原则》.pdf`
+  - `生物类似药研发与评价技术指导原则（试行）.doc`
+  - `生物类似药首次申报临床试验药学资料撰写指导原则.pdf`
+  - `生物类似药药学评价比较.docx`
+  - `判断相似性的标准.docx`
+  - `V3.7-生物类似药课题中国部分-20260629韩欣烘.docx`（课题内部稿）
+  - `20260817组会会议记录.docx`（会议记录）
+- 站点已结构化资料：`method-content.ts`（一级结构 33 条方法原理）、`similarity-schemes.ts`（Sheet3 共 11 项，其中 7 项规则完整、4 项 `RULE_NOT_DEFINED`）、`regulatory-framework.ts`、`characterization-items.ts`、GP2015 参考案例（含 `source`/`verification`；含 `illustrative` 示意案例）、`README.md`、`analysis-service/README.md`。
+- `.gitignore` 已忽略 `.env*`。环境变量不得提交。
+
+### 冻结实现约定
+
+1. 链路：浏览器 → `POST /api/assistant/chat`（本站 Route Handler）→ `http://127.0.0.1/v1/chat-messages`。禁止浏览器携带 Dify Key，禁止客户端指定上游 URL。
+2. 服务端环境变量：`DIFY_API_BASE_URL`（默认 `http://127.0.0.1/v1`）、`DIFY_APP_API_KEY`、`DIFY_TIMEOUT_MS`（默认 60000）。不得使用 `NEXT_PUBLIC_*` 存放密钥。
+3. Chatflow 模式：`advanced-chat`。开始节点输入变量名冻结为：`pageUrl`、`pageTitle`、`locale`、`categoryKey`、`itemId`、`itemName`、`methodId`、`methodName`、`analysisStatus`、`analysisResult`、`analysisProvenance`。DSL `version` 必须与控制台返回的 `0.6.0` 对齐，导入后用节点变量选择器核对，不手写未证实的 Jinja 语法。
+4. `analysisResult` 只传白名单字段（见 `src/lib/assistant/analysis-result-whitelist.ts`），截断超长数组与产物路径；缺失时传空字符串，助手不得推测。
+5. 方法学/规则/法规优先知识库；结果解释只使用传入的结构化结果与溯源；越权判定、看图猜峰、忽略系统规则一律拒绝。
+6. 用户标识：符合 UUID 的匿名稳定 id（cookie 或 localStorage），不传邮箱/姓名。
+7. 渲染：助手回复按纯文本显示，不执行 HTML。免责声明固定为：「AI 助手仅用于解释系统资料和分析结果，不构成生物类似药认定或监管建议。」
+8. 知识导入：用户确认「全部导入」指导原则目录全部文件 + 站点结构化资料。Excel 转为带表名/行号/字段名/源文件的 Markdown；案例保留监管机构、产品、文件、章节/页码与 `evidenceLevel`；示意案例、内部会议、课题内部稿必须标注资料性质。不导入 `node_modules`、构建产物、日志、质谱 fixture。
+9. 不覆盖已有 Dify 应用：仅新建；导出 DSL 不得含密钥。
+
+### 知识筛选（用户 2026-08-27 确认全部导入）
+
+**导入：** V2 Excel 结构化导出；指导原则目录全部 PDF/DOC/DOCX（含会议记录与课题内部稿，文首标注资料性质）；`method-content` / `similarity-schemes` / `regulatory-framework` / 检测项目目录 / 方法分析状态；GP2015 案例（监管与示意分文件）；本站 README 与 `analysis-service/README.md`。
+
+**不导入：** `node_modules`、构建产物、`log/`、质谱/图片 fixture。
+
+### 步骤
+
+### 步骤 D0：写入本实施计划并冻结约定
+
+Done
+
+本文件记录只读核查结果、Dify 1.14.1 访问地址、Chat API 约束、知识筛选待确认项与有序文件步骤。
+未改业务代码，未登录 Dify，未创建应用或知识库。
+
+### 步骤 D1：取得 Dify 登录与知识确认（阻塞）
+
+Done
+
+控制台登录成功。工作区仅 1 个：`nangong zhe's Workspace`（`54b4c2b2-ef2b-4d03-8894-e50589e7b478`，current=true）。已有应用 3 个（知识图谱 workflow、Regulation Policy AI Agent advanced-chat、乐城政策智能助手 chat），均非本助手，按确认新建。
+知识按「全部导入」执行；系统提示词已由用户提供；默认 LLM `deepseek-v4-flash`（`langgenius/deepseek/deepseek`），嵌入 `text-embedding-v4`（通义，与现有高质量库一致）。凭证不写入仓库。
+
+### 步骤 D2：导出知识用结构化 Markdown 转换脚本
+
+文件：`scripts/export_assistant_knowledge.py`
+
+Done
+
+脚本从 V2 Excel、方法学/规则 sidecar、法规框架、项目目录、案例与 README 生成带溯源字段的 Markdown，并抽取指导原则目录全部 PDF/DOC/DOCX。
+不读取 node_modules、构建产物、日志或质谱 fixture；Excel SHA-256 与 sidecar 记录一致才继续。
+
+### 步骤 D3：运行知识导出并核对溯源字段
+
+命令：`python scripts/export_assistant_knowledge.py`
+
+Done
+
+退出码 0；写出 19 个文件到 `knowledge/assistant/`。Excel 三张表含表名/单元格坐标；方法学含 methodId/itemId；监管案例与示意案例分文件并带 evidenceLevel。
+
+### 步骤 D4：分析上下文白名单纯函数
+
+文件：`src/lib/assistant/analysis-result-whitelist.ts`
+
+Done
+
+从 `AnalysisResult` 抽出允许传给 Dify 的字段，数组与总长分别限制为 12 与 12000 字符；缺 `verdict` 返回 `null`，不编造结论。
+未修改 `analysis-contract.ts`。
+
+### 步骤 D5：页面助手上下文类型与发布器
+
+文件：`src/lib/assistant/page-context.ts`
+
+Done
+
+定义 `AssistantPageContext` 与 `publishAssistantPageContext` / `useAssistantPageContext`，供详情页、方法选择与分析面板写入、悬浮窗读取。
+不含 API Key。
+
+### 步骤 D6：Dify 代理请求校验
+
+文件：`src/lib/assistant/chat-request.ts`
+
+Done
+
+校验 query/inputs 长度，`user` 必须为 UUID，拒绝 `endpoint`/`difyUrl` 等客户端上游字段；本地护栏检测越权、整品认定与看图猜峰。
+不发网络请求。
+
+### 步骤 D7：服务端 Dify 客户端
+
+文件：`src/lib/assistant/dify-client.ts`
+
+Done
+
+仅读取 `DIFY_API_BASE_URL` / `DIFY_APP_API_KEY` / `DIFY_TIMEOUT_MS`，转发 `POST /chat-messages`（streaming）。
+日志不记录 Key；上游主机不可由请求覆盖。
+
+### 步骤 D8：助手 API 路由
+
+文件：`src/app/api/assistant/chat/route.ts`
+
+Done
+
+`POST` 校验体后转发 Dify；不可达返回 `DIFY_UNAVAILABLE`；未配置返回 `DIFY_UNCONFIGURED`；流式透传 SSE。
+按 user 限流 20 次/分钟。
+
+### 步骤 D9：助手健康检查路由
+
+文件：`src/app/api/assistant/health/route.ts`
+
+Done
+
+仅返回 `configured` 与 `reachable` 两个布尔值。
+不暴露 Key、内部 URL 或其它配置细节。
+
+### 步骤 D10：中英文助手文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+增加开闭按钮、新建会话、加载/超时/网络/不可用/未配置、占位提示与免责声明的 `zh`/`en`。
+中文免责声明与冻结原文一致；未改既有键语义。
+
+### 步骤 D11：悬浮聊天面板
+
+文件：`src/components/assistant/AssistantPanel.tsx`
+
+Done
+
+消息列表、输入、流式展示、新建会话、防重复提交；回复按纯文本渲染。
+桌面与移动共用同一面板。
+
+### 步骤 D12：右下角悬浮按钮与壳
+
+文件：`src/components/assistant/AssistantWidget.tsx`
+
+Done
+
+固定右下角开闭；读取页面上下文与 locale；请求 `/api/assistant/chat`。
+匿名 user UUID 存 localStorage；不把 Key 放进客户端。
+
+### 步骤 D13：根布局挂载助手
+
+文件：`src/app/layout.tsx`
+
+Done
+
+在 `LanguageProvider` 内挂载 `AssistantWidget`。
+未改 metadata 与 `main#main-content` 结构。
+
+### 步骤 D14：详情页发布项目上下文
+
+文件：`src/components/views/ItemDetailView.tsx`
+
+Done
+
+进入时发布 `categoryKey`、`itemId`、`itemName`，离开时清理。
+未改评价字段与案例区。
+
+### 步骤 D15：方法选择发布 methodId
+
+文件：`src/components/MethodSelector.tsx`
+
+Done
+
+选中方法变化时发布 `methodId`/`methodName`；发布 effect 放在 `methods.length===0` 提前返回之前。
+未改分析/演示/工具面板顺序。
+
+### 步骤 D16：分析面板发布结果摘要
+
+文件：`src/components/MethodAnalysisPanel.tsx`
+
+Done
+
+job 状态变化时发布 `analysisStatus` 与白名单后的 `analysisResult`/`analysisProvenance`。
+未改上传与计算。
+
+### 步骤 D17：Chatflow DSL（无密钥）
+
+文件：`dify/biosimilar-assistant-chatflow.yml`
+
+Done
+
+`kind: app`，DSL `0.6.0`，`advanced-chat`；开始节点含 D0 冻结的 11 个变量；含校验、分类、知识检索、LLM、Answer 与越权短路。
+不含 API Key。LLM 系统提示词为用户确认文本，变量语法为 `{{#节点id.变量#}}`。
+
+### 步骤 D18：在实际 Dify 中创建知识库并导入筛选文档
+
+操作：Dify Console 或官方 Knowledge API（需 D1 凭证）。记录真实 dataset id。不改 PostgreSQL。
+
+Done
+
+新建高质量知识库 `Biosimilar Similarity Assistant KB`，id `6637dbaf-2f0d-4b26-9fe2-3cf3713317c7`，嵌入 `text-embedding-v4` / `langgenius/tongyi/tongyi`。导入 `knowledge/assistant` 下 20 个 Markdown，以及指导原则目录 PDF/DOCX（`.doc` 被 Knowledge API 以 400 拒绝后，用 Word 另存为 `.docx` 再导入）；索引 27/27 `completed`。未改 PostgreSQL，未导入 `~$` 临时文件与 xlsx 原件（Excel 已按单元格导出为 Markdown）。
+
+### 步骤 D19：导入 Chatflow DSL、绑定知识库、配置系统提示词并发布
+
+操作：`POST /console/api/apps/import`（mode `yaml-content`）或控制台导入；用节点变量选择器绑定上下文与检索结果；创建应用 API Key 写入本机 `.env.local`（不入库）。导出更新后的 DSL 覆盖 `dify/biosimilar-assistant-chatflow.yml`（仍无密钥）。
+
+Done
+
+`POST /console/api/apps/imports`（`yaml-content`）新建应用 `生物类似药药学相似性助手`，id `6d42d9b2-4fda-4958-869a-ff1430ca2d66`，`advanced-chat`；三个既有应用 id 未变。草稿开始节点 11 个变量齐全，知识检索 `dataset_ids` 为上述知识库 id；`POST .../workflows/publish` 返回 success；应用 API Key 只写入本机 `.env.local`。`include_secret=false` 导出覆盖 DSL，无 `app-`/`dataset-` 明文密钥。
+
+### 步骤 D20：助手校验脚本
+
+文件：`scripts/verify_assistant.mjs`
+
+Done
+
+覆盖白名单截断、缺结果返回空、越权/整品认定/看图猜峰护栏、拒绝客户端上游 URL、源码与非缓存 `.next` 文本不含 API Key 字面值。
+`npm run verify:assistant` 退出码 0。
+
+### 步骤 D21：接入 `npm run check`
+
+文件：`package.json`
+
+Done
+
+新增 `verify:assistant`，串在 `check` 末尾。
+未关闭既有校验。
+
+### 步骤 D22：环境变量说明
+
+文件：`README.md`
+
+Done
+
+记录 `DIFY_API_BASE_URL`、`DIFY_APP_API_KEY`、`DIFY_TIMEOUT_MS`、免责声明与禁止 `NEXT_PUBLIC_*`。
+未写入真实 Key。
+
+### 步骤 D23：对真实 Chatflow 的 API 级验收
+
+命令：在已配置 `.env.local` 下运行针对 `/v1/chat-messages` 与 `/api/assistant/chat` 的验收（知识内问题、无资料、越权拒绝、有/无分析结果、中英文、上游不可用）。记录真实来源字段是否返回。
+
+Done
+
+`POST /v1/chat-messages`：方法学问答 200 且 `retriever_resources` 非空；无资料走证据不足模板；越权/看图猜峰/整品认定均为固定拒绝话术；无分析结果走「尚未提供可解释的结构化分析结果」；英文问答 200 且有检索来源；关闭端口上游返回 URLError。
+`GET /api/assistant/health` → `{configured:true,reachable:true}`；`POST /api/assistant/chat` 整品认定 200 SSE 含固定话术；客户端 `endpoint` 返回 `FORBIDDEN_FIELD`；首页 HTML 不含 API Key。
+
+### 步骤 D24：运行既有检查与生产构建
+
+命令：`npm run typecheck`、`npm run lint`、`npm run check`、`npm run build`
+
+Done
+
+四条命令均退出码 0。`next build` 生成 `/api/assistant/chat` 与 `/api/assistant/health` 动态路由。
+抽查 `http://127.0.0.1:3000/`、`/comprehensive-analysis`、`/regulatory`、`/category/primary-structure`、`/item/intact-mass` 均 200 且含 `main#main-content`。
+
+---
+
+## 助手界面视觉升级
+
+> 范围：只改悬浮助手外观与交互动画。不改代理、白名单、Chatflow、分析服务与上传。
+> 约束：回复仍按纯文本渲染；遵守 `prefers-reduced-motion`；不把 Key 放进前端。
+
+### 步骤 U0：写入本视觉升级步骤
+
+Done
+
+本段冻结为样式与空态建议问题，不改助手职责与安全规则。
+
+### 步骤 U1：助手动效与面板样式
+
+文件：`src/app/globals.css`
+
+Done
+
+新增助手面板、悬浮按钮、在线脉冲与输入中圆点的样式；动效受现有 `prefers-reduced-motion` 约束。
+不改站点主色与分析页样式。
+
+### 步骤 U2：空态建议问题与在线状态文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+增加在线状态与三条空态建议问题的中英文。
+未改既有免责声明原文。
+
+### 步骤 U3：助手徽标
+
+文件：`src/components/assistant/AssistantMark.tsx`
+
+Done
+
+双螺旋线稿 SVG，供悬浮按钮、标题与气泡共用。
+不含交互与网络请求。
+
+### 步骤 U4：聊天面板视觉
+
+文件：`src/components/assistant/AssistantPanel.tsx`
+
+Done
+
+渐变顶栏、在线脉冲、空态建议问题、输入中圆点与内嵌发送按钮；关闭时仍挂载以便过渡，并用 `inert` 避免误触。
+回复仍为纯文本。
+
+### 步骤 U5：悬浮按钮与面板定位
+
+文件：`src/components/assistant/AssistantWidget.tsx`
+
+Done
+
+右下角改为旋转高光圆形按钮；面板绝对定位在按钮上方。
+`send` 支持空态建议问题直接发问，不改请求体与密钥处理。
+
+### 步骤 U6：Q 版看板娘
+
+操作：右下角改为 Q 版看板娘立绘与待机动画，替换螺旋线稿图标。
+
+Done
+
+立绘位于 `public/assistant/mascot.png`；右下角改为漂浮、跳跃、思考摇摆与间歇对话气泡。
+已删除螺旋线稿 `AssistantMark.tsx`，面板头像改为立绘脸部裁切。
+

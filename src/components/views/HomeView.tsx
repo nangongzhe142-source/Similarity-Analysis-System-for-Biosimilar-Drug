@@ -23,23 +23,35 @@ export function HomeView() {
 
   return (
     <div className="flex flex-col gap-10">
-      <section className="rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50 via-white to-sky-50 px-6 py-10 sm:px-10">
-        <h1 className="max-w-3xl text-2xl font-bold leading-snug text-teal-950 sm:text-3xl">
+      <section className="surface-hero rounded-lg px-6 py-10 sm:px-10 sm:py-12">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
+          {messages.home.categoryIndexPrefix}
+        </p>
+        <h1 className="mt-3 max-w-3xl text-3xl font-bold leading-tight text-paper sm:text-4xl">
           {messages.home.heroTitle}
         </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-cyan-100 sm:text-base">
           {messages.home.heroDescription}
         </p>
-        <dl className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            href="/comprehensive-analysis"
+            className="tap-target inline-flex items-center rounded-sm bg-paper px-4 text-sm font-bold text-navy-900 transition-colors duration-150 hover:bg-cyan-100"
+          >
+            {messages.home.heroPrimaryAction}
+          </Link>
+          <Link
+            href="#quality-attribute-categories"
+            className="tap-target inline-flex items-center rounded-sm border border-paper/80 px-4 text-sm font-bold text-paper transition-colors duration-150 hover:bg-white/10"
+          >
+            {messages.home.heroSecondaryAction}
+          </Link>
+        </div>
+        <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {statistics.map((statistic) => (
-            <div
-              key={statistic.label}
-              className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3"
-            >
-              <dt className="text-xs text-slate-500">{statistic.label}</dt>
-              <dd className="mt-1 text-2xl font-bold text-teal-800">
-                {statistic.value}
-              </dd>
+            <div key={statistic.label} className="border border-white/20 bg-navy-950/35 px-4 py-3">
+              <dt className="text-xs font-medium text-cyan-100">{statistic.label}</dt>
+              <dd className="mt-1 font-mono text-3xl font-bold text-paper">{statistic.value}</dd>
             </div>
           ))}
         </dl>
@@ -47,26 +59,19 @@ export function HomeView() {
 
       <section
         aria-labelledby="site-disclaimer-heading"
-        className="rounded-xl border border-amber-300 bg-amber-50 px-6 py-5"
+        className="rounded-md border border-navy-800 bg-paper px-5 py-4"
       >
-        <h2
-          id="site-disclaimer-heading"
-          className="text-sm font-semibold text-amber-900"
-        >
+        <h2 id="site-disclaimer-heading" className="text-sm font-semibold text-navy-900">
           {messages.referenceCase.disclaimerTitle}
         </h2>
-        <p className="mt-2 text-xs leading-relaxed text-amber-900">
+        <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
           {messages.referenceCase.disclaimerText}
         </p>
       </section>
 
-      <section>
-        <h2 className="text-lg font-semibold text-slate-900">
-          {messages.home.categoriesSectionTitle}
-        </h2>
-        <p className="mt-1 text-sm text-slate-500">
-          {messages.home.categoriesSectionDescription}
-        </p>
+      <section id="quality-attribute-categories">
+        <h2 className="text-xl font-bold text-navy-900">{messages.home.categoriesSectionTitle}</h2>
+        <p className="mt-1 text-sm text-ink-secondary">{messages.home.categoriesSectionDescription}</p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {categories.map((category) => (
             <CategoryCard
@@ -78,20 +83,32 @@ export function HomeView() {
         </div>
       </section>
 
-      <section>
+      <section className="grid gap-4 lg:grid-cols-2">
+        <Link
+          href="/comprehensive-analysis"
+          className="surface-card group flex flex-col gap-2 border-l-4 border-l-brand-700 p-6 transition-shadow duration-150 hover:shadow-[var(--shadow-raised)]"
+        >
+          <h2 className="text-lg font-bold text-navy-900 group-hover:text-brand-800">
+            {messages.home.comprehensiveEntryTitle}
+          </h2>
+          <p className="text-sm leading-relaxed text-ink-secondary">
+            {messages.home.comprehensiveEntryDescription}
+          </p>
+          <span className="mt-auto pt-2 text-sm font-semibold text-brand-800">
+            {messages.common.viewDetails} →
+          </span>
+        </Link>
         <Link
           href="/regulatory"
-          className="group flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-teal-400 hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
+          className="surface-card group flex flex-col gap-2 border-l-4 border-l-cyan-700 p-6 transition-shadow duration-150 hover:shadow-[var(--shadow-raised)]"
         >
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900 group-hover:text-teal-800">
-              {messages.home.regulatoryEntryTitle}
-            </h2>
-            <p className="mt-1 text-sm text-slate-600">
-              {messages.home.regulatoryEntryDescription}
-            </p>
-          </div>
-          <span className="shrink-0 text-sm font-medium text-teal-700">
+          <h2 className="text-lg font-bold text-navy-900 group-hover:text-brand-800">
+            {messages.home.regulatoryEntryTitle}
+          </h2>
+          <p className="text-sm leading-relaxed text-ink-secondary">
+            {messages.home.regulatoryEntryDescription}
+          </p>
+          <span className="mt-auto pt-2 text-sm font-semibold text-brand-800">
             {messages.common.viewDetails} →
           </span>
         </Link>

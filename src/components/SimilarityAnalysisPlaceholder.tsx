@@ -50,20 +50,20 @@ export function SimilarityAnalysisPlaceholder({
           <div
             key={slot.key}
             aria-disabled="true"
-            className="flex flex-col gap-2 rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 p-5 opacity-80"
+            className="flex flex-col gap-2 rounded-lg border-2 border-dashed border-line bg-canvas-muted p-5"
           >
             <div className="flex items-start justify-between gap-2">
-              <h4 className="text-sm font-semibold text-slate-700">{slot.title}</h4>
-              <span className="shrink-0 rounded-full bg-slate-200 px-2 py-0.5 text-[11px] font-medium text-slate-600">
+              <h4 className="text-sm font-semibold text-navy-900">{slot.title}</h4>
+              <span className="shrink-0 rounded-sm bg-paper px-2 py-0.5 text-[11px] font-semibold text-ink-secondary">
                 {messages.itemPage.underDevelopment}
               </span>
             </div>
-            <p className="text-xs leading-relaxed text-slate-500">{slot.description}</p>
+            <p className="text-sm leading-relaxed text-ink-secondary">{slot.description}</p>
             {slot.showUploadAction && (
               <button
                 type="button"
                 disabled
-                className="mt-auto cursor-not-allowed rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-400"
+                className="tap-target mt-auto cursor-not-allowed rounded-sm border border-line bg-paper px-3 text-xs font-semibold text-ink-secondary"
               >
                 {messages.itemPage.uploadPlaceholderAction}
               </button>

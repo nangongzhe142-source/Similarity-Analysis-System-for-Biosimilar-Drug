@@ -16,7 +16,7 @@ export function ApplicabilityBadge({ applicability, compact = false }: Applicabi
   return (
     <span
       title={text}
-      className={`inline-flex max-w-full items-center rounded-md border border-sky-200 bg-sky-50 px-2 py-0.5 text-xs font-medium text-sky-800 ${
+      className={`inline-flex max-w-full items-center rounded-sm border border-brand-700 bg-canvas px-2 py-0.5 text-xs font-semibold text-navy-900 ${
         compact ? "truncate" : ""
       }`}
     >

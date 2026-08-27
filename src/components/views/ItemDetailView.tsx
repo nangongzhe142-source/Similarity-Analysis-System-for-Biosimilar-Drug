@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import type { Category, CharacterizationItem } from "@/types/models";
 import { getAdjacentItems } from "@/data/selectors";
@@ -12,6 +13,10 @@ import { FieldBlock } from "@/components/FieldBlock";
 import { MethodSelector } from "@/components/MethodSelector";
 import { ReferenceCaseSection } from "@/components/reference-case/ReferenceCaseSection";
 import { SimilarityAnalysisPlaceholder } from "@/components/SimilarityAnalysisPlaceholder";
+import {
+  publishAssistantPageContext,
+  resetAssistantPageContext,
+} from "@/lib/assistant/page-context";
 
 interface ItemDetailViewProps {
   item: CharacterizationItem;
@@ -23,6 +28,26 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
   const { previous, next } = getAdjacentItems(item.id);
   const referenceCases = getReferenceCases(item.id);
 
+  useEffect(() => {
+    publishAssistantPageContext({
+      categoryKey: category.key,
+      itemId: item.id,
+      itemName: localize(item.itemName),
+    });
+    return () => {
+      resetAssistantPageContext([
+        "categoryKey",
+        "itemId",
+        "itemName",
+        "methodId",
+        "methodName",
+        "analysisStatus",
+        "analysisResult",
+        "analysisProvenance",
+      ]);
+    };
+  }, [category.key, item.id, item.itemName, localize]);
+
   return (
     <div className="flex flex-col gap-8">
       <Breadcrumb
@@ -33,23 +58,21 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
         ]}
       />
 
-      <header className="flex flex-col gap-3">
+      <header className="surface-card border-l-4 border-l-brand-700 p-5">
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-bold text-slate-900">
-            {localize(item.itemName)}
-          </h1>
+          <h1 className="text-2xl font-bold text-navy-900">{localize(item.itemName)}</h1>
           {item.isSupplementary && <SupplementaryTag />}
         </div>
-        <p className="text-sm text-slate-500">
+        <p className="mt-2 text-sm text-ink-secondary">
           {messages.itemPage.guidelineTermLabel}: {localize(item.guidelineTerm)}
         </p>
-        <div>
+        <div className="mt-3">
           <ApplicabilityBadge applicability={item.applicability} />
         </div>
       </header>
 
       <section>
-        <h2 className="mb-3 text-lg font-semibold text-slate-900">
+        <h2 className="mb-3 text-lg font-bold text-navy-900">
           {messages.itemPage.fieldSectionTitle}
         </h2>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -79,30 +102,28 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
       <ReferenceCaseSection referenceCases={referenceCases} />
 
       <section>
-        <h2 className="text-lg font-semibold text-slate-900">
-          {messages.itemPage.methodSectionTitle}
-        </h2>
-        <p className="mb-3 mt-1 text-sm text-slate-500">
+        <h2 className="text-lg font-bold text-navy-900">{messages.itemPage.methodSectionTitle}</h2>
+        <p className="mb-3 mt-1 text-sm text-ink-secondary">
           {messages.itemPage.methodSectionDescription}
         </p>
         <MethodSelector itemId={item.id} methods={item.methods} />
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold text-slate-900">
+        <h2 className="text-lg font-bold text-navy-900">
           {messages.itemPage.analysisSectionTitle}
         </h2>
-        <p className="mb-3 mt-1 text-sm text-slate-500">
+        <p className="mb-3 mt-1 text-sm text-ink-secondary">
           {messages.itemPage.analysisSectionDescription}
         </p>
         <SimilarityAnalysisPlaceholder analysisPlaceholder={item.analysisPlaceholder} />
       </section>
 
-      <nav className="flex items-center justify-between border-t border-slate-200 pt-4 text-sm">
+      <nav className="flex items-center justify-between border-t border-line pt-4 text-sm">
         {previous !== undefined ? (
           <Link
             href={`/item/${previous.id}`}
-            className="max-w-[45%] truncate font-medium text-teal-700 hover:underline"
+            className="tap-target max-w-[45%] truncate font-semibold text-brand-800 hover:underline"
           >
             ← {messages.itemPage.previousItem}: {localize(previous.itemName)}
           </Link>
@@ -112,7 +133,7 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
         {next !== undefined ? (
           <Link
             href={`/item/${next.id}`}
-            className="max-w-[45%] truncate text-right font-medium text-teal-700 hover:underline"
+            className="tap-target max-w-[45%] truncate text-right font-semibold text-brand-800 hover:underline"
           >
             {messages.itemPage.nextItem}: {localize(next.itemName)} →
           </Link>

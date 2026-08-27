@@ -30,6 +30,16 @@ import {
   isFigureImageFileName,
   type ImageCalibrationPayload,
 } from "@/lib/image-axis-calibration";
+import {
+  serializeWhitelistedProvenance,
+  serializeWhitelistedResult,
+  whitelistAnalysisProvenance,
+  whitelistAnalysisResult,
+} from "@/lib/assistant/analysis-result-whitelist";
+import {
+  publishAssistantPageContext,
+  resetAssistantPageContext,
+} from "@/lib/assistant/page-context";
 
 interface MethodAnalysisPanelProps {
   itemId: string;
@@ -217,6 +227,26 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
       cancelled = true;
     };
   }, [method.id]);
+
+  useEffect(() => {
+    const status = snapshot?.status ?? config?.status ?? "";
+    publishAssistantPageContext({
+      analysisStatus: status,
+      analysisResult: serializeWhitelistedResult(
+        whitelistAnalysisResult(snapshot?.result),
+      ),
+      analysisProvenance: serializeWhitelistedProvenance(
+        whitelistAnalysisProvenance(snapshot?.result?.provenance),
+      ),
+    });
+    return () => {
+      resetAssistantPageContext([
+        "analysisStatus",
+        "analysisResult",
+        "analysisProvenance",
+      ]);
+    };
+  }, [config?.status, snapshot]);
 
   if (!config) {
     return null;

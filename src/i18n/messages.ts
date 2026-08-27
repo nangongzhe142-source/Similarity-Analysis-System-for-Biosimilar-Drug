@@ -10,11 +10,105 @@ export interface UiMessages {
     overview: string;
     characterization: string;
     regulatory: string;
+    integratedAssessment: string;
     allCategories: string;
+    primaryLabel: string;
+  };
+  comprehensiveAnalysis: {
+    pageTitle: string;
+    pageDescription: string;
+    demoDataBadge: string;
+    demoUseBanner: string;
+    overallConclusionTitle: string;
+    conclusionSupports: string;
+    conclusionDoesNotSupport: string;
+    conclusionInsufficient: string;
+    rationaleSupports: string;
+    rationaleDoesNotSupport: string;
+    rationaleInsufficient: string;
+    rationaleNoApplicableItems: string;
+    candidateNameLabel: string;
+    referenceNameLabel: string;
+    candidateLotLabel: string;
+    referenceLotLabel: string;
+    productTypeLabel: string;
+    analysisNameLabel: string;
+    clearAndReenter: string;
+    restoreDemo: string;
+    disclaimer: string;
+    participatingCountLabel: string;
+    supportsCountLabel: string;
+    doesNotSupportCountLabel: string;
+    insufficientCountLabel: string;
+    notApplicableCountLabel: string;
+    incompleteCountLabel: string;
+    completenessLabel: string;
+    criticalItemsTitle: string;
+    noCriticalItems: string;
+    jumpToItem: string;
+    overviewTitle: string;
+    statusInventoryNote: string;
+    statusSumLabel: string;
+    completedRatioLabel: string;
+    categoryOverviewTitle: string;
+    jumpToCategory: string;
+    productPairOverviewTitle: string;
+    statusSupports: string;
+    statusDoesNotSupport: string;
+    statusInsufficient: string;
+    statusNotApplicable: string;
+    statusUnset: string;
+    applicabilityLabel: string;
+    applicableYes: string;
+    applicableNo: string;
+    demoStatusLabel: string;
+    candidateDataLabel: string;
+    referenceDataLabel: string;
+    comparisonNotesLabel: string;
+    notApplicableReasonLabel: string;
+    completenessComplete: string;
+    completenessIncomplete: string;
+    expandProcess: string;
+    collapseProcess: string;
+    expandCategory: string;
+    collapseCategory: string;
+    processTitle: string;
+    processStepInput: string;
+    processStepNormalization: string;
+    processStepSideBySide: string;
+    processStepDifference: string;
+    processStepPrinciple: string;
+    processStepConclusion: string;
+    processStepProvenance: string;
+    demoFlowBadge: string;
+    realComputationNotConnected: string;
+    notForRegulatoryJudgement: string;
+    schematicCaption: string;
+    schematicAlignmentAligned: string;
+    schematicAlignmentOffset: string;
+    schematicAlignmentIncomplete: string;
+    schematicAlignmentNotApplicable: string;
+    emptyValuePlaceholder: string;
+    supplementaryExcludedNote: string;
+    notApplicableReasonRequired: string;
+    textLengthLabel: string;
+    textsIdenticalNote: string;
+    textsDifferNote: string;
+    judgingPrincipleSourceLabel: string;
+    numericLimitSourceLabel: string;
+    demoDataSourceNote: string;
+    normalizationNote: string;
+    differenceNote: string;
+    formSectionTitle: string;
+    itemsSectionTitle: string;
   };
   home: {
     heroTitle: string;
     heroDescription: string;
+    heroPrimaryAction: string;
+    heroSecondaryAction: string;
+    comprehensiveEntryTitle: string;
+    comprehensiveEntryDescription: string;
     categoriesSectionTitle: string;
     categoriesSectionDescription: string;
     regulatoryEntryTitle: string;
@@ -24,6 +118,7 @@ export interface UiMessages {
     statsCategories: string;
     statsMethods: string;
     statsSupplementary: string;
+    categoryIndexPrefix: string;
   };
   categoryPage: {
     backToOverview: string;
@@ -334,6 +429,28 @@ export interface UiMessages {
     axisSignal: string;
     emptyValuePlaceholder: string;
   };
+  assistant: {
+    openButton: string;
+    closeButton: string;
+    title: string;
+    newConversation: string;
+    placeholder: string;
+    send: string;
+    sending: string;
+    loading: string;
+    timeout: string;
+    networkError: string;
+    unavailable: string;
+    unconfigured: string;
+    disclaimer: string;
+    emptyHint: string;
+    sourcesTitle: string;
+    statusLive: string;
+    mascotGreeting: string;
+    suggestionMethod: string;
+    suggestionResult: string;
+    suggestionInput: string;
+  };
   common: {
     supplementaryTag: string;
     viewDetails: string;
@@ -342,6 +459,10 @@ export interface UiMessages {
     backToHome: string;
     languageSwitchLabel: string;
     englishTodoNotice: string;
+    skipToMainContent: string;
+    openSiteMenu: string;
+    closeSiteMenu: string;
+    notAGovernmentSite: string;
   };
 }
 
@@ -355,12 +476,112 @@ export const uiMessages: Record<Locale, UiMessages> = {
       overview: "总览",
       characterization: "特性鉴定",
       regulatory: "法规框架",
+      integratedAssessment: "综合判别",
       allCategories: "全部大类",
+      primaryLabel: "主导航",
+    },
+    comprehensiveAnalysis: {
+      pageTitle: "综合相似性判别（演示）",
+      pageDescription:
+        "按 8 个质量属性大类与 61 个检测项目汇总用户录入的演示状态。这是总体证据演示，不是监管认定。",
+      demoDataBadge: "示意 / 演示数据",
+      demoUseBanner: "本页预载明确标注的 illustrative/demo 数据，便于查看完整流程；可清空后自行录入。",
+      overallConclusionTitle: "总体证据结论",
+      conclusionSupports: "支持相似性证据",
+      conclusionDoesNotSupport: "不支持相似性证据",
+      conclusionInsufficient: "证据不足",
+      rationaleSupports: "所有参与汇总的适用非补充项均被标记为「支持相似」，且必要文本已填写。",
+      rationaleDoesNotSupport: "至少一个参与汇总的项目被标记为「不支持相似」，按保守规则给出本结论。",
+      rationaleInsufficient: "存在证据不足、未选择状态、必要文本缺失或未完成项目，尚不能给出支持性总体证据。",
+      rationaleNoApplicableItems: "当前没有参与汇总的适用非补充项，总体结论为证据不足。",
+      candidateNameLabel: "候选药名称",
+      referenceNameLabel: "参照药名称",
+      candidateLotLabel: "候选药批次",
+      referenceLotLabel: "参照药批次",
+      productTypeLabel: "产品类型或备注",
+      analysisNameLabel: "分析名称",
+      clearAndReenter: "清空并重新录入",
+      restoreDemo: "恢复演示数据",
+      disclaimer:
+        "该结果为基于用户录入状态生成的总体证据演示，不构成生物类似药监管认定、临床结论或申报意见。",
+      participatingCountLabel: "参与汇总项目",
+      supportsCountLabel: "支持相似",
+      doesNotSupportCountLabel: "不支持相似",
+      insufficientCountLabel: "证据不足",
+      notApplicableCountLabel: "不适用",
+      incompleteCountLabel: "未完成",
+      completenessLabel: "数据完整度",
+      criticalItemsTitle: "影响最终结论的关键项目",
+      noCriticalItems: "没有阻断性关键项目。",
+      jumpToItem: "定位到该项目",
+      overviewTitle: "直观比对总览",
+      statusInventoryNote:
+        "状态计数覆盖全部检测项目（含补充项），五项之和等于项目总数。补充项计入本图，但不参与总体结论。",
+      statusSumLabel: "状态合计",
+      completedRatioLabel: "已完成项目占比",
+      categoryOverviewTitle: "八个质量属性大类概览",
+      jumpToCategory: "定位到该大类",
+      productPairOverviewTitle: "候选药与参照药并列",
+      statusSupports: "支持相似",
+      statusDoesNotSupport: "不支持相似",
+      statusInsufficient: "证据不足",
+      statusNotApplicable: "不适用",
+      statusUnset: "未选择",
+      applicabilityLabel: "是否适用于当前产品",
+      applicableYes: "适用",
+      applicableNo: "不适用",
+      demoStatusLabel: "演示判定状态",
+      candidateDataLabel: "候选药数据或描述",
+      referenceDataLabel: "参照药数据或描述",
+      comparisonNotesLabel: "比对说明",
+      notApplicableReasonLabel: "不适用原因",
+      completenessComplete: "已完成",
+      completenessIncomplete: "未完成",
+      expandProcess: "展开具体比对过程",
+      collapseProcess: "收起比对过程",
+      expandCategory: "展开大类",
+      collapseCategory: "收起大类",
+      processTitle: "具体比对过程（演示流程）",
+      processStepInput: "1. 输入数据",
+      processStepNormalization: "2. 归一化或预处理",
+      processStepSideBySide: "3. 候选药与参照药直观并列",
+      processStepDifference: "4. 差异识别",
+      processStepPrinciple: "5. 判定原则",
+      processStepConclusion: "6. 项目结论",
+      processStepProvenance: "7. 数据来源和限制",
+      demoFlowBadge: "演示流程",
+      realComputationNotConnected: "尚未接入真实计算",
+      notForRegulatoryJudgement: "不参与监管判断",
+      schematicCaption: "示意并列图由项目编号与演示状态确定性生成，不是实测图谱。",
+      schematicAlignmentAligned: "示意对齐（由「支持相似」状态绘制）",
+      schematicAlignmentOffset: "示意偏移（由「不支持相似」状态绘制）",
+      schematicAlignmentIncomplete: "示意不完整（由「证据不足」或未选择状态绘制）",
+      schematicAlignmentNotApplicable: "示意不适用",
+      emptyValuePlaceholder: "—",
+      supplementaryExcludedNote: "补充项可展示，但不参与总体结论。",
+      notApplicableReasonRequired: "选择不适用时必须填写原因。",
+      textLengthLabel: "规范化后的描述字符数（不是检测值）",
+      textsIdenticalNote: "规范化后的录入文本完全相同（演示层字符串比较，不是检测差异）。",
+      textsDifferNote: "规范化后的录入文本不同（演示层字符串比较，不是检测差异）。",
+      judgingPrincipleSourceLabel: "框架判定原则（来自特性鉴定条目，不是本页计算结果）",
+      numericLimitSourceLabel: "数值限度/判定边界（来自特性鉴定条目）",
+      demoDataSourceNote:
+        "本页自由文本为用户录入或 illustrative/demo 预载内容，不是分析服务输出，也不覆盖单项真实分析结果。",
+      normalizationNote:
+        "演示预处理仅做空白折叠与去首尾空格，尚未接入真实谱图对齐、去卷积或统计等效性计算。",
+      differenceNote: "差异识别目前只比较规范化文本，不根据关键词自动改写演示状态。",
+      formSectionTitle: "基础信息",
+      itemsSectionTitle: "按质量属性大类逐项录入",
     },
     home: {
       heroTitle: "生物类似药药学相似性分析框架",
       heroDescription:
         "基于《生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表》构建的结构化知识框架，覆盖 8 个质量属性大类、61 个检测项目及其首选/正交检测方法，并为后续接入真实相似性分析预留接口。",
+      heroPrimaryAction: "进入综合判别",
+      heroSecondaryAction: "浏览质量属性大类",
+      comprehensiveEntryTitle: "综合判别",
+      comprehensiveEntryDescription:
+        "按 8 个大类与 61 个检测项目汇总演示性比对证据。结果不是监管认定。",
       categoriesSectionTitle: "特性鉴定 · 8 个质量属性大类",
       categoriesSectionDescription: "点击大类卡片查看该大类下的检测项目列表。",
       regulatoryEntryTitle: "法规框架",
@@ -371,6 +592,7 @@ export const uiMessages: Record<Locale, UiMessages> = {
       statsCategories: "质量属性大类",
       statsMethods: "检测方法条目",
       statsSupplementary: "补充项",
+      categoryIndexPrefix: "质量属性",
     },
     categoryPage: {
       backToOverview: "返回总览",
@@ -717,6 +939,29 @@ export const uiMessages: Record<Locale, UiMessages> = {
       axisSignal: "信号强度",
       emptyValuePlaceholder: "—",
     },
+    assistant: {
+      openButton: "打开 AI 助手",
+      closeButton: "关闭 AI 助手",
+      title: "药学相似性助手",
+      newConversation: "新建会话",
+      placeholder: "询问方法、规则或当前分析结果…",
+      send: "发送",
+      sending: "发送中…",
+      loading: "正在生成回答…",
+      timeout: "请求超时，请稍后重试。",
+      networkError: "网络错误，无法连接助手。",
+      unavailable: "AI 助手暂时不可用。",
+      unconfigured: "AI 助手尚未配置。",
+      disclaimer:
+        "AI 助手仅用于解释系统资料和分析结果，不构成生物类似药认定或监管建议。",
+      emptyHint: "可询问检测方法、评价原则、系统操作，或请助手解释当前页已生成的分析结果。",
+      sourcesTitle: "来源",
+      statusLive: "在线",
+      mascotGreeting: "有问题就问我呀～",
+      suggestionMethod: "完整分子量一般用什么方法测定？",
+      suggestionResult: "当前页面的分析结果说明了什么？",
+      suggestionInput: "如何准备分析输入数据？",
+    },
     common: {
       supplementaryTag: "补充项",
       viewDetails: "查看详情",
@@ -725,6 +970,10 @@ export const uiMessages: Record<Locale, UiMessages> = {
       backToHome: "返回首页",
       languageSwitchLabel: "切换语言",
       englishTodoNotice: "英文内容为机器翻译占位，待校对。",
+      skipToMainContent: "跳到主要内容",
+      openSiteMenu: "打开站点菜单",
+      closeSiteMenu: "关闭站点菜单",
+      notAGovernmentSite: "本网站为研究与教学框架，不是政府机构官方网站。",
     },
   },
   en: {
@@ -737,12 +986,123 @@ export const uiMessages: Record<Locale, UiMessages> = {
       overview: "Overview",
       characterization: "Characterization",
       regulatory: "Regulatory Framework",
+      integratedAssessment: "Integrated Assessment",
       allCategories: "All categories",
+      primaryLabel: "Primary navigation",
+    },
+    comprehensiveAnalysis: {
+      pageTitle: "Integrated similarity assessment (demo)",
+      pageDescription:
+        "Summarises user-entered demo statuses across 8 quality-attribute categories and 61 characterization items. This is an overall-evidence demonstration, not a regulatory determination.",
+      demoDataBadge: "Illustrative / demo data",
+      demoUseBanner:
+        "This page preloads clearly labelled illustrative/demo data so the full flow is visible; you can clear it and enter your own values.",
+      overallConclusionTitle: "Overall Evidence Conclusion",
+      conclusionSupports: "Supports similarity evidence",
+      conclusionDoesNotSupport: "Does not support similarity evidence",
+      conclusionInsufficient: "Insufficient evidence",
+      rationaleSupports:
+        "Every applicable non-supplementary item included in the roll-up is marked “supports similarity”, and the required text is present.",
+      rationaleDoesNotSupport:
+        "At least one item included in the roll-up is marked “does not support similarity”; the conservative rule yields this conclusion.",
+      rationaleInsufficient:
+        "There is insufficient evidence, an unset status, missing required text, or an incomplete item, so a supportive overall conclusion cannot be issued.",
+      rationaleNoApplicableItems:
+        "There are currently no applicable non-supplementary items in the roll-up; the overall conclusion is insufficient evidence.",
+      candidateNameLabel: "Candidate product name",
+      referenceNameLabel: "Reference product name",
+      candidateLotLabel: "Candidate lot",
+      referenceLotLabel: "Reference lot",
+      productTypeLabel: "Product type or notes",
+      analysisNameLabel: "Analysis name",
+      clearAndReenter: "Clear and re-enter",
+      restoreDemo: "Restore demo data",
+      disclaimer:
+        "This result is an overall-evidence demonstration generated from user-entered statuses. It does not constitute a biosimilar regulatory determination, a clinical conclusion, or a filing opinion.",
+      participatingCountLabel: "Items in the roll-up",
+      supportsCountLabel: "Supports similarity",
+      doesNotSupportCountLabel: "Does not support similarity",
+      insufficientCountLabel: "Insufficient evidence",
+      notApplicableCountLabel: "Not applicable",
+      incompleteCountLabel: "Incomplete",
+      completenessLabel: "Data completeness",
+      criticalItemsTitle: "Items that drive the overall conclusion",
+      noCriticalItems: "No blocking critical items.",
+      jumpToItem: "Jump to this item",
+      overviewTitle: "Visual comparison overview",
+      statusInventoryNote:
+        "Status counts cover every characterization item, including supplementary items. The five status totals equal the item count. Supplementary items appear here but are excluded from the overall conclusion.",
+      statusSumLabel: "Status total",
+      completedRatioLabel: "Share of completed items",
+      categoryOverviewTitle: "Overview of the eight quality-attribute categories",
+      jumpToCategory: "Jump to this category",
+      productPairOverviewTitle: "Candidate and reference side by side",
+      statusSupports: "Supports similarity",
+      statusDoesNotSupport: "Does not support similarity",
+      statusInsufficient: "Insufficient evidence",
+      statusNotApplicable: "Not applicable",
+      statusUnset: "Not selected",
+      applicabilityLabel: "Applies to the current product",
+      applicableYes: "Applicable",
+      applicableNo: "Not applicable",
+      demoStatusLabel: "Demo assessment status",
+      candidateDataLabel: "Candidate data or description",
+      referenceDataLabel: "Reference data or description",
+      comparisonNotesLabel: "Comparison notes",
+      notApplicableReasonLabel: "Reason not applicable",
+      completenessComplete: "Complete",
+      completenessIncomplete: "Incomplete",
+      expandProcess: "Expand the comparison process",
+      collapseProcess: "Collapse the comparison process",
+      expandCategory: "Expand category",
+      collapseCategory: "Collapse category",
+      processTitle: "Item-level comparison process (demo flow)",
+      processStepInput: "1. Input data",
+      processStepNormalization: "2. Normalization or preprocessing",
+      processStepSideBySide: "3. Candidate vs reference side by side",
+      processStepDifference: "4. Difference identification",
+      processStepPrinciple: "5. Judging principle",
+      processStepConclusion: "6. Item conclusion",
+      processStepProvenance: "7. Data source and limitations",
+      demoFlowBadge: "Demo flow",
+      realComputationNotConnected: "Real computation is not connected",
+      notForRegulatoryJudgement: "Not used for regulatory judgement",
+      schematicCaption:
+        "The schematic overlay is generated deterministically from the item id and demo status; it is not a measured chromatogram or spectrum.",
+      schematicAlignmentAligned: "Schematic alignment (drawn from “supports similarity”)",
+      schematicAlignmentOffset: "Schematic offset (drawn from “does not support similarity”)",
+      schematicAlignmentIncomplete:
+        "Schematic incomplete (drawn from “insufficient evidence” or an unset status)",
+      schematicAlignmentNotApplicable: "Schematic not applicable",
+      emptyValuePlaceholder: "—",
+      supplementaryExcludedNote: "Supplementary items can be shown but are excluded from the overall conclusion.",
+      notApplicableReasonRequired: "A reason is required when the item is marked not applicable.",
+      textLengthLabel: "Character count after normalization (not a measured value)",
+      textsIdenticalNote:
+        "Normalized entered texts are identical (demo-layer string comparison, not an analytical difference).",
+      textsDifferNote:
+        "Normalized entered texts differ (demo-layer string comparison, not an analytical difference).",
+      judgingPrincipleSourceLabel:
+        "Framework judging principle (from the characterization item, not computed on this page)",
+      numericLimitSourceLabel: "Numerical limit / decision boundary (from the characterization item)",
+      demoDataSourceNote:
+        "Free text on this page is user-entered or illustrative/demo preload. It is not analysis-service output and does not overwrite per-item real analysis results.",
+      normalizationNote:
+        "Demo preprocessing only collapses whitespace and trims ends. Spectrum alignment, deconvolution and statistical equivalence are not connected.",
+      differenceNote:
+        "Difference identification currently compares normalized text only and never rewrites the demo status from keywords.",
+      formSectionTitle: "Basic information",
+      itemsSectionTitle: "Item-by-item entry by quality-attribute category",
     },
     home: {
       heroTitle: "Biosimilar CMC Similarity Assessment Framework",
       heroDescription:
         "A structured knowledge framework built on the summary table of quality attributes, analytical methods and similarity assessment principles for biosimilar CMC comparability studies. It covers 8 quality-attribute categories, 61 characterization items with their primary/orthogonal methods, and reserves interfaces for future real similarity analysis.",
+      heroPrimaryAction: "Open integrated assessment",
+      heroSecondaryAction: "Browse quality-attribute categories",
+      comprehensiveEntryTitle: "Integrated Assessment",
+      comprehensiveEntryDescription:
+        "Roll up illustrative comparison evidence across 8 categories and 61 items. The result is not a regulatory determination.",
       categoriesSectionTitle: "Characterization · 8 Quality-attribute Categories",
       categoriesSectionDescription:
         "Click a category card to browse its characterization items.",
@@ -754,6 +1114,7 @@ export const uiMessages: Record<Locale, UiMessages> = {
       statsCategories: "Categories",
       statsMethods: "Method entries",
       statsSupplementary: "Supplementary items",
+      categoryIndexPrefix: "Quality attribute",
     },
     categoryPage: {
       backToOverview: "Back to overview",
@@ -1111,6 +1472,30 @@ export const uiMessages: Record<Locale, UiMessages> = {
       axisSignal: "Signal intensity",
       emptyValuePlaceholder: "—",
     },
+    assistant: {
+      openButton: "Open AI assistant",
+      closeButton: "Close AI assistant",
+      title: "CMC similarity assistant",
+      newConversation: "New conversation",
+      placeholder: "Ask about methods, rules, or the current analysis result…",
+      send: "Send",
+      sending: "Sending…",
+      loading: "Generating an answer…",
+      timeout: "The request timed out. Please try again.",
+      networkError: "Network error. The assistant could not be reached.",
+      unavailable: "The AI assistant is temporarily unavailable.",
+      unconfigured: "The AI assistant is not configured.",
+      disclaimer:
+        "The AI assistant only explains system materials and analysis results. It does not constitute a biosimilar determination or regulatory advice.",
+      emptyHint:
+        "Ask about methods, evaluation principles, system use, or an explanation of results already generated on this page.",
+      sourcesTitle: "Sources",
+      statusLive: "Live",
+      mascotGreeting: "Ask me anything!",
+      suggestionMethod: "What method is typically used to measure intact mass?",
+      suggestionResult: "What does the analysis result on this page mean?",
+      suggestionInput: "How should I prepare analysis input data?",
+    },
     common: {
       supplementaryTag: "Supplementary",
       viewDetails: "View details",
@@ -1120,6 +1505,11 @@ export const uiMessages: Record<Locale, UiMessages> = {
       languageSwitchLabel: "Switch language",
       englishTodoNotice:
         "English item content is a machine-translation placeholder pending review.",
+      skipToMainContent: "Skip to main content",
+      openSiteMenu: "Open site menu",
+      closeSiteMenu: "Close site menu",
+      notAGovernmentSite:
+        "This website is a research and teaching framework, not an official government site.",
     },
   },
 };

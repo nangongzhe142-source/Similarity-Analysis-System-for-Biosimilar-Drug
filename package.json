@@ -15,7 +15,9 @@
     "verify:analysis-config": "node scripts/verify_method_analysis_config.mjs",
     "verify:analysis-contract": "node scripts/verify_analysis_contract.mjs",
     "verify:primary-analysis": "node scripts/verify_primary_analysis.mjs",
-    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content && npm run verify:schemes && npm run verify:analysis-config && npm run verify:analysis-contract && npm run verify:primary-analysis"
+    "verify:comprehensive-analysis": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify_comprehensive_analysis.mjs",
+    "verify:assistant": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify_assistant.mjs",
+    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content && npm run verify:schemes && npm run verify:analysis-config && npm run verify:analysis-contract && npm run verify:primary-analysis && npm run verify:comprehensive-analysis && npm run verify:assistant"
   },
   "dependencies": {
     "next": "16.3.0",

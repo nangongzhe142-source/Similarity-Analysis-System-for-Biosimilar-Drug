@@ -8,30 +8,46 @@ const LOCALE_OPTIONS: ReadonlyArray<{ value: Locale; label: string }> = [
   { value: "en", label: "EN" },
 ];
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  variant?: "light" | "dark";
+}
+
+export function LanguageSwitcher({ variant = "light" }: LanguageSwitcherProps) {
   const { locale, setLocale, messages } = useLanguage();
+  const isDark = variant === "dark";
 
   return (
     <div
       role="group"
       aria-label={messages.common.languageSwitchLabel}
-      className="inline-flex items-center rounded-full border border-slate-300 bg-white p-0.5"
+      className={
+        isDark
+          ? "inline-flex items-center rounded-sm border border-white/30 bg-navy-950/40 p-0.5"
+          : "inline-flex items-center rounded-sm border border-line bg-paper p-0.5"
+      }
     >
-      {LOCALE_OPTIONS.map((option) => (
-        <button
-          key={option.value}
-          type="button"
-          onClick={() => setLocale(option.value)}
-          aria-pressed={locale === option.value}
-          className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
-            locale === option.value
-              ? "bg-teal-700 text-white"
-              : "text-slate-600 hover:text-teal-700"
-          }`}
-        >
-          {option.label}
-        </button>
-      ))}
+      {LOCALE_OPTIONS.map((option) => {
+        const isPressed = locale === option.value;
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => setLocale(option.value)}
+            aria-pressed={isPressed}
+            className={`tap-target rounded-sm px-3 text-sm font-semibold transition-colors duration-150 ${
+              isPressed
+                ? isDark
+                  ? "bg-paper text-navy-900"
+                  : "bg-brand-700 text-paper"
+                : isDark
+                  ? "text-cyan-100 hover:bg-white/10"
+                  : "text-ink-secondary hover:text-brand-800"
+            }`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

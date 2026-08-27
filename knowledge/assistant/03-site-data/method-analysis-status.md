@@ -1,0 +1,38 @@
+# 方法分析面板状态
+
+- sourceFile: src/data/method-analysis-config.ts
+- nature: 系统操作说明
+
+- methodId `intact-mass-primary-1` status=analyzable
+- methodId `intact-mass-orthogonal-1` status=analyzable
+- methodId `intact-mass-orthogonal-2` status=analyzable
+- methodId `deglycosylated-intact-mass-primary-1` status=analyzable
+- methodId `deglycosylated-intact-mass-orthogonal-1` status=analyzable
+- methodId `deglycosylated-intact-mass-orthogonal-2` status=analyzable
+- methodId `light-chain-mass-primary-1` status=analyzable
+- methodId `light-chain-mass-orthogonal-1` status=analyzable
+- methodId `light-chain-mass-orthogonal-2` status=analyzable
+- methodId `non-deglycosylated-heavy-chain-mass-primary-1` status=analyzable
+- methodId `non-deglycosylated-heavy-chain-mass-orthogonal-1` status=analyzable
+- methodId `non-deglycosylated-heavy-chain-mass-orthogonal-2` status=analyzable
+- methodId `deglycosylated-heavy-chain-mass-primary-1` status=analyzable
+- methodId `deglycosylated-heavy-chain-mass-orthogonal-1` status=analyzable
+- methodId `deglycosylated-heavy-chain-mass-orthogonal-2` status=analyzable
+- methodId `ms1-sequence-coverage-primary-1` status=analyzable
+- methodId `ms1-sequence-coverage-orthogonal-1` status=analyzable
+- methodId `ms1-sequence-coverage-orthogonal-2` status=analyzable
+- methodId `msms-sequence-coverage-primary-1` status=analyzable
+- methodId `msms-sequence-coverage-orthogonal-1` status=analyzable
+- methodId `msms-sequence-coverage-orthogonal-2` status=display-only
+- methodId `cdr-signature-peptides-primary-1` status=rule-not-defined
+- methodId `cdr-signature-peptides-orthogonal-1` status=rule-not-defined
+- methodId `cdr-signature-peptides-orthogonal-2` status=rule-not-defined
+- methodId `n-c-terminal-sequence-primary-1` status=rule-not-defined
+- methodId `n-c-terminal-sequence-primary-2` status=display-only
+- methodId `n-c-terminal-sequence-orthogonal-1` status=rule-not-defined
+- methodId `free-thiol-primary-1` status=rule-not-defined
+- methodId `free-thiol-orthogonal-1` status=rule-not-defined
+- methodId `free-thiol-orthogonal-2` status=display-only
+- methodId `disulfide-bonds-primary-1` status=rule-not-defined
+- methodId `disulfide-bonds-orthogonal-1` status=rule-not-defined
+- methodId `disulfide-bonds-orthogonal-2` status=display-only

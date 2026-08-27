@@ -3,6 +3,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { AssistantWidget } from "@/components/assistant/AssistantWidget";
 
 export const metadata: Metadata = {
   title: {
@@ -16,13 +17,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="zh-CN" className="h-full antialiased">
-      <body className="flex min-h-full flex-col bg-slate-50 text-slate-900">
+      <body className="surface-canvas flex min-h-full flex-col text-ink">
         <LanguageProvider>
           <SiteHeader />
-          <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 outline-none sm:px-6"
+          >
             {children}
           </main>
           <SiteFooter />
+          <AssistantWidget />
         </LanguageProvider>
       </body>
     </html>

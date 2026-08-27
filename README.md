@@ -306,6 +306,22 @@ python scripts/generate_data.py
 
 浏览器演示使用 TypeScript 当场计算（公开序列 UniProt P02769 或明示合成数据），**不**调用 `tools-poc` 中的 Python 进程。质谱 RAW / mzML 上传走 `MethodAnalysisPanel` → `analysis-service`，与演示层分离。
 
+## AI 助手（本机 Dify Chatflow）
+
+右下角悬浮窗经本站服务端代理调用本机 Dify，**浏览器不持有 API Key**。助手只解释系统资料和已有分析结果，**不构成生物类似药认定或监管建议**。
+
+本机 `.env.local`（已由 `.gitignore` 忽略，勿提交真实 Key）：
+
+```
+DIFY_API_BASE_URL=http://127.0.0.1/v1
+DIFY_APP_API_KEY=
+DIFY_TIMEOUT_MS=60000
+```
+
+不要把上述变量写成 `NEXT_PUBLIC_*`。未配置 `DIFY_APP_API_KEY` 时，健康检查返回 `configured: false`，聊天接口返回 `DIFY_UNCONFIGURED`。
+
+知识库与 Chatflow DSL 见 `knowledge/assistant/` 与 `dify/biosimilar-assistant-chatflow.yml`。校验：`npm run verify:assistant`。
+
 分析软件审计：[`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md)。
 
 ## 本期明确不做
