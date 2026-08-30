@@ -32,6 +32,15 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# BioCompare local runtime and generated logs
+/.runtime/
+/logs/
+/glycresoft-log
+/node.*.log
+/.pytest_cache/
+*.pyc
 
 # vercel
 .vercel

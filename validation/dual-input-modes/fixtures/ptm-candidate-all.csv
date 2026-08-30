@@ -1,0 +1,5 @@
+lot_id,replicate_id,protein_chain,residue,position,modification,value_percent,quant_status,loq_percent,identification_q_value,localization_probability,risk_level
+C01,1,HC,M,252,Oxidation,1.40,quantified,0.05,0.001,0.98,high
+C01,1,HC,N,387,Deamidation,2.80,quantified,0.05,0.001,0.96,medium
+C01,1,HC,Q,1,pyroGlu,93.50,quantified,0.05,0.001,0.99,medium
+C01,1,HC,K,450,C-terminal-Lys,12.00,quantified,0.05,0.001,0.99,medium

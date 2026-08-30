@@ -1,0 +1,102 @@
+{
+  "moduleCode": "PTM-01",
+  "status": "completed",
+  "professionalEngine": "MetaMorpheus 1.1.7 + FlashLFQ (isolated subprocess) + Pyteomics 5",
+  "siteRows": [
+    {
+      "cohort": "candidate",
+      "lotId": "C01",
+      "accession": "P0CX23",
+      "residue": "M",
+      "position": 90,
+      "modification": "Oxidation",
+      "relativeAbundancePercent": 0.0,
+      "hotspot": false,
+      "isoAspStatus": null,
+      "massShiftDa": 15.994915
+    },
+    {
+      "cohort": "candidate",
+      "lotId": "C01",
+      "accession": "P16521",
+      "residue": "M",
+      "position": 194,
+      "modification": "Oxidation",
+      "relativeAbundancePercent": 100.0,
+      "hotspot": false,
+      "isoAspStatus": null,
+      "massShiftDa": 15.994915
+    },
+    {
+      "cohort": "reference",
+      "lotId": "R01",
+      "accession": "P0CX23",
+      "residue": "M",
+      "position": 90,
+      "modification": "Oxidation",
+      "relativeAbundancePercent": 0.0,
+      "hotspot": false,
+      "isoAspStatus": null,
+      "massShiftDa": 15.994915
+    },
+    {
+      "cohort": "reference",
+      "lotId": "R01",
+      "accession": "P16521",
+      "residue": "M",
+      "position": 194,
+      "modification": "Oxidation",
+      "relativeAbundancePercent": 100.0,
+      "hotspot": false,
+      "isoAspStatus": null,
+      "massShiftDa": 15.994915
+    }
+  ],
+  "comparison": {
+    "intervals": [],
+    "candidateMarks": [
+      {
+        "lot_id": "C01",
+        "feature": "P0CX23:M90:Oxidation",
+        "value": 0.0,
+        "intervalStatus": "insufficient-reference",
+        "deviationFromReferenceCenter": null
+      },
+      {
+        "lot_id": "C01",
+        "feature": "P16521:M194:Oxidation",
+        "value": 100.0,
+        "intervalStatus": "insufficient-reference",
+        "deviationFromReferenceCenter": null
+      }
+    ],
+    "summary": {
+      "within": 0,
+      "outside": 0,
+      "new-variant": 0,
+      "insufficient-reference": 2
+    },
+    "decision": null,
+    "disclaimer": "仅客观标记候选药是否落入多批参照药区间，不自动给出生物相似性结论。"
+  },
+  "qualityGate": {
+    "passed": true,
+    "acceptedPsmCount": 150,
+    "quantifiedPeptideCount": 49,
+    "message": "1% FDR后获得可定量PTM证据"
+  },
+  "warnings": [],
+  "unidecEvidence": {
+    "status": "not-applicable"
+  },
+  "isoAspEvidence": {
+    "status": "not-applicable"
+  },
+  "openSearchSlot": {
+    "status": "reserved",
+    "engine": "Sage",
+    "phase": "二期意外修饰发现"
+  },
+  "decision": null,
+  "disclaimer": "仅展示专业引擎证据、相对丰度和参照区间标记，不自动给出生物相似性结论。"
+}

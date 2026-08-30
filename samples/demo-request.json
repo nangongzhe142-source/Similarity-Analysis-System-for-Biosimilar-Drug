@@ -1,0 +1,17 @@
+{
+  "mode": "peak-list",
+  "methodKey": "intact-mass",
+  "toleranceDa": 2,
+  "candidatePeaks": [
+    { "mass": 148057.2, "intensity": 100 },
+    { "mass": 148219.1, "intensity": 58 },
+    { "mass": 148381.4, "intensity": 24 },
+    { "mass": 147895.0, "intensity": 17 }
+  ],
+  "referencePeaks": [
+    { "mass": 148056.7, "intensity": 100 },
+    { "mass": 148218.9, "intensity": 61 },
+    { "mass": 148381.0, "intensity": 21 },
+    { "mass": 147894.6, "intensity": 19 }
+  ]
+}

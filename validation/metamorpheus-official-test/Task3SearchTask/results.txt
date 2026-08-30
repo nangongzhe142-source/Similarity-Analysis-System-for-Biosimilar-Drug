@@ -1,0 +1,76 @@
+MetaMorpheus: version 1.1.7
+Time to run task: 00:00:01.4085811
+
+--------------------------------------------------
+
+All target PSMs with q-value <= 0.01: 89
+All target peptides with q-value <= 0.01: 60
+All target protein groups with q-value <= 0.01 (1% FDR): 47
+All Precursors: 482
+All MS2 Scans: 118
+
+
+
+--------------------------------------------------
+
+Engine Results:
+
+Engine type: DatabaseLoadingEngine
+Time to run engine: 00:00:00.3582607
+Databases loaded:
+	SmallYeastGPTMD.xml: 198 Proteins
+		99 Target Proteins 	 99 Decoy Proteins
+Total Proteins loaded: 198
+Total Proteins removed by sanitization: 0
+Total Proteins renamed by sanitization: 0
+Total decoy Proteins scrambled due to homology: 1
+Total Proteins remaining: 198
+
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.2779314
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0023704
+PSMs within 1% FDR: 89
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: DisambiguationEngine
+Time to run engine: 00:00:00.0014413
+Ambiguous Peptides removed QValueNotch: 0
+
+
+Engine type: ModificationAnalysisEngine
+Time to run engine: 00:00:00.0159807
+Localized mods seen below q-value 0.01:
+	Deamidation on N	2
+	Carbamidomethyl on C	1
+	Oxidation on M	1
+	Methylation on R	1
+(Approx) Additional localized but protein ambiguous mods seen below q-value 0.01:
+
+(Approx) Additional unlocalized mods seen below q-value 0.01:
+
+(Approx) Additional unlocalized modification formulas seen below q-value 0.01:
+
+
+All mods in database limited to peptides observed in the results:
+	Deamidation on N	3
+	Hydroxylation on K	1
+	Methylation on R	1
+
+
+Engine type: ProteinParsimonyEngine
+Time to run engine: 00:00:00.0357223
+
+
+Engine type: ProteinScoringAndFdrEngine
+Time to run engine: 00:00:00.0386102
+Number of proteins within 1% FDR: 47
+
+Engine type: ProteinScoringAndFdrEngine
+Time to run engine: 00:00:00.0038206
+Number of proteins within 1% FDR: 47
+

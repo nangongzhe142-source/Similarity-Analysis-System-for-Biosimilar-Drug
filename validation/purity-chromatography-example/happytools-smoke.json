@@ -1,0 +1,24 @@
+{
+  "engine": "HappyTools",
+  "source": "C:\\Users\\MI\\bioTools\\HappyTools",
+  "anchorCount": 3,
+  "anchors": [
+    {
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "observed": 10,
+      "expected": 10
+    },
+    {
+      "observed": 20,
+      "expected": 20
+    }
+  ],
+  "polynomialCoefficients": [
+    -3.7396024174029644e-17,
+    1.0000000000000007,
+    1.0255800994045676e-15
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "study_id": "STUDY-001",
+  "comparison_item": "intact-mass",
+  "candidate": {
+    "product_role": "candidate",
+    "product_code": "A",
+    "batch_no": "A-LOT-001",
+    "sample_preparation": "intact",
+    "files": ["candidate.mzML", "candidate-report.pdf"]
+  },
+  "reference": {
+    "product_role": "reference",
+    "product_code": "B",
+    "batch_no": "B-LOT-001",
+    "sample_preparation": "intact",
+    "files": ["reference.mzML", "reference-report.pdf"]
+  },
+  "instrument": {
+    "manufacturer": "填写",
+    "model": "填写",
+    "software": "填写",
+    "acquisition_mode": "profile-or-centroid",
+    "polarity": "positive"
+  },
+  "method": {
+    "method_id": "METHOD-MS-001",
+    "method_version": "1.0",
+    "enzyme": null,
+    "deglycosylation": false,
+    "reduction": false,
+    "mass_type": "average",
+    "matching_tolerance_da": 2.0
+  },
+  "sequences": ["molecule.fasta"],
+  "software": [
+    {"name": "UniDec", "version": "8.2.1", "configuration_file": "unidec_conf.dat"}
+  ],
+  "notes": "本模板是平台内部标准，不代表监管机构规定的唯一提交格式。"
+}

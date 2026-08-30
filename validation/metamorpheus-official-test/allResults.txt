@@ -1,0 +1,247 @@
+MetaMorpheus: version 1.1.7
+Total time: 00:00:04.4012445
+
+
+
+
+Time to run task: 00:00:02.0692564
+
+--------------------------------------------------
+
+New files:
+New spectra: 
+
+C:\Users\MI\Documents\ChatGPT\ai生物类似药\biosimilar-comparison-platform\validation\metamorpheus-official-test\Task1CalibrationTask\SmallCalibratible_Yeast-calib.mzML
+
+--------------------------------------------------
+
+
+
+
+--------------------------------------------------
+
+Engine Results:
+
+Engine type: DatabaseLoadingEngine
+Time to run engine: 00:00:00.1859080
+Databases loaded:
+	SmallYeast.fasta: 198 Proteins
+		99 Target Proteins 	 99 Decoy Proteins
+Total Proteins loaded: 198
+Total Proteins removed by sanitization: 0
+Total Proteins renamed by sanitization: 0
+Total decoy Proteins scrambled due to homology: 1
+Total Proteins remaining: 198
+
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.2959760
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0182201
+PSMs within 1% FDR: 68
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: DataPointAcquisitionEngine
+Time to run engine: 00:00:00.0214923
+MS1 calibration datapoint count: 521
+MS1 ppm error median: -1.802
+MS1 ppm error interquartile range: 0.665
+MS2 calibration datapoint count: 778
+MS2 ppm error median: -0.353
+MS2 ppm error interquartile range: 2.367
+
+
+Engine type: CalibrationEngine
+Time to run engine: 00:00:00.0089117
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.2062257
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0019824
+PSMs within 1% FDR: 63
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: DataPointAcquisitionEngine
+Time to run engine: 00:00:00.0051570
+MS1 calibration datapoint count: 397
+MS1 ppm error median: -0.712
+MS1 ppm error interquartile range: 0.62
+MS2 calibration datapoint count: 727
+MS2 ppm error median: -0.707
+MS2 ppm error interquartile range: 2.204
+
+
+Engine type: CalibrationEngine
+Time to run engine: 00:00:00.0013070
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.2180817
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0014512
+PSMs within 1% FDR: 61
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: DataPointAcquisitionEngine
+Time to run engine: 00:00:00.0052151
+MS1 calibration datapoint count: 333
+MS1 ppm error median: -0.559
+MS1 ppm error interquartile range: 0.606
+MS2 calibration datapoint count: 714
+MS2 ppm error median: -0.361
+MS2 ppm error interquartile range: 2.199
+
+
+
+
+
+
+
+Time to run task: 00:00:00.8799259
+
+--------------------------------------------------
+
+New files:
+New databases: 
+C:\Users\MI\Documents\ChatGPT\ai生物类似药\biosimilar-comparison-platform\validation\metamorpheus-official-test\Task2GptmdTask\SmallYeastGPTMD.xml
+
+--------------------------------------------------
+
+
+Modifications added: 10
+Mods types and counts:
+	Hydroxylation on K	3
+	Deamidation on N	3
+	Dimethylation on K	1
+	Methylation on K	1
+	Methylation on R	1
+	Potassium on E	1
+
+
+--------------------------------------------------
+
+Engine Results:
+
+Engine type: DatabaseLoadingEngine
+Time to run engine: 00:00:00.2555464
+Databases loaded:
+	SmallYeast.fasta: 198 Proteins
+		99 Target Proteins 	 99 Decoy Proteins
+Total Proteins loaded: 198
+Total Proteins removed by sanitization: 0
+Total Proteins renamed by sanitization: 0
+Total decoy Proteins scrambled due to homology: 1
+Total Proteins remaining: 198
+
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.5495982
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0023051
+PSMs within 1% FDR: 88
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: GptmdEngine
+Time to run engine: 00:00:00.0156424
+Modifications trying to add: 14
+Proteins trying to expand: 9
+Mods types and counts:
+	Hydroxylation on K	3
+	Deamidation on N	3
+	Potassium on E	1
+	Dimethylation on K	1
+	Methylation on K	1
+	Methylation on R	1
+
+
+
+
+
+
+Time to run task: 00:00:01.4085811
+
+--------------------------------------------------
+
+All target PSMs with q-value <= 0.01: 89
+All target peptides with q-value <= 0.01: 60
+All target protein groups with q-value <= 0.01 (1% FDR): 47
+All Precursors: 482
+All MS2 Scans: 118
+
+
+
+--------------------------------------------------
+
+Engine Results:
+
+Engine type: DatabaseLoadingEngine
+Time to run engine: 00:00:00.3582607
+Databases loaded:
+	SmallYeastGPTMD.xml: 198 Proteins
+		99 Target Proteins 	 99 Decoy Proteins
+Total Proteins loaded: 198
+Total Proteins removed by sanitization: 0
+Total Proteins renamed by sanitization: 0
+Total decoy Proteins scrambled due to homology: 1
+Total Proteins remaining: 198
+
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.2779314
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0023704
+PSMs within 1% FDR: 89
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: DisambiguationEngine
+Time to run engine: 00:00:00.0014413
+Ambiguous Peptides removed QValueNotch: 0
+
+
+Engine type: ModificationAnalysisEngine
+Time to run engine: 00:00:00.0159807
+Localized mods seen below q-value 0.01:
+	Deamidation on N	2
+	Carbamidomethyl on C	1
+	Oxidation on M	1
+	Methylation on R	1
+(Approx) Additional localized but protein ambiguous mods seen below q-value 0.01:
+
+(Approx) Additional unlocalized mods seen below q-value 0.01:
+
+(Approx) Additional unlocalized modification formulas seen below q-value 0.01:
+
+
+All mods in database limited to peptides observed in the results:
+	Deamidation on N	3
+	Hydroxylation on K	1
+	Methylation on R	1
+
+
+Engine type: ProteinParsimonyEngine
+Time to run engine: 00:00:00.0357223
+
+
+Engine type: ProteinScoringAndFdrEngine
+Time to run engine: 00:00:00.0386102
+Number of proteins within 1% FDR: 47
+
+Engine type: ProteinScoringAndFdrEngine
+Time to run engine: 00:00:00.0038206
+Number of proteins within 1% FDR: 47
+
+

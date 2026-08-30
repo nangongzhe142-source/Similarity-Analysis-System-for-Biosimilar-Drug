@@ -1,0 +1,4 @@
+accession,peptide_sequence,q_value,source_file
+HC,MPEPTIDEK,0.001,C01.raw
+HC,VVVVVVK,0.005,C01.raw
+LC,ACDEFGHIK,0.002,C01.raw

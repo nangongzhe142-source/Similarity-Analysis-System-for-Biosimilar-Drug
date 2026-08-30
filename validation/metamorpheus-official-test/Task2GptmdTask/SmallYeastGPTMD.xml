@@ -1,0 +1,1691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mzLibProteinDb>
+  <modification>ID   Deamidation on N
+MT   Common Artifact
+TG   N
+PP   Anywhere.
+CF   H-1N-1O
+MM   0.984015583
+DR   Unimod; 7
+
+//</modification>
+  <modification>ID   Dimethylation on K
+MT   Common Biological
+TG   K
+PP   Anywhere.
+CF   C2H4
+MM   28.031300129
+DR   Unimod; 36
+
+//</modification>
+  <modification>ID   Hydroxylation on K
+MT   Common Biological
+TG   K
+PP   Anywhere.
+CF   O
+MM   15.99491462
+DR   Unimod; 35
+
+//</modification>
+  <modification>ID   Methylation on K
+MT   Common Biological
+TG   K
+PP   Anywhere.
+CF   CH2
+MM   14.015650064
+DR   Unimod; 34
+
+//</modification>
+  <modification>ID   Methylation on R
+MT   Common Biological
+TG   R
+PP   Anywhere.
+CF   CH2
+MM   14.015650064
+DR   Unimod; 34
+
+//</modification>
+  <modification>ID   Potassium on E
+MT   Metal
+TG   E
+PP   Anywhere.
+CF   H-1K
+MM   37.955881454
+DR   Unimod; 530
+
+//</modification>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P38013</accession>
+    <name>Peroxiredoxin type-2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Peroxiredoxin type-2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">AHP1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="176" mass="19103" checksum="unknown" modified="2026-08-25" version="-1">MSDLVNKKFPAGDYKFQYIAISQSDADSESCKMPQTVEWSKLISENKKVIITGAPAAFSPTCTVSHIPGYINYLDELVKEKEVDQVIVVTVDNPFANQAWAKSLGVKDTTHIKFASDPGCAFTKSIGFELAVGDGVYWSGRWAMVVENGIVTYAAKETNPGTDVTVSSVESVLAHL</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P46672</accession>
+    <name>tRNA-aminoacylation cofactor ARC1</name>
+    <protein>
+      <recommendedName>
+        <fullName>tRNA-aminoacylation cofactor ARC1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">ARC1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="376" mass="42058" checksum="unknown" modified="2026-08-25" version="-1">MSDLVTKFESLIISKYPVSFTKEQSAQAAQWESVLKSGQIQPHLDQLNLVLRDNTFIVSTLYPTSTDVHVFEVALPLIKDLVASSKDVKSTYTTYRHILRWIDYMQNLLEVSSTDKLEINHDLDLPHEVIEKKKKAPAGGAADAAAKADEDVSKKAKKQDHPRGKPDEETLKKLREEAKAKKAAKKAANAKQQQEQQNKAPEKPKPSAIDFRVGFIQKAIKHPDADSLYVSTIDVGDEEGPRTVCSGLVKHFPLDAMQERYVVVVCNLKPVNMRGIKSTAMVLCGSNDDKVEFVEPPKDSKAGDKVFFEGFGDEAPMKQLNPKKKIWEHLQPHFTTNDGLEVIFKDEEEKDHPVRKLTNAKGESFKVASIANAQVR</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q01389</accession>
+    <name>Serine/threonine-protein kinase BCK1/SLK1/SSP31</name>
+    <protein>
+      <recommendedName>
+        <fullName>Serine/threonine-protein kinase BCK1/SLK1/SSP31</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">BCK1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1478" mass="164094" checksum="unknown" modified="2026-08-25" version="-1">MPFLRKIAGTAHTHSRSDSNSSVKFGHQPTSSVASTKSSSKSPRATSRKSIYDDIRSQFPNLTPNSTSSQFYESTPVIEQSFNWTTDDHISAGTLENPTSFTNSSYKNDNGPSSLSDSRKSSGGNSVNSLSFDKLILSWDPTDPDEWTMHRVTSWFKFHDFPESWILFFKKHQLFGHRFIKLLAYDNFAVYEKYLPQTKTASYTRFQQLLKKTMTKNVTNSHIRQKSASKLKSSRSSSESIKSKLKNSKSQEDISNSRSTSESALSPTKSGPSKTDEKNFLHSTSTHQKTKSASSLYRRSFISLRGSSSSNASSAKSPSNIKLSIPARPHSIIESNSTLTKSASPPASPSYPSIFRRHHKSSSSESSLLNSLFGSGIGEEAPTKPNPQGHSLSSENLAKGKSKHYETNVSSPLKQSSLPTSDDKGNLWNKFKRKSQIGVPSPNTVAYVTSQETPSLKSNSSTATLTVQTADVNIPSPSSSPPPIPKTANRSLEVISTEDTPKISSTTASFKETYPDCINPDKTVPVPVNNQKYSVKNFLLDQKFYPLKKTGLNDSENKYILVTKDNVSFVPLNLKSVAKLSSFKESALTKLGINHKNVTFHMTDFDCDIGAAIPDDTLEFLKKSLFLNTSGKIYIKDQMKLQQKPKPAPLTSENNVPLKSVKSKSSMRSGTSSLIASTDDVSIVTSSSDITSFDEHASGSGRRYPQTPSYYYDRVSNTNPTEELNYWNIKEVLSHEENAPKMVFKTSPKLELNLPDKGSKLNIPTPITENESKSSFQVLRKDEGTEIDFNHRRESPYTKPELAPKREAPKPPANTSPQRTLSTSKQNKPIRLVRASTKISRSKRSKPLPPQLLSSPIEASSSSPDSLTSSYTPASTHVLIPQPYKGANDVMRRLKTDQDSTSTSPSLKMKQKVNRSNSTVSTSNSIFYSPSPLLKRGNSKRVVSSTSAADIFEENDITFADAPPMFDSDDSDDDSSSSDDIIWSKKKTAPETNNENKKDEKSDNSSTHSDEIFYDSQTQDKMERKMTFRPSPEVVYQNLEKFFPRANLDKPITEGIASPTSPKSLDSLLSPKNVASSRTEPSTPSRPVPPDSSYEFIQDGLNGKNKPLNQAKTPKRTKTIRTIAHEASLARKNSVKLKRQNTKMWGTRMVEVTENHMVSINKAKNSKGEYKEFAWMKGEMIGKGSFGAVYLCLNVTTGEMMAVKQVEVPKYSSQNEAILSTVEALRSEVSTLKDLDHLNIVQYLGFENKNNIYSLFLEYVAGGSVGSLIRMYGRFDEPLIKHLTTQVLKGLAYLHSKGILHRDMKADNLLLDQDGICKISDFGISRKSKDIYSNSDMTMRGTVFWMAPEMVDTKQGYSAKVDIWSLGCIVLEMFAGKRPWSNLEVVAAMFKIGKSKSAPPIPEDTLPLISQIGRNFLDACFEINPEKRPTANELLSHPFSEVNETFNFKSTRLAKFIKSNDKLNSSKLRITSQENKTE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P07267</accession>
+    <name>Saccharopepsin</name>
+    <protein>
+      <recommendedName>
+        <fullName>Saccharopepsin</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">PEP4</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="405" mass="44471" checksum="unknown" modified="2026-08-25" version="-1">MFSLKALLPLALLLVSANQVAAKVHKAKIYKHELSDEMKEVTFEQHLAHLGQKYLTQFEKANPEVVFSREHPFFTEGGHDVPLTNYLNAQYYTDITLGTPPQNFKVILDTGSSNLWVPSNECGSLACFLHSKYDHEASSSYKANGTEFAIQYGTGSLEGYISQDTLSIGDLTIPKQDFAEATSEPGLTFAFGKFDGILGLGYDTISVDKVVPPFYNAIQQDLLDEKRFAFYLGDTSKDTENGGEATFGGIDESKFKGDITWLPVRRKAYWEVKFEGIGLGDEYAELESHGAAIDTGTSLITLPSGLAEMINAEIGAKKGWTGQYTLDCNTRDNLPDLIFNFNGYNFTIGPYDYTLEVSGSCISAITPMDFPEPVGPLAIVGDAFLRKYYSIYDLGNNAVGLAKAI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P29547</accession>
+    <name>Elongation factor 1-gamma 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Elongation factor 1-gamma 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">CAM1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="415" mass="47058" checksum="unknown" modified="2026-08-25" version="-1">MSQGTLYANFRIRTWVPRGLVKALKLDVKVVTPDAAAEQFARDFPLKKVPAFVGPKGYKLTEAMAINYYLVKLSQDDKMKTQLLGADDDLNAQAQIIRWQSLANSDLCIQIANTIVPLKGGAPYNKKSVDSAMDAVDKIVDIFENRLKNYTYLATENISLADLVAASIFTRYFESLFGTEWRAQHPAIVRWFNTVRASPFLKDEYKDFKFADKPLSPPQKKKEKKAPAAAPAASKKKEEAKPAATETETSSKKPKHPLELLGKSTFVLDDWKRKYSNEDTRPVALPWFWEHYNPEEYSLWKVTYKYNDELTLTFMSNNLVGGFFNRLSASTKYMFGCLVVYGENNNNGIVGAVMVRGQDYVPAFDVAPDWESYDYAKLDPTNDDDKEFINNMWAWDKPVSVNGEPKEIVDGKVLK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P43616</accession>
+    <name>Cys-Gly metallodipeptidase DUG1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Cys-Gly metallodipeptidase DUG1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">DUG1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="481" mass="52838" checksum="unknown" modified="2026-08-25" version="-1">MSHSLTSVFQKIDSLKPQFFSRLTKAIQIPAVSSDESLRSKVFDKAKFISEQLSQSGFHDIKMVDLGIQPPPISTPNLSLPPVILSRFGSDPSKKTVLVYGHYDVQPAQLEDGWDTEPFKLVIDEAKGIMKGRGVTDDTGPLLSWINVVDAFKASGQEFPVNLVTCFEGMEESGSLKLDELIKKEANGYFKGVDAVCISDNYWLGTKKPVLTYGLRGCNYYQTIIEGPSADLHSGIFGGVVAEPMIDLMQVLGSLVDSKGKILIDGIDEMVAPLTEKEKALYKDIEFSVEELNAATGSKTSLYDKKEDILMHRWRYPSLSIHGVEGAFSAQGAKTVIPAKVFGKFSIRTVPDMDSEKLTSLVQKHCDAKFKSLNSPNKCRTELIHDGAYWVSDPFNAQFTAAKKATKLVYGVDPDFTREGGSIPITLTFQDALNTSVLLLPMGRGDDGAHSINEKLDISNFVGGMKTMAAYLQYYSESPEN</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P02994</accession>
+    <name>Elongation factor 1-alpha</name>
+    <protein>
+      <recommendedName>
+        <fullName>Elongation factor 1-alpha</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TEF1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Hydroxylation on K">
+      <location>
+        <position position="384" />
+      </location>
+    </feature>
+    <sequence length="458" mass="50001" checksum="unknown" modified="2026-08-25" version="-1">MGKEKSHINVVVIGHVDSGKSTTTGHLIYKCGGIDKRTIEKFEKEAAELGKGSFKYAWVLDKLKAERERGITIDIALWKFETPKYQVTVIDAPGHRDFIKNMITGTSQADCAILIIAGGVGEFEAGISKDGQTREHALLAFTLGVRQLIVAVNKMDSVKWDESRFQEIVKETSNFIKKVGYNPKTVPFVPISGWNGDNMIEATTNAPWYKGWEKETKAGVVKGKTLLEAIDAIEQPSRPTDKPLRLPLQDVYKIGGIGTVPVGRVETGVIKPGMVVTFAPAGVTTEVKSVEMHHEQLEQGVPGDNVGFNVKNVSVKEIRRGNVCGDAKNDPPKGCASFNATVIVLNHPGQISAGYSPVLDCHTAHIACRFDELLEKNDRRSGKKLEDHPKFLKSGDAALVKFVPSKPMCVEAFSEYPPLGRFAVRDMRQTVAVGVIKSVDKTEKAAKVTKAAQKAAKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P16521</accession>
+    <name>Elongation factor 3A</name>
+    <protein>
+      <recommendedName>
+        <fullName>Elongation factor 3A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">YEF3</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Dimethylation on K">
+      <location>
+        <position position="902" />
+      </location>
+    </feature>
+    <feature type="modified residue" description="Methylation on K">
+      <location>
+        <position position="902" />
+      </location>
+    </feature>
+    <sequence length="1044" mass="115872" checksum="unknown" modified="2026-08-25" version="-1">MSDSQQSIKVLEELFQKLSVATADNRHEIASEVASFLNGNIIEHDVPEHFFGELAKGIKDKKTAANAMQAVAHIANQSNLSPSVEPYIVQLVPAICTNAGNKDKEIQSVASETLISIVNAVNPVAIKALLPHLTNAIVETNKWQEKIAILAAISAMVDAAKDQVALRMPELIPVLSETMWDTKKEVKAAATAAMTKATETVDNKDIERFIPSLIQCIADPTEVPETVHLLGATTFVAEVTPATLSIMVPLLSRGLNERETGIKRKSAVIIDNMCKLVEDPQVIAPFLGKLLPGLKSNFATIADPEAREVTLRALKTLRRVGNVGEDDAIPEVSHAGDVSTTLQVVNELLKDETVAPRFKIVVEYIAAIGADLIDERIIDQQAWFTHITPYMTIFLHEKKAKDILDEFRKRAVDNIPVGPNFDDEEDEGEDLCNCEFSLAYGAKILLNKTQLRLKRARRYGICGPNGCGKSTLMRAIANGQVDGFPTQEECRTVYVEHDIDGTHSDTSVLDFVFESGVGTKEAIKDKLIEFGFTDEMIAMPISALSGGWKMKLALARAVLRNADILLLDEPTNHLDTVNVAWLVNYLNTCGITSITISHDSVFLDNVCEYIINYEGLKLRKYKGNFTEFVKKCPAAKAYEELSNTDLEFKFPEPGYLEGVKTKQKAIVKVTNMEFQYPGTSKPQITDINFQCSLSSRIAVIGPNGAGKSTLINVLTGELLPTSGEVYTHENCRIAYIKQHAFAHIESHLDKTPSEYIQWRFQTGEDRETMDRANRQINENDAEAMNKIFKIEGTPRRIAGIHSRRKFKNTYEYECSFLLGENIGMKSERWVPMMSVDNAWIPRGELVESHSKMVAEVDMKEALASGQFRPLTRKEIEEHCSMLGLDPEIVSHSRIRGLSGGQKVKLVLAAGTWQRPHLIVLDEPTNYLDRDSLGALSKALKEFEGGVIIITHSAEFTKNLTEEVWAVKDGRMTPSGHNWVSGQGAGPRIEKKEDEEDKFDAMGNKIAGGKKKKKLSSAELRKKKKERMKKKKELGDAYVSSDEEF</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P53911</accession>
+    <name>Chromatin modification-related protein EAF7</name>
+    <protein>
+      <recommendedName>
+        <fullName>Chromatin modification-related protein EAF7</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">EAF7</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="425" mass="49361" checksum="unknown" modified="2026-08-25" version="-1">MVVHWTIVDEIRLLRWASEFKPAGIHKHFHMFCIVERMNSPDKYPVTLLQKETMKLGKVFTAKDIWDKLSQSYNLEKIDEMENTYSLEATTESSRNGNGNGDDAEIHEETLLELNNRIRVRKQDFTLPWEEYGELILENARKSPNSNEEYPRVEDMNEKDSTIPKESPSTDLKNDNNKQEKNATIKVKELPEYHTEENDSPIDVQKEPIKEVQSDEKELQREHMSEEEQKMKSTNKTAAPVRKSQRLKRSKEVKFEDEEKEEIEEDNTKDEEQKEKKEEIQEPKITHNEEVDKEKNENEEGDDEREKSTSYENTNGSESEGVDEGVDEELGYESEREAEGKGKQIESEGGNLKKKTENKKGDDQQDDTKKDSKDKNEPLAKRTRHSSSTGNTSNETSPKRKRRKAGSRKNSPPATRVSSRLRNKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P00359</accession>
+    <name>Glyceraldehyde-3-phosphate dehydrogenase 3</name>
+    <protein>
+      <recommendedName>
+        <fullName>Glyceraldehyde-3-phosphate dehydrogenase 3</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TDH3</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Hydroxylation on K">
+      <location>
+        <position position="115" />
+      </location>
+    </feature>
+    <sequence length="332" mass="35724" checksum="unknown" modified="2026-08-25" version="-1">MVRVAINGFGRIGRLVMRIALSRPNVEVVALNDPFITNDYAAYMFKYDSTHGRYAGEVSHDDKHIIVDGKKIATYQERDPANLPWGSSNVDIAIDSTGVFKELDTAQKHIDAGAKKVVITAPSSTAPMFVMGVNEEKYTSDLKIVSNASCTTNCLAPLAKVINDAFGIEEGLMTTVHSLTATQKTVDGPSHKDWRGGRTASGNIIPSSTGAAKAVGKVLPELQGKLTGMAFRVPTVDVSVVDLTVKLNKETTYDEIKKVVKAAAEGKLKGVLGYTEDAVVSSDFLGDSHSSIFDASAGIQLSPKFVKLVSWYDNEYGYSTRVVDLVEHVAKA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P00358</accession>
+    <name>Glyceraldehyde-3-phosphate dehydrogenase 2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Glyceraldehyde-3-phosphate dehydrogenase 2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TDH2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Hydroxylation on K">
+      <location>
+        <position position="115" />
+      </location>
+    </feature>
+    <sequence length="332" mass="35824" checksum="unknown" modified="2026-08-25" version="-1">MVRVAINGFGRIGRLVMRIALQRKNVEVVALNDPFISNDYSAYMFKYDSTHGRYAGEVSHDDKHIIVDGHKIATFQERDPANLPWASLNIDIAIDSTGVFKELDTAQKHIDAGAKKVVITAPSSTAPMFVMGVNEEKYTSDLKIVSNASCTTNCLAPLAKVINDAFGIEEGLMTTVHSMTATQKTVDGPSHKDWRGGRTASGNIIPSSTGAAKAVGKVLPELQGKLTGMAFRVPTVDVSVVDLTVKLNKETTYDEIKKVVKAAAEGKLKGVLGYTEDAVVSSDFLGDSNSSIFDAAAGIQLSPKFVKLVSWYDNEYGYSTRVVDLVEHVAKA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P24583</accession>
+    <name>Protein kinase C-like 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Protein kinase C-like 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">PKC1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1151" mass="131394" checksum="unknown" modified="2026-08-25" version="-1">MSFSQLEQNIKKKIAVEENIIRGASALKKKTSNVMVIQKCNTNIREARQNLEYLEDSLKKLRLKTAQQSQGENGSEDNERCNSKEYGFLSTKSPNEHIFSRLDLVKYDCPSLAQRIQYMLQQLEFKLQVEKQYQEANTKLTKLYQIDGDQRSSSAAEGGAMESKYRIQMLNKALKKYQAINVDFDQFKHQPNDIMDNQQPKFRRKQLTGVLTIGITAARDVDHIQSPMFARKPESYVTIKIDDTIKARTKPSRNDRWSEDFQIPVEKGNEIEITVYDKVNDSLIPVAIMWLLLSDIAEEIRKKKAGQTNEQQGWVNASNINGGSSLASEEGSTLTSTYSNSAIQSTSAKNVQGENTSTSQISTNSWFVLEPSGQILLTLGFHKSSQIERKQLMGGLHRHGAIINRKEEIFEQHGHHFVQKSFYNIMCCAYCGDFLRYTGFQCQDCKFLCHKKCYTNVVTKCIAKTSTDTDPDEAKLNHRIPHRFLPTSNRGTKWCCHCGYILPWGRHKVRKCSECGIMCHAQCAHLVPDFCGMSMEMANKILKTIQDTKRNQEKKKRTVPSAQLGSSIGTANGSDLSPSKLAERANAPLPPQPRKHDKTPSPQKVGRDSPTKQHDPIIDKRISLQTHGREKLNKFIDENEAYLNFTEGAQQTAEFSSPEKTLDPTSNRRSLGLTDLSIEHSQTWESKDDLMRDELELWKAQREEMELEIKQDSGEIQEDLEVDHIDLETKQKLDWENKNDFREADLTIDSTHTNPFRDMNSETFQIEQDHASKEVLQETVSLAPTSTHASRTTDQQSPQKSQTSTSAKHKKRAAKRRKVSLDNFVLLKVLGKGNFGKVILSKSKNTDRLCAIKVLKKDNIIQNHDIESARAEKKVFLLATKTKHPFLTNLYCSFQTENRIYFAMEFIGGGDLMWHVQNQRLSVRRAKFYAAEVLLALKYFHDNGVIYRDLKLENILLTPEGHIKIADYGLCKDEMWYGNRTSTFCGTPEFMAPEILKEQEYTKAVDWWAFGVLLYQMLLCQSPFSGDDEDEVFNAILTDEPLYPIDMAGEIVQIFQGLLTKDPEKRLGAGPRDADEVMEEPFFRNINFDDILNLRVKPPYIPEIKSPEDTSYFEQEFTSAPPTLTPLPSVLTTSQQEEFRGFSFMPDDLDL</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12460</accession>
+    <name>Nucleolar protein 56</name>
+    <protein>
+      <recommendedName>
+        <fullName>Nucleolar protein 56</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">NOP56</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="504" mass="56829" checksum="unknown" modified="2026-08-25" version="-1">MAPIEYLLFEEPTGYAVFKVKLQQDDIGSRLKEVQEQINDFGAFTKLIELVSFAPFKGAAEALENANDISEGLVSESLKAILDLNLPKASSKKKNITLAISDKNLGPSIKEEFPYVDCISNELAQDLIRGVRLHGEKLFKGLQSGDLERAQLGLGHAYSRAKVKFSVQKNDNHIIQAIALLDQLDKDINTFAMRVKEWYGWHFPELAKLVPDNYTFAKLVLFIKDKASLNDDSLHDLAALLNEDSGIAQRVIDNARISMGQDISETDMENVCVFAQRVASLADYRRQLYDYLCEKMHTVAPNLSELIGEVIGARLISHAGSLTNLSKQAASTVQILGAEKALFRALKTKGNTPKYGLIYHSGFISKASAKNKGRISRYLANKCSMASRIDNYSEEPSNVFGSVLKKQVEQRLEFYNTGKPTLKNELAIQEAMELYNKDKPAAEVEETKEKESSKKRKLEDDDEEKKEKKEKKSKKEKKEKKEKKDKKEKKDKKEKKDKKKKSKD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q99207</accession>
+    <name>Nucleolar complex protein 14</name>
+    <protein>
+      <recommendedName>
+        <fullName>Nucleolar complex protein 14</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">NOP14</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="810" mass="94244" checksum="unknown" modified="2026-08-25" version="-1">MAGSQLKNLKAALKARGLTGQTNVKSKNKKNSKRQAKEYDREEKKKAIAEIREEFNPFEIKAARNKRRDGLPSKTADRIAVGKPGISKQIGEEQRKRAFEARKMMKNKRGGVIDKRFGERDKLLTEEEKMLERFTRERQSQSKRNANLFNLEDDEDDGDMFGDGLTHLGQSLSLEDELANDEEDFLASKRFNEDDAELQQPQRKKTKAEVMKEVIAKSKFYKQERQKAQGIMEDQIDNLDDNFEDVMSELMMTQPKKNPMEPKTDLDKEYDIKVKELQLDKRAAPSDRTKTEEEKNAEAEEKKRELEQQRLDRMNGMIELEEGEERGVEDLDDGFWENEEDYEDDNDGIADSDDDIKFEDQGRDEGFSQILKKKNISISCPRTHDALLDQVKKLDLDDHPKIVKNIIKAYQPKLAEGNKEKLGKFTAVLLRHIIFLSNQNYLKNVQSFKRTQNALISILKSLSEKYNRELSEECRDYINEMQARYKKNHFDALSNGDLVFFSIIGILFSTSDQYHLVITPALILMSQFLEQIKFNSLKRIAFGAVLVRIVSQYQRISKRYIPEVVYFFQKILLTFIVEKENQEKPLDFENIRLDSYELGLPLDVDFTKKRSTIIPLHTLSTMDTEAHPVDQCVSVLLNVMESLDATISTVWKSLPAFNEIILPIQQLLSAYTSKYSDFEKPRNILNKVEKLTKFTEHIPLALQNHKPVSIPTHAPKYEENFNPDKKSYDPDRTRSEINKMKAQLKKERKFTMKEIRKDAKFEARQRIEEKNKESSDYHAKMAHIVNTINTEEGAEKNKYERERKLRGGKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P54784</accession>
+    <name>Origin recognition complex subunit 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Origin recognition complex subunit 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">ORC1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="914" mass="104335" checksum="unknown" modified="2026-08-25" version="-1">MAKTLKDLQGWEIITTDEQGNIIDGGQKRLRRRGAKTEHYLKRSSDGIKLGRGDSVVMHNEAAGTYSVYMIQELRLNTLNNVVELWALTYLRWFEVNPLAHYRQFNPDANILNRPLNYYNKLFSETANKNELYLTAELAELQLFNFIRVANVMDGSKWEVLKGNVDPERDFTVRYICEPTGEKFVDINIEDVKAYIKKVEPREAQEYLKDLTLPSKKKEIKRGPQKKDKATQTAQISDAETRATDITDNEDGNEDESSDYESPSDIDVSEDMDSGEISADELEEEEDEEEDEDEEEKEARHTNSPRKRGRKIKLGKDDIDASVQPPPKKRGRKPKDPSKPRQMLLISSCRANNTPVIRKFTKKNVARAKKKYTPFSKRFKSIAAIPDLTSLPEFYGNSSELMASRFENKLKTTQKHQIVETIFSKVKKQLNSSYVKEEILKSANFQDYLPARENEFASIYLSAYSAIESDSATTIYVAGTPGVGKTLTVREVVKELLSSSAQREIPDFLYVEINGLKMVKPTDCYETLWNKVSGERLTWAASMESLEFYFKRVPKNKKKTIVVLLDELDAMVTKSQDIMYNFFNWTTYENAKLIVIAVANTMDLPERQLGNKITSRIGFTRIMFTGYTHEELKNIIDLRLKGLNDSFFYVDTKTGNAILIDAAGNDTTVKQTLPEDVRKVRLRMSADAIEIASRKVASVSGDARRALKVCKRAAEIAEKHYMAKHGYGYDGKTVIEDENEEQIYDDEDKDLIESNKAKDDNDDDDDNDGVQTVHITHVMKALNETLNSHVITFMTRLSFTAKLFIYALLNLMKKNGSQEQELGDIVDEIKLLIEVNGSNKFVMEIAKTLFQQGSDNISEQLRIISWDFVLNQLLDAGILFKQTMKNDRICCVKLNISVEEAKRAMNEDETLRNL</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P06169</accession>
+    <name>Pyruvate decarboxylase isozyme 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Pyruvate decarboxylase isozyme 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">PDC1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Deamidation on N">
+      <location>
+        <position position="528" />
+      </location>
+    </feature>
+    <sequence length="563" mass="61457" checksum="unknown" modified="2026-08-25" version="-1">MSEITLGKYLFERLKQVNVNTVFGLPGDFNLSLLDKIYEVEGMRWAGNANELNAAYAADGYARIKGMSCIITTFGVGELSALNGIAGSYAEHVGVLHVVGVPSISAQAKQLLLHHTLGNGDFTVFHRMSANISETTAMITDIATAPAEIDRCIRTTYVTQRPVYLGLPANLVDLNVPAKLLQTPIDMSLKPNDAESEKEVIDTILALVKDAKNPVILADACCSRHDVKAETKKLIDLTQFPAFVTPMGKGSIDEQHPRYGGVYVGTLSKPEVKEAVESADLILSVGALLSDFNTGSFSYSYKTKNIVEFHSDHMKIRNATFPGVQMKFVLQKLLTTIADAAKGYKPVAVPARTPANAAVPASTPLKQEWMWNQLGNFLQEGDVVIAETGTSAFGINQTTFPNNTYGISQVLWGSIGFTTGATLGAAFAAEEIDPKKRVILFIGDGSLQLTVQEISTMIRWGLKPYLFVLNNDGYTIEKLIHGPKAQYNEIQGWDHLSLLPTFGAKDYETHRVATTGEWDKLTQDKSFNDNSKIRMIEIMLPVFDAPQNLVEQAKLTAATNAKQ</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P02293</accession>
+    <name>Histone H2B.1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Histone H2B.1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">HTB1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="131" mass="14244" checksum="unknown" modified="2026-08-25" version="-1">MSAKAEKKPASKAPAEKKPAAKKTSTSTDGKKRSKARKETYSSYIYKVLKQTHPDTGISQKSMSILNSFVNDIFERIATEASKLAAYNKKSTISAREIQTAVRLILPGELAKHAVSEGTRAVTKYSSSTQA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P02294</accession>
+    <name>Histone H2B.2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Histone H2B.2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">HTB2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="131" mass="14229" checksum="unknown" modified="2026-08-25" version="-1">MSSAAEKKPASKAPAEKKPAAKKTSTSVDGKKRSKVRKETYSSYIYKVLKQTHPDTGISQKSMSILNSFVNDIFERIATEASKLAAYNKKSTISAREIQTAVRLILPGELAKHAVSEGTRAVTKYSSSTQA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P15108</accession>
+    <name>ATP-dependent molecular chaperone HSC82</name>
+    <protein>
+      <recommendedName>
+        <fullName>ATP-dependent molecular chaperone HSC82</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">HSC82</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="705" mass="80850" checksum="unknown" modified="2026-08-25" version="-1">MAGETFEFQAEITQLMSLIINTVYSNKEIFLRELISNASDALDKIRYQALSDPKQLETEPDLFIRITPKPEEKVLEIRDSGIGMTKAELINNLGTIAKSGTKAFMEALSAGADVSMIGQFGVGFYSLFLVADRVQVISKNNEDEQYIWESNAGGSFTVTLDEVNERIGRGTVLRLFLKDDQLEYLEEKRIKEVIKRHSEFVAYPIQLLVTKEVEKEVPIPEEEKKDEEKKDEDDKKPKLEEVDEEEEEKKPKTKKVKEEVQELEELNKTKPLWTRNPSDITQEEYNAFYKSISNDWEDPLYVKHFSVEGQLEFRAILFIPKRAPFDLFESKKKKNNIKLYVRRVFITDEAEDLIPEWLSFVKGVVDSEDLPLNLSREMLQQNKIMKVIRKNIVKKLIEAFNEIAEDSEQFDKFYSAFAKNIKLGVHEDTQNRAALAKLLRYNSTKSVDELTSLTDYVTRMPEHQKNIYYITGESLKAVEKSPFLDALKAKNFEVLFLTDPIDEYAFTQLKEFEGKTLVDITKDFELEETDEEKAEREKEIKEYEPLTKALKDILGDQVEKVVVSYKLLDAPAAIRTGQFGWSANMERIMKAQALRDSSMSSYMSSKKTFEISPKSPIIKELKKRVDEGGAQDKTVKDLTNLLFETALLTSGFSLEEPTSFASRINRLISLGLNIDEDEETETAPEASTEAPVEEVPADTEMEEVD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P10591</accession>
+    <name>Heat shock protein SSA1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Heat shock protein SSA1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SSA1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="642" mass="69615" checksum="unknown" modified="2026-08-25" version="-1">MSKAVGIDLGTTYSCVAHFANDRVDIIANDQGNRTTPSFVAFTDTERLIGDAAKNQAAMNPSNTVFDAKRLIGRNFNDPEVQADMKHFPFKLIDVDGKPQIQVEFKGETKNFTPEQISSMVLGKMKETAESYLGAKVNDAVVTVPAYFNDSQRQATKDAGTIAGLNVLRIINEPTAAAIAYGLDKKGKEEHVLIFDLGGGTFDVSLLSIEDGIFEVKATAGDTHLGGEDFDNRLVNHFIQEFKRKNKKDLSTNQRALRRLRTACERAKRTLSSSAQTSVEIDSLFEGIDFYTSITRARFEELCADLFRSTLDPVEKVLRDAKLDKSQVDEIVLVGGSTRIPKVQKLVTDYFNGKEPNRSINPDEAVAYGAAVQAAILTGDESSKTQDLLLLDVAPLSLGIETAGGVMTKLIPRNSTIPTKKSEIFSTYADNQPGVLIQVFEGERAKTKDNNLLGKFELSGIPPAPRGVPQIEVTFDVDSNGILNVSAVEKGTGKSNKITITNDKGRLSKEDIEKMVAEAEKFKEEDEKESQRIASKNQLESIAYSLKNTISEAGDKLEQADKDTVTKKAEETISWLDSNTTASKEEFDDKLKELQDIANPIMSKLYQAGGAPGGAAGGAPGGFPGGAPPAPEAEGPTVEEVD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P10592</accession>
+    <name>Heat shock protein SSA2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Heat shock protein SSA2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SSA2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="639" mass="69427" checksum="unknown" modified="2026-08-25" version="-1">MSKAVGIDLGTTYSCVAHFSNDRVDIIANDQGNRTTPSFVGFTDTERLIGDAAKNQAAMNPANTVFDAKRLIGRNFNDPEVQGDMKHFPFKLIDVDGKPQIQVEFKGETKNFTPEQISSMVLGKMKETAESYLGAKVNDAVVTVPAYFNDSQRQATKDAGTIAGLNVLRIINEPTAAAIAYGLDKKGKEEHVLIFDLGGGTFDVSLLSIEDGIFEVKATAGDTHLGGEDFDNRLVNHFIQEFKRKNKKDLSTNQRALRRLRTACERAKRTLSSSAQTSVEIDSLFEGIDFYTSITRARFEELCADLFRSTLDPVEKVLRDAKLDKSQVDEIVLVGGSTRIPKVQKLVTDYFNGKEPNRSINPDEAVAYGAAVQAAILTGDESSKTQDLLLLDVAPLSLGIETAGGVMTKLIPRNSTIPTKKSEVFSTYADNQPGVLIQVFEGERAKTKDNNLLGKFELSGIPPAPRGVPQIEVTFDVDSNGILNVSAVEKGTGKSNKITITNDKGRLSKEDIEKMVAEAEKFKEEDEKESQRIASKNQLESIAYSLKNTISEAGDKLEQADKDAVTKKAEETIAWLDSNTTATKEEFDDQLKELQEVANPIMSKLYQAGGAPEGAAPGGFPGGAPPAPEAEGPTVEEVD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CS90</accession>
+    <name>Heat shock protein SSC1, mitochondrial</name>
+    <protein>
+      <recommendedName>
+        <fullName>Heat shock protein SSC1, mitochondrial</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SSC1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="654" mass="70585" checksum="unknown" modified="2026-08-25" version="-1">MLAAKNILNRSSLSSSFRIATRLQSTKVQGSVIGIDLGTTNSAVAIMEGKVPKIIENAEGSRTTPSVVAFTKEGERLVGIPAKRQAVVNPENTLFATKRLIGRRFEDAEVQRDIKQVPYKIVKHSNGDAWVEARGQTYSPAQIGGFVLNKMKETAEAYLGKPVKNAVVTVPAYFNDSQRQATKDAGQIVGLNVLRVVNEPTAAALAYGLEKSDSKVVAVFDLGGGTFDISILDIDNGVFEVKSTNGDTHLGGEDFDIYLLREIVSRFKTETGIDLENDRMAIQRIREAAEKAKIELSSTVSTEINLPFITADASGPKHINMKFSRAQFETLTAPLVKRTVDPVKKALKDAGLSTSDISEVLLVGGMSRMPKVVETVKSLFGKDPSKAVNPDEAVAIGAAVQGAVLSGEVTDVLLLDVTPLSLGIETLGGVFTRLIPRNTTIPTKKSQIFSTAAAGQTSVEIRVFQGERELVRDNKLIGNFTLAGIPPAPKGVPQIEVTFDIDADGIINVSARDKATNKDSSITVAGSSGLSENEIEQMVNDAEKFKSQDEARKQAIETANKADQLANDTENSLKEFEGKVDKAEAQKVRDQITSLKELVARVQGGEEVNAEELKTKTEELQTSSMKLFEQLYKNDSNNNNNNNGNNAESGETKQ</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P40576</accession>
+    <name>Inner membrane assembly complex subunit 22</name>
+    <protein>
+      <recommendedName>
+        <fullName>Inner membrane assembly complex subunit 22</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">INA22</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="216" mass="24581" checksum="unknown" modified="2026-08-25" version="-1">MFMARQVLRNGLFLRSLAPIKITARTVASANAGIKRKSRFDKTMIKPLLLVMIFGSILNAVIAEKRNIIDMERKYKLKLDKLKELIRRVHDNNGKVDFDADDELKLVNLRLGIVGKNATGMKEDETDIVVPKEESLEEIWQSIIDEAKKEVIEKTPDAGVKNKEGIVTDLNVLKDLEKSKKEDEKVYLSGDVHMMMNQPGDLNEIAKEHDKIPKFL</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P02829</accession>
+    <name>ATP-dependent molecular chaperone HSP82</name>
+    <protein>
+      <recommendedName>
+        <fullName>ATP-dependent molecular chaperone HSP82</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">HSP82</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="709" mass="81356" checksum="unknown" modified="2026-08-25" version="-1">MASETFEFQAEITQLMSLIINTVYSNKEIFLRELISNASDALDKIRYKSLSDPKQLETEPDLFIRITPKPEQKVLEIRDSGIGMTKAELINNLGTIAKSGTKAFMEALSAGADVSMIGQFGVGFYSLFLVADRVQVISKSNDDEQYIWESNAGGSFTVTLDEVNERIGRGTILRLFLKDDQLEYLEEKRIKEVIKRHSEFVAYPIQLVVTKEVEKEVPIPEEEKKDEEKKDEEKKDEDDKKPKLEEVDEEEEKKPKTKKVKEEVQEIEELNKTKPLWTRNPSDITQEEYNAFYKSISNDWEDPLYVKHFSVEGQLEFRAILFIPKRAPFDLFESKKKKNNIKLYVRRVFITDEAEDLIPEWLSFVKGVVDSEDLPLNLSREMLQQNKIMKVIRKNIVKKLIEAFNEIAEDSEQFEKFYSAFSKNIKLGVHEDTQNRAALAKLLRYNSTKSVDELTSLTDYVTRMPEHQKNIYYITGESLKAVEKSPFLDALKAKNFEVLFLTDPIDEYAFTQLKEFEGKTLVDITKDFELEETDEEKAEREKEIKEYEPLTKALKEILGDQVEKVVVSYKLLDAPAAIRTGQFGWSANMERIMKAQALRDSSMSSYMSSKKTFEISPKSPIIKELKKRVDEGGAQDKTVKDLTKLLYETALLTSGFSLDEPTSFASRINRLISLGLNIDEDEETETAPEASTAAPVEEVPADTEMEEVD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P32589</accession>
+    <name>Heat shock protein homolog SSE1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Heat shock protein homolog SSE1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SSE1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="693" mass="77318" checksum="unknown" modified="2026-08-25" version="-1">MSTPFGLDLGNNNSVLAVARNRGIDIVVNEVSNRSTPSVVGFGPKNRYLGETGKNKQTSNIKNTVANLKRIIGLDYHHPDFEQESKHFTSKLVELDDKKTGAEVRFAGEKHVFSATQLAAMFIDKVKDTVKQDTKANITDVCIAVPPWYTEEQRYNIADAARIAGLNPVRIVNDVTAAGVSYGIFKTDLPEGEEKPRIVAFVDIGHSSYTCSIMAFKKGQLKVLGTACDKHFGGRDFDLAITEHFADEFKTKYKIDIRENPKAYNRILTAAEKLKKVLSANTNAPFSVESVMNDVDVSSQLSREELEELVKPLLERVTEPVTKALAQAKLSAEEVDFVEIIGGTTRIPTLKQSISEAFGKPLSTTLNQDEAIAKGAAFICAIHSPTLRVRPFKFEDIHPYSVSYSWDKQVEDEDHMEVFPAGSSFPSTKLITLNRTGDFSMAASYTDITQLPPNTPEQIANWEITGVQLPEGQDSVPVKLKLRCDPSGLHTIEEAYTIEDIEVEEPIPLPEDAPEDAEQEFKKVTKTVKKDDLTIVAHTFGLDAKKLNELIEKENEMLAQDKLVAETEDRKNTLEEYIYTLRGKLEEEYAPFASDAEKTKLQGMLNKAEEWLYDEGFDSIKAKYIAKYEELASLGNIIRGRYLAKEEEKKQAIRSKQEASQMAAMAEKLAAQRKAEAEKKEEKKDTEGDVDMD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P46997</accession>
+    <name>J protein JJJ2</name>
+    <protein>
+      <recommendedName>
+        <fullName>J protein JJJ2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">JJJ2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="583" mass="67348" checksum="unknown" modified="2026-08-25" version="-1">MSQVIEPQLDRTTYYSILGLTSNATSSEVHKSYLKLARLLHPDKTKSDKSEELFKAVVHAHSILTDEDQKLRYDRDLKIKGLHTYQPKKNCHIFKTKAKESQGASPTLGQSEAYHRQNKPYEQQPYGFGVGKKMTSSSKSKVPIFKSFNLKSYQRNHYYSSKKERKHGSPDIDSLFHETNGASKVRMTDAGKMDTNSQFQEIWEILGKNAYTHKSYSEDPNSCLGSALSDHEEEEEAGKQQQQQQQQQQQQQHYGMTSKSSSPDEEKKNNKEPKRESRVSPEENGEEETGHKQFKLPKTSTFSSGSHDSNLQSPFYNHEYRHYARSKFECKNQFRKSVSPIKEIPATTSANEGWNILRDIIEKLNISNVDDRNKDLLFRRDEIGDKNHSDSIDIENLSIKEPKGMKRRKKDDISLEELFQSLPREKDYFMMDAINDSLESINLFKKPKTTQSHEQGGTFAQAESNRAKFKPLLEQCGITPEILDLEIPEIPEFDAVADLETLKLNVQLFNNQCNKLKETIHQVSLQRLRADTQFSDMLTQKQSIMVWKTYLEFDKSLMDKLNILQERQMQVIKIFSERCDGKV</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12230</accession>
+    <name>Sphingolipid long chain base-responsive protein LSP1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Sphingolipid long chain base-responsive protein LSP1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">LSP1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="341" mass="38048" checksum="unknown" modified="2026-08-25" version="-1">MHRTYSLRNQRAPTAAELQAPPPPPSSTKSKFFGKASIASSFRKNAAGNFGPELARKLSQLVKTEKGVLRAMEVVASERREAAKQLSLWGADNDDDVSDVTDKLGVLIYELGELQDQFIDKYDQYRVTLKSIRNIEASVQPSRDRKEKITDEIAHLKYKDPQSTKIPVLEQELVRAEAESLVAEAQLSNITREKLKAAYSYMFDSLRELSEKFALIAGYGKALLELLDDSPVTPGEARPAYDGYEASRQIIMDAESALESWTLDMAAVKPTLSFHQTVDDVYEDEDGEEEEEPEIQNGDIPGQVVEEEEVEWTTEVPVDDEAHEADHHVSQNGHTSGSENI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12117</accession>
+    <name>Protein MRH1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Protein MRH1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">MRH1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="320" mass="36167" checksum="unknown" modified="2026-08-25" version="-1">MSTFETLIKRGGNEAIKINPPTGADFHITSRGSDWFWTCFCCYLLFGLILTFLMFRKPVNDRFFYLTGIAPNFFMCIAYFTMASNLGWIPVKAKYNHVQTSTQKEHPGYRQIFYSRFVGWFLALPWPIIQICMLAGTPFWQMAFNVCITEFFTVCWLIAACVHSTYKWGYYTIGLGAAIVVSISVMTTSYNLVKQRDNDIRLTFLVFFSIIMFLWIIAYPTCFGITDGGNVLQPDSAGIFYGIIDLILMCFIPTLLVPIANHFGADKLGYHFGPSDAEAVMAPKAPVASPRPAATPNLSKDKKKKSKKSKKSKKSKKSEE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q06820</accession>
+    <name>Mitochondrial distribution and morphology protein 36</name>
+    <protein>
+      <recommendedName>
+        <fullName>Mitochondrial distribution and morphology protein 36</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">MDM36</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="579" mass="64918" checksum="unknown" modified="2026-08-25" version="-1">MDENGTVKPGYELKGLNSGNSRSNMDKDPIVSKFHRAGLNDSADEEDTDINGNRNTSWITSMISEEKRKVEGKSMLNDEEDLHLSKATLNKCDALVKILADIIKLEFVIHQSWYIRSLHKSVLIQFEVETSGGNKNSAGDSGDDDDDNHNGNLDDSFYKDLSLKCIKKCEKSSLALESLSRDIDQIRDFIMSNTIEDNRVDRLLQNSMTLLLECWIYSMKRLRRLRMKIAGIFVRSKLLLIDHELVTIWHFLQEQNEHETVNNENELKLAETIKSYRAFIKIFIQQLEDSESGSPSSSLFEECLHVFLDIESMYNSLNLNWLLNENKALQERLLSPSSTSENDHTNNLPVIDETKEIEDISSFVNSIVDASMLTHDLTPINSSDSDNLSNGEIDRLDGRRLSSSTSDMSLMMQRTSLQKQLPSLLTAFNNARRLEQELQNACKVNDNKHSTKDTDSNIRRNEHAMSSSVSSIISQNSTLASPSPPMSSSFISTAPSQSSSRMSTLPLSPSSSLLESQSQTLKNNMSQWLNQSRSGLNGTKLIPTNHIGFHSNVLNTLYGIGGGPVSKSYKSNQPSSQNT</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>O14467</accession>
+    <name>Multiprotein-bridging factor 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Multiprotein-bridging factor 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">MBF1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="151" mass="16394" checksum="unknown" modified="2026-08-25" version="-1">MSDWDTNTIIGSRARAGGSGPRANVARSQGQINAARRQGLVVSVDKKYGSTNTRGDNEGQRLTKVDRETDIVKPKKLDPNVGRAISRARTDKKMSQKDLATKINEKPTVVNDYEAARAIPNQQVLSKLERALGVKLRGNNIGSPLGAPKKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P00560</accession>
+    <name>Phosphoglycerate kinase</name>
+    <protein>
+      <recommendedName>
+        <fullName>Phosphoglycerate kinase</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">PGK1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="416" mass="44711" checksum="unknown" modified="2026-08-25" version="-1">MSLSSKLSVQDLDLKDKRVFIRVDFNVPLDGKKITSNQRIVAALPTIKYVLEHHPRYVVLASHLGRPNGERNEKYSLAPVAKELQSLLGKDVTFLNDCVGPEVEAAVKASAPGSVILLENLRYHIEEEGSRKVDGQKVKASKEDVQKFRHELSSLADVYINDAFGTAHRAHSSMVGFDLPQRAAGFLLEKELKYFGKALENPTRPFLAILGGAKVADKIQLIDNLLDKVDSIIIGGGMAFTFKKVLENTEIGDSIFDKAGAEIVPKLMEKAKAKGVEVVLPVDFIIADAFSADANTKTVTDKEGIPAGWQGLDNGPESRKLFAATVAKAKTIVWNGPPGVFEFEKFAAGTKALLDEVVKSSAAGNTVIIGGGDTATVAKKYGVTDKISHVSTGGGASLELLEGKELPGVAFLSEKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q05568</accession>
+    <name>Peroxisome biogenesis factor 10</name>
+    <protein>
+      <recommendedName>
+        <fullName>Peroxisome biogenesis factor 10</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">PEX10</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="337" mass="39073" checksum="unknown" modified="2026-08-25" version="-1">MKNDNKLQKEALMRLSQLRFPFADAPSIVQAHQKDEQIQGLLIMKVTELCKLIKSQLFVNSYPKELSIFAKLLYLLFTTGRRGRTLGEEYVDLTYTNRKGTRLAGRLKMIVFAFAYPLCPYFITKLYKKIMKNNKESKIEDTESVAAFCKGLLDFILDVHMTLFYFKGAFYSISKRIFGMRYVFKHILSKNEANFREEGSQKYKVLGYILLAQNVMKWYPVLTSTLGSWIYGRKRTNDSITRSSVGLQERSEHESIEGIPKESQLTHINLSDKNQLPFIPEASRKCILCLMNMSDPSCAPCGHLFCWSCLMSWCKERPECPLCRQHCQPQEILVLRQ</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P00950</accession>
+    <name>Phosphoglycerate mutase 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Phosphoglycerate mutase 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">GPM1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="247" mass="27592" checksum="unknown" modified="2026-08-25" version="-1">MPKLVLVRHGQSEWNEKNLFTGWVDVKLSAKGQQEAARAGELLKEKKVYPDVLYTSKLSRAIQTANIALEKADRLWIPVNRSWRLNERHYGDLQGKDKAETLKKFGEEKFNTYRRSFDVPPPPIDASSPFSQKGDERYKYVDPNVLPETESLALVIDRLLPYWQDVIAKDLLSGKTVMIAAHGNSLRGLVKHLEGISDADIAKLNIPTGIPLVFELDENLKPSKPSYYLDPEAAAAGAAAVANQGKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>O13516</accession>
+    <name>40S ribosomal protein S9-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S9-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS9A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="197" mass="22429" checksum="unknown" modified="2026-08-25" version="-1">MPRAPRTYSKTYSTPKRPYESSRLDAELKLAGEFGLKNKKEIYRISFQLSKIRRAARDLLTRDEKDPKRLFEGNALIRRLVRVGVLSEDKKKLDYVLALKVEDFLERRLQTQVYKLGLAKSVHHARVLITQRHIAVGKQIVNIPSFMVRLDSEKHIDFAPTSPFGGARPGRVARRNAARKAEASGEAADEADEADEE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P02407</accession>
+    <name>40S ribosomal protein S17-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S17-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS17A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="136" mass="15779" checksum="unknown" modified="2026-08-25" version="-1">MGRVRTKTVKRASKALIERYYPKLTLDFQTNKRLCDEIATIQSKRLRNKIAGYTTHLMKRIQKGPVRGISFKLQEEERERKDQYVPEVSALDLSRSNGVLNVDNQTSDLVKSLGLKLPLSVINVSAQRDRRYRKRV</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P05756</accession>
+    <name>40S ribosomal protein S13</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S13</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS13</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="151" mass="17018" checksum="unknown" modified="2026-08-25" version="-1">MGRMHSAGKGISSSAIPYSRNAPAWFKLSSESVIEQIVKYARKGLTPSQIGVLLRDAHGVTQARVITGNKIMRILKSNGLAPEIPEDLYYLIKKAVSVRKHLERNRKDKDAKFRLILIESRIHRLARYYRTVAVLPPNWKYESATASALVN</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P46784</accession>
+    <name>40S ribosomal protein S10-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S10-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS10B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Methylation on R">
+      <location>
+        <position position="100" />
+      </location>
+    </feature>
+    <sequence length="105" mass="12731" checksum="unknown" modified="2026-08-25" version="-1">MLMPKQERNKIHQYLFQEGVVVAKKDFNQAKHEEIDTKNLYVIKALQSLTSKGYVKTQFSWQYYYYTLTEEGVEYLREYLNLPEHIVPGTYIQERNPSQRPQRRY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q05911</accession>
+    <name>Adenylosuccinate lyase</name>
+    <protein>
+      <recommendedName>
+        <fullName>Adenylosuccinate lyase</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">ADE13</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="482" mass="54476" checksum="unknown" modified="2026-08-25" version="-1">MPDYDNYTTPLSSRYASKEMSATFSLRNRFSTWRKLWLNLAIAEKELGLTVVTDEAIEQMRKHVEITDDEIAKASAQEAIVRHDVMAHVHTFGETCPAAAGIIHLGATSCFVTDNADLIFIRDAYDIIIPKLVNVINRLAKFAMEYKDLPVLGWTHFQPAQLTTLGKRATLWIQELLWDLRNFERARNDIGLRGVKGTTGTQASFLALFHGNHDKVEALDERVTELLGFDKVYPVTGQTYSRKIDIDVLAPLSSFAATAHKMATDIRLLANLKEVEEPFEKSQIGSSAMAYKRNPMRCERVCSLARHLGSLFSDAVQTASVQWFERTLDDSAIRRISLPSAFLTADILLSTLLNISSGLVVYPKVIERRIKGELPFMATENIIMAMVEKNASRQEVHERIRVLSHQAAAVVKEEGGENDLIERVKRDEFFKPIWEELDSLLEPSTFVGRAPQQVEKFVQKDVNNALQPFQKYLNDEQVKLNV</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P28272</accession>
+    <name>Dihydroorotate dehydrogenase (fumarate)</name>
+    <protein>
+      <recommendedName>
+        <fullName>Dihydroorotate dehydrogenase (fumarate)</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">URA1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="314" mass="34779" checksum="unknown" modified="2026-08-25" version="-1">MTASLTTKFLNNTYENPFMNASGVHCMTTQELDELANSKAGAFITKSATTLEREGNPEPRYISVPLGSINSMGLPNEGIDYYLSYVLNRQKNYPDAPAIFFSVAGMSIDENLNLLRKIQDSEFNGITELNLSCPNVPGKPQVAYDFDLTKETLEKVFAFFKKPLGVKLPPYFDFAHFDIMAKILNEFPLAYVNSINSIGNGLFIDVEKESVVVKPKNGFGGIGGEYVKPTALANVRAFYTRLRPEIKVIGTGGIKSGKDAFEHLLCGASMLQIGTELQKEGVKIFERIEKELKDIMEAKGYTSIDQFRGKLNSI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q00816</accession>
+    <name>Resistance to glucose repression protein 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Resistance to glucose repression protein 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">REG1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1014" mass="112548" checksum="unknown" modified="2026-08-25" version="-1">MSTNLANYFAGKKDIENEHVNRNASHESNSKSDVKISGNDNDNDEDMGPSVSMAVQAKNDDDFHKSTFNLKRTRSMGLLDEYIDPTKKLLGRSDDLYDNDNEYYDNSSNNSSSNSSDDDYDDGYQEHSTSVSPPPADNDSYLIPQDDNDVVVEPERHVDYLSHEWKESEISNSWKYIILKKKKRDVDLVNAARLENASWRTWAKARNNLKTVSPEVVNWSKDSDVTWLYGPIVRDSEGNAQSEEEHDLERGYGSDDENSKRISMPTKNSKSIAAAPKPILKKRTVTEIIEDNALWKLNEARKHMTEMKHASVIMDPNGNKNVHDDFDALAAQVNAQYYHYPKESNSSVSLKSQHSDKKDNSTIPNPVGENSNGGGDKGEEDLHLKSALHVQNNRSTAQSNKSILENSTNDRKANLDQNLNSPDNNRFPSSTSSSNRDNENNSMGLSSILTSNPSEKSNKPTKNRHIHFNDRVEQCMALRYPASQSEDDESDDENKQYVDVNNNANVTTINNNRTPLLAIQHKSIPINSATEHLNKNTSDDDTSSQSSSSSHSDDEEHGGLYINARFSRRSDSGVHSPITDNSSVASSTTSRAHVRPIIKLLPDTTLNYGSDEESDNGEFNGYGNAVSHNVNTSRGYDYIYDYNSVYTGDTSSFLPVDSCDIVDVPEGMDLQTAIADDNASNYEFNNAVESKEKHVPQLHKASANNTTRQHGSHMLLYDDDNYSSSSDSEQQFIEDSQYNSSDDEEEEDDDDQEVDDNHDEGLSLRRTLSLGKSGSTNSLYDLAQPSLSSATPQQKNPTNFTGGKTDVDKDAQLAVRPYPLKRNSSSGNFIFNSDSEEESSSEEEQRPLPANSQLVNRSVLKGSVTPANISSQKKKALPKQPKASDSSQSFRIVNNTPSPAEVGASDVAIEGYFSPRNESIKSVVSGGNMMDHQDHSEMDTLAKGFENCHINNASKLKDKKVDSVQTTRKEASLTDSSNESLHKVVQNARGMASKYLHSWKKSDVKPQENGNDSS</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX50</accession>
+    <name>60S ribosomal protein L18-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L18-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL18B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="186" mass="20551" checksum="unknown" modified="2026-08-25" version="-1">MGIDHTSKQHKRSGHRTAPKSDNVYLKLLVKLYTFLARRTDAPFNKVVLKALFLSKINRPPVSVSRIARALKQEGAANKTVVVVGTVTDDARIFEFPKTTVAALRFTAGARAKIVKAGGECITLDQLAVRAPKGQNTLILRGPRNSREAVRHFGMGPHKGKAPRILSTGRKFERARGRRRSKGFKV</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX82</accession>
+    <name>60S ribosomal protein L19-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L19-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL19A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="189" mass="21691" checksum="unknown" modified="2026-08-25" version="-1">MANLRTQKRLAASVVGVGKRKVWLDPNETSEIAQANSRNAIRKLVKNGTIVKKAVTVHSKSRTRAHAQSKREGRHSGYGKRKGTREARLPSQVVWIRRLRVLRRLLAKYRDAGKIDKHLYHVLYKESKGNAFKHKRALVEHIIQAKADAQREKALNEEAEARRLKNRAARDRRAQRVAEKRDALLKEDA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P40212</accession>
+    <name>60S ribosomal protein L13-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L13-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL13B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="199" mass="22511" checksum="unknown" modified="2026-08-25" version="-1">MAISKNLPILKNHFRKHWQERVKVHFDQAGKKVSRRNARAARAAKIAPRPLDLLRPVVRAPTVKYNRKVRAGRGFTLAEVKAAGLTAAYARTIGIAVDHRRQNRNQEIFDANVQRLKEYQSKIIVFPRDGKAPEAEQVLSAAATFPIAQPATDVEARAVQDNGESAFRTLRLARSEKKFRGIREKRAREKAEAEAEKKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12690</accession>
+    <name>60S ribosomal protein L13-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L13-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL13A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="199" mass="22540" checksum="unknown" modified="2026-08-25" version="-1">MAISKNLPILKNHFRKHWQERVKVHFDQAGKKVSRRNARATRAAKIAPRPLDLLRPVVRAPTVKYNRKVRAGRGFTLAEVKAAGLTAAYARTIGIAVDHRRQNRNQEIFDANVQRLKEYQSKIIVFPRNGKAPEAEQVLSAAATFPIAQPATDVEARAVQDNGESAFRTLRLARSEKKFRGIREKRAREKAEAEAEKKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P26784</accession>
+    <name>60S ribosomal protein L16-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L16-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL16A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="199" mass="22187" checksum="unknown" modified="2026-08-25" version="-1">MSVEPVVVIDGKGHLVGRLASVVAKQLLNGQKIVVVRAEELNISGEFFRNKLKYHDFLRKATAFNKTRGPFHFRAPSRIFYKALRGMVSHKTARGKAALERLKVFEGIPPPYDKKKRVVVPQALRVLRLKPGRKYTTLGKLSTSVGWKYEDVVAKLEAKRKVSSAEYYAKKRAFTKKVASANATAAESDVAKQLAALGY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX83</accession>
+    <name>60S ribosomal protein L19-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L19-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL19B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="189" mass="21691" checksum="unknown" modified="2026-08-25" version="-1">MANLRTQKRLAASVVGVGKRKVWLDPNETSEIAQANSRNAIRKLVKNGTIVKKAVTVHSKSRTRAHAQSKREGRHSGYGKRKGTREARLPSQVVWIRRLRVLRRLLAKYRDAGKIDKHLYHVLYKESKGNAFKHKRALVEHIIQAKADAQREKALNEEAEARRLKNRAARDRRAQRVAEKRDALLKEDA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q02753</accession>
+    <name>60S ribosomal protein L21-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L21-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL21A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="160" mass="18231" checksum="unknown" modified="2026-08-25" version="-1">MGKSHGYRSRTRYMFQRDFRKHGAVHLSTYLKVYKVGDIVDIKANGSIQKGMPHKFYQGKTGVVYNVTKSSVGVIINKMVGNRYLEKRLNLRVEHIKHSKCRQEFLERVKANAAKRAEAKAQGVAVQLKRQPAQPRESRIVSTEGNVPQTLAPVPYETFI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P26785</accession>
+    <name>60S ribosomal protein L16-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L16-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL16B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="198" mass="22235" checksum="unknown" modified="2026-08-25" version="-1">MSQPVVVIDAKDHLLGRLASTIAKQVLNGQKIVVVRAEALNISGEFFRNKLKYHDFLRKATAFNKTRGPFHFRAPSRILYKAIRGMVSHKTARGKAALERLKIFEGIPPPYDKKKRVVVPQALRVLRLKPGRKYTTLGKLSTSVGWKYEDVVAKLEDKRKVRSAEYYAKKRAFTKKVSSASAAASESDVAKQLASFGY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX49</accession>
+    <name>60S ribosomal protein L18-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L18-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL18A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="186" mass="20551" checksum="unknown" modified="2026-08-25" version="-1">MGIDHTSKQHKRSGHRTAPKSDNVYLKLLVKLYTFLARRTDAPFNKVVLKALFLSKINRPPVSVSRIARALKQEGAANKTVVVVGTVTDDARIFEFPKTTVAALRFTAGARAKIVKAGGECITLDQLAVRAPKGQNTLILRGPRNSREAVRHFGMGPHKGKAPRILSTGRKFERARGRRRSKGFKV</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q08961</accession>
+    <name>Ribosomal lysine N-methyltransferase 1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Ribosomal lysine N-methyltransferase 1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RKM1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="583" mass="67136" checksum="unknown" modified="2026-08-25" version="-1">MSSDALKALLQWGASFGVIVPEELKFLYTDLKGIICVCEKDIDNPSIKIPPEIVISRNLPMKFFGLSESTKNINGWLKLFFAKIKFDRDNDTIVDNVRVNDKFKPYLDALPSRLNSPLVWNPSELKRLSSTNIGNSIHEKFEGIFKEWFELVSSSDMFDLERVADDVQTFHNLDELTYEALYEKILKITELQRPTIWYSFPAFLWSHLIFISRAFPEYVLNRNCPDNSIVLLPIVDLLNHDYRSKVKWYPENGWFCYEKIGTASQSRELSNNYGGKGNEELLSGYGFVLEDNIFDSVALKVKLPLDVVSTILETEPSLKLPLLSDYTTYAFENKDCVQQEKKATRSATDYINGVTYFINIQNEQCLEPLLDLFTYLSKAEEEDLHDLRARLQGIQMLRNALQSKLNSITGPPATDDSYAIDPYRVYCADVYTKGQKQILKEALTRLKKLEKTMLSENKHQLLTMSKILKNDPAFAETELPSLFSNEDGEEVIFESTYDLLILWILLKTKKNSYPTKYEWVGQQYTNFKQTAYISDDAKAFHTAYFEKQDDVDLAEVDHAIQFVVDNSFTRTSSTTEETILVRK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P26321</accession>
+    <name>60S ribosomal protein L5</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L5</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL5</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="297" mass="33694" checksum="unknown" modified="2026-08-25" version="-1">MAFQKDAKSSAYSSRFQTPFRRRREGKTDYYQRKRLVTQHKAKYNTPKYRLVVRFTNKDIICQIISSTITGDVVLAAAYSHELPRYGITHGLTNWAAAYATGLLIARRTLQKLGLDETYKGVEEVEGEYELTEAVEDGPRPFKVFLDIGLQRTTTGARVFGALKGASDGGLYVPHSENRFPGWDFETEEIDPELLRSYIFGGHVSQYMEELADDDEERFSELFKGYLADDIDADSLEDIYTSAHEAIRADPAFKPTEKKFTKEQYAAESKKYRQTKLSKEERAARVAAKIAALAGQQ</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX24</accession>
+    <name>60S ribosomal protein L20-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L20-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL20B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="172" mass="20424" checksum="unknown" modified="2026-08-25" version="-1">MAHFKEYQVIGRRLPTESVPEPKLFRMRIFASNEVIAKSRYWYFLQKLHKVKKASGEIVSINQINEAHPTKVKNFGVWVRYDSRSGTHNMYKEIRDVSRVAAVETLYQDMAARHRARFRSIHILKVAEIEKTADVKRQYVKQFLTKDLKFPLPHRVQKSTKTFSYKRPSTFY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX46</accession>
+    <name>60S ribosomal protein L2-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L2-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL2B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="254" mass="27392" checksum="unknown" modified="2026-08-25" version="-1">MGRVIRNQRKGAGSIFTSHTRLRQGAAKLRTLDYAERHGYIRGIVKQIVHDSGRGAPLAKVVFRDPYKYRLREEIFIANEGVHTGQFIYAGKKASLNVGNVLPLGSVPEGTIVSNVEEKPGDRGALARASGNYVIIIGHNPDENKTRVRLPSGAKKVISSDARGVIGVIAGGGRVDKPLLKAGRAFHKYRLKRNSWPKTRGVAMNPVDHPHGGGNHQHIGKASTISRGAVSGQKAGLIAARRTGLLRGSQKTQD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12672</accession>
+    <name>60S ribosomal protein L21-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L21-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL21B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="160" mass="18263" checksum="unknown" modified="2026-08-25" version="-1">MGKSHGYRSRTRYMFQRDFRKHGAVHMSTYLKIYKVGDIVDIKANGSIQKGMPHKFYQGKTGVVYNVTKSSVGVIINKMVGNRYLEKRLNLRVEHIKHSKCRQEFLERVKANAAKRAEAKAQGVAVQLKRQPAQPRESRIVSTEGNVPQTLAPVPYETFI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P41056</accession>
+    <name>60S ribosomal protein L33-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L33-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL33B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="107" mass="12161" checksum="unknown" modified="2026-08-25" version="-1">MAESHRLYVKGKHLSYQRSKRVNNPNVSLIKIEGVATPQEAQFYLGKRIAYVYRASKEVRGSKIRVMWGKVTRTHGNSGVVRATFRNNLPAKTFGASVRIFLYPSNI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX23</accession>
+    <name>60S ribosomal protein L20-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L20-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL20A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="172" mass="20424" checksum="unknown" modified="2026-08-25" version="-1">MAHFKEYQVIGRRLPTESVPEPKLFRMRIFASNEVIAKSRYWYFLQKLHKVKKASGEIVSINQINEAHPTKVKNFGVWVRYDSRSGTHNMYKEIRDVSRVAAVETLYQDMAARHRARFRSIHILKVAEIEKTADVKRQYVKQFLTKDLKFPLPHRVQKSTKTFSYKRPSTFY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX45</accession>
+    <name>60S ribosomal protein L2-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L2-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL2A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="254" mass="27392" checksum="unknown" modified="2026-08-25" version="-1">MGRVIRNQRKGAGSIFTSHTRLRQGAAKLRTLDYAERHGYIRGIVKQIVHDSGRGAPLAKVVFRDPYKYRLREEIFIANEGVHTGQFIYAGKKASLNVGNVLPLGSVPEGTIVSNVEEKPGDRGALARASGNYVIIIGHNPDENKTRVRLPSGAKKVISSDARGVIGVIAGGGRVDKPLLKAGRAFHKYRLKRNSWPKTRGVAMNPVDHPHGGGNHQHIGKASTISRGAVSGQKAGLIAARRTGLLRGSQKTQD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P05744</accession>
+    <name>60S ribosomal protein L33-A</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L33-A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL33A</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="107" mass="12147" checksum="unknown" modified="2026-08-25" version="-1">MAESHRLYVKGKHLSYQRSKRVNNPNVSLIKIEGVATPQDAQFYLGKRIAYVYRASKEVRGSKIRVMWGKVTRTHGNSGVVRATFRNNLPAKTFGASVRIFLYPSNI</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P05739</accession>
+    <name>60S ribosomal protein L6-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>60S ribosomal protein L6-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPL6B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="176" mass="19974" checksum="unknown" modified="2026-08-25" version="-1">MTAQQAPKWYPSEDVAAPKKTRKAVRPQKLRASLVPGTVLILLAGRFRGKRVVYLKHLEDNTLLVTGPFKVNGVPLRRVNARYVIATSTKVSVEGVNVEKFNVEYFAKEKLTKKEKKEANLFPEQQTKEIKTERVEDQKVVDKALLAEIKKTPLLKQYLSASFSLKNGDKPHLLKF</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P48589</accession>
+    <name>40S ribosomal protein S12</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S12</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS12</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="143" mass="15462" checksum="unknown" modified="2026-08-25" version="-1">MSDVEEVVEVQEETVVEQTAEVTIEDALKVVLRTALVHDGLARGLRESTKALTRGEALLVVLVSSVTEANIIKLVEGLANDPENKVPLIKVADAKQLGEWAGLGKIDREGNARKVVGASVVVVKNWGAETDELSMIMEHFSQQ</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P14127</accession>
+    <name>40S ribosomal protein S17-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S17-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS17B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="136" mass="15794" checksum="unknown" modified="2026-08-25" version="-1">MGRVRTKTVKRASKALIERYYPKLTLDFQTNKRLCDEIATIQSKRLRNKIAGYTTHLMKRIQKGPVRGISFKLQEEERERKDQYVPEVSALDLSRSNGVLNVDNQTSDLVKSLGLKLPLSVINVSAQRDRRYRKRN</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P05755</accession>
+    <name>40S ribosomal protein S9-B</name>
+    <protein>
+      <recommendedName>
+        <fullName>40S ribosomal protein S9-B</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">RPS9B</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="195" mass="22285" checksum="unknown" modified="2026-08-25" version="-1">MPRAPRTYSKTYSTPKRPYESSRLDAELKLAGEFGLKNKREIYRISFQLSKIRRAARDLLTRDEKDPKRLFEGNALIRRLVRVGVLSEDKKKLDYVLALKVEDFLERRLQTQVYKLGLAKSVHHARVLITQRHIAVGKQIVNIPSFMVRLDSEKHIDFAPTSPFGGARPGRVARRNAARKAEASGEAAEEAEDEE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P40075</accession>
+    <name>Vesicle-associated membrane protein-associated protein SCS2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Vesicle-associated membrane protein-associated protein SCS2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SCS2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="244" mass="26909" checksum="unknown" modified="2026-08-25" version="-1">MSAVEISPDVLVYKSPLTEQSTEYASISNNSDQTIAFKVKTTAPKFYCVRPNAAVVAPGETIQVQVIFLGLTEEPAADFKCRDKFLVITLPSPYDLNGKAVADVWSDLEAEFKQQAISKKIKVKYLISPDVHPAQNQNIQENKETVEPVVQDSEPKEVPAVVNEKEVPAEPETQPPVQVKKEEVPPVVQKTVPHENEKQTSNSTPAPQNQIKEAATVPAENESSSMGIFILVALLILVLGWFYR</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12118</accession>
+    <name>Small glutamine-rich tetratricopeptide repeat-containing protein 2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Small glutamine-rich tetratricopeptide repeat-containing protein 2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SGT2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="346" mass="37195" checksum="unknown" modified="2026-08-25" version="-1">MSASKEEIAALIVNYFSSIVEKKEISEDGADSLNVAMDCISEAFGFEREAVSGILGKSEFKGQHLADILNSASRVPESNKKDDAENVEINIPEDDAETKAKAEDLKMQGNKAMANKDYELAINKYTEAIKVLPTNAIYYANRAAAHSSLKEYDQAVKDAESAISIDPSYFRGYSRLGFAKYAQGKPEEALEAYKKVLDIEGDNATEAMKRDYESAKKKVEQSLNLEKTVPEQSRDADVDASQGASAGGLPDLGSLLGGGLGGLMNNPQLMQAAQKMMSNPGAMQNIQKMMQDPSIRQMAEGFASGGGTPNLSDLMNNPALRNMAGNLFGGAGAQSTDETPDNENKQ</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P25582</accession>
+    <name>27S pre-rRNA (guanosine(2922)-2'-O)-methyltransferase</name>
+    <protein>
+      <recommendedName>
+        <fullName>27S pre-rRNA (guanosine(2922)-2'-O)-methyltransferase</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SPB1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="841" mass="96425" checksum="unknown" modified="2026-08-25" version="-1">MGKTQKKNSKGRLDRYYYLAKEKGYRARSSFKIIQINEKYGHFLEKSKVVIDLCAAPGSWCQVASKLCPVNSLIIGVDIVPMKPMPNVITFQSDITTEDCRSKLRGYMKTWKADTVLHDGAPNVGLGWVQDAFTQSQLTLQALKLAVENLVVNGTFVTKIFRSKDYNKLIWVFQQLFEKVEATKPPASRNVSAEIFVVCKGFKAPKRLDPRLLDPKEVFEELPDGQQNMESKIYNPEKKVRKRQGYEEGDNLLYHETSILDFVRTEDPISMLGEMNKFTIDENDHEWKILKKLKQTTDEFRSCIEDLKVLGKKDFKMILRWRKIAREILGIEVKDDAKTEIEVVPLTEEEQIEKDLQGLQEKQRLNVKRERRRKNEMKQKELQRMQMNMITPTDIGIEAASLGKESLFNLKTAEKTGILNDLAKGKKRMIFTDDELAKDNDIYIDENIMIKDKDSAADADDLESELNAMYSDYKTRRSERDAKFRAKQARGGDNEEEWTGFNEGSLEKKEEEGKDYIEDNDDEGVEGDSDDDEAITNLISKLKGQEGDHKLSSKARMIFNDPIFNNVEPDLPVNTVNDGIMSSESVGDISKLNKKRKHEEMHQKQDEADSSDESSSDDSDFEIVANDNASEEFDSDYDSEEEKNQTKKEKHSRDIDIATVEAMTLAHQLALGQKNKHDLVDEGFNRYTFRDTENLPDWFLEDEKEHSKINKPITKEAAMAIKEKIKAMNARPIKKVAEAKARKRMRAVARLEKIKKKAGLINDDSDKTEKDKAEEISRLMRKVTKKPKTKPKVTLVVASGRNKGLAGRPKGVKGKYKMVDGVMKNEQRALRRIAKKHHKKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P32558</accession>
+    <name>FACT complex subunit SPT16</name>
+    <protein>
+      <recommendedName>
+        <fullName>FACT complex subunit SPT16</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">SPT16</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Potassium on E">
+      <location>
+        <position position="135" />
+      </location>
+    </feature>
+    <sequence length="1035" mass="118557" checksum="unknown" modified="2026-08-25" version="-1">MEELNIDFDVFKKRIELLYSKYNEFEGSPNSLLFVLGSSNAENPYQKTTILHNWLLSYEFPATLIALVPGKVIIITSSAKAKHLQKAIDLFKDPESKITLELWQRNNKEPELNKKLFDDVIALINSAGKTVGIPEKDSYQGKFMTEWNPVWEAAVKENEFNVIDISLGLSKVWEVKDVNEQAFLSVSSKGSDKFMDLLSNEMVRAVDEELKITNAKLSDKIENKIDDVKFLKQLSPDLSALCPPNYKFNFDLLDWTYSPIIQSGKKFDLRVSARSTNDQLYGNGCILASCGIRYNNYCSNITRTFLIDPSEEMANNYDFLLTLQKEIVTNILKPGRTPKEVYESVIEYIEKTKPELVPNFTKNIGSLIGLEFRDSNFILNVKNDYRKIQRGDCFNISFGFNNLKDSQSANNYALQLADTVQIPLDETEPPRFLTNYTKAKSQISFYFNNEEEDNNKKKSSPATKVPSKPDRNSKILRTKLRGEARGGAEDAQKEQIRKENQKKLHEKLEKNGLLRFSAADANGPDSEPRQYFKKYESYVRDSQLPTNIRDLRIHVDWKSQTIILPIYGRPVPFHINSYKNGSKNEEGEYTYLRLNFNSPGSSGGISKKVEELPYEESADNQFVRSITLRSKDGDRMSETFKQIADLKKEATKREQERKALADVVQQDKLIENKTGRTKRLDQIFVRPNPDTKRVPSTVFIHENGIRFQSPLRTDSRIDILFSNIKNLIFQSCKGELIVVIHIHLKNPILMGKKKIQDVQFYREASDMSVDETGGGRRGQSRFRRYGDEDELEQEQEERRKRAALDKEFKYFADAIAEASNGLLTVENTFRDLGFQGVPNRSAVFCMPTTDCLVQLIEPPFLVINLEEVEICILERVQFGLKNFDMVFVYKDFNKPVTHINTVPIESLDFLKQWLTDMDIPYTVSTINLNWATIMKSLQDDPYQFFLDGGWNFLATGSDDEASDESEEEVSEYEASEDDVSDESAFSEDEEGSEVDDDISGDESEDYTGDESEEGEDWDELEKKAARADRGANFRD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P39015</accession>
+    <name>Suppressor protein STM1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Suppressor protein STM1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">STM1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Deamidation on N">
+      <location>
+        <position position="253" />
+      </location>
+    </feature>
+    <sequence length="273" mass="29977" checksum="unknown" modified="2026-08-25" version="-1">MSNPFDLLGNDVEDADVVVLPPKEIVKSNTSSKKADVPPPSADPSKARKNRPRPSGNEGAIRDKTAGRRNNRSKDVTDSATTKKSNTRRATDRHSRTGKTDTKKKVNQGWGDDKKELSAEKEAQADAAAEIAEDAAEAEDAGKPKTAQLSLQDYLNQQANNQFNKVPEAKKVELDAERIETAEKEAYVPATKVKNVKSKQLKTKEYLEFDATFVESNTRKNFGDRNNNSRNNFNNRRGGRGARKGNNTANATNSANTVQKNRNIDVSNLPSLA</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P53312</accession>
+    <name>Succinate--CoA ligase [ADP-forming] subunit beta, mitochondrial</name>
+    <protein>
+      <recommendedName>
+        <fullName>Succinate--CoA ligase [ADP-forming] subunit beta, mitochondrial</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">LSC2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="427" mass="46871" checksum="unknown" modified="2026-08-25" version="-1">MYSRKSLSLISKCGQLSRLNAQAALQARRHLSIHEYRSAQLLREYGIGTPEGFPAFTPEEAFEAAKKLNTNKLVIKAQALTGGRGKGHFDTGYKSGVHMIESPQQAEDVAKEMLNHNLITKQTGIAGKPVSAVYIVKRVDTKHEAYLSILMDRQTKKPMIIASSQGGMNIEEVAERTPDAIKKFSIETSKGLSPQMAKDVAKSLGFSPDAQDEAAKAVSNLYKIFMERDATQVEINPLSEIEHDPTHKIMCTDAKFGFDDNASFRQEKIYSWRDLSQEDPDEVKAKKYDLNFVKLKGNIGCLVNGAGLAMATMDVIKLNGGDPANFLDCGGGATPETIKQGFELILSNKNVDAIFVNIFGGIVRCDYVALGLVEAARELEVRVPIVARLQGTKVEEGRDIINKSGVKIYSFDELDPAAKKVVELTQN</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P15705</accession>
+    <name>Heat shock protein STI1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Heat shock protein STI1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">STI1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="589" mass="66224" checksum="unknown" modified="2026-08-25" version="-1">MSLTADEYKQQGNAAFTAKDYDKAIELFTKAIEVSETPNHVLYSNRSACYTSLKKFSDALNDANECVKINPSWSKGYNRLGAAHLGLGDLDEAESNYKKALELDASNKAAKEGLDQVHRTQQARQAQPDLGLTQLFADPNLIENLKKNPKTSEMMKDPQLVAKLIGYKQNPQAIGQDLFTDPRLMTIMATLMGVDLNMDDINQSNSMPKEPETSKSTEQKKDAEPQSDSTTSKENSSKAPQKEESKESEPMEVDEDDSKIEADKEKAEGNKFYKARQFDEAIEHYNKAWELHKDITYLNNRAAAEYEKGEYETAISTLNDAVEQGREMRADYKVISKSFARIGNAYHKLGDLKKTIEYYQKSLTEHRTADILTKLRNAEKELKKAEAEAYVNPEKAEEARLEGKEYFTKSDWPNAVKAYTEMIKRAPEDARGYSNRAAALAKLMSFPEAIADCNKAIEKDPNFVRAYIRKATAQIAVKEYASALETLDAARTKDAEVNNGSSAREIDQLYYKASQQRFQPGTSNETPEETYQRAMKDPEVAAIMQDPVMQSILQQAQQNPAALQEHMKNPEVFKKIQTLIAAGIIRTGR</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P38825</accession>
+    <name>Protein TOM71</name>
+    <protein>
+      <recommendedName>
+        <fullName>Protein TOM71</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TOM71</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <feature type="modified residue" description="Deamidation on N">
+      <location>
+        <position position="4" />
+      </location>
+    </feature>
+    <sequence length="639" mass="71812" checksum="unknown" modified="2026-08-25" version="-1">MAENSLLRFITKNKVAILATVSAGTAAVGAYVYYQQIKQQQQQQLKGTKDNRRQSEAFAGQNEDEADLKDDGSVVSGSNKRKKKKNKRKRNNKAKSGEGFDYPSLPNGEPDIAQLKGLSPSQRQAYAVQLKNRGNHFFTAKNFNEAIKYYQYAIELDPNEPVFYSNISACYISTGDLEKVIEFTTKALEIKPDHSKALLRRASANESLGNFTDAMFDLSVLSLNGDFDGASIEPMLERNLNKQAMKVLNENLSKDEGRGSQVLPSNTSLASFFGIFDSHLEVSSVNTSSNYDTAYALLSDALQRLYSATDEGYLVANDLLTKSTDMYHSLLSANTVDDPLRENAALALCYTGIFHFLKNNLLDAQVLLQESINLHPTPNSYIFLALTLADKENSQEFFKFFQKAVDLNPEYPPTYYHRGQMYFILQDYKNAKEDFQKAQSLNPENVYPYIQLACLLYKQGKFTESEAFFNETKLKFPTLPEVPTFFAEILTDRGDFDTAIKQYDIAKRLEEVQEKIHVGIGPLIGKATILARQSSQDPTQLDEEKFNAAIKLLTKACELDPRSEQAKIGLAQLKLQMEKIDEAIELFEDSAILARTMDEKLQATTFAEAAKIQKRLRADPIISAKMELTLARYRAKGML</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P38349</accession>
+    <name>UBX domain-containing protein 7</name>
+    <protein>
+      <recommendedName>
+        <fullName>UBX domain-containing protein 7</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">UBX7</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="436" mass="50000" checksum="unknown" modified="2026-08-25" version="-1">MLEALFRDSVEEAINDSIKEGVVLAVYNTARDDQWLKSWFKGDDVSLDTLAEHSIWLRLVKDTEQFQLFEQVFPNVVVPSIYLIRAGKIELIIQGEDDRHWEKLLACIGIKDKKAGESSSRETNPGLAREEKSSRDVHRKNARERIAETTLEIQRREQLKQRKLAEEERERIIRLVRADRAERKALDETHHRTLDDDKPLDVHDYIKDAQKLHSSKCVLQIRMTDGKTLKHEFNSSETLNDVRKWVDVNRTDGDCPYSFHRGIPRVTFKDSDELKTLETLELTPRSALLLKPLETQNSGLSVTGMEGPSLLGRLYKGFSTWWHNDKDPEVTSQREETSKPNRHEVRSSTPLSGAASSSCFQYNNVREPVQSSAHASPMLTPSGTRYPSETNLTTSRSVSPNVFQFVNNDHQEDPEDPTTFNGNNVHLEKKKDEDKK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P17255</accession>
+    <name>V-type proton ATPase catalytic subunit A</name>
+    <protein>
+      <recommendedName>
+        <fullName>V-type proton ATPase catalytic subunit A</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">VMA1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1071" mass="118562" checksum="unknown" modified="2026-08-25" version="-1">MAGAIENARKEIKRISLEDHAESEYGAIYSVSGPVVIAENMIGCAMYELVKVGHDNLVGEVIRIDGDKATIQVYEETAGLTVGDPVLRTGKPLSVELGPGLMETIYDGIQRPLKAIKEESQSIYIPRGIDTPALDRTIKWQFTPGKFQVGDHISGGDIYGSVFENSLISSHKILLPPRSRGTITWIAPAGEYTLDEKILEVEFDGKKSDFTLYHTWPVRVPRPVTEKLSADYPLLTGQRVLDALFPCVQGGTTCIPGAFGCGKTVISQSLSKYSNSDAIIYVGCFAKGTNVLMADGSIECIENIEVGNKVMGKDGRPREVIKLPRGRETMYSVVQKSQHRAHKSDSSREVPELLKFTCNATHELVVRTPRSVRRLSRTIKGVEYFEVITFEMGQKKAPDGRIVELVKEVSKSYPISEGPERANELVESYRKASNKAYFEWTIEARDLSLLGSHVRKATYQTYAPILYENDHFFDYMQKSKFHLTIEGPKVLAYLLGLWIGDGLSDRATFSVDSRDTSLMERVTEYAEKLNLCAEYKDRKEPQVAKTVNLYSKVVRGNGIRNNLNTENPLWDAIVGLGFLKDGVKNIPSFLSTDNIGTRETFLAGLIDSDGYVTDEHGIKATIKTIHTSVRDGLVSLARSLGLVVSVNAEPAKVDMNGTKHKISYAIYMSGGDVLLNVLSKCAGSKKFRPAPAAAFARECRGFYFELQELKEDDYYGITLSDDSDHQFLLANQVVVHNCGERGNEMAEVLMEFPELYTEMSGTKEPIMKRTTLVANTSNMPVAAREASIYTGITLAEYFRDQGKNVSMIADSSSRWAEALREISGRLGEMPADQGFPAYLGAKLASFYERAGKAVALGSPDRTGSVSIVAAVSPAGGDFSDPVTTATLGITQVFWGLDKKLAQRKHFPSINTSVSYSKYTNVLNKFYDSNYPEFPVLRDRMKEILSNAEELEQVVQLVGKSALSDSDKITLDVATLIKEDFLQQNGYSTYDAFCPIWKTFDMMRAFISYHDEAQKAVANGANWSKLADSTGDVKHAVSSSKFFEPSRGEKEVHGEFEKLLSTMQERFAESTD</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12141</accession>
+    <name>Transposon Ty1-GR1 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-GR1 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-GR1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198534" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQTAQSHSPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVQYGDFYWVSKRYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIQQCGMEEVRGWSCVFKNSQVTICLFVDDMVLFSKNLNSNKRIIDKLKMQYDTKIINLGESDEEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQQELELEEDDYKMKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSKQVLDMTYELIQFIWNTRDKQLIWHKSKPVKPTNKLVVISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELDKKPITKGLLTDSKSTISIIISNNEEKFRNRFFGTKAMRLRDEVSGNHLHVCYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX74</accession>
+    <name>Transposon Ty1-JR1 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-JR1 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-JR1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48963" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX70</accession>
+    <name>Transposon Ty1-DR6 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-DR6 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-DR6</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48923" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX71</accession>
+    <name>Transposon Ty1-ER1 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-ER1 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-ER1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48923" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12085</accession>
+    <name>Transposon Ty1-GR1 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-GR1 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-GR1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="49026" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQTAQSHSPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CF21</accession>
+    <name>Putative truncated L-serine dehydratase YIL168W</name>
+    <protein>
+      <recommendedName>
+        <fullName>Putative truncated L-serine dehydratase YIL168W</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">YIL168W</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="127" mass="13934" checksum="unknown" modified="2026-08-25" version="-1">MEMTYYEKTPLIRQFLNNGKTNSWFYVKHEMLQPGGSFKSRGIGHLIRKSNEEALSEGSGKLAVFSSSGGNAGLAAATACRSMALNCSVVVPKTTKPRMVKKIQSAGAKVIIHGDHWGEADEYLRHE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX72</accession>
+    <name>Transposon Ty1-LR2 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-LR2 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-LR2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48923" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0C2I6</accession>
+    <name>Transposon Ty1-LR3 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-LR3 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-LR3</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198282" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVQYGDFYWVSKRYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSASQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKPISEINLRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSNNETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDPPPEPPTELSDSFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAAKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMNTWDTDKYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDTGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSHYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIFLLNGKVIGGKSTKASLTCTSTTEAEIHAVSEAIPLLNNLSHLVQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0C2I8</accession>
+    <name>Transposon Ty1-LR4 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-LR4 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-LR4</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48973" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHPHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P36072</accession>
+    <name>Putative uncharacterized protein YKL118W</name>
+    <protein>
+      <recommendedName>
+        <fullName>Putative uncharacterized protein YKL118W</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">YKL118W</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="103" mass="11753" checksum="unknown" modified="2026-08-25" version="-1">MSSSIPSFDFALFLNFRRNSVILSFSLISNIRVLLCDANRQLSYLTFSSFLSAFSCEICFIFASSFLILNIHTSVMSTLSQLNTQDFCKTEYFVNNIIVRIQS</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0C2I5</accession>
+    <name>Transposon Ty1-LR2 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-LR2 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-LR2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198422" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVKYGDFYWVSKKYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAPTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPNSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX73</accession>
+    <name>Transposon Ty1-PL Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-PL Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-PL</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48923" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12273</accession>
+    <name>Transposon Ty1-OL Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-OL Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-OL</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198491" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSNYPQISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIINRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVKYGDFYWVSKKYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYQSFIASNEIQQSDDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSHQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q03612</accession>
+    <name>Transposon Ty1-ER1 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-ER1 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-ER1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198439" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVKYGDFYWVSKKYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYQSFIASNEIQQSDDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSHQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0C2J1</accession>
+    <name>Transposon Ty1-PR3 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-PR3 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-PR3</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198251" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSNYSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVQYGDFYWVSKRYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSASQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKPISEINLRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSNNETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDPPPEPPTELSDSFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDRYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDTGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSHYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSHLVQELNKKPITKGLLTDSKSTISIIISNNEEKFRNRFFGTKAMRLRDEVSGNHLHVCYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q07589</accession>
+    <name>Uncharacterized protein YDL144C</name>
+    <protein>
+      <recommendedName>
+        <fullName>Uncharacterized protein YDL144C</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">YDL144C</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="356" mass="39758" checksum="unknown" modified="2026-08-25" version="-1">MSRILVIGAGGVGVITALSLWLKKESDVSLVVRSDYDRVLKHGYTIESCDYGRLEGWRPHHIYSSVEDAASAADNQGYNYIVVTTKNIIDGPVNSRVSNIIRPVLEKNKELHGPQLTTHILLVQNGIDIEKEIWAEFPREQYRYTVLSGIQLIGSTKIGSGHISQVGQDHLSCGAFDPQDAAAIQAANDFVRMYSNEGQNFVEFDPRVRYSRWKKLLYNAAINTSTALVGLDVPRCLEFGVNKKSTEIEVFHPAMREIIAIAASEGIIIEEEFITMFTEITRKKVFKPSMCVDCEKGQLMELEVILGNPIRIAKRNGVATPTLSILYNLLVLVQAKLKERKGLLKFDEKTATLVDE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q6Q5H1</accession>
+    <name>Transposon Ty1-PR3 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-PR3 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-PR3</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48935" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSNYSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0C2I3</accession>
+    <name>Transposon Ty1-DR6 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-DR6 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-DR6</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198536" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVQYGDFYWVSKRYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPNSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNYLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIQQCGMEEVRGWSCVFKNSQVTICLFVDDMVLFSKNLNSNKRIIEKLKMQYDTKIINLGESDEEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTKPDNKLVAISDASYGNQPYYKSQIGNIFLLNGKVIGGKSTKASLTCTSTTEAEIHAVSEAIPLLNNLSHLVQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P47098</accession>
+    <name>Transposon Ty1-JR1 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-JR1 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-JR1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198529" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVQYGDFYWVSKRYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYQSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSHQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDTGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSHYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIFLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX76</accession>
+    <name>Transposon Ty1-ML2 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-ML2 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-ML2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48963" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q03434</accession>
+    <name>Transposon Ty1-ML2 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-ML2 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-ML2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198449" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVKYGDFYWVSKKYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDRSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPKSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYQSFIASNEIQQSDDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSHQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0C2I7</accession>
+    <name>Transposon Ty1-LR4 Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-LR4 Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-LR4</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198532" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHPHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVKYGDFYWVSKKYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPNSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIQQCGMEEVRGWSCVFKNSQVTICLFVDDMVLFSKNLNSNKRIIEKLKMQYDTKIINLGESDEEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTKPDNKLVAISDASYGNQPYYKSQIGNIFLLNGKVIGGKSTKASLTCTSTTEAEIHAVSEAIPLLNNLSHLVQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P38079</accession>
+    <name>Protein YRO2</name>
+    <protein>
+      <recommendedName>
+        <fullName>Protein YRO2</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">YRO2</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="344" mass="38694" checksum="unknown" modified="2026-08-25" version="-1">MSDYVELLKRGGNEAIKINPPTGADFHITSRGSDWLFTVFCVNLLFGVILVPLMFRKPVKDRFVYYTAIAPNLFMSIAYFTMASNLGWIPVRAKYNHVQTSTQKEHPGYRQIFYARYVGWFLAFPWPIIQMSLLGGTPLWQIAFNVGMTEIFTVCWLIAACVHSTYKWGYYTIGIGAAIVVCISLMTTTFNLVKARGKDVSNVFITFMSVIMFLWLIAYPTCFGITDGGNVLQPDSATIFYGIIDLLILSILPVLFMPLANYLGIERLGLIFDEEPAEHVGPVAEKKMPSPASFKSSDSDSSIKEKLKLKKKHKKDKKKAKKAKKAKKAKKAQEEEEDVATDSE</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q92392</accession>
+    <name>Transposon Ty1-OL Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-OL Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-OL</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48975" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSNYPQISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIINRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>Q12414</accession>
+    <name>Transposon Ty1-PL Gag-Pol polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-PL Gag-Pol polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1B-PL</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="1755" mass="198453" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSPISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLGQELTESTVNHTNHSDDELPGHLLLDSGASRTLIRSAHHIHSASSNPDINVVDAQKRNIPINAIGDLQFHFQDNTKTSIKVLHTPNIAYDLLSLNELAAVDITACFTKNVLERSDGTVLAPIVKYGDFYWVSKKYLLPSNISVPTINNVHTSESTRKYPYPFIHRMLAHANAQTIRYSLKNNTITYFNESDVDWSSAIDYQCPDCLIGKSTKHRHIKGSRLKYQNSYEPFQYLHTDIFGPVHNLPNSAPSYFISFTDETTKFRWVYPLHDRREDSILDVFTTILAFIKNQFQASVLVIQMDRGSEYTNRTLHKFLEKNGITPCYTTTADSRAHGVAERLNRTLLDDCRTQLQCSGLPNHLWFSAIEFSTIVRNSLASPKSKKSARQHAGLAGLDISTLLPFGQPVIVNDHNPNSKIHPRGIPGYALHPSRNSYGYIIYLPSLKKTVDTTNYVILQGKESRLDQFNYDALTFDEDLNRLTASYHSFIASNEIQESNDLNIESDHDFQSDIELHPEQPRNVLSKAVSPTDSTPPSTHTEDSKRVSKTNIRAPREVDPNISESNILPSKKRSSTPQISNIESTGSGGMHKLNVPLLAPMSQSNTHESSHASKSKDFRHSDSYSENETNHTNVPISSTGGTNNKTVPQISDQETEKRIIHRSPSIDASPPENNSSHNIVPIKTPTTVSEQNTEESIIADLPLPDLPPESPTEFPDPFKELPPINSRQTNSSLGGIGDSNAYTTINSKKRSLEDNETEIKVSRDTWNTKNMRSLEPPRSKKRIHLIAAVKAVKSIKPIRTTLRYDEAITYNKDIKEKEKYIEAYHKEVNQLLKMKTWDTDEYYDRKEIDPKRVINSMFIFNKKRDGTHKARFVARGDIQHPDTYDSGMQSNTVHHYALMTSLSLALDNNYYITQLDISSAYLYADIKEELYIRPPPHLGMNDKLIRLKKSLYGLKQSGANWYETIKSYLIKQCGMEEVRGWSCVFKNSQVTICLFVDDMILFSKDLNANKKIITTLKKQYDTKIINLGESDNEIQYDILGLEIKYQRGKYMKLGMENSLTEKIPKLNVPLNPKGRKLSAPGQPGLYIDQDELEIDEDEYKEKVHEMQKLIGLASYVGYKFRFDLLYYINTLAQHILFPSRQVLDMTYELIQFMWDTRDKQLIWHKNKPTEPDNKLVAISDASYGNQPYYKSQIGNIYLLNGKVIGGKSTKASLTCTSTTEAEIHAISESVPLLNNLSYLIQELNKKPIIKGLLTDSRSTISIIKSTNEEKFRNRFFGTKAMRLRDEVSGNNLYVYYIETKKNIADVMTKPLPIKTFKLLTNKWIH</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P31111</accession>
+    <name>Synaptonemal complex protein ZIP1</name>
+    <protein>
+      <recommendedName>
+        <fullName>Synaptonemal complex protein ZIP1</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">ZIP1</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="875" mass="99974" checksum="unknown" modified="2026-08-25" version="-1">MSNFFRDSSMGFKPRPNIFAKLRVRDVDSDSSANTVVENSSNCLDVGSSIEGDDTFKKPHKTSTEQELITSMSLSQRNHGYSDDMEIGSPKKTTSTDQYNRILKNDVAAIENDTDEDFEITEVREVSEGVAKETKESHGDPNDSETTLKDSKMHEYTMTNGKAPLHTSINNSSTSSNDVLLEAFTNTQRICSNLKQELQKQQQDNAKLKVRLQSYASNSDKINEKVGKYKSCLETLQERIATLTSHKNNQETKLKDLRQNHQLYQRRISGFKTSIENLNKTINDLGKNKKEADAELMKKGKEIEYLKRELDDCSGQLSEEKIKNSSLIQEMGKNREEMIKSIENFFSEDKAHHLLQFNKFEERVHDLFEKKLQKHFDVAKDTLNVGLRNTTVELSSNTETMLKQQYEDIKENLEQKMSSSKDEMAKTINELSVTQKGLIMGVQEELLTSSGNIQTALVSEMNNTRQELLDDASQTAKNYASLENLVKAYKAEIVQSNEYEERIKHLESERSTLSSQKNQIISSLGTKEAQYEDLVKKLEAKNIEISQISGKEQSLTEKNENLSNELKKVQDQLEKLNNLNITTKSNYENKISSQNEIVKALVSENDTLKQRIQQLVEIKENEQKDHTTKLEAFQKNNEQLQKLNVEVVQLKAHELELEEQNRHLKNCLEKKETGVEESLSDVKTLKQQVIVLKSEKQDITAEKLELQDNLESLEEVTKNLQQKVQSQKRELEQKIKELEEIKNHKRNEPSKKGTQNFTKPSDSPKKNATTSNLFPNNSAAIHSPMKKCPKVDHISKSRINSSKETSKFNDEFDLSSSSNDDLELTNPSPIQIKPVRGKIKKGSNCMKPPISSRKKLLLVEDEDQSLKISKKRRRK</sequence>
+  </entry>
+  <entry dataset="unknown" created="2026-08-25" modified="2026-08-25" version="1" xmlns="http://uniprot.org/uniprot">
+    <accession>P0CX75</accession>
+    <name>Transposon Ty1-LR3 Gag polyprotein</name>
+    <protein>
+      <recommendedName>
+        <fullName>Transposon Ty1-LR3 Gag polyprotein</fullName>
+      </recommendedName>
+    </protein>
+    <gene>
+      <name type="primary">TY1A-LR3</name>
+    </gene>
+    <organism>
+      <name type="scientific">Saccharomyces cerevisiae (strain ATCC 204508 / S288c)</name>
+    </organism>
+    <sequence length="440" mass="48963" checksum="unknown" modified="2026-08-25" version="-1">MESQQLSQHSHISHGSACASVTSKEVHTNQDPLDVSASKTEECEKASTKANSQQTTTPASSAVPENPHHASPQPASVPPPQNGPYPQQCMMTQNQANPSGWSFYGHPSMIPYTPYQMSPMYFPPGPQSQFPQYPSSVGTPLSTPSPESGNTFTDSSSADSDMTSTKKYVRPPPMLTSPNDFPNWVKTYIKFLQNSNLGGIIPTVNGKPVRQITDDELTFLYNTFQIFAPSQFLPTWVKDILSVDYTDIMKILSKSIEKMQSDTQEANDIVTLANLQYNGSTPADAFETKVTNIIDRLNNNGIHINNKVACQLIMRGLSGEYKFLRYTRHRHLNMTVAELFLDIHAIYEEQQGSRNSKPNYRRNLSDEKNDSRSYTNTTKPKVIARNPQKTNNSKSKTARAHNVSTSNNSPSTDNDSISKSTTEPIQLNNKHDLHLRPGTY</sequence>
+  </entry>
+</mzLibProteinDb>

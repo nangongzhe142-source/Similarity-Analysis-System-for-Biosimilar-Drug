@@ -1,0 +1,12 @@
+The data analysis was performed using MetaMorpheus version 1.1.7, available at https://github.com/smith-chem-wisc/MetaMorpheus.
+
+The following G-PTM-D settings were used: Protease = trypsin; maximum missed cleavages = 2; minimum peptide length = 7; maximum peptide length = unspecified; initiator methionine behavior = Variable; max modification isoforms = 1024; fixed modifications = Carbamidomethyl on C, Carbamidomethyl on U; variable modifications = Oxidation on M; G-PTM-D modifications count = 60; precursor mass tolerance(s) = {±5.0000 PPM around 0, 0.984015583, -1.0316339999999986, 1.968032, -2.015649999999999, 4.955394000000002, 14.015650064, 14.999666000000001, 15.99491462, -16.042533, 16.978931, -17.026549101, -18.010564684, 21.969391633, 21.98194425, 22.965959, 27.99491462, 28.031300129, 28.990163592, 31.98983, 37.946940799, 37.955881454, 37.976858, 42.010564684, 42.046950193, 42.994581, 43.005813656, 43.963886, 43.989829239, 44.985078211, 52.911461233, 53.919286266, 61.913491946, 61.921772688, 63.992508, 68.026214748, 70.041864813, 79.956815033, 79.966330889, 86.000393923, 86.036779433, 100.016043988, 101.948274, 114.031694052, 159.932662, 203.079372521, 229.014009359, 541.06110975 Da}; product mass tolerance = ±20.0000 PPM. The combined search database contained 99 non-decoy protein entries including 0 contaminant sequences. Data files were processed on a computer running Microsoft Windows 10.0.26200 with a 64-bit Intel(R) Core(TM) i5-8300H CPU @ 2.30GHz processor with 8 threads and 16GB installed RAM. 
+
+The total time to perform the Gptmd task on 1 spectra file(s) was 0.01 minutes.
+
+Published works using MetaMorpheus software are encouraged to cite the appropriate publications listed in the reference guide, found here: https://github.com/smith-chem-wisc/MetaMorpheus/blob/master/README.md.
+
+Spectra files: 
+	C:\Users\MI\Documents\ChatGPT\ai生物类似药\biosimilar-comparison-platform\validation\metamorpheus-official-test\Task1CalibrationTask\SmallCalibratible_Yeast-calib.mzML
+Databases:
+	C:\Users\MI\bioTools\MetaMorpheus\Data\SmallYeast.fasta Downloaded on: 08/25/2026 16:45:24

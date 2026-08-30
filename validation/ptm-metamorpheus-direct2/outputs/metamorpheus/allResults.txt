@@ -1,0 +1,84 @@
+MetaMorpheus: version 1.1.7
+Total time: 00:00:02.2612244
+
+
+
+
+Time to run task: 00:00:02.2232642
+
+--------------------------------------------------
+
+All target PSMs with q-value <= 0.01: 0
+All target peptides with q-value <= 0.01: 0
+All target protein groups with q-value <= 0.01 (1% FDR): 0
+All Precursors: 2780
+All MS2 Scans: 2286
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------
+
+Engine Results:
+
+Engine type: DatabaseLoadingEngine
+Time to run engine: 00:00:00.0639364
+Databases loaded:
+	bsa.fasta: 2 Proteins
+		1 Target Proteins 	 1 Decoy Proteins
+Total Proteins loaded: 2
+Total Proteins removed by sanitization: 0
+Total Proteins renamed by sanitization: 0
+Total decoy Proteins scrambled due to homology: 0
+Total Proteins remaining: 2
+
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.0343821
+
+Engine type: ClassicSearchEngine
+Time to run engine: 00:00:00.0219532
+
+Engine type: FdrAnalysisEngine
+Time to run engine: 00:00:00.0017552
+PSMs within 1% FDR: 0
+Delta Score Used for FDR Analysis: False
+
+
+
+Engine type: DisambiguationEngine
+Time to run engine: 00:00:00.0007131
+Ambiguous Peptides removed QValueNotch: 0
+
+
+Engine type: ModificationAnalysisEngine
+Time to run engine: 00:00:00.0065623
+Localized mods seen below q-value 0.01:
+
+(Approx) Additional localized but protein ambiguous mods seen below q-value 0.01:
+
+(Approx) Additional unlocalized mods seen below q-value 0.01:
+
+(Approx) Additional unlocalized modification formulas seen below q-value 0.01:
+
+
+All mods in database limited to peptides observed in the results:
+
+
+
+Engine type: ProteinParsimonyEngine
+Time to run engine: 00:00:00.0029001
+
+
+Engine type: ProteinScoringAndFdrEngine
+Time to run engine: 00:00:00.0028237
+Number of proteins within 1% FDR: 0
+
+

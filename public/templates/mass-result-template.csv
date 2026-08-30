@@ -1,0 +1,3 @@
+study_id,comparison_item,product_role,batch_no,species_label,observed_mass_da,theoretical_mass_da,mass_type,relative_abundance_percent,charge_range,retention_time_min,source_file,software,software_version,review_status,notes
+STUDY-001,intact-mass,candidate,A-LOT-001,main_species,,,,,,,,UniDec,8.2.1,pending,
+STUDY-001,intact-mass,reference,B-LOT-001,main_species,,,,,,,,UniDec,8.2.1,pending,

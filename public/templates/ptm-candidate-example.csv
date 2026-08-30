@@ -1,0 +1,7 @@
+lot_id,replicate_id,protein_chain,residue,position,modification,value_percent,quant_status,loq_percent,identification_q_value,localization_probability,risk_level
+C01,1,HC,M,252,Oxidation,1.35,quantified,0.05,0.001,0.98,high
+C02,1,HC,M,252,Oxidation,2.10,quantified,0.05,0.001,0.98,high
+C01,1,HC,N,387,Deamidation,2.20,quantified,0.05,0.001,0.96,medium
+C02,1,HC,N,387,Deamidation,2.40,quantified,0.05,0.002,0.95,medium
+C01,1,HC,W,313,Oxidation,0.70,quantified,0.05,0.001,0.94,medium
+C02,1,HC,W,313,Oxidation,0.65,quantified,0.05,0.001,0.95,medium

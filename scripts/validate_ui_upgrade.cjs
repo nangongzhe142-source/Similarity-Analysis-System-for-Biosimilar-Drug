@@ -1,0 +1,37 @@
+const { chromium } = require("playwright");
+
+(async () => {
+  const browser = await chromium.launch({ headless: true, executablePath: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe" });
+  const page = await browser.newPage({ viewport: { width: 1500, height: 980 } });
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => { if (message.type() === "error" && !message.text().includes("Failed to load resource")) errors.push(message.text()); });
+  page.on("response", (response) => { if (response.status() >= 400 && !response.url().endsWith("favicon.ico")) errors.push(`${response.status()} ${response.url()}`); });
+  await page.goto("http://127.0.0.1:3000/project", { waitUntil: "networkidle" });
+  if (!(await page.title()).includes("生物类似药多维药学项目比对工作台")) throw new Error("浏览器标题未完成全局改名");
+  const primary = page.getByRole("button", { name: /一级结构/ });
+  if ((await primary.getAttribute("aria-expanded")) !== "false") await primary.click();
+  await primary.click();
+  await page.reload({ waitUntil: "networkidle" });
+  if ((await page.getByRole("button", { name: /一级结构/ }).getAttribute("aria-expanded")) !== "true") throw new Error("侧栏折叠状态刷新后未保持");
+  const history = page.getByRole("button", { name: /专业引擎任务历史/ });
+  if ((await history.getAttribute("aria-expanded")) !== "true") await history.click();
+  await page.reload({ waitUntil: "networkidle" });
+  if ((await page.getByRole("button", { name: /专业引擎任务历史/ }).getAttribute("aria-expanded")) !== "true") throw new Error("任务历史折叠状态刷新后未保持");
+  await page.getByRole("button", { name: "收起侧栏" }).click();
+  await page.reload({ waitUntil: "networkidle" });
+  if (!(await page.locator(".app-shell").getAttribute("class")).includes("sidebar-is-collapsed")) throw new Error("侧栏收起状态刷新后未保持");
+  await page.getByRole("button", { name: "展开侧栏" }).click();
+  if (!(await page.locator('input[type="file"]').first().isVisible())) throw new Error("统一上传入口不可见");
+  await page.goto("http://127.0.0.1:3000/project/data", { waitUntil: "networkidle" });
+  const routing = page.getByRole("button", { name: /专项输入分配/ });
+  await routing.click(); await page.reload({ waitUntil: "networkidle" });
+  if ((await page.getByRole("button", { name: /专项输入分配/ }).getAttribute("aria-expanded")) !== "true") throw new Error("输入分配折叠状态刷新后未保持");
+  await page.goto("http://127.0.0.1:3000/project/report", { waitUntil: "networkidle" });
+  await page.locator(".report-module-panel").filter({ hasText: "一级结构" }).getByRole("button").first().click();
+  const detailHref = await page.getByRole("link", { name: "穿透 →" }).first().getAttribute("href");
+  if (!detailHref || !detailHref.includes("/modules/")) throw new Error("结果穿透链接丢失");
+  if (errors.length) throw new Error(`浏览器错误：${errors.join(" | ")}`);
+  console.log(JSON.stringify({ titleRenamed: true, persistence: true, sidebarPersistence: true, inputRoutingPersistence: true, uploadVisible: true, resultDrillDown: true, consoleErrors: 0 }));
+  await browser.close();
+})();

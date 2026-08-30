@@ -1,0 +1,34 @@
+[
+  {
+    "command": [
+      "C:\\Users\\MI\\bioTools\\dotnet8\\dotnet.exe",
+      "C:\\Users\\MI\\bioTools\\MetaMorpheus\\CMD.dll",
+      "-g",
+      "-o",
+      "C:\\Users\\MI\\Documents\\ChatGPT\\ai生物类似药\\biosimilar-comparison-platform\\validation\\ptm-metamorpheus-direct3\\work\\metamorpheus-task"
+    ],
+    "returnCode": 0,
+    "stdout": "Welcome to MetaMorpheus\n1.1.7\nGenerating default tomls at location: C:\\Users\\MI\\Documents\\ChatGPT\\ai鐢熺墿绫讳技鑽痋biosimilar-comparison-platform\\validation\\ptm-metamorpheus-direct3\\work\\metamorpheus-task\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\MI\\bioTools\\dotnet8\\dotnet.exe",
+      "C:\\Users\\MI\\bioTools\\MetaMorpheus\\CMD.dll",
+      "-t",
+      "C:\\Users\\MI\\Documents\\ChatGPT\\ai生物类似药\\biosimilar-comparison-platform\\validation\\ptm-metamorpheus-direct3\\work\\metamorpheus-task\\SearchTask.toml",
+      "-d",
+      "C:\\Users\\MI\\Documents\\ChatGPT\\ai生物类似药\\biosimilar-comparison-platform\\validation\\ptm-metamorpheus-example\\small-yeast.fasta",
+      "-s",
+      "C:\\Users\\MI\\Documents\\ChatGPT\\ai生物类似药\\biosimilar-comparison-platform\\validation\\ptm-metamorpheus-example\\reference-small-yeast.mzML",
+      "C:\\Users\\MI\\Documents\\ChatGPT\\ai生物类似药\\biosimilar-comparison-platform\\validation\\ptm-metamorpheus-example\\candidate-small-yeast.mzML",
+      "-o",
+      "C:\\Users\\MI\\Documents\\ChatGPT\\ai生物类似药\\biosimilar-comparison-platform\\validation\\ptm-metamorpheus-direct3\\outputs\\metamorpheus",
+      "-v",
+      "minimal"
+    ],
+    "returnCode": 0,
+    "stdout": "Welcome to MetaMorpheus\n1.1.7\nFinished task: Task1SearchTask\n",
+    "stderr": ""
+  }
+]
