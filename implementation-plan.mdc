@@ -726,6 +726,106 @@ Done
 
 ---
 
+## 人工复核 Human Input（保持 Chatflow）
+
+> 范围：把现 Chatflow 从短路拒绝改为「先完善回复，再内部 Human Input」；已批准复核写入独立知识库。
+> 约束：不改 `characterization-items.ts`、分析契约、分析服务；不把 Dify Key 写入前端或 `NEXT_PUBLIC_*`；DSL 无密钥；不微调模型；复核不得改写当次数值/状态。
+> 站点：继续 `POST /api/assistant/chat` → `/v1/chat-messages`。不改为 `/v1/workflows/run`。
+
+### 已核实现状与最优解（2026-09-01）
+
+- 现应用仍为 `advanced-chat`，DSL `0.6.0`，开始节点 11 个变量与 D0 冻结名一致。
+- 现图含多条短路 Answer（空输入、注入、整品认定、看图猜峰、证据不足、无分析结果、越权），与「必须先给出完善回复」冲突。
+- Dify 1.14.1 源码确认：Human Input 节点 type 为 `human-input`；交付为 `webapp` / `email`；动作句柄为各 `user_actions.id` 与超时 `__timeout`；Answer 可以接到下游（本机 fixture `test-answer-order.yml`）。
+- `mode: workflow` 会改成 `/v1/workflows/run` 且没有 Chatflow Answer，无法在暂停前把完善回复发给现站点。因此保持 `advanced-chat`：LLM → Answer → Human Input。这不是用「聊天里填表」做复核入口；终端用户只看到完善回复，复核表单走 Email/控制台。
+- 空输入：用户确认只追问困扰，不走 8 块、不进 Human Input。
+- Human Review KB 在控制台新建后，把 Dataset UUID 与 Dataset API Key 填入应用环境变量；DSL 只保留变量名。
+
+### 冻结实现约定
+
+1. 模式保持 `advanced-chat`。开始变量名不变。temperature 0.1。免责声明固定原文。
+2. 除空输入外，任何用户问题都先经 LLM 生成 8 块完善回复，由 Answer 发出，再暂停 Human Input。不设问题分类节点。
+3. Human Input 仅内部药学人员。`email` 启用且 `webapp` 关闭；收件人由操作员在控制台实机填写。超时 3 天，超时不入库。
+4. 已批准复核只写入 `Biosimilar Human Review KB`。禁止写入 `Biosimilar Similarity Assistant KB`。
+5. 入库门槛全部满足才 HTTP `create-by-text`。不满足则内部 `{"action":"reject","reason":"..."}`，不撤回已发完善回复。
+6. 检索优先级：Human Review 中 `status: approved` 且未过期 → 原库 → 当次 `analysisResult`。当次数值/状态不可被复核改写。
+7. 空上下文字段在装配后写「空」，禁止推断。
+8. 空输入：不走 8 块、不进 Human Input。由 `LLM·空输入追问` 先问候再理性追问，合计最多三句；可点出非空页面字段。语言：locale 为 en 用英文，否则中文。
+
+### 步骤 H0：写入本段并冻结约定
+
+Done
+
+记录保持 Chatflow、先 Answer 再 Human Input、独立 Human Review KB、站点 API 不变。
+未改业务代码，未登录 Dify 控制台。
+
+### 步骤 H1：重写助手 DSL（无密钥）
+
+文件：`dify/biosimilar-assistant-chatflow.yml`
+
+Done
+
+删除短路拒绝 Answer；空输入只追问；其余路径检索原库 + Human Review 候选、生成完善回复、Answer、Human Input、入库门槛与 HTTP。
+环境变量只保留名称；密钥值为空。人工复核检索节点导入后须改绑到新库。
+
+Dify 1.14.1 导入校验要求 Human Input 短文本为 `text_input`（开始节点仍为 `text-input`），投递渠道 `id` 为 UUID。
+
+### 步骤 H1b：去掉分类并改为空输入问候追问
+
+文件：`dify/biosimilar-assistant-chatflow.yml`
+
+Done
+
+删除问题分类节点；非空问题直接检索原库与人工复核库。空输入改走 `LLM·空输入追问` 再 `直接回复·空输入追问`，不进 Human Input。
+站点仍为 Chatflow；Human Input 收件留待控制台实机填写。
+
+### 步骤 H2：允许空问题到达 Dify
+
+文件：`src/lib/assistant/chat-request.ts`
+
+Done
+
+空字符串 query 可以转发到 Dify 空输入追问；缺少 query 字段仍为 INVALID_BODY。
+仍拒绝客户端上游字段，仍截断过长 query。
+
+### 步骤 H3：前台允许空发送且不把暂停当失败
+
+文件：`src/components/assistant/AssistantPanel.tsx`，随后 `AssistantWidget.tsx`
+
+Done
+
+发送按钮不再因草稿为空而禁用；SSE 忽略 Human Input 暂停事件，已发出的完善回复保留。
+不渲染复核表单，不把 Key 放进客户端。
+
+### 步骤 H4：助手校验覆盖新约定
+
+文件：`scripts/verify_assistant.mjs`
+
+Done
+
+断言空 query 可转发、DSL 含 human-input 与完善回复、不含短路拒绝标题、站点仍走 `/chat-messages`。
+不调用 Dify。
+
+### 步骤 H5：README 与站点代理说明
+
+文件：`README.md`
+
+Done
+
+写明先完善回复再内部复核、独立 Human Review KB、站点仍走 `/v1/chat-messages`。
+不写入真实 Key 或 dataset UUID。
+
+### 步骤 H6：控制台新建 Human Review KB 并发布（操作员）
+
+操作：Dify 控制台 / 本机 API。不改 PostgreSQL。
+
+Done
+
+已新建高质量库 `Biosimilar Human Review KB`（id `7b9d5de8-6749-4c90-84b9-684871142da0`），嵌入 `text-embedding-v4` / `langgenius/tongyi/tongyi`，元数据 `status`、`expireAt`。已覆盖导入并发布现 Chatflow；原库检索仍绑 `Biosimilar Similarity Assistant KB`。
+Dataset API Key 只写入 Dify 应用环境变量，不进仓库。Human Input 收件由操作员实机填写。
+
+---
+
 ## 助手界面视觉升级
 
 > 范围：只改悬浮助手外观与交互动画。不改代理、白名单、Chatflow、分析服务与上传。

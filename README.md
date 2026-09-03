@@ -181,14 +181,17 @@ npm run check                 # 以上校验全部串联
 
 ## AI 助手
 
-右下角 Q 版看板娘打开聊天窗，经 `POST /api/assistant/chat` 调用本机 Dify Chatflow（`advanced-chat`）。助手只解释系统资料和已有分析结果。
+右下角 Q 版看板娘打开聊天窗，经 `POST /api/assistant/chat` 调用本机 Dify Chatflow（`advanced-chat`，`POST /v1/chat-messages`）。助手只解释系统资料和已有分析结果。
 
-- 知识 Markdown：`knowledge/assistant/`
+- 知识 Markdown：`knowledge/assistant/`（原库 Biosimilar Similarity Assistant KB）
+- 已批准内部复核写入独立知识库 `Biosimilar Human Review KB`，不写入原库
 - Chatflow DSL（导出无明文密钥）：`dify/biosimilar-assistant-chatflow.yml`
 - 开始节点上下文：`pageUrl, pageTitle, locale, categoryKey, itemId, itemName, methodId, methodName, analysisStatus, analysisResult, analysisProvenance`
 - `analysisResult` 只传白名单字段；回复按纯文本渲染
-- 固定话术拒绝：越权、整品认定、看图猜峰
+- 除空输入追问外，先给出结构完整的完善回复，再由内部药学人员在 Dify Human Input 中复核解释口径；终端用户不填复核表、不能入库
+- 整品认定、看图猜峰、要密钥时仍不越界，但回复必须完整，不得只回一句拒绝
 - 助手免责声明原文：「AI 助手仅用于解释系统资料和分析结果，不构成生物类似药认定或监管建议。」
+- 入库用的知识库 Key 只放在 Dify 应用环境变量 `HUMAN_REVIEW_DATASET_API_KEY`，不要写入本站 `.env.local` 或 `NEXT_PUBLIC_*`。同时在 Dify 填写 `HUMAN_REVIEW_DATASET_ID` 与 `DIFY_KNOWLEDGE_API_BASE`。
 
 ## 分析方法嵌入路径
 
@@ -264,7 +267,7 @@ interface DetectionMethodContent {
 - **国际化**：自研 i18n（React Context + `localStorage`）
 - **数据生成**：Python 3 + openpyxl
 - **分析服务**：FastAPI + pyOpenMS / UniDec / Comet（虚拟环境在 `tools-poc/.venv`）
-- **助手**：本机 Dify 1.14.x Chatflow，本站服务端代理
+- **助手**：本机 Dify 1.14.x Chatflow（先完善回复，再内部 Human Input），本站服务端代理 `/v1/chat-messages`
 - **质量校验**：ESLint + TypeScript + `verify:*.mjs` + 分析服务 pytest
 
 ## 目录结构

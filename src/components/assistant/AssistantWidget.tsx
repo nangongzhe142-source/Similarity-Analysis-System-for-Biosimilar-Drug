@@ -36,7 +36,12 @@ function errorText(
 
 function parseSseChunk(
   payload: string,
-  onDelta: (text: string, conversationId: string, sources: string[]) => void,
+  onDelta: (
+    text: string,
+    conversationId: string,
+    sources: string[],
+    pausedForReview?: boolean,
+  ) => void,
 ): void {
   let conversationId = "";
   let sources: string[] = [];
@@ -59,6 +64,15 @@ function parseSseChunk(
       }
       if (event.event === "error") {
         onDelta("", conversationId, sources);
+        continue;
+      }
+      if (
+        event.event === "human_input_required" ||
+        event.event === "workflow_paused" ||
+        event.event === "human_input_form_filled" ||
+        event.event === "human_input_form_timeout"
+      ) {
+        onDelta("", conversationId, sources, true);
         continue;
       }
       if (typeof event.answer === "string" && event.answer.length > 0) {
@@ -107,7 +121,7 @@ export function AssistantWidget() {
 
   const send = useCallback(async (textOverride?: string) => {
     const query = (textOverride ?? draft).trim();
-    if (sending || query.length === 0) return;
+    if (sending) return;
     if (query.length > ASSISTANT_QUERY_MAX_CHARS) {
       setErrorMessage(copy.networkError);
       return;
@@ -169,6 +183,7 @@ export function AssistantWidget() {
       const decoder = new TextDecoder();
       let buffer = "";
       let assembled = "";
+      let pausedForReview = false;
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -177,7 +192,8 @@ export function AssistantWidget() {
         if (splitAt === -1) continue;
         const complete = buffer.slice(0, splitAt);
         buffer = buffer.slice(splitAt + 2);
-        parseSseChunk(complete, (delta, nextConversationId, sources) => {
+        parseSseChunk(complete, (delta, nextConversationId, sources, paused) => {
+          if (paused) pausedForReview = true;
           if (nextConversationId) persistConversation(nextConversationId);
           if (delta) assembled += delta;
           setChatMessages((current) =>
@@ -194,7 +210,8 @@ export function AssistantWidget() {
         });
       }
       if (buffer.trim().length > 0) {
-        parseSseChunk(buffer, (delta, nextConversationId, sources) => {
+        parseSseChunk(buffer, (delta, nextConversationId, sources, paused) => {
+          if (paused) pausedForReview = true;
           if (nextConversationId) persistConversation(nextConversationId);
           if (delta) assembled += delta;
           setChatMessages((current) =>
@@ -210,7 +227,7 @@ export function AssistantWidget() {
           );
         });
       }
-      if (assembled.length === 0) {
+      if (assembled.length === 0 && !pausedForReview) {
         setErrorMessage(copy.unavailable);
         setChatMessages((current) => current.filter((item) => item.id !== assistantMessage.id));
       }

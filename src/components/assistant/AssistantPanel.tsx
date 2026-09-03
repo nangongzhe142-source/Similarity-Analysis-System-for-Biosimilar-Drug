@@ -192,7 +192,7 @@ export function AssistantPanel({
           />
           <button
             type="submit"
-            disabled={sending || draft.trim().length === 0}
+            disabled={sending}
             aria-label={sending ? copy.sending : copy.send}
             className="tap-target grid size-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-600 to-cyan-700 text-paper shadow-raised disabled:opacity-40"
           >

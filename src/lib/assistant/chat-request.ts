@@ -97,7 +97,7 @@ export function parseAssistantChatRequest(
     }
   }
   const query = typeof body.query === "string" ? body.query.trim() : "";
-  if (query.length === 0) {
+  if (typeof body.query !== "string") {
     return { ok: false, code: "INVALID_BODY" };
   }
   if (query.length > ASSISTANT_QUERY_MAX_CHARS) {

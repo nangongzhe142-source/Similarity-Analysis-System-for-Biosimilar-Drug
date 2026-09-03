@@ -202,6 +202,21 @@ if (rejectedDifyUrl.ok || rejectedDifyUrl.code !== "FORBIDDEN_FIELD") {
   fail("client difyUrl must be rejected as FORBIDDEN_FIELD");
 }
 
+const parsedEmptyQuery = parseAssistantChatRequest({
+  query: "",
+  user,
+});
+if (!parsedEmptyQuery.ok) fail("empty query must be forwarded for the follow-up prompt");
+if (parsedEmptyQuery.ok && parsedEmptyQuery.value.query !== "") {
+  fail("empty query must stay empty, not invented");
+}
+const missingQuery = parseAssistantChatRequest({
+  user,
+});
+if (missingQuery.ok || missingQuery.code !== "INVALID_BODY") {
+  fail("missing query field must stay INVALID_BODY");
+}
+
 const parsedEmptyResult = parseAssistantChatRequest({
   query: "解释当前结果",
   user,
@@ -264,6 +279,57 @@ if (envKey.value) {
       }
     }
   }
+}
+
+const dslPath = join(projectRoot, "dify", "biosimilar-assistant-chatflow.yml");
+const dslText = readFileSync(dslPath, "utf8");
+if (!dslText.includes("mode: advanced-chat")) fail("DSL must stay advanced-chat");
+if (!dslText.includes("type: human-input")) fail("DSL must include a human-input node");
+if (!/type: text_input\s*\n\s*output_variable_name: reviewerId/.test(dslText)) {
+  fail("Human Input reviewerId must use Dify 1.14.1 text_input, not start-node text-input");
+}
+if (/- type: text-input\s*\n\s*output_variable_name: (reviewerId|reviewedAt|expireAt)/.test(dslText)) {
+  fail("Human Input short fields still use text-input");
+}
+if (/id: dm-(email-workspace|webapp)/.test(dslText)) {
+  fail("Human Input delivery_methods.id must be UUID");
+}
+if (!dslText.includes("LLM·完善回复")) fail("DSL must include the complete-reply LLM");
+if (!dslText.includes("LLM·空输入追问")) fail("DSL must include the empty-query follow-up LLM");
+if (!dslText.includes("回复·完善回复")) fail("DSL must include the complete-reply Answer");
+if (!dslText.includes("直接回复·空输入追问")) fail("DSL must keep the empty-query follow-up");
+if (dslText.includes("type: question-classifier")) fail("DSL must not classify questions before the complete reply");
+if (dslText.includes("{{#2108270011.class_name#}}")) fail("complete-reply prompt must not read the removed classifier");
+if (dslText.includes("直接回复·拒绝整品认定")) fail("DSL still has the product-determination short-circuit");
+if (dslText.includes("直接回复·拒绝注入")) fail("DSL still has the override short-circuit");
+if (dslText.includes("直接回复·拒绝看图猜峰")) fail("DSL still has the image short-circuit");
+if (dslText.includes("直接回复·证据不足")) fail("DSL still has the empty-retrieval short-circuit");
+if (!dslText.includes("HUMAN_REVIEW_DATASET_API_KEY")) fail("DSL must reference HUMAN_REVIEW_DATASET_API_KEY by name");
+if (!dslText.includes("value_type: secret")) fail("DSL must declare the dataset key as a secret env var");
+if (/HUMAN_REVIEW_DATASET_API_KEY[\s\S]{0,120}value: ['\"](?!['\"]).+/m.test(dslText)) {
+  fail("HUMAN_REVIEW_DATASET_API_KEY must export with an empty value");
+}
+if (dslText.includes("Biosimilar Similarity Assistant KB") && dslText.includes("HTTP·写入 Human Review KB")) {
+  if (dslText.includes("create-by-text") === false) {
+    fail("ingest HTTP must call create-by-text");
+  }
+}
+const difyClient = readFileSync(join(projectRoot, "src", "lib", "assistant", "dify-client.ts"), "utf8");
+if (!difyClient.includes("/chat-messages")) {
+  fail("site proxy must keep /chat-messages");
+}
+if (difyClient.includes("/workflows/run")) {
+  fail("site proxy must not call /workflows/run while the app stays advanced-chat");
+}
+const widgetSource = readFileSync(
+  join(projectRoot, "src", "components", "assistant", "AssistantWidget.tsx"),
+  "utf8",
+);
+if (!widgetSource.includes("human_input_required")) {
+  fail("widget must ignore human_input_required events");
+}
+if (widgetSource.includes("query.length === 0")) {
+  fail("widget must allow empty query so Dify can ask what is troubling the user");
 }
 
 if (failures.length > 0) {
