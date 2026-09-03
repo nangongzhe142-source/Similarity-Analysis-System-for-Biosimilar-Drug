@@ -7,6 +7,7 @@ import type { Category, CharacterizationItem } from "@/types/models";
 import { getAdjacentItems } from "@/data/selectors";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ItemDetailContent } from "@/components/views/ItemDetailContent";
+import { ItemAnalysisFrame } from "@/components/workbench/ItemAnalysisFrame";
 import {
   publishAssistantPageContext,
   resetAssistantPageContext,
@@ -19,6 +20,7 @@ interface ItemDetailViewProps {
 
 export function ItemDetailView({ item, category }: ItemDetailViewProps) {
   const { localize, messages } = useLanguage();
+  const copy = messages.workbench;
   const { previous, next } = getAdjacentItems(item.id);
 
   useEffect(() => {
@@ -43,6 +45,15 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
 
   return (
     <div className="flex flex-col gap-8">
+      <div className="level-banner">
+        <div>
+          <span>{copy.levelBannerEyebrow}</span>
+          <strong>{localize(item.itemName)}</strong>
+          <small>{copy.levelBannerNote}</small>
+        </div>
+        <Link href="/project">{copy.backToProject}</Link>
+      </div>
+
       <Breadcrumb
         entries={[
           { label: messages.itemPage.breadcrumbHome, href: "/" },
@@ -52,6 +63,8 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
       />
 
       <ItemDetailContent item={item} />
+
+      <ItemAnalysisFrame itemId={item.id} />
 
       <nav className="flex items-center justify-between border-t border-line pt-4 text-sm">
         {previous !== undefined ? (

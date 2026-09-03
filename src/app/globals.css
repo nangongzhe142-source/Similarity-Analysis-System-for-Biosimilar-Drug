@@ -512,9 +512,11 @@
 
 /* Drawer layers must stay opaque paper. The glass-edge shorthand still paints
  * the brand→coral gradient across the whole padding box in Chromium, which
- * sits under the transparent body and hides dark text. */
+ * sits under the transparent body and hides dark text. The same overlay
+ * covers method SOP / live-demo / tool survey panels that use glass-surface. */
 .drawer-layer.glass-edge::before,
-.assistant-panel.glass-edge::before {
+.assistant-panel.glass-edge::before,
+.glass-surface.glass-edge::before {
   content: none;
 }
 
@@ -965,5 +967,16 @@
 
   .rail-label {
     transition: none !important;
+  }
+
+  .app-shell,
+  .count-up,
+  .pulse.active,
+  .batch-progress-panel,
+  .module-nav-item,
+  .nav-group-card.expanded .nav-group-projects {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }

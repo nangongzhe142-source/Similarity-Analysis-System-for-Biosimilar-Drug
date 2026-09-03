@@ -109,10 +109,6 @@ export function HomeView() {
         </dl>
       </section>
 
-      <p className="-mt-6 text-sm leading-relaxed text-ink-secondary">
-        {messages.common.siteDisclaimerLine}
-      </p>
-
       <section id="quality-attribute-categories">
         <h2 className="text-xl font-bold text-navy-900">{messages.home.categoriesSectionTitle}</h2>
         <p className="mt-1 text-sm text-ink-secondary">{messages.home.categoriesSectionDescription}</p>

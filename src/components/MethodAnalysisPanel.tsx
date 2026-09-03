@@ -119,12 +119,13 @@ function FigureFileThumb({ file }: { file: File }) {
   const [url, setUrl] = useState<string | null>(null);
   useEffect(() => {
     if (!isFigureImageFileName(file.name)) {
-      setUrl(null);
-      return;
+      const frame = window.requestAnimationFrame(() => setUrl(null));
+      return () => window.cancelAnimationFrame(frame);
     }
     const objectUrl = URL.createObjectURL(file);
-    setUrl(objectUrl);
+    const frame = window.requestAnimationFrame(() => setUrl(objectUrl));
     return () => {
+      window.cancelAnimationFrame(frame);
       URL.revokeObjectURL(objectUrl);
     };
   }, [file]);
@@ -249,11 +250,22 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
 
   useEffect(() => {
     let cancelled = false;
-    checkAnalysisServiceHealth().then((online) => {
-      if (!cancelled) setServiceOnline(online);
-    });
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    const HEALTH_RETRY_MS = 4000;
+
+    const ping = () => {
+      void checkAnalysisServiceHealth().then((online) => {
+        if (cancelled) return;
+        setServiceOnline(online);
+        if (!online) {
+          retryTimer = setTimeout(ping, HEALTH_RETRY_MS);
+        }
+      });
+    };
+    ping();
     return () => {
       cancelled = true;
+      if (retryTimer !== undefined) clearTimeout(retryTimer);
     };
   }, [method.id]);
 
@@ -276,6 +288,29 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
       ]);
     };
   }, [config?.status, snapshot]);
+
+  const applyLibraryFigure = useCallback(
+    async (fileName: string) => {
+      setErrorMessage(null);
+      try {
+        const response = await fetch(
+          `/api/figure-library?file=${encodeURIComponent(fileName)}`,
+        );
+        if (!response.ok) {
+          setErrorMessage(messages.methodAnalysis.figureLibraryLoadFailed);
+          return;
+        }
+        const blob = await response.blob();
+        const file = new File([blob], fileName, {
+          type: blob.type.length > 0 ? blob.type : "image/png",
+        });
+        setMeasurementFiles([file]);
+      } catch {
+        setErrorMessage(messages.methodAnalysis.figureLibraryLoadFailed);
+      }
+    },
+    [messages.methodAnalysis.figureLibraryLoadFailed],
+  );
 
   if (!config) {
     return null;
@@ -375,29 +410,6 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
       setBusy(false);
     }
   };
-
-  const applyLibraryFigure = useCallback(
-    async (fileName: string) => {
-      setErrorMessage(null);
-      try {
-        const response = await fetch(
-          `/api/figure-library?file=${encodeURIComponent(fileName)}`,
-        );
-        if (!response.ok) {
-          setErrorMessage(messages.methodAnalysis.figureLibraryLoadFailed);
-          return;
-        }
-        const blob = await response.blob();
-        const file = new File([blob], fileName, {
-          type: blob.type.length > 0 ? blob.type : "image/png",
-        });
-        setMeasurementFiles([file]);
-      } catch {
-        setErrorMessage(messages.methodAnalysis.figureLibraryLoadFailed);
-      }
-    },
-    [messages.methodAnalysis.figureLibraryLoadFailed],
-  );
 
   const methodLibraryEntries = figureLibraryEntriesForMethod(method.id);
   const libraryEntry = figureLibraryEntryByFileName(measurementFiles[0]?.name);

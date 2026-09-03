@@ -64,8 +64,8 @@ function walkFiles(root, extensions) {
 const DISCLAIMER_RENDER_PATTERN =
   /\{\s*(?:messages|copy|toolMessages)\.(?:[A-Za-z0-9_]+\.)*(?:disclaimer|disclaimerTitle|disclaimerText|footerDisclaimer|notAGovernmentSite|siteDisclaimerLine)\s*\}/g;
 
-const EXPECTED_DISCLAIMER_FILE = "src/components/views/HomeView.tsx";
-const EXPECTED_DISCLAIMER_KEY = "messages.common.siteDisclaimerLine";
+const EXPECTED_DISCLAIMER_FILE = "src/app/project/page.tsx";
+const EXPECTED_DISCLAIMER_KEY = "messages.workbench.siteDisclaimerLine";
 
 const componentFiles = walkFiles(join(projectRoot, "src"), [".tsx"]);
 const disclaimerRenders = [];
@@ -154,6 +154,11 @@ if (!globalsCss.includes(".assistant-panel.glass-edge::before")) {
     "globals.css must disable .assistant-panel.glass-edge::before so the chat body is not covered",
   );
 }
+if (!globalsCss.includes(".glass-surface.glass-edge::before")) {
+  fail(
+    "globals.css must disable .glass-surface.glass-edge::before so method SOP/demo/tool panels stay readable",
+  );
+}
 const NEW_KEYFRAMES = [
   "drawer-layer-in",
   "drawer-layer-in-mobile",
@@ -183,6 +188,8 @@ if (reducedMotionIndex < 0) {
     ".aurora-layer",
     ".hero-grid-parallax",
     ".glyph-pulse",
+    ".app-shell",
+    ".batch-progress-panel",
   ];
   for (const selector of SELECTORS_TO_NEUTRALISE) {
     if (!reducedMotionBlock.includes(selector)) {
@@ -228,8 +235,12 @@ for (const token of ["aria-expanded", "aria-controls"]) {
 
 // The skip-link target must survive the layout rework.
 const layoutSource = read("src/app/layout.tsx");
-if (!layoutSource.includes('id="main-content"')) {
-  fail("layout.tsx lost the main#main-content skip-link target");
+const workspaceShellSource = read("src/components/workbench/WorkspaceShell.tsx");
+if (!layoutSource.includes("WorkspaceShell") || !layoutSource.includes("AssistantWidget") || !layoutSource.includes("SideExplorerRail")) {
+  fail("layout.tsx lost WorkspaceShell, AssistantWidget, or SideExplorerRail");
+}
+if (!workspaceShellSource.includes('id="main-content"')) {
+  fail("WorkspaceShell.tsx lost the main#main-content skip-link target");
 }
 
 // ---------------------------------------------------------------------------

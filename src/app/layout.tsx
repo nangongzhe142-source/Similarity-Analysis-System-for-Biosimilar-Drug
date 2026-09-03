@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./workbench-shell.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
 import { AssistantWidget } from "@/components/assistant/AssistantWidget";
 import { DrawerStackProvider } from "@/components/drawer/DrawerStackProvider";
 import { DrawerStack } from "@/components/drawer/DrawerStack";
 import { SideExplorerRail } from "@/components/layout/SideExplorerRail";
+import { WorkbenchProvider } from "@/components/workbench/WorkbenchProvider";
+import { WorkspaceShell } from "@/components/workbench/WorkspaceShell";
 
 export const metadata: Metadata = {
   title: {
@@ -23,18 +24,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="surface-canvas flex min-h-full flex-col text-ink">
         <LanguageProvider>
           <DrawerStackProvider>
-            <SiteHeader />
-            <SideExplorerRail />
-            <main
-              id="main-content"
-              tabIndex={-1}
-              className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 outline-none sm:px-6 md:pl-[var(--drawer-rail-width)]"
-            >
-              {children}
-            </main>
-            <SiteFooter />
-            <DrawerStack />
-            <AssistantWidget />
+            <WorkbenchProvider>
+              <WorkspaceShell>{children}</WorkspaceShell>
+              <SideExplorerRail />
+              <DrawerStack />
+              <AssistantWidget />
+            </WorkbenchProvider>
           </DrawerStackProvider>
         </LanguageProvider>
       </body>

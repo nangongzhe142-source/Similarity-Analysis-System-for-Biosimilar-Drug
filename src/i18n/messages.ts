@@ -521,6 +521,345 @@ export interface UiMessages {
     notAGovernmentSite: string;
     siteDisclaimerLine: string;
   };
+  workbench: WorkbenchMessages;
+}
+
+export interface WorkbenchMessages {
+  brandName: string;
+  brandSubtitle: string;
+  sidebarExpand: string;
+  sidebarCollapse: string;
+  projectLevel: string;
+  projectName: string;
+  statusIdle: string;
+  statusStarted: string;
+  statusBatch: string;
+  navWorkspace: string;
+  navProject: string;
+  navData: string;
+  navRules: string;
+  navReport: string;
+  navComprehensive: string;
+  navRegulatory: string;
+  navCharacterization: string;
+  engineTitle: string;
+  engineOnline: string;
+  engineOffline: string;
+  engineChecking: string;
+  profileTitle: string;
+  profileSubtitle: string;
+  avatarMark: string;
+  crumbProject: string;
+  crumbItem: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  themeToggle: string;
+  viewReport: string;
+  runAll: string;
+  runAllRunning: string;
+  noticeTitle: string;
+  noticeLead: string;
+  noticeBody: string;
+  errorDismiss: string;
+  errorDetail: string;
+  footerMark: string;
+  footerNote: string;
+  pageProject: string;
+  pageData: string;
+  pageRules: string;
+  pageReport: string;
+  pageItem: string;
+  pageComprehensive: string;
+  pageRegulatory: string;
+  pageCategory: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroTagTraceable: string;
+  heroTagEngine: string;
+  heroTagNotConclusion: string;
+  heroStateLabel: string;
+  heroWaiting: string;
+  heroHasResults: string;
+  heroBatch: string;
+  heroParsing: string;
+  ingestEyebrow: string;
+  ingestTitle: string;
+  ingestDescription: string;
+  ingestBadge: string;
+  dropzoneEmpty: string;
+  dropzoneHint: string;
+  dropzoneFilled: string;
+  reparse: string;
+  runRecognized: string;
+  exportWord: string;
+  exportWordReserved: string;
+  emptySkeleton: string;
+  emptyStep1: string;
+  emptyStep2: string;
+  emptyStep3: string;
+  emptyStep4: string;
+  emptyStep5: string;
+  classifyFiles: string;
+  classifyTables: string;
+  classifyPdf: string;
+  classifyMzml: string;
+  classifyOther: string;
+  classifiedHint: string;
+  batchEyebrow: string;
+  batchTitle: string;
+  batchDescription: string;
+  dispatchLabel: string;
+  dispatchParallel: string;
+  dispatchSerial: string;
+  traditionalInput: string;
+  wf1Title: string;
+  wf1Small: string;
+  wf2Title: string;
+  wf2Small: string;
+  wf3Title: string;
+  wf3Small: string;
+  wf4Title: string;
+  wf4Small: string;
+  historyEyebrow: string;
+  historyTitle: string;
+  historyNone: string;
+  historyEmptyLead: string;
+  historyEmptyBody: string;
+  historyRecent: string;
+  historyTask: string;
+  historyEngineStatus: string;
+  historyDuration: string;
+  historyUpdated: string;
+  historyLocalEngine: string;
+  durationSeconds: string;
+  viewAllTasks: string;
+  kpiEyebrow: string;
+  kpiTitle: string;
+  kpiItems: string;
+  kpiItemsHint: string;
+  kpiEngines: string;
+  kpiEnginesHint: string;
+  kpiDone: string;
+  kpiDoneHint: string;
+  kpiMode: string;
+  kpiModeHint: string;
+  overviewEyebrow: string;
+  overviewTitle: string;
+  overviewDescription: string;
+  overviewTotal: string;
+  overviewConnected: string;
+  overviewAttention: string;
+  overviewOrbit: string;
+  entry1Eyebrow: string;
+  entry1Title: string;
+  entry1Body: string;
+  entry1Open: string;
+  entry1Close: string;
+  entry2Eyebrow: string;
+  entry2Title: string;
+  entry2Body: string;
+  entry2Link: string;
+  flowNav: string;
+  flowSearch: string;
+  flowDetail: string;
+  flowInput: string;
+  flowCompute: string;
+  flowReview: string;
+  catalogLevelEyebrow: string;
+  catalogLevelTitle: string;
+  catalogLevelDescription: string;
+  viewBrief: string;
+  connectedEyebrow: string;
+  connectedTitle: string;
+  connectedBody: string;
+  connectedCountSuffix: string;
+  expandAll: string;
+  collapseAll: string;
+  openWorkspace: string;
+  closeDetail: string;
+  layer2Detail: string;
+  independentPage: string;
+  catalogAria: string;
+  catalogHeadEyebrow: string;
+  catalogHeadTitle: string;
+  catalogHeadSource: string;
+  catalogAll: string;
+  catalogAllHint: string;
+  catalogConnectedLegend: string;
+  catalogPlannedLegend: string;
+  catalogSearch: string;
+  catalogSearchPlaceholder: string;
+  catalogClearSearch: string;
+  catalogFilterAll: string;
+  catalogFilterConnected: string;
+  catalogFilterPlanned: string;
+  catalogShowing: string;
+  catalogEmptyTitle: string;
+  catalogEmptyBody: string;
+  catalogReset: string;
+  catalogCtdCategory: string;
+  catalogItemsUnit: string;
+  catalogOpenItem: string;
+  catalogCannotRun: string;
+  catalogConnectedFooter: string;
+  catalogPlannedFooter: string;
+  catalogStatusConnected: string;
+  catalogStatusPlanned: string;
+  dataEyebrow: string;
+  dataTitle: string;
+  dataDescription: string;
+  dataBadge: string;
+  roleCandidate: string;
+  roleCandidateValue: string;
+  roleReference: string;
+  roleReferenceValue: string;
+  roleFlow: string;
+  roleFlowValue: string;
+  capabilitiesTitle: string;
+  capConnected: string;
+  capLater: string;
+  capPdf: string;
+  capDocx: string;
+  capStructured: string;
+  capOcr: string;
+  capObject: string;
+  routingEyebrow: string;
+  routingTitle: string;
+  routingSummary: string;
+  colModule: string;
+  colCandidate: string;
+  colReference: string;
+  colStatus: string;
+  pickCandidate: string;
+  pickReference: string;
+  waitingInput: string;
+  inputReady: string;
+  waitingConnect: string;
+  prevPage: string;
+  nextPage: string;
+  pageStatus: string;
+  rulesEyebrow: string;
+  rulesTitle: string;
+  rulesDescription: string;
+  rulesBadge: string;
+  paramEyebrow: string;
+  paramTitle: string;
+  paramTolerance: string;
+  paramInterval: string;
+  paramMinLots: string;
+  intervalObserved: string;
+  intervalMean: string;
+  intervalMad: string;
+  riskEyebrow: string;
+  riskTitle: string;
+  riskHighLabel: string;
+  riskHighTitle: string;
+  riskHighCopy: string;
+  riskMedLabel: string;
+  riskMedTitle: string;
+  riskMedCopy: string;
+  riskLowLabel: string;
+  riskLowTitle: string;
+  riskLowCopy: string;
+  policy1Title: string;
+  policy1Copy: string;
+  policy2Title: string;
+  policy2Copy: string;
+  policy3Title: string;
+  policy3Copy: string;
+  policyLocked: string;
+  rulesLocalOnly: string;
+  reportEyebrow: string;
+  reportTitle: string;
+  reportDescription: string;
+  exportWordDisabled: string;
+  kpiTotal: string;
+  kpiCompleted: string;
+  kpiRunning: string;
+  kpiPending: string;
+  kpiCritical: string;
+  kpiTotalHint: string;
+  kpiCompletedHint: string;
+  kpiRunningHint: string;
+  kpiPendingHint: string;
+  kpiCriticalHint: string;
+  moduleSummariesEyebrow: string;
+  moduleSummariesTitle: string;
+  groupProgress: string;
+  noCritical: string;
+  hasAttention: string;
+  colCode: string;
+  colItem: string;
+  colStatusChip: string;
+  colSummary: string;
+  colAction: string;
+  drillThrough: string;
+  conclusionEyebrow: string;
+  conclusionTitle: string;
+  conclusionBody: string;
+  conclusionCallout: string;
+  reportRiskEyebrow: string;
+  reportRiskTitle: string;
+  reportRiskHas: string;
+  reportRiskNone: string;
+  registerEyebrow: string;
+  registerTitle: string;
+  colSource: string;
+  sourceBatch: string;
+  sourceSingle: string;
+  sourceNone: string;
+  statusNotStarted: string;
+  statusQueued: string;
+  statusRunning: string;
+  statusCompleted: string;
+  statusFailed: string;
+  statusPlanned: string;
+  summaryNotStarted: string;
+  summaryQueued: string;
+  summaryRunning: string;
+  summaryCompleted: string;
+  summaryFailed: string;
+  summaryPlanned: string;
+  levelBannerEyebrow: string;
+  levelBannerNote: string;
+  backToProject: string;
+  analysisEyebrow: string;
+  step1Title: string;
+  step1Small: string;
+  step2Title: string;
+  step2Small: string;
+  step3Title: string;
+  step3Small: string;
+  runThisItem: string;
+  runningThisItem: string;
+  notConnectedHint: string;
+  ruleNotRunnable: string;
+  reservedEngine: string;
+  reservedEngineSmall: string;
+  reservedOcr: string;
+  reservedOcrSmall: string;
+  reservedReport: string;
+  reservedReportSmall: string;
+  reservedAudit: string;
+  reservedAuditSmall: string;
+  resultSkeletonTitle: string;
+  resultSkeletonBody: string;
+  jobSourceBatch: string;
+  jobSourceSingle: string;
+  batchPanelLabel: string;
+  batchPanelTitle: string;
+  batchPanelDoneTitle: string;
+  batchMinimize: string;
+  batchExpand: string;
+  batchClose: string;
+  batchOverall: string;
+  batchFinished: string;
+  batchNoFail: string;
+  batchFailCount: string;
+  batchAttentionCount: string;
+  waitingRun: string;
+  siteDisclaimerLine: string;
 }
 
 export const uiMessages: Record<Locale, UiMessages> = {
@@ -1078,6 +1417,346 @@ export const uiMessages: Record<Locale, UiMessages> = {
       openItemLayer: "展开该项目",
       openRelationLayer: "展开该条法规关系",
       emptyLayerNotice: "该层暂无可展示内容。",
+    },
+    workbench: {
+      brandName: "BioCompare",
+      brandSubtitle: "药学比对工作台",
+      sidebarExpand: "展开侧栏",
+      sidebarCollapse: "收起侧栏",
+      projectLevel: "一级项目",
+      projectName: "生物类似药比对",
+      statusIdle: "试点项目 · 待启动",
+      statusStarted: "项目已启动",
+      statusBatch: "批量任务执行中",
+      navWorkspace: "总项目工作区",
+      navProject: "总项目",
+      navData: "统一输入",
+      navRules: "公共规则",
+      navReport: "汇总报告",
+      navComprehensive: "综合判别",
+      navRegulatory: "法规",
+      navCharacterization: "药学表征项目",
+      engineTitle: "任务服务",
+      engineOnline: "调度骨架在线",
+      engineOffline: "未在线",
+      engineChecking: "正在检测",
+      profileTitle: "审评工作台",
+      profileSubtitle: "本地试点环境",
+      avatarMark: "审",
+      crumbProject: "生物类似药比对项目",
+      crumbItem: "专项比对",
+      searchLabel: "全局搜索",
+      searchPlaceholder: "搜索项目、编号或任务",
+      themeToggle: "切换浅色/深色主题",
+      viewReport: "查看项目汇总",
+      runAll: "一键执行全部比对",
+      runAllRunning: "正在调度全部任务…",
+      noticeTitle: "审评边界与使用说明",
+      noticeLead: "总项目汇总客观证据，不自动给出生物类似性结论",
+      noticeBody: "专项任务可由总项目统一调度，也可在二级页面独立运行。",
+      errorDismiss: "知道了",
+      errorDetail: "查看原始日志",
+      footerMark: "BioCompare · 生物类似药多维药学项目比对工作台",
+      footerNote: "本地试点环境 · 客观证据标记",
+      pageProject: "生物类似药比对",
+      pageData: "统一输入数据",
+      pageRules: "公共参数与风险规则",
+      pageReport: "项目汇总报告",
+      pageItem: "独立专项",
+      pageComprehensive: "综合判别",
+      pageRegulatory: "法规框架",
+      pageCategory: "质量属性大类",
+      heroEyebrow: "BIOLOGICS COMPARABILITY WORKSPACE",
+      heroTitle: "生物类似药多维药学项目比对工作台",
+      heroDescription:
+        "统一接收申报材料，保留原始文件，按扩展名做表面分类展示，随后只调度本系统已接入的专项并汇总客观标记。",
+      heroTagTraceable: "材料可追溯",
+      heroTagEngine: "本系统计算",
+      heroTagNotConclusion: "不替代审评结论",
+      heroStateLabel: "项目状态",
+      heroWaiting: "等待上传",
+      heroHasResults: "已有任务结果",
+      heroBatch: "批量执行中",
+      heroParsing: "正在登记文件名",
+      ingestEyebrow: "UNIFIED SUBMISSION INTAKE",
+      ingestTitle: "企业整套申报材料统一入口",
+      ingestDescription:
+        "支持一次多选。本入口只登记文件名并按扩展名分类，不解析表内容、不做 OCR、不分发到外部适配器。",
+      ingestBadge: "原始材料统一登记",
+      dropzoneEmpty: "选择整套申报材料或原始数据文件束",
+      dropzoneHint: "表格 · PDF · mzML，可一次多选",
+      dropzoneFilled: "已选择 {count} 个文件",
+      reparse: "重新解析并分发",
+      runRecognized: "一键执行已识别项目",
+      exportWord: "导出完整汇总 Word",
+      exportWordReserved: "预留",
+      emptySkeleton: "自动处理骨架",
+      emptyStep1: "材料清点",
+      emptyStep2: "项目识别",
+      emptyStep3: "角色拆分",
+      emptyStep4: "字段对齐",
+      emptyStep5: "专项分发",
+      classifyFiles: "登记文件",
+      classifyTables: "表格类",
+      classifyPdf: "PDF",
+      classifyMzml: "mzML",
+      classifyOther: "其他",
+      classifiedHint: "仅按扩展名表面分类，未解析文件内容。",
+      batchEyebrow: "BATCH ORCHESTRATION",
+      batchTitle: "统一任务编排",
+      batchDescription: "只运行允许名单中输入已配齐的专项；并行/串行仅改变进度窗文案。",
+      dispatchLabel: "任务调度",
+      dispatchParallel: "并行执行",
+      dispatchSerial: "串行执行",
+      traditionalInput: "传统分项输入",
+      wf1Title: "整套上传",
+      wf1Small: "企业提交材料",
+      wf2Title: "自动解析",
+      wf2Small: "识别、拆分与对齐",
+      wf3Title: "批量调度",
+      wf3Small: "调用已接入专项",
+      wf4Title: "汇总导出",
+      wf4Small: "明细穿透与Word",
+      historyEyebrow: "SERVER CALCULATION HISTORY",
+      historyTitle: "本会话任务历史",
+      historyNone: "尚无计算任务",
+      historyEmptyLead: "还没有计算任务",
+      historyEmptyBody: "上传数据并运行专项后，最近任务会显示在这里。",
+      historyRecent: "最近任务",
+      historyTask: "任务",
+      historyEngineStatus: "状态",
+      historyDuration: "耗时",
+      historyUpdated: "更新时间",
+      historyLocalEngine: "本系统分析服务",
+      durationSeconds: "{seconds}秒",
+      viewAllTasks: "查看全部任务与结果 →",
+      kpiEyebrow: "SUMMARY STATISTICS",
+      kpiTitle: "汇总统计区",
+      kpiItems: "表征项目框架",
+      kpiItemsHint: "按本仓库八大类展示",
+      kpiEngines: "引擎已接入",
+      kpiEnginesHint: "允许名单且可分析方法数",
+      kpiDone: "已完成",
+      kpiDoneHint: "本会话已回传结果",
+      kpiMode: "调度模式",
+      kpiModeHint: "仅调度已接入模块",
+      overviewEyebrow: "PHARMACEUTICAL CHARACTERIZATION",
+      overviewTitle: "药学表征项目一级概览",
+      overviewDescription: "按本仓库八个质量属性大类浏览全部 61 项，定位已接入运算专项。",
+      overviewTotal: "表征项目总数",
+      overviewConnected: "已接入本系统计算",
+      overviewAttention: "当前需关注",
+      overviewOrbit: "QUALITY PROFILE",
+      entry1Eyebrow: "CTD PROJECT CATALOG",
+      entry1Title: "药学表征项目总览",
+      entry1Body: "浏览本仓库八个质量属性大类，共 {count} 个表征项目。",
+      entry1Open: "查看全部比对项目总览",
+      entry1Close: "收起全部比对项目总览",
+      entry2Eyebrow: "CONNECTED ANALYSIS",
+      entry2Title: "已接入运算专项",
+      entry2Body: "保留现有数据上传与本系统分析流程，当前已有 {count} 项可运行。",
+      entry2Link: "进入专项数据工作区",
+      flowNav: "分类导航",
+      flowSearch: "项目检索",
+      flowDetail: "查看明细",
+      flowInput: "专项输入",
+      flowCompute: "本系统计算",
+      flowReview: "结果审阅",
+      catalogLevelEyebrow: "LEVEL 2 · PROJECT CATALOG",
+      catalogLevelTitle: "全部药学表征项目总览",
+      catalogLevelDescription: "数据来自本仓库 8 类 61 项；未接入项目仅提供静态框架。",
+      viewBrief: "查看汇总简报",
+      connectedEyebrow: "CONNECTED ANALYSIS MODULES",
+      connectedTitle: "已接入运算专项",
+      connectedBody: "展开后嵌入与专项页相同的工作台分析框。",
+      connectedCountSuffix: " 项可运行",
+      expandAll: "展开全部",
+      collapseAll: "收起全部",
+      openWorkspace: "查看具体项目对比",
+      closeDetail: "收起明细 ×",
+      layer2Detail: "第二层明细",
+      independentPage: "在独立页面打开",
+      catalogAria: "生物类似药表征项目目录",
+      catalogHeadEyebrow: "CHARACTERIZATION",
+      catalogHeadTitle: "表征项目目录",
+      catalogHeadSource: "来源：本仓库 8 类 61 项",
+      catalogAll: "全部项目",
+      catalogAllHint: "完整静态框架",
+      catalogConnectedLegend: "已接入运算专项",
+      catalogPlannedLegend: "静态框架待接入",
+      catalogSearch: "搜索表征项目",
+      catalogSearchPlaceholder: "搜索项目名称、编号或指南原词",
+      catalogClearSearch: "清空搜索",
+      catalogFilterAll: "全部",
+      catalogFilterConnected: "已接入",
+      catalogFilterPlanned: "待接入",
+      catalogShowing: "当前显示",
+      catalogEmptyTitle: "没有匹配的表征项目",
+      catalogEmptyBody: "请调整关键词或筛选条件。",
+      catalogReset: "重置筛选",
+      catalogCtdCategory: "CATEGORY",
+      catalogItemsUnit: " 项",
+      catalogOpenItem: "进入专项 →",
+      catalogCannotRun: "暂不可运行",
+      catalogConnectedFooter: "保留现有运行逻辑",
+      catalogPlannedFooter: "仅建立页面与数据占位",
+      catalogStatusConnected: "已接入",
+      catalogStatusPlanned: "待接入",
+      dataEyebrow: "PROJECT DATA HUB",
+      dataTitle: "统一输入与数据分发",
+      dataDescription: "总项目负责登记文件；每个文件只路由到指定专项，避免跨模块误用。",
+      dataBadge: "可审计数据流",
+      roleCandidate: "候选药角色",
+      roleCandidateValue: "候选生物类似药 A",
+      roleReference: "参照药角色",
+      roleReferenceValue: "参照药 B / 多批次",
+      roleFlow: "流转规则",
+      roleFlowValue: "项目登记 → 本系统分析",
+      capabilitiesTitle: "已接入能力与后续扩展说明",
+      capConnected: "已接入能力",
+      capLater: "后续扩展",
+      capPdf: "本系统分析服务",
+      capDocx: "图谱库输入",
+      capStructured: "结构化字段校验",
+      capOcr: "扫描件OCR",
+      capObject: "对象存储",
+      routingEyebrow: "MODULE INPUT ROUTING",
+      routingTitle: "专项输入分配",
+      routingSummary: "已为 {ready} 个专项完成双侧输入，共登记 {files} 个文件",
+      colModule: "专项",
+      colCandidate: "候选药文件槽",
+      colReference: "参照药文件槽",
+      colStatus: "状态",
+      pickCandidate: "选择候选药文件",
+      pickReference: "选择参照药文件",
+      waitingInput: "等待输入",
+      inputReady: "输入就绪",
+      waitingConnect: "等待接入",
+      prevPage: "上一页",
+      nextPage: "下一页",
+      pageStatus: "第 {page} / {pages} 页",
+      rulesEyebrow: "SHARED PROJECT RULES",
+      rulesTitle: "公共参数与风险规则",
+      rulesDescription: "以下值只存在于前端，不传入分析方法、不改相似性方案、不改分析服务。",
+      rulesBadge: "规则版本 R0.4",
+      paramEyebrow: "COMMON PARAMETERS",
+      paramTitle: "项目公共参数",
+      paramTolerance: "质量峰匹配容差",
+      paramInterval: "PTM参照区间方法",
+      paramMinLots: "PTM最低参照批次数",
+      intervalObserved: "多批观测范围",
+      intervalMean: "均值 ± 3SD",
+      intervalMad: "稳健 MAD",
+      riskEyebrow: "REGULATORY BOUNDARY",
+      riskTitle: "审评输出边界",
+      riskHighLabel: "高",
+      riskHighTitle: "新增变体或关键质量属性异常",
+      riskHighCopy: "进入优先审阅清单",
+      riskMedLabel: "中",
+      riskMedTitle: "区间外或数据完整性问题",
+      riskMedCopy: "结合方法和批次复核",
+      riskLowLabel: "低",
+      riskLowTitle: "轻微提醒或信息性标记",
+      riskLowCopy: "记录并保留追踪",
+      policy1Title: "区间符合性优先",
+      policy1Copy: "多批参照药天然波动区间是第一判断维度。",
+      policy2Title: "差值仅作辅助",
+      policy2Copy: "候选药与参照药组间差值不替代区间判断。",
+      policy3Title: "禁止自动结论",
+      policy3Copy: "工具仅标记客观偏离，不自动判定相似或不相似。",
+      policyLocked: "已锁定",
+      rulesLocalOnly: "这些参数不驱动任何计算。",
+      reportEyebrow: "CONSOLIDATED REVIEW SUMMARY",
+      reportTitle: "总项目汇总简版报告",
+      reportDescription: "聚合本会话任务状态；点击专项可穿透到项目页。",
+      exportWordDisabled: "导出整体结果（Word）",
+      kpiTotal: "总专项数",
+      kpiCompleted: "已完成",
+      kpiRunning: "进行中",
+      kpiPending: "引擎待接入",
+      kpiCritical: "关键差异项",
+      kpiTotalHint: "本仓库表征项目",
+      kpiCompletedHint: "{percent}% 完成度",
+      kpiRunningHint: "排队及执行任务",
+      kpiPendingHint: "静态表征框架",
+      kpiCriticalHint: "需审评关注",
+      moduleSummariesEyebrow: "MODULE SUMMARIES",
+      moduleSummariesTitle: "按大类汇总",
+      groupProgress: "{done}/{total} 项已形成结果",
+      noCritical: "，当前无关键差异标记",
+      hasAttention: "，{count} 项需关注",
+      colCode: "编号",
+      colItem: "专项",
+      colStatusChip: "状态",
+      colSummary: "结果摘要",
+      colAction: "操作",
+      drillThrough: "穿透 →",
+      conclusionEyebrow: "OVERALL REVIEW CONTEXT",
+      conclusionTitle: "总体结论边界",
+      conclusionBody: "当前 {completed} 个专项形成客观结果。总项目只汇总证据，不改变专项原始输出。",
+      conclusionCallout: "不自动给出生物类似性结论。最终判断由审评人员结合全部证据作出。",
+      reportRiskEyebrow: "RISK FLAGS",
+      reportRiskTitle: "风险提示",
+      reportRiskHas: "存在需审评关注或执行失败的专项，请穿透明细核对。",
+      reportRiskNone: "当前暂无关键差异标记；未完成项目不视为无风险。",
+      registerEyebrow: "MODULE EVIDENCE REGISTER",
+      registerTitle: "专项结果登记与穿透",
+      colSource: "运行来源",
+      sourceBatch: "总项目调度",
+      sourceSingle: "专项独立运行",
+      sourceNone: "—",
+      statusNotStarted: "未启动",
+      statusQueued: "排队中",
+      statusRunning: "执行中",
+      statusCompleted: "已完成",
+      statusFailed: "失败",
+      statusPlanned: "待接入",
+      summaryNotStarted: "尚未运行",
+      summaryQueued: "已进入队列",
+      summaryRunning: "正在本系统计算",
+      summaryCompleted: "本会话已完成",
+      summaryFailed: "本会话失败",
+      summaryPlanned: "尚未接入本系统计算",
+      levelBannerEyebrow: "第二层 · 独立专项",
+      levelBannerNote: "可被总项目统一调度，也可在本页面单独运行",
+      backToProject: "← 返回一级总项目",
+      analysisEyebrow: "SPECIALIZED COMPARISON MODULE",
+      step1Title: "配置输入",
+      step1Small: "上传本系统可接受的输入",
+      step2Title: "执行专项",
+      step2Small: "调用本仓库分析服务",
+      step3Title: "查看明细",
+      step3Small: "结果回传总项目",
+      runThisItem: "运行本专项",
+      runningThisItem: "正在运行…",
+      notConnectedHint: "尚未接入本系统计算",
+      ruleNotRunnable: "同名但当前方法不可运行分析",
+      reservedEngine: "专业引擎调用",
+      reservedEngineSmall: "CLI参数、超时、日志与输出解析",
+      reservedOcr: "数据识别位",
+      reservedOcrSmall: "图片 / PDF 表格结构化",
+      reservedReport: "摘要调用位",
+      reservedReportSmall: "规则摘要优先，模型草稿可选",
+      reservedAudit: "审计记录位",
+      reservedAuditSmall: "参数、版本、时间与输入哈希",
+      resultSkeletonTitle: "结果页面骨架已就绪",
+      resultSkeletonBody: "任务完成后，完整原始结果、精简解释、图表和明细表将在这里显示。",
+      jobSourceBatch: "一级总项目调度",
+      jobSourceSingle: "专项独立执行",
+      batchPanelLabel: "批量任务进度",
+      batchPanelTitle: "批量比对进度",
+      batchPanelDoneTitle: "本次批量总结",
+      batchMinimize: "最小化批量任务窗口",
+      batchExpand: "展开批量任务窗口",
+      batchClose: "关闭批量任务摘要",
+      batchOverall: "总体进度",
+      batchFinished: "批次已结束",
+      batchNoFail: "无失败项",
+      batchFailCount: "{count} 项失败",
+      batchAttentionCount: "{count} 项需关注",
+      waitingRun: "等待运行",
+      siteDisclaimerLine:
+        "本系统仅用于框架演示与教学，不构成生物类似药认定或监管建议。",
     },
     common: {
       supplementaryTag: "补充项",
@@ -1676,6 +2355,346 @@ export const uiMessages: Record<Locale, UiMessages> = {
       openItemLayer: "Open this item",
       openRelationLayer: "Open this regulatory relation",
       emptyLayerNotice: "This layer has no content to show.",
+    },
+    workbench: {
+      brandName: "BioCompare",
+      brandSubtitle: "CMC comparability workbench",
+      sidebarExpand: "Expand sidebar",
+      sidebarCollapse: "Collapse sidebar",
+      projectLevel: "Top-level project",
+      projectName: "Biosimilar comparability",
+      statusIdle: "Pilot · not started",
+      statusStarted: "Project started",
+      statusBatch: "Batch jobs running",
+      navWorkspace: "Project workspace",
+      navProject: "Project",
+      navData: "Shared inputs",
+      navRules: "Shared rules",
+      navReport: "Summary report",
+      navComprehensive: "Integrated assessment",
+      navRegulatory: "Regulatory",
+      navCharacterization: "Characterization items",
+      engineTitle: "Job service",
+      engineOnline: "Scheduler online",
+      engineOffline: "Offline",
+      engineChecking: "Checking",
+      profileTitle: "Review workbench",
+      profileSubtitle: "Local pilot environment",
+      avatarMark: "R",
+      crumbProject: "Biosimilar comparability project",
+      crumbItem: "Item comparison",
+      searchLabel: "Global search",
+      searchPlaceholder: "Search items, codes, or jobs",
+      themeToggle: "Toggle light/dark theme",
+      viewReport: "View project summary",
+      runAll: "Run all comparability jobs",
+      runAllRunning: "Dispatching all jobs…",
+      noticeTitle: "Review boundary and usage notes",
+      noticeLead: "The project aggregates objective evidence and does not auto-conclude biosimilarity",
+      noticeBody: "Item jobs can be dispatched from the project or run independently on the item page.",
+      errorDismiss: "Dismiss",
+      errorDetail: "View raw log",
+      footerMark: "BioCompare · multidimensional CMC comparability workbench",
+      footerNote: "Local pilot · objective evidence flags",
+      pageProject: "Biosimilar comparability",
+      pageData: "Shared input data",
+      pageRules: "Shared parameters and risk rules",
+      pageReport: "Project summary report",
+      pageItem: "Standalone item",
+      pageComprehensive: "Integrated assessment",
+      pageRegulatory: "Regulatory framework",
+      pageCategory: "Quality-attribute category",
+      heroEyebrow: "BIOLOGICS COMPARABILITY WORKSPACE",
+      heroTitle: "Multidimensional CMC comparability workbench",
+      heroDescription:
+        "Accept submission files, keep originals, classify by extension only, then dispatch only items already connected in this system.",
+      heroTagTraceable: "Traceable materials",
+      heroTagEngine: "This system's computation",
+      heroTagNotConclusion: "Does not replace review conclusions",
+      heroStateLabel: "Project status",
+      heroWaiting: "Waiting for upload",
+      heroHasResults: "Jobs have results",
+      heroBatch: "Batch running",
+      heroParsing: "Recording file names",
+      ingestEyebrow: "UNIFIED SUBMISSION INTAKE",
+      ingestTitle: "Unified intake for a full submission set",
+      ingestDescription:
+        "Multiple files allowed. This intake only lists file names and classifies by extension. No table parsing, OCR, or teammate adapters.",
+      ingestBadge: "Original materials registry",
+      dropzoneEmpty: "Select the full submission set or raw data bundle",
+      dropzoneHint: "Tables · PDF · mzML, multiple files allowed",
+      dropzoneFilled: "{count} files selected",
+      reparse: "Re-parse and dispatch",
+      runRecognized: "Run recognized items",
+      exportWord: "Export full summary Word",
+      exportWordReserved: "Reserved",
+      emptySkeleton: "Automatic processing skeleton",
+      emptyStep1: "Inventory materials",
+      emptyStep2: "Identify items",
+      emptyStep3: "Split roles",
+      emptyStep4: "Align fields",
+      emptyStep5: "Dispatch to items",
+      classifyFiles: "Registered files",
+      classifyTables: "Tables",
+      classifyPdf: "PDF",
+      classifyMzml: "mzML",
+      classifyOther: "Other",
+      classifiedHint: "Surface classification by extension only; file contents were not parsed.",
+      batchEyebrow: "BATCH ORCHESTRATION",
+      batchTitle: "Unified job orchestration",
+      batchDescription: "Runs only allow-listed items with both inputs; parallel/serial only change the progress-panel copy.",
+      dispatchLabel: "Dispatch mode",
+      dispatchParallel: "Parallel",
+      dispatchSerial: "Serial",
+      traditionalInput: "Per-item inputs",
+      wf1Title: "Upload pack",
+      wf1Small: "Sponsor materials",
+      wf2Title: "Auto parse",
+      wf2Small: "Identify, split, align",
+      wf3Title: "Batch dispatch",
+      wf3Small: "Run connected items",
+      wf4Title: "Summarize",
+      wf4Small: "Drill-through and Word",
+      historyEyebrow: "SERVER CALCULATION HISTORY",
+      historyTitle: "Session job history",
+      historyNone: "No jobs yet",
+      historyEmptyLead: "No calculation jobs yet",
+      historyEmptyBody: "After you upload data and run an item, recent jobs appear here.",
+      historyRecent: "Recent jobs",
+      historyTask: "Job",
+      historyEngineStatus: "Status",
+      historyDuration: "Duration",
+      historyUpdated: "Updated",
+      historyLocalEngine: "This system's analysis service",
+      durationSeconds: "{seconds}s",
+      viewAllTasks: "View all jobs and results →",
+      kpiEyebrow: "SUMMARY STATISTICS",
+      kpiTitle: "Summary statistics",
+      kpiItems: "Characterization framework",
+      kpiItemsHint: "Shown by this repository's eight categories",
+      kpiEngines: "Engines connected",
+      kpiEnginesHint: "Allow-listed analyzable methods",
+      kpiDone: "Completed",
+      kpiDoneHint: "Returned in this session",
+      kpiMode: "Dispatch mode",
+      kpiModeHint: "Only connected modules",
+      overviewEyebrow: "PHARMACEUTICAL CHARACTERIZATION",
+      overviewTitle: "Level-1 characterization overview",
+      overviewDescription: "Browse all 61 items in this repository's eight categories and locate connected computations.",
+      overviewTotal: "Characterization items",
+      overviewConnected: "Connected in this system",
+      overviewAttention: "Needs attention",
+      overviewOrbit: "QUALITY PROFILE",
+      entry1Eyebrow: "CTD PROJECT CATALOG",
+      entry1Title: "Characterization catalog",
+      entry1Body: "Browse this repository's eight quality-attribute categories, {count} items in total.",
+      entry1Open: "Open the full comparability catalog",
+      entry1Close: "Collapse the full catalog",
+      entry2Eyebrow: "CONNECTED ANALYSIS",
+      entry2Title: "Connected computational items",
+      entry2Body: "Keeps the existing upload and this system's analysis flow; {count} items can run.",
+      entry2Link: "Open the item data workspace",
+      flowNav: "Category navigation",
+      flowSearch: "Item search",
+      flowDetail: "Open detail",
+      flowInput: "Item inputs",
+      flowCompute: "This system's computation",
+      flowReview: "Review results",
+      catalogLevelEyebrow: "LEVEL 2 · PROJECT CATALOG",
+      catalogLevelTitle: "Full characterization catalog",
+      catalogLevelDescription: "Data come from this repository's 8 categories and 61 items; unconnected items are static frames only.",
+      viewBrief: "View summary brief",
+      connectedEyebrow: "CONNECTED ANALYSIS MODULES",
+      connectedTitle: "Connected computational items",
+      connectedBody: "Expand to embed the same analysis frame as the item page.",
+      connectedCountSuffix: " runnable",
+      expandAll: "Expand all",
+      collapseAll: "Collapse all",
+      openWorkspace: "View item comparison",
+      closeDetail: "Collapse detail ×",
+      layer2Detail: "Level-2 detail",
+      independentPage: "Open on its own page",
+      catalogAria: "Biosimilar characterization catalog",
+      catalogHeadEyebrow: "CHARACTERIZATION",
+      catalogHeadTitle: "Item catalog",
+      catalogHeadSource: "Source: this repository's 8 categories and 61 items",
+      catalogAll: "All items",
+      catalogAllHint: "Full static framework",
+      catalogConnectedLegend: "Connected computational items",
+      catalogPlannedLegend: "Static frame pending connection",
+      catalogSearch: "Search characterization items",
+      catalogSearchPlaceholder: "Search name, code, or guideline term",
+      catalogClearSearch: "Clear search",
+      catalogFilterAll: "All",
+      catalogFilterConnected: "Connected",
+      catalogFilterPlanned: "Pending",
+      catalogShowing: "Now showing",
+      catalogEmptyTitle: "No matching items",
+      catalogEmptyBody: "Adjust the keyword or filters.",
+      catalogReset: "Reset filters",
+      catalogCtdCategory: "CATEGORY",
+      catalogItemsUnit: " items",
+      catalogOpenItem: "Open item →",
+      catalogCannotRun: "Not runnable",
+      catalogConnectedFooter: "Keeps the existing run path",
+      catalogPlannedFooter: "Page and data placeholder only",
+      catalogStatusConnected: "Connected",
+      catalogStatusPlanned: "Pending",
+      dataEyebrow: "PROJECT DATA HUB",
+      dataTitle: "Shared inputs and routing",
+      dataDescription: "The project registers files; each file is routed to one item to avoid cross-module misuse.",
+      dataBadge: "Auditable data flow",
+      roleCandidate: "Candidate role",
+      roleCandidateValue: "Candidate biosimilar A",
+      roleReference: "Reference role",
+      roleReferenceValue: "Reference product B / lots",
+      roleFlow: "Routing rule",
+      roleFlowValue: "Project registry → this system's analysis",
+      capabilitiesTitle: "Connected capabilities and later extensions",
+      capConnected: "Connected",
+      capLater: "Later extensions",
+      capPdf: "This system's analysis service",
+      capDocx: "Figure-library input",
+      capStructured: "Structured field checks",
+      capOcr: "Scan OCR",
+      capObject: "Object storage",
+      routingEyebrow: "MODULE INPUT ROUTING",
+      routingTitle: "Item input assignment",
+      routingSummary: "{ready} items have both inputs; {files} files registered",
+      colModule: "Item",
+      colCandidate: "Candidate file slot",
+      colReference: "Reference file slot",
+      colStatus: "Status",
+      pickCandidate: "Choose candidate file",
+      pickReference: "Choose reference file",
+      waitingInput: "Waiting for input",
+      inputReady: "Inputs ready",
+      waitingConnect: "Waiting to connect",
+      prevPage: "Previous",
+      nextPage: "Next",
+      pageStatus: "Page {page} / {pages}",
+      rulesEyebrow: "SHARED PROJECT RULES",
+      rulesTitle: "Shared parameters and risk rules",
+      rulesDescription: "These values live in front-end state only. They are not passed into method analysis, similarity schemes, or the analysis service.",
+      rulesBadge: "Rule version R0.4",
+      paramEyebrow: "COMMON PARAMETERS",
+      paramTitle: "Project parameters",
+      paramTolerance: "Mass-peak matching tolerance",
+      paramInterval: "PTM reference-interval method",
+      paramMinLots: "Minimum reference lots for PTM",
+      intervalObserved: "Observed multi-lot range",
+      intervalMean: "Mean ± 3SD",
+      intervalMad: "Robust MAD",
+      riskEyebrow: "REGULATORY BOUNDARY",
+      riskTitle: "Review output boundary",
+      riskHighLabel: "High",
+      riskHighTitle: "New variant or critical quality-attribute anomaly",
+      riskHighCopy: "Goes to the priority review list",
+      riskMedLabel: "Medium",
+      riskMedTitle: "Outside interval or data-integrity issue",
+      riskMedCopy: "Recheck with method and lot context",
+      riskLowLabel: "Low",
+      riskLowTitle: "Minor reminder or informational flag",
+      riskLowCopy: "Record and keep traceability",
+      policy1Title: "Interval concordance first",
+      policy1Copy: "The natural multi-lot reference interval is the first judgment dimension.",
+      policy2Title: "Deltas are auxiliary only",
+      policy2Copy: "Candidate–reference group deltas do not replace interval judgment.",
+      policy3Title: "No automatic conclusion",
+      policy3Copy: "The tool only flags objective deviations; it does not auto-judge similar or dissimilar.",
+      policyLocked: "Locked",
+      rulesLocalOnly: "These parameters do not drive any calculation.",
+      reportEyebrow: "CONSOLIDATED REVIEW SUMMARY",
+      reportTitle: "Project summary report",
+      reportDescription: "Aggregates this session's job status; item links drill through to the item page.",
+      exportWordDisabled: "Export overall results (Word)",
+      kpiTotal: "Total items",
+      kpiCompleted: "Completed",
+      kpiRunning: "In progress",
+      kpiPending: "Engine pending",
+      kpiCritical: "Critical differences",
+      kpiTotalHint: "Characterization items in this repository",
+      kpiCompletedHint: "{percent}% complete",
+      kpiRunningHint: "Queued and running jobs",
+      kpiPendingHint: "Static characterization frame",
+      kpiCriticalHint: "Needs review attention",
+      moduleSummariesEyebrow: "MODULE SUMMARIES",
+      moduleSummariesTitle: "Summaries by category",
+      groupProgress: "{done}/{total} items have results",
+      noCritical: ", no critical difference flags",
+      hasAttention: ", {count} need attention",
+      colCode: "Code",
+      colItem: "Item",
+      colStatusChip: "Status",
+      colSummary: "Result summary",
+      colAction: "Action",
+      drillThrough: "Drill through →",
+      conclusionEyebrow: "OVERALL REVIEW CONTEXT",
+      conclusionTitle: "Overall conclusion boundary",
+      conclusionBody: "{completed} items currently have objective results. The project only aggregates evidence and does not change item outputs.",
+      conclusionCallout: "No automatic biosimilarity conclusion. Final judgment remains with reviewers using all evidence.",
+      reportRiskEyebrow: "RISK FLAGS",
+      reportRiskTitle: "Risk flags",
+      reportRiskHas: "Items need review attention or failed. Drill through to inspect details.",
+      reportRiskNone: "No critical difference flags yet; unfinished items are not treated as no-risk.",
+      registerEyebrow: "MODULE EVIDENCE REGISTER",
+      registerTitle: "Item result register and drill-through",
+      colSource: "Run source",
+      sourceBatch: "Project dispatch",
+      sourceSingle: "Standalone item run",
+      sourceNone: "—",
+      statusNotStarted: "Not started",
+      statusQueued: "Queued",
+      statusRunning: "Running",
+      statusCompleted: "Completed",
+      statusFailed: "Failed",
+      statusPlanned: "Pending connection",
+      summaryNotStarted: "Not run yet",
+      summaryQueued: "Queued",
+      summaryRunning: "Computing in this system",
+      summaryCompleted: "Completed in this session",
+      summaryFailed: "Failed in this session",
+      summaryPlanned: "Not yet connected to this system's computation",
+      levelBannerEyebrow: "Level 2 · standalone item",
+      levelBannerNote: "May be dispatched from the project or run on this page",
+      backToProject: "← Back to the top-level project",
+      analysisEyebrow: "SPECIALIZED COMPARISON MODULE",
+      step1Title: "Configure inputs",
+      step1Small: "Upload inputs this system accepts",
+      step2Title: "Run the item",
+      step2Small: "Call this repository's analysis service",
+      step3Title: "Review details",
+      step3Small: "Results return to the project",
+      runThisItem: "Run this item",
+      runningThisItem: "Running…",
+      notConnectedHint: "Not yet connected to this system's computation",
+      ruleNotRunnable: "Same name, but the current method cannot run analysis",
+      reservedEngine: "External engine adapter",
+      reservedEngineSmall: "CLI arguments, timeout, logs, and output parsing",
+      reservedOcr: "Recognition slot",
+      reservedOcrSmall: "Image / PDF table structuring",
+      reservedReport: "Summary slot",
+      reservedReportSmall: "Rule summary first; model draft optional",
+      reservedAudit: "Audit slot",
+      reservedAuditSmall: "Parameters, versions, time, and input hashes",
+      resultSkeletonTitle: "Result page skeleton is ready",
+      resultSkeletonBody: "After the job finishes, raw results, a short explanation, charts, and tables appear here.",
+      jobSourceBatch: "Top-level project dispatch",
+      jobSourceSingle: "Standalone item run",
+      batchPanelLabel: "Batch job progress",
+      batchPanelTitle: "Batch comparability progress",
+      batchPanelDoneTitle: "Batch summary",
+      batchMinimize: "Minimize batch window",
+      batchExpand: "Expand batch window",
+      batchClose: "Close batch summary",
+      batchOverall: "Overall progress",
+      batchFinished: "Batch finished",
+      batchNoFail: "No failed items",
+      batchFailCount: "{count} failed",
+      batchAttentionCount: "{count} need attention",
+      waitingRun: "Waiting to run",
+      siteDisclaimerLine:
+        "This system is for framework demonstration and teaching only. It does not constitute a biosimilar determination or regulatory advice.",
     },
     common: {
       supplementaryTag: "Supplementary",

@@ -1610,3 +1610,227 @@ Done
 方法面板列出本方法图谱并一键写入比对文件槽，槽内显示缩略图。
 混用谱图与图片时省略 accept 属性，避免空字符串导致选中后输入仍为空。
 
+---
+
+## 工作台外壳移植（BioCompare 外观，不含对方运算引擎）
+
+> 范围：把队友 BioCompare 工作台的可见框架迁入本仓库 `src/app/`。不接入对方 backend / OpenMS / Sage / FlashDeconv / Ellman fetch。
+> 约束：不改 `src/data/characterization-items.ts`、`src/data/categories.ts`、`src/data/similarity-schemes.ts`；不改 `AnalysisResultView` 科学语义；不改综合判别汇总函数；不新建 `/modules/*`；不安装新依赖；不提交 `a branch/`；每次只改一个文件。
+
+### 已核实现状（实施前只读）
+
+- 写入目标：`D:\生物类似药判别系统\生物类似药相似性分析系统`，App Router 在 `src/app/`（禁止再创建根级 `app/`）。
+- 技术栈：Next.js 16.3.0 / React 19.2.8 / TypeScript 5.9.3 strict / Tailwind CSS 4.3.3。
+- 国际化：`src/i18n/LanguageProvider.tsx` + `src/i18n/messages.ts`（zh/en 成对）。
+- 现有壳：`layout.tsx` 为 `SiteHeader` + `SideExplorerRail` + `DrawerStack` + `AssistantWidget`（Dify）。
+- 现有路由：`/`、`/category/[key]`、`/item/[id]`、`/comprehensive-analysis`、`/regulatory`。
+- 分析入口：`MethodAnalysisPanel` + `src/data/method-analysis-config.ts`；健康检查走本仓库 `ANALYSIS_SERVICE_URL` → `/api/analysis`（默认 `127.0.0.1:8765`）。
+- 外观来源只读：`a branch/app/`（真正在跑的 BioCompare），不是 `a branch/src/app/`。
+
+### 冻结实现约定
+
+1. 首页采用对方 `/project` 工作台首页；现有 `HomeView` 不再作为 `/`。`/` `redirect("/project")`。
+2. 保留 `/item/[id]` 与 `ItemDetailContent` / `MethodAnalysisPanel`。专项页只套层级条、三步条、上传卡、进度条；不新建 `/modules/[id]`。
+3. 新增对方汇总报告外壳。现有 `/comprehensive-analysis` 判定逻辑、文案键、字形一律不改。
+4. 整站换成对方壳（深色侧栏、顶栏搜索/主题、批量进度浮窗），同时保留中英文、现有 Dify `AssistantWidget`、现有探索抽屉。不接入对方 `AiChatWidget` 聊天后端。
+5. 双左侧栏从左到右：工作台侧栏（展开约 286px / 收起约 76px）→ `SideExplorerRail` → 主区（sticky 顶栏 + children + `app-footer`）。主区宽度同时减去两者。`SiteHeader` / `SiteFooter` 从 `layout.tsx` 移除。
+6. 运算接入唯一表：本仓库 `characterizationItems[].itemName.zh` 与对方 `characterizationProjects[].name` 规范化后完全相同才允许接到本仓库已有分析。规范化：去空白；去掉全角/半角括号及其中内容；去掉末尾「比对」「水平」。匹配键不用对方 `projectModules.name`。
+7. 第二道闸：该 item 在 `method-analysis-config.ts` 至少有一条 `status === "analyzable"` 才真正 `createJob` / `runAnalysis`。`rule-not-defined` / `display-only` 只出框、禁用运行。
+8. 不同名或本仓库没有的对方专项：只画「待接入」框，按钮禁用，文案「尚未接入本系统计算」。禁止调对方引擎，禁止用本仓库另一个项目的分析去顶。
+9. 「一键执行全部比对」只调度允许名单（同名且 analyzable）；名单外不进队列。并行/串行只改批量窗文案，不改本仓库分析实现。
+10. 轻量会话只允许：`filesByItemId`、`runStatusByItemId`、`progress`、`message`、`dispatchMode`、`batchRunning`、`theme`、`error`。禁止对方 `ptmResult` / `sequenceResult` 等引擎结果字段。禁止 `NEXT_PUBLIC_BACKEND_URL` 与 `127.0.0.1:8000`。
+11. 侧栏「药学表征项目」用本仓库 8 大类与 61 项，链接全部 `/item/{id}`。
+12. 样式两套并存：保留 `globals.css` 的 Tailwind `@theme`、抽屉、助手、综合判别；工作台规则另存 `workbench-shell.css`。深色主题只覆盖工作台壳与对方 class。
+13. 全站免责声明唯一渲染点从 `HomeView` 改到 `/project` 对应视图；`verify_ui_shell.mjs` 同步改期望路径。demo banner、五态字形、抽屉 ARIA、冻结业务文件哈希不得删。
+
+### 步骤清单
+
+- W0 本实施计划新章节（本节）
+- W1 `src/lib/workbench/name-match.ts` + `scripts/verify_workbench_shell.mjs`
+- W2 `src/app/workbench-shell.css`
+- W3 `src/components/workbench/CountUp.tsx`
+- W4 `src/i18n/messages.ts` 工作台键
+- W5 `src/components/workbench/WorkbenchProvider.tsx`
+- W6 `src/components/workbench/WorkspaceShell.tsx`
+- W7 `src/app/layout.tsx`
+- W8 `src/app/page.tsx` redirect 与 `src/app/project/page.tsx`
+- W9 概览披露 + 目录（本仓库 8 类 61 项）
+- W10 `src/app/project/data/page.tsx`
+- W11 `src/app/project/rules/page.tsx`
+- W12 `src/app/project/report/page.tsx`
+- W13 `src/components/workbench/BatchProgressPanel.tsx`
+- W14 改 `ItemDetailView` 套专项框
+- W15 更新 `scripts/verify_ui_shell.mjs` 免责声明路径
+- W16 `npm run check` 修到全绿
+
+### 步骤 W0：写入本实施计划并冻结约定
+
+文件：`implementation-plan.mdc`
+
+Done
+
+记录外观移植范围、双左侧栏、同名允许名单两道闸、禁止对方引擎与禁止字段。
+未改业务代码；`characterization-items.ts` 与综合判别汇总保持只读。
+
+### 步骤 W1：同名允许名单纯函数与校验
+
+文件：`src/lib/workbench/name-match.ts`；`scripts/verify_workbench_shell.mjs`
+
+Done
+
+规范化比较对方表征项目名与本仓库 `itemName.zh`，再与 `analyzable` 求交得到 `computableItemIds`。
+校验断言人工核对的 7 个 id 必在允许名单，且名称不等的 id 不得进入 `computableItemIds`。
+
+### 步骤 W2：抽出工作台 CSS
+
+文件：`src/app/workbench-shell.css`
+
+Done
+
+从对方 globals 抽出工作台规则，去掉 html/body 重置与 AiChat 样式，深色主题只覆盖工作台壳。
+增加双左侧栏宽度变量与探索轨偏移，并在本文件减动效块中关闭工作台动画。
+
+### 步骤 W3：数字动画
+
+文件：`src/components/workbench/CountUp.tsx`
+
+Done
+
+移植对方 CountUp，尊重 `prefers-reduced-motion` 与 IntersectionObserver。
+未新增依赖。
+
+### 步骤 W4：工作台中英文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+新增 `workbench` 段中英成对文案，覆盖侧栏、顶栏、首页、输入、规则、报告、专项框与批量窗。
+未改既有键语义；免责声明单行文案写入工作台首页键。
+
+### 步骤 W5：轻量会话 Provider
+
+文件：`src/components/workbench/WorkbenchProvider.tsx`
+
+Done
+
+会话只保存文件槽、运行状态、调度模式、主题与错误；`runItem` 非允许名单直接返回。
+允许名单走本仓库 analysis-service 客户端，不读 `NEXT_PUBLIC_BACKEND_URL`。
+
+### 步骤 W6：工作台壳
+
+文件：`src/components/workbench/WorkspaceShell.tsx`
+
+Done
+
+还原品牌行、项目卡、四链加综合判别与法规、八大类折叠导航与顶栏工具区。
+药学表征分组用本仓库 8 类 61 项并链到 `/item/{id}`；未挂对方 AiChatWidget。
+
+### 步骤 W7：根布局换壳
+
+文件：`src/app/layout.tsx`
+
+Done
+
+globals 之后引入工作台 CSS；用 WorkbenchProvider 与 WorkspaceShell 包主区。
+移除 SiteHeader / SiteFooter；保留探索轨、DrawerStack 与 Dify AssistantWidget。
+
+### 步骤 W8：首页重定向与工作台首页
+
+文件：`src/app/page.tsx`；`src/app/project/page.tsx`
+
+Done
+
+`/` 重定向到 `/project`。工作台首页落地英雄区、整套上传外壳、五步骨架、编排条、流程线、任务历史与 KPI。
+免责声明唯一渲染点改到该页；上传只按扩展名表面分类，不解析内容、不调对方引擎。
+
+### 步骤 W9：概览披露与表征目录
+
+文件：`src/components/workbench/ProjectOverviewDisclosure.tsx` 及相关目录/手风琴/分析框组件
+
+Done
+
+视觉抄对方概览与目录 class，数据改为本仓库 8 类 61 项，卡片链到 `/item/{id}`。
+已接入手风琴只列允许名单，展开嵌入与专项页相同的分析框。
+
+### 步骤 W10：统一输入页
+
+文件：`src/app/project/data/page.tsx`
+
+Done
+
+61 项分页 15；仅允许名单文件槽可写会话，其余禁用并标等待接入。
+未做对方 mzML 快捷分配、PTM 切换、FASTA 槽与模板下载。
+
+### 步骤 W11：公共规则页
+
+文件：`src/app/project/rules/page.tsx`
+
+Done
+
+画出参数、风险色条与三条已锁定政策；值只存在本页 state。
+明确不传入 MethodAnalysisPanel、不改 similarity-schemes、不改 analysis-service。
+
+### 步骤 W12：汇总报告页
+
+文件：`src/app/project/report/page.tsx`
+
+Done
+
+落地 5 个 KPI、按本仓库八大类折叠表、结论边界卡、风险卡与登记表。
+穿透链接到 `/item/{id}`；Word 导出按钮禁用；保留不自动给出生物类似性结论。
+
+### 步骤 W13：批量进度浮窗
+
+文件：`src/components/workbench/BatchProgressPanel.tsx`
+
+Done
+
+只列出本会话 `source === "batch"` 的允许名单项，文案走 i18n。
+并行/串行只改变窗体文案，不改变本仓库分析实现。
+
+### 步骤 W14：专项页外套工作台框
+
+文件：`src/components/views/ItemDetailView.tsx`
+
+Done
+
+增加层级条并保留知识字段、方法选择与参考案例。
+分析区外套对方 panel；允许名单继续挂 MethodSelector，其余禁用运行并给出待接入空结果骨架。
+
+### 步骤 W15：校验脚本免责声明路径
+
+文件：`scripts/verify_ui_shell.mjs`
+
+Done
+
+唯一免责声明渲染点期望改为 `/project` 页与 `messages.workbench.siteDisclaimerLine`。
+demo banner、五态字形、抽屉 ARIA、冻结哈希检查保留。
+
+### 步骤 W16：全量校验
+
+文件：`package.json` 及相关排除配置
+
+Done
+
+`npm run check` 串入 `verify:workbench-shell`；tsconfig 与 eslint 排除 `a branch/`。
+修复到全绿。
+
+### 步骤 W17：揭开方法面板被渐变层盖住的正文
+
+文件：`src/app/globals.css`；`scripts/verify_ui_shell.mjs`
+
+Done
+
+`.glass-surface.glass-edge::before` 与抽屉/助手同样关闭，方法原理、实机演示与工具调查不再被 brand→coral 色块盖住。
+校验脚本锁定该选择器，避免回退。
+
+### 步骤 W18：程序分析面板在服务未连上时自动重试健康检查
+
+文件：`src/components/MethodAnalysisPanel.tsx`；`src/components/workbench/WorkbenchProvider.tsx`
+
+Done
+
+未连上时每 4 秒再打 `/api/analysis/health`，本仓库 FastAPI 起来后红框与侧栏引擎状态会自行恢复。
+仍只走本仓库 8765 转发，不读对方 8000 后端。
+
