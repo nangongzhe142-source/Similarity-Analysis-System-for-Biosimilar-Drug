@@ -10,14 +10,50 @@ const EXTENSIONS_BY_INPUT_KIND: Record<AnalysisInputKind, string[]> = {
   "figure-image": [".png", ".jpg", ".jpeg", ".webp"],
 };
 
-export function acceptAttributeForInputKinds(kinds: AnalysisInputKind[]): string {
-  const extensions = new Set<string>();
-  for (const kind of kinds) {
-    for (const extension of EXTENSIONS_BY_INPUT_KIND[kind]) {
-      extensions.add(extension);
+const IMAGE_MIME_TYPES = ["image/png", "image/jpeg", "image/webp"];
+
+export function acceptAttributeForInputKinds(
+  kinds: AnalysisInputKind[],
+): string | undefined {
+  const uniqueKinds = [...new Set(kinds)];
+  const includesFigure = uniqueKinds.includes("figure-image");
+  const includesNonFigure = uniqueKinds.some((kind) => kind !== "figure-image");
+
+  // Windows Chromium applies only the first token in a mixed `accept` list.
+  // `.mzml` was first, so 图谱数据库 PNGs were hidden. An empty `accept=""`
+  // still sets the attribute; Chromium then shows files but does not keep the
+  // selection. Omit the attribute instead. D16 still rejects other extensions.
+  if (includesFigure && includesNonFigure) {
+    return undefined;
+  }
+
+  const tokens: string[] = [];
+  const seen = new Set<string>();
+  function add(token: string) {
+    if (seen.has(token)) {
+      return;
+    }
+    seen.add(token);
+    tokens.push(token);
+  }
+
+  if (includesFigure) {
+    for (const extension of EXTENSIONS_BY_INPUT_KIND["figure-image"]) {
+      add(extension);
+    }
+    for (const mime of IMAGE_MIME_TYPES) {
+      add(mime);
     }
   }
-  return [...extensions].join(",");
+  for (const kind of uniqueKinds) {
+    if (kind === "figure-image") {
+      continue;
+    }
+    for (const extension of EXTENSIONS_BY_INPUT_KIND[kind]) {
+      add(extension);
+    }
+  }
+  return tokens.join(",");
 }
 
 export function formatListForInputKinds(kinds: AnalysisInputKind[]): string {

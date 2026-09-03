@@ -56,10 +56,12 @@ export function AssistantPanel({
       id="assistant-panel"
       aria-label={copy.title}
       aria-hidden={!open}
-      inert={!open}
-      className={`assistant-panel ${open ? "assistant-panel-open" : "assistant-panel-closed"}`}
+      hidden={!open}
+      inert={open ? undefined : true}
+      className={`assistant-panel glass-edge relative ${open ? "assistant-panel-open" : "assistant-panel-closed"}`}
     >
       <header className="assistant-head flex items-center gap-3 px-3 py-3">
+        <span aria-hidden="true" className="aurora-layer opacity-50" />
         <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full border border-cyan-100/30 bg-navy-950/40 shadow-[0_0_18px_rgb(14_116_144_/_0.45)]">
           <AssistantMascotFace size="md" />
         </span>
@@ -86,10 +88,6 @@ export function AssistantPanel({
           ×
         </button>
       </header>
-
-      <p className="border-b border-cyan-800/20 bg-navy-950/90 px-3 py-2 text-[11px] leading-snug text-cyan-100">
-        {copy.disclaimer}
-      </p>
 
       <div ref={listRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto px-3 py-3">
         {messages.length === 0 ? (

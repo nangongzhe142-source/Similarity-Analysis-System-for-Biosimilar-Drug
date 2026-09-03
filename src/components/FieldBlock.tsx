@@ -20,7 +20,7 @@ export function FieldBlock({ label, value, emphasized = false }: FieldBlockProps
     <section
       className={
         emphasized
-          ? "surface-card border-l-4 border-l-brand-700 p-4"
+          ? "surface-card border-l-4 border-l-coral-700 p-4"
           : "surface-card p-4"
       }
     >

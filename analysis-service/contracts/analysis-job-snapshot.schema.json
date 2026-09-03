@@ -662,7 +662,8 @@
         "intact-mass",
         "peptide-map",
         "ms1-coverage",
-        "msms-sequence"
+        "msms-sequence",
+        "curve-overlay"
       ],
       "title": "AnalysisProfileId",
       "type": "string"

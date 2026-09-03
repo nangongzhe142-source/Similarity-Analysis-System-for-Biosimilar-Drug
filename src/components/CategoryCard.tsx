@@ -16,7 +16,7 @@ export function CategoryCard({ category, itemCount }: CategoryCardProps) {
   return (
     <Link
       href={`/category/${category.key}`}
-      className="surface-card group flex flex-col gap-3 border-l-4 border-l-brand-700 p-5 transition-shadow duration-150 hover:shadow-[var(--shadow-raised)]"
+      className="surface-card group flex flex-col gap-3 border-l-4 border-l-coral-700 p-5 transition-shadow duration-150 hover:shadow-[var(--shadow-raised)]"
     >
       <div className="flex items-start justify-between gap-3">
         <CategoryMark categoryKey={category.key} order={category.order} />

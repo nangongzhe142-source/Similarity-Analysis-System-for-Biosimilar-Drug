@@ -8,23 +8,45 @@ interface AssessmentStatusGlyphProps {
   status: DemoAssessmentStatusSelection;
   size?: "sm" | "lg";
   label?: string;
+  /** Adds the glow, and the attention pulse for the two blocking statuses.
+   *  Shape and wording stay the primary channels either way: the glow never
+   *  carries information the shape and label do not already carry. */
+  emphasis?: boolean;
 }
 
-function glyphClassName(status: DemoAssessmentStatusSelection, size: "sm" | "lg"): string {
-  const dimension = size === "lg" ? "h-8 w-8" : "h-5 w-5";
+/** The two statuses that must draw the eye at presentation distance. */
+function isBlockingStatus(status: DemoAssessmentStatusSelection): boolean {
+  return (
+    status === DEMO_ASSESSMENT_STATUS.doesNotSupportSimilarity ||
+    status === DEMO_ASSESSMENT_STATUS.insufficientEvidence
+  );
+}
+
+function glyphClassName(
+  status: DemoAssessmentStatusSelection,
+  size: "sm" | "lg",
+  emphasis: boolean,
+): string {
+  const dimension = size === "lg" ? "h-10 w-10 sm:h-12 sm:w-12" : "h-5 w-5";
+  const glow = emphasis
+    ? status === DEMO_ASSESSMENT_STATUS.doesNotSupportSimilarity
+      ? " glyph-glow-signal"
+      : " glyph-glow"
+    : "";
+  const pulse = emphasis && isBlockingStatus(status) ? " glyph-pulse" : "";
   if (status === DEMO_ASSESSMENT_STATUS.supportsSimilarity) {
-    return `${dimension} text-brand-800`;
+    return `${dimension} text-brand-800${glow}${pulse}`;
   }
   if (status === DEMO_ASSESSMENT_STATUS.doesNotSupportSimilarity) {
-    return `${dimension} text-signal-red`;
+    return `${dimension} text-signal-red${glow}${pulse}`;
   }
   if (status === DEMO_ASSESSMENT_STATUS.insufficientEvidence) {
-    return `${dimension} text-navy-800`;
+    return `${dimension} text-navy-800${glow}${pulse}`;
   }
   if (status === DEMO_ASSESSMENT_STATUS.notApplicable) {
-    return `${dimension} text-ink-secondary`;
+    return `${dimension} text-ink-secondary${glow}`;
   }
-  return `${dimension} text-line-strong`;
+  return `${dimension} text-line-strong${glow}`;
 }
 
 function StatusShape({ status }: { status: DemoAssessmentStatusSelection }) {
@@ -113,6 +135,7 @@ export function AssessmentStatusGlyph({
   status,
   size = "sm",
   label,
+  emphasis = false,
 }: AssessmentStatusGlyphProps) {
   const { messages } = useLanguage();
   const copy = messages.comprehensiveAnalysis;
@@ -130,10 +153,14 @@ export function AssessmentStatusGlyph({
 
   return (
     <span className="inline-flex items-center gap-2">
-      <span className={glyphClassName(status, size)}>
+      <span className={glyphClassName(status, size, emphasis)}>
         <StatusShape status={status} />
       </span>
-      <span className={size === "lg" ? "text-xl font-bold sm:text-2xl" : "text-sm font-medium"}>
+      <span
+        className={
+          size === "lg" ? "text-2xl font-bold sm:text-3xl" : "text-sm font-medium"
+        }
+      >
         {resolvedLabel}
       </span>
     </span>

@@ -7,7 +7,11 @@ import {
   methodAnalysisConfigByMethodId,
 } from "@/data/method-analysis-config";
 import { similaritySchemeByItemId } from "@/data/similarity-schemes";
-import { figureLibraryEntryByFileName } from "@/data/figure-library-catalog";
+import {
+  figureLibraryEntriesForMethod,
+  figureLibraryEntryByFileName,
+  figureLibraryPublicUrl,
+} from "@/data/figure-library-catalog";
 import {
   AnalysisServiceError,
   analysisServiceBaseUrl,
@@ -80,7 +84,7 @@ function AnalysisFileSlot({
 }: {
   label: string;
   hint: string;
-  accept: string;
+  accept: string | undefined;
   file: File | null;
   emptyLabel: string;
   disabled: boolean;
@@ -111,7 +115,30 @@ function AnalysisFileSlot({
   );
 }
 
-/** One comparison slot: 1 combined figure or 2 separate spectra (DOCX 5.1.1). */
+function FigureFileThumb({ file }: { file: File }) {
+  const [url, setUrl] = useState<string | null>(null);
+  useEffect(() => {
+    if (!isFigureImageFileName(file.name)) {
+      setUrl(null);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(file);
+    setUrl(objectUrl);
+    return () => {
+      URL.revokeObjectURL(objectUrl);
+    };
+  }, [file]);
+  if (url === null) {
+    return null;
+  }
+  return (
+    <img
+      src={url}
+      alt={file.name}
+      className="mt-2 max-h-36 w-full rounded border border-slate-200 bg-white object-contain"
+    />
+  );
+}
 function ComparisonFileSlot({
   label,
   hint,
@@ -125,7 +152,7 @@ function ComparisonFileSlot({
 }: {
   label: string;
   hint: string;
-  accept: string;
+  accept: string | undefined;
   files: File[];
   firstRoleLabel: string;
   secondRoleLabel: string;
@@ -159,6 +186,8 @@ function ComparisonFileSlot({
       >
         {secondRoleLabel}: {second ? second.name : emptyLabel}
       </span>
+      {first ? <FigureFileThumb file={first} /> : null}
+      {second ? <FigureFileThumb file={second} /> : null}
       <input
         type="file"
         accept={accept}
@@ -347,6 +376,30 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
     }
   };
 
+  const applyLibraryFigure = useCallback(
+    async (fileName: string) => {
+      setErrorMessage(null);
+      try {
+        const response = await fetch(
+          `/api/figure-library?file=${encodeURIComponent(fileName)}`,
+        );
+        if (!response.ok) {
+          setErrorMessage(messages.methodAnalysis.figureLibraryLoadFailed);
+          return;
+        }
+        const blob = await response.blob();
+        const file = new File([blob], fileName, {
+          type: blob.type.length > 0 ? blob.type : "image/png",
+        });
+        setMeasurementFiles([file]);
+      } catch {
+        setErrorMessage(messages.methodAnalysis.figureLibraryLoadFailed);
+      }
+    },
+    [messages.methodAnalysis.figureLibraryLoadFailed],
+  );
+
+  const methodLibraryEntries = figureLibraryEntriesForMethod(method.id);
   const libraryEntry = figureLibraryEntryByFileName(measurementFiles[0]?.name);
   const libraryMismatch =
     libraryEntry?.mapped === true &&
@@ -504,6 +557,30 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
                     onFileChange={setSequenceFile}
                   />
                 </div>
+                {methodLibraryEntries.length > 0 ? (
+                  <ul className="mt-3 grid gap-3 lg:grid-cols-2">
+                    {methodLibraryEntries.map((entry) => (
+                      <li
+                        key={entry.sha256}
+                        className="rounded-sm border border-line bg-paper p-2"
+                      >
+                        <img
+                          src={figureLibraryPublicUrl(entry.fileName)}
+                          alt={entry.fileName}
+                          className="mb-2 max-h-36 w-full bg-white object-contain"
+                        />
+                        <button
+                          type="button"
+                          disabled={busy || running}
+                          onClick={() => void applyLibraryFigure(entry.fileName)}
+                          className="tap-target w-full rounded-sm border border-line bg-canvas-muted px-3 py-2 text-left text-xs font-semibold text-navy-900 hover:bg-coral-100 disabled:opacity-50"
+                        >
+                          {messages.methodAnalysis.figureLibraryUseButton} · {entry.fileName}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
                 <p className="mt-2 text-[11px] text-slate-500">
                   {messages.methodAnalysis.syntheticFallbackNote}
                 </p>
@@ -590,9 +667,6 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
         </div>
       ) : null}
 
-      <p className="mt-4 border-t border-slate-200/80 pt-2 text-[11px] leading-relaxed text-slate-500">
-        {messages.methodAnalysis.disclaimer}
-      </p>
     </section>
   );
 }

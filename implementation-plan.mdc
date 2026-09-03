@@ -791,3 +791,722 @@ Done
 立绘位于 `public/assistant/mascot.png`；右下角改为漂浮、跳跃、思考摇摆与间歇对话气泡。
 已删除螺旋线稿 `AssistantMark.tsx`，面板头像改为立绘脸部裁切。
 
+### 步骤 U7：看板娘点击被挡住
+
+文件：`src/components/assistant/AssistantWidget.tsx`、`src/components/assistant/AssistantPanel.tsx`、`src/app/globals.css`
+
+Done
+
+关闭态面板改为 `display: none` 且外包 `pointer-events-none`，避免透明命中层挡住看板娘；会话 id 改为发送时再读 sessionStorage，避免 hydration 不一致。
+层级改为 `z-[90]`，面板贴在看板娘正上方并用 `calc(100vh - 12rem)` 限制高度。
+
+### 步骤 U8：渐变描边盖住聊天内容
+
+文件：`src/app/globals.css`；`scripts/verify_ui_shell.mjs`
+
+Done
+
+`.assistant-panel.glass-edge::before` 与抽屉层同样关掉，避免品牌蓝→珊瑚渐变铺满面板把标题、建议问题和输入框盖住。
+子元素提到 z-index 3；`verify_ui_shell` 增加该选择器断言；未改代理、白名单与 Chatflow。
+
+## 多维分层抽屉界面改造（M 系列）
+
+### 只读复核结果（改造前实测，非假设）
+
+- 技术栈复核：`package.json` 依赖仅 `next@16.3.0` / `react@19.2.8` / `react-dom@19.2.8`，devDependencies 含 `tailwindcss@4.3.3` 与 `typescript@5.9.3`。无任何 UI / 动画库，本次改造不新增运行时依赖。
+- 路由复核：`src/app/page.tsx`、`src/app/category/[key]/page.tsx`、`src/app/item/[id]/page.tsx`、`src/app/regulatory/page.tsx`、`src/app/comprehensive-analysis/page.tsx` 共 5 个，均为「page → 客户端 View」模式。抽屉状态不进 URL，5 个路由不变。
+- 布局复核：`src/app/layout.tsx` 内为 `LanguageProvider` → `SiteHeader` + `main#main-content` + `SiteFooter` + `AssistantWidget`。
+- 视觉令牌复核：`src/app/globals.css` 的 `@theme` 已含 navy/brand/cyan/signal-red/canvas/paper/ink/line 全部冻结色值、`--shadow-card` / `--shadow-raised`、`--radius-sm/md/lg`；文件末尾第 445 行起已有 `@media (prefers-reduced-motion: reduce)` 块。
+- 看板娘复核：`AssistantWidget` 以 `fixed right-4 bottom-4 z-[70]` 占据右下角，因此侧边交互轨必须放在视口左缘。
+- 校验基线复核：改造前 `npm run check` 退出码 0（typecheck + lint + 9 个 verify 脚本全绿，lint 仅 2 条既有 `no-img-element` warning）。
+- 业务文件基线哈希（SHA-256，改造后必须一致）：
+  - `src/lib/comprehensive-analysis/summarize.ts` = `87c7e3c3fb7b61b34279df84858b34ac3104631970b88fe76bee22d39d2e883c`
+  - `src/data/characterization-items.ts` = `57b5e99ab521b925b2e12dbffa7cd710e823ac473e419e617dd523793037c3df`
+  - `src/lib/comprehensive-analysis/demo-process.ts` = `af5c92fb02069beb83813fe6f4f62cb7b5e1739439860383d1ca531b819c1ce1`
+
+### 本次冻结的交互约定（M 系列专用）
+
+1. 抽屉栈状态纯前端内存，不进 URL、不引入路由级抽屉，不影响 SEO 与现有 5 个路由。
+2. 桌面端为「左侧交互轨 + 层叠抽屉」：每 push 一层，旧层收缩为可见层脊；层脊总宽超视口 40% 时最老层折入聚合脊。移动端（< 768px）同一 Context、同一层数据结构，改为右侧全屏推入 + 顶部返回栈。
+3. 关闭规则：`Esc` 只弹一层；点击层脊回跳该深度；遮罩点击关最上层；`closeAll` 仅由显式按钮触发。
+4. 焦点契约：push 后焦点移入新层首个可聚焦元素，pop 后归还触发元素；层内 Tab 焦点循环。
+5. ARIA 契约：层容器 `role="dialog"` + `aria-modal="false"` + `aria-label` 为层标题；触发按钮带 `aria-expanded` / `aria-controls`；层脊按钮 `aria-label` 说明「返回第 k 层：标题」。
+6. 视觉只做叠加层：不重设主色、不删改既有令牌；新增玻璃拟态、极光光晕、纵深阴影、层脊高光、stagger 与推入缓动，全部接入既有减动效块。
+7. 状态字形形状差异（圆 / 八角 / 方 / 菱 / 虚线圆）为无障碍第二通道，只允许加发光与条件脉冲，不许合并形状、不许以颜色为唯一状态通道。
+8. `OverallEvidencePanel` 与 `ComparisonOverview` 保持常驻主内容区，不进抽屉（沿用原步骤 9 的结论先于明细约定）。
+
+### 免责声明清理清单（用户已明确授权）
+
+目标状态：全站仅首页保留一行免责声明（新键 `common.siteDisclaimerLine`），其余渲染点全部移除；`src/i18n/messages.ts` 中既有 disclaimer 键的定义与原文一律不动，仅停止渲染。
+
+需移除渲染的位置：
+
+- `src/components/views/HomeView.tsx` 的 `site-disclaimer-heading` 区块 → 换为 Hero 正下方单行文案
+- `src/components/layout/SiteFooter.tsx` 的 `common.notAGovernmentSite` 与 `referenceCase.footerDisclaimer`
+- `src/components/layout/SiteHeader.tsx` 的 `common.notAGovernmentSite`（**用户清单未列出，为只读复核新发现的第 10 个渲染点**；因目标状态与 M27 断言均要求全站恰好 1 处，故一并移除，此处为对用户清单的显式补充）
+- `src/components/comprehensive-analysis/OverallEvidencePanel.tsx` 的 `copy.disclaimer`
+- `src/components/MethodAnalysisPanel.tsx`、`src/components/MethodContentPanel.tsx`、`src/components/MethodToolPanel.tsx`、`src/components/live-demo/MethodLiveDemo.tsx` 的 disclaimer 段
+- `src/components/reference-case/ReferenceCaseSection.tsx` 的 `disclaimerTitle` / `disclaimerText` 折叠块
+- `src/components/assistant/AssistantPanel.tsx` 的 `copy.disclaimer`
+
+**冻结约定解除记录**：Dify 章节 D0 约定 7 与步骤 D10 曾把助手面板顶部免责声明列为「固定文案」，用户在本次 M 系列需求中已明确授权删除该渲染点。护栏侧不变——`src/lib/assistant/chat-request.ts` 的越权 / 整品认定 / 看图猜峰检测与 Dify 系统提示词拒绝话术一律保留。
+
+保留项：`comprehensiveAnalysis.demoUseBanner`（`ProductPairForm.tsx` 与 `OverallEvidencePanel.tsx`）说明的是数据性质而非免责声明，语义与文案不删改，仅改为徽章呈现。
+
+### 步骤清单
+
+- M0 实施计划新章节（本节）
+- M1 `src/app/globals.css` 新增玻璃 / 光晕 / 纵深 / 层脊 / stagger 令牌与关键帧
+- M2 `src/i18n/messages.ts` 抽屉栈、层导航、交互轨、首页单行声明文案（中英成对）
+- M3 `src/components/drawer/DrawerStackProvider.tsx`
+- M4 `src/components/drawer/DrawerStack.tsx`
+- M5 `src/components/drawer/DrawerLayerShell.tsx`
+- M6 `src/components/layout/SideExplorerRail.tsx`
+- M7 `src/app/layout.tsx` 挂载 Provider / Stack / Rail
+- M8 `src/components/views/HomeView.tsx`
+- M9 `src/components/layout/SiteFooter.tsx`
+- M9b `src/components/layout/SiteHeader.tsx`（清单补充项）
+- M10 `src/components/views/CategoryView.tsx`
+- M11 `src/components/views/ItemDetailView.tsx`
+- M12 `src/components/views/RegulatoryView.tsx`
+- M13 `src/components/comprehensive-analysis/ComprehensiveAnalysisView.tsx`
+- M14 `src/components/comprehensive-analysis/ComparisonOverview.tsx`
+- M15 `src/components/comprehensive-analysis/OverallEvidencePanel.tsx`
+- M16 `src/components/comprehensive-analysis/CategoryAssessmentSection.tsx`
+- M17 `src/components/comprehensive-analysis/ItemAssessmentCard.tsx`
+- M18 `src/components/comprehensive-analysis/AssessmentStatusGlyph.tsx`
+- M19 `src/components/comprehensive-analysis/ItemComparisonProcess.tsx`
+- M20 `src/components/MethodAnalysisPanel.tsx`
+- M21 `src/components/MethodContentPanel.tsx`
+- M22 `src/components/MethodToolPanel.tsx`
+- M23 `src/components/live-demo/MethodLiveDemo.tsx`
+- M24 `src/components/reference-case/ReferenceCaseSection.tsx`
+- M25 `src/components/assistant/AssistantPanel.tsx`
+- M26 `src/components/assistant/AssistantWidget.tsx`
+- M27 `scripts/verify_ui_shell.mjs`
+- M28 `package.json` 串入 `verify:ui-shell`
+- M29 四条命令实跑 + 路由与无障碍抽查，结果回写本节
+
+### 步骤 M0：实施计划新章节
+
+文件：`implementation-plan.mdc`
+
+Done
+
+写入只读复核实测结果、8 条冻结交互约定、免责声明清理清单与 M1–M29 步骤清单。
+记录 SiteHeader 为清单外新发现的第 10 个声明渲染点，并注明 D0 约定 7 已由用户解除。
+
+### 步骤 M1：玻璃拟态、极光与纵深令牌
+
+文件：`src/app/globals.css`
+
+Done
+
+`@theme` 追加三级纵深阴影、发光边框、玻璃底色与模糊、抽屉宽度与 `cubic-bezier(0.22, 1, 0.36, 1)` 缓动；新增层脊、层壳、交互轨、极光与字形发光类及 8 个关键帧。
+减动效块内按类名逐一关闭全部新动画（层脊高光降为静态低透明度），既有令牌与既有类一行未删改。
+
+### 步骤 M2：抽屉栈与交互轨文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+新增 `drawer` 段 28 个键（交互轨分组、层位置模板、层脊回跳模板、聚合脊、9 类层标题）与 `common.siteDisclaimerLine`，中英成对。
+既有 disclaimer 相关键的定义与文案原文一字未改，`tsc --noEmit` 退出码 0。
+
+### 步骤 M3：抽屉栈状态容器
+
+文件：`src/components/drawer/DrawerStackProvider.tsx`
+
+Done
+
+Context 持有 `layers` 与 `pushLayer` / `popLayer` / `popToDepth` / `closeAll` / `syncLayerContent`；push 同 id 视为回跳该深度，Esc 只弹一层，触发元素按深度入栈以便 pop 后归还焦点。
+`useDrawerLayerSync` 以显式 `contentKey` 驱动层内容更新，避免 ReactNode 每次渲染变化引起自循环；本文件不含任何样式。
+
+### 步骤 M4：层叠渲染与层脊
+
+文件：`src/components/drawer/DrawerStack.tsx`
+
+Done
+
+桌面端渲染层脊列 + 顶层面板，层脊按视口 40% 预算折叠为「上层 N 个」聚合脊（点击 `popToDepth(1)` 回跳）；移动端不渲染层脊，改为全屏推入 + 顶部返回栈。
+push 后聚焦新层首个可聚焦元素、pop 时不抢焦点，Tab / Shift+Tab 在顶层内循环，遮罩点击只关最上层。
+
+### 步骤 M5：单层外壳
+
+文件：`src/components/drawer/DrawerLayerShell.tsx`
+
+Done
+
+层容器为 `role="dialog"` + `aria-modal="false"` + `aria-label` 层标题，头部含「第 k 层 / 共 n 层」面包屑、返回上一层与关闭全部按钮，移动端附返回栈。
+表面为玻璃拟态 + 品牌蓝到青蓝 1px 渐变描边，阴影随层深从 depth-1 递进到 depth-3，层内子元素套用 stagger。
+
+### 步骤 M6：左侧常驻交互轨
+
+文件：`src/components/layout/SideExplorerRail.tsx`
+
+Done
+
+轨含 8 个大类（复用 `CategoryMark` 内联 SVG 与序号）、法规框架、全部大类索引与按 `usePathname` 派生的当前页上下文入口，每个按钮带 `aria-expanded` / `aria-controls`；桌面固定左缘垂直居中并悬停右展标签，移动端降级为顶部横向滚动条。
+同时导出 `useExplorerLayers`，供后续页面复用同一套大类 / 项目 / 法规关系层构建器，避免各页重复实现层内容。
+
+### 步骤 M7：根布局挂载
+
+文件：`src/app/layout.tsx`
+
+Done
+
+在 `LanguageProvider` 内新增 `DrawerStackProvider`，依次挂载 `SideExplorerRail`（紧随 `SiteHeader`，移动端走文档流不与看板娘重叠）与 `DrawerStack`；`main#main-content` 在 md 以上留出 `--drawer-rail-width` 左侧安全边距。
+metadata、`main` 的 id / tabIndex / skip-link 目标与 `AssistantWidget` 挂载位置均未改动，`tsc` 与 `eslint` 退出码 0。
+
+### 步骤 M8：首页 Hero 与大类入口
+
+文件：`src/components/views/HomeView.tsx`
+
+Done
+
+Hero 叠加极光光晕与网格视差层，四个指标改为一次性 rAF 计数（初值即真实值，故 SSR 与减动效路径直接显示终值、不闭环）；大类卡片改为 push 大类概览抽屉并保留 `/category/{key}` 详情链接。
+`site-disclaimer-heading` 声明区块删除，替换为 Hero 正下方一行次级字号 `common.siteDisclaimerLine`；四项统计数字仍取自 `characterizationItems` 与既有 selectors，未新增编造数值。
+
+### 步骤 M9：页脚免责声明移除
+
+文件：`src/components/layout/SiteFooter.tsx`
+
+Done
+
+删除 `common.notAGovernmentSite` 与 `referenceCase.footerDisclaimer` 两行渲染，仅保留法规来源与英文待补说明。
+页脚叠加低透明度极光层并与主内容同步左侧安全边距，海军蓝底与正文对比度不变。
+
+### 步骤 M9b：站点头部免责声明条移除
+
+文件：`src/components/layout/SiteHeader.tsx`
+
+Done
+
+删除头部 `navy-950` 声明条（用户清单外的第 10 个渲染点），使全站声明渲染点恰好收敛到首页 1 处。
+skip-link、语言切换、分类菜单与移动菜单的结构与 ARIA 属性一律未改。
+
+### 步骤 M10：大类列表页分层
+
+文件：`src/components/views/CategoryView.tsx`
+
+Done
+
+项目卡片改为 push「项目速览」第 1 层（评价目的 + 指南原词），层内再 push「适用性与评价字段」第 2 层（适用性徽标、检测指标、相似性评价方法、判定原则、数值限度、备注）。
+列表仍由 `getItemsByCategory(category.key)` 驱动，复用既有 `FieldBlock` / `ApplicabilityBadge` / `SupplementaryTag`，并保留跳转 `/item/{id}` 的完整详情入口。
+
+### 步骤 M11：项目详情页分层
+
+文件：`src/components/views/ItemDetailView.tsx`
+
+Done
+
+第 1 层原样嵌入 `MethodSelector`（props、内部方法选择状态与 Dify `methodId`/`methodName` 发布逻辑均未改），层内附方法清单 push 第 2 层的原理 / 演示 / 工具面板，第 2 层再 push 第 3 层参考案例与溯源。
+`MethodAnalysisPanel` 仍只由 `MethodSelector` 单点渲染以免上传状态重复，进入发布 `categoryKey`/`itemId`/`itemName`、离开清理 8 个键的 effect 一字未改。
+
+### 步骤 M12：法规框架页分层
+
+文件：`src/components/views/RegulatoryView.tsx`
+
+Done
+
+在既有 `RegulatoryRelationsTable` 之下新增每条法规关系的抽屉入口，层内展示 CTD 章节、对象、关系等级与来源文件名。
+表格组件的行 id 与单元格映射未改，关系等级仍用「● / ◆ / ■ + 文字」双通道表达，数据仍来自 `src/data/regulatory-framework.ts`。
+
+### 步骤 M13：综合判别页分层入口
+
+文件：`src/components/comprehensive-analysis/ComprehensiveAnalysisView.tsx`
+
+Done
+
+结论区 `OverallEvidencePanel`、总览 `ComparisonOverview` 与 `ProductPairForm` 保持常驻，八大类明细改为抽屉入口；三个固定的 `useDrawerLayerSync`（大类层 / 项目层 / 过程层）以 `sessionEpoch + itemEntries` 序列化签名驱动层内受控表单实时更新。
+`summarizeComprehensiveAssessment` 的 `useMemo`、`cloneAssessmentSession` 深拷贝替换与清空 / 恢复演示逻辑一行未改。
+
+### 步骤 M14：总览大类卡片改 push 抽屉
+
+文件：`src/components/comprehensive-analysis/ComparisonOverview.tsx`
+
+Done
+
+删除 `scrollToCategory` 锚点滚动，改为必填 `onCategorySelect` 回调 push 该大类判别明细层，并补 `.tap-target` 触控目标。
+五个 `inventory*` 计数字段读取、`role="meter"` 与 `aria-valuemin/max/now` 全部保持原样。
+
+### 步骤 M15：结论区视觉升级与声明移除
+
+文件：`src/components/comprehensive-analysis/OverallEvidencePanel.tsx`
+
+Done
+
+移除 `copy.disclaimer` 的 `aside` 渲染，`demoUseBanner` 改为青蓝徽章（文案与语义未改，注释标明其为数据性质说明而非免责声明）；结论改为玻璃拟态面板内的大号发光状态字形。
+关键项目由锚点 `a` 改为 push 项目判别层的按钮，`aggregation` 各汇总字段读取逻辑不变。
+
+### 步骤 M16：大类判别区适配层内渲染
+
+文件：`src/components/comprehensive-analysis/CategoryAssessmentSection.tsx`
+
+Done
+
+新增可选 `onOpenItemLayer`：层内渲染时项目改为「名称 + 完成度 + 状态字形」按钮并 push 下一层，未传该回调时保持原有整卡内联渲染。
+`defaultExpanded`（存在不支持 / 证据不足时默认展开）与 `createFallbackItemEntry` 兜底逻辑均未改。
+
+### 步骤 M17：项目判别卡 push 过程层
+
+文件：`src/components/comprehensive-analysis/ItemAssessmentCard.tsx`
+
+Done
+
+新增可选 `onOpenProcessLayer`：层内渲染时七步过程改为 push 下一层，未传时保留既有 `aria-expanded` / `aria-controls` 内联展开分支。
+`onEntryChange` 的全部语义（适用性联动 notApplicable、状态联动适用性）与所有表单 label / required 未改。
+
+### 步骤 M18：状态字形发光与条件脉冲
+
+文件：`src/components/comprehensive-analysis/AssessmentStatusGlyph.tsx`
+
+Done
+
+新增 `emphasis` 开关：加发光，且仅「不支持相似」与「证据不足」加脉冲；`lg` 尺寸放大到 10/12 以适配大屏投影。
+圆 / 八角 / 方 / 菱 / 虚线圆五种形状与旁注文字一律保留，颜色始终不是唯一状态通道。
+
+### 步骤 M19：七步过程改纵向时间轴
+
+文件：`src/components/comprehensive-analysis/ItemComparisonProcess.tsx`
+
+Done
+
+七个步骤改为带编号发光节点与渐变连接线的 `ol` 纵向时间轴，配色由 slate/teal/amber 收敛到站点冻结令牌。
+「演示流程 / 尚未接入真实计算 / 不参与监管判断」三条标注与 `schematicCaption` 示意声明全部保留，示意柱状图仍标注为示意、未伪装为实测图谱。
+
+### 步骤 M20：分析面板免责声明移除
+
+文件：`src/components/MethodAnalysisPanel.tsx`
+
+Done
+
+仅删除底部 `methodAnalysis.disclaimer` 一段渲染。
+上传、任务轮询、结果发布与 `AnalysisResultView` 调用链零改动。
+
+### 步骤 M21：方法原理面板
+
+文件：`src/components/MethodContentPanel.tsx`
+
+Done
+
+移除 `methodContent.disclaimer` 渲染，面板改为玻璃拟态 + 渐变描边，配色由 slate 收敛到 navy / ink / line 令牌。
+「尚未嵌入字段」的显式列举保留，缺字段仍不会被误读为「不适用」。
+
+### 步骤 M22：工具调研面板
+
+文件：`src/components/MethodToolPanel.tsx`
+
+Done
+
+移除 `methodTools.disclaimer` 渲染，已调研与未调研两个分支同步换为玻璃拟态表面。
+「尚未调研」的显式说明、`surveyedOn` 日期与 gapNote 提示全部保留。
+
+### 步骤 M23：实时演示面板
+
+文件：`src/components/live-demo/MethodLiveDemo.tsx`
+
+Done
+
+移除 `liveDemo.disclaimer` 渲染并改为青蓝左边框玻璃表面，`sopStillPending` 说明保留。
+`getLiveDemoKind` 分派与三个演示组件的计算逻辑未改。
+
+### 步骤 M24：参考案例区
+
+文件：`src/components/reference-case/ReferenceCaseSection.tsx`
+
+Done
+
+删除 `disclaimerTitle` / `disclaimerText` 的 `details` 折叠声明块。
+每个案例的监管机构 / 产品 / 文件 / 章节页码 / `evidenceLevel` 溯源字段与 `illustrative` 标注一律未动。
+
+### 步骤 M25：助手面板
+
+文件：`src/components/assistant/AssistantPanel.tsx`
+
+Done
+
+移除顶部 `assistant.disclaimer` 渲染（该冻结约定已由用户显式解除），面板加渐变描边与顶栏极光，与抽屉层观感统一。
+助手回复仍为 `whitespace-pre-wrap` 纯文本渲染，未引入任何 HTML 渲染路径。
+
+### 步骤 M26：助手挂件层级
+
+文件：`src/components/assistant/AssistantWidget.tsx`
+
+Done
+
+保持 `z-[70]` 并注明层级次序（抽屉栈 60 < 左侧轨 65 < 助手 70），确保面板与看板娘不被层、层脊或遮罩压住。
+看板娘底部加青蓝柔光，与玻璃 / 光晕语言一致；请求体、密钥处理与 SSE 解析未改。
+
+### 步骤 M27：界面外壳静态校验脚本
+
+文件：`scripts/verify_ui_shell.mjs`
+
+Done
+
+新增 7 组断言：免责声明渲染点恰好 1 处且位于 `HomeView.tsx` 的 `siteDisclaimerLine`、`demoUseBanner` 仍在两处渲染、状态字形仍含 5 种形状与旁注文字、`globals.css` 全部新增关键帧均在减动效块内被逐名关闭、抽屉四个组件含 `role="dialog"` / `aria-modal="false"` / `aria-expanded` / `aria-controls` / `Escape` 处理与焦点归还、`layout.tsx` 的 `main#main-content` skip-link 目标存在。
+另对 `summarize.ts`、`characterization-items.ts`、`demo-process.ts` 做 SHA-256 内容哈希锁定，任何业务语义改动都会让脚本非零退出。
+
+### 步骤 M28：串入 check 链
+
+文件：`package.json`
+
+Done
+
+新增 `verify:ui-shell` 脚本并追加到 `check` 末尾，`check` 由 typecheck + lint + 9 个 verify 扩为 10 个 verify。
+既有 9 个校验脚本的命令、参数与顺序一字未改，没有关闭或跳过任何断言。
+
+### 步骤 M29：四条命令实跑与路由抽查
+
+命令（无文件改动）
+
+Done
+
+四条门槛命令实测退出码均为 0：`npm run typecheck` = 0、`npm run lint` = 0（仅既有 `no-img-element` 警告，无新增）、`npm run check` = 0（10 个 verify 全过，含综合判别 10 个场景、`verify_assistant: ok`、`verify_ui_shell: ok`）、`npm run build` = 0（Turbopack 编译成功，77 个静态页面全部生成，5 条路由与 `/api/assistant/*` 均在产物中）。
+`npm run dev` 下 `/`、`/comprehensive-analysis`、`/regulatory`、`/category/primary-structure`、`/item/intact-mass` 全部返回 200，且都包含 `id="main-content"`、skip-link 锚点与左侧交互轨；免责声明文案在首页出现 1 次、其余 4 条路由 0 次。键盘全流程、375px 无横向溢出与减动效归零三项本轮以源码与 CSS 静态核验为准（本机无浏览器自动化依赖，未安装以免改动依赖清单），需在浏览器中人工确认。
+
+### 步骤 M30：抽屉层内容被渐变描边盖住
+
+文件：`src/app/globals.css`（随后 `SideExplorerRail.tsx` / `HomeView.tsx` 同步层-1 语义）
+
+Done
+
+`.glass-edge::before` 原先用 mask-composite 挖空中间，叠在带 `backdrop-filter` 的抽屉层上时 Chromium 挖不空，整块品牌蓝到青蓝填充以 z-index 2 盖住层标题与正文。改为透明 padding-box + 渐变 border-box 描边，并把 `.drawer-layer` 的子元素提到 z-index 3。
+左侧轨与首页大类入口在打开尚未存在的层时先 `closeAll`，保证轨上每个按钮都是第 1 层触发点，不再把多个大类概览叠成空脊。
+
+## 暖色点缀视觉升级
+
+> 目标：浅色冷底 + 珊瑚暖色高对比点缀，侧栏展开层白底主导、正文可读。
+> 约束：不改汇总算法、上传/分析语义、演示数据逻辑；不改图表/评估结论的 emerald 成功绿、amber 警告、rose/signal-red 失败语义；不引入外部字体/图片/脚本；每次只改一个文件。
+
+### 视觉令牌（本章冻结）
+
+- 海军 / 品牌蓝 / 青蓝 / 信号红 / 画布 / 纸面 / 墨色：沿用既有 hex，不改色相。
+- 珊瑚点缀（新增）：`#9a3412` / `#c2410c` / `#ea580c` / `#ffedd5`。白字按钮用 coral-700，悬停 coral-800。
+- 抽屉层脊与层体：纸面白底 + 墨色字，禁止海军渐变作展开层主底。
+- 玻璃底：不透明度 ≥ 0.96，避免侧栏透出深色遮罩导致字发灰。
+
+### 步骤 C0：写入本章并冻结令牌与约束
+
+Done
+
+记录浅色冷底、珊瑚点缀、白底抽屉、语义色不可改义四条约束，作为本次配色唯一执行清单。
+未改业务代码与既有冻结 hex。
+
+### 步骤 C1：全局令牌与表面 / 抽屉 / 极光
+
+文件：`src/app/globals.css`
+
+Done
+
+`@theme` 新增 coral-800/700/600/100；玻璃底不透明度提到 0.96/0.98；Hero 与极光加入珊瑚光斑；层脊与层体改为纸面白底、墨色字；轨激活态改珊瑚浅底。
+未改 navy/brand/cyan/signal-red 的既有 hex；未改业务选择器。
+
+### 步骤 C2：页头导航强调色
+
+文件：`src/components/layout/SiteHeader.tsx`
+
+Done
+
+主导航激活态与底边从品牌蓝改为珊瑚；顶栏仍为海军底、白字。
+未改跳转主内容、菜单结构与路由。
+
+### 步骤 C3：页脚顶边
+
+文件：`src/components/layout/SiteFooter.tsx`
+
+Done
+
+页脚顶边改为珊瑚 4px，海军底与青蓝说明文字保持。
+未改监管来源文案与布局。
+
+### 步骤 C4：首页分类卡左边线与主按钮
+
+文件：`src/components/views/HomeView.tsx`
+
+Done
+
+Hero 主按钮改为珊瑚实心白字；分类卡与综合判别入口左边线改为珊瑚。
+监管入口仍用青蓝左边线；未改统计数字与免责声明。
+
+### 步骤 C5：侧栏展开层主按钮与层头不透明白底
+
+文件：`src/components/layout/SideExplorerRail.tsx`，随后 `DrawerLayerShell.tsx`
+
+Done
+
+展开层主按钮改为珊瑚；层头由半透明改为不透明纸面，保证侧栏正文对比。
+未改层 id、pushLayer 语义与 ARIA。
+
+### 步骤 C6：分类页 / 项目页主按钮与页头左边线
+
+文件：`src/components/views/CategoryView.tsx`，随后 `ItemDetailView.tsx`
+
+Done
+
+分类页与项目页的主按钮、页头左边线改为珊瑚；项目页方法入口卡左边线同步。
+未改方法内容、分析面板与适用性徽章。
+
+### 步骤 C7：综合判别页主按钮（不改评估条与结论色）
+
+文件：`src/components/comprehensive-analysis/ComprehensiveAnalysisView.tsx`，随后 `ProductPairForm.tsx`
+
+Done
+
+恢复演示按钮、页头与大类入口卡改为珊瑚。
+`ComparisonOverview` 进度条、`OverallEvidencePanel` / `CategoryAssessmentSection` 左边线、状态字形未改。
+
+### 步骤 C8：非评估卡左边线与语言切换选中态
+
+文件：`src/components/CategoryCard.tsx`，随后 `FieldBlock.tsx`、`LanguageSwitcher.tsx`
+
+Done
+
+分类卡与强调字段左边线、浅色语言切换选中态改为珊瑚。
+深色顶栏语言切换仍为白底海军字；未改监管关系表与适用性徽章。
+
+### 步骤 C9：门槛命令
+
+命令（无文件改动）
+
+Done
+
+`npm run check` 退出码 0：typecheck、lint（仅既有 `no-img-element` 警告）、10 个 verify 全部通过。
+未改业务哈希锁定文件；图表/评估的 emerald、amber、rose、signal-red 类名未动。
+
+### 步骤 C10：抽屉层体改为不透明白底
+
+文件：`src/app/globals.css`
+
+Done
+
+关掉 `.drawer-layer.glass-edge::before`，避免品牌蓝→珊瑚渐变铺满层体；层与层体均铺不透明纸面并设墨色字。
+未改抽屉 ARIA、层栈逻辑与助手/方法卡片上的 `glass-edge`。
+
+## 项目完整详情进抽屉层
+
+> 目标：第三层「查看完整详情」在层栈内再推一层，展示与项目页相同的字段、方法、参考案例与分析入口，不跳路由、不关闭已展开层。
+> 约束：`/item/{id}` 路由保留；抽屉状态仍不进 URL；不改汇总算法与分析语义。
+
+### 步骤 D0：写入本章
+
+Done
+
+记录「完整详情进第 4 层、不关栈、保留项目页路由」约定。
+未改业务代码。
+
+### 步骤 D1：补齐完整详情层标题文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+新增 `drawer.itemDetailTitle`（完整详情 / Full detail）；英文 `viewFullDetail` 改为不暗示跳页。
+未改既有键语义。
+
+### 步骤 D2：抽出可嵌入抽屉的项目详情正文
+
+文件：`src/components/views/ItemDetailContent.tsx`
+
+Done
+
+抽出字段、方法、参考案例与分析入口，方法/案例按钮继续 `pushLayer`。
+不含面包屑与项目页前后导航，避免层内再跳路由。
+
+### 步骤 D3：项目页改用抽出的正文
+
+文件：`src/components/views/ItemDetailView.tsx`
+
+Done
+
+项目页保留面包屑、助手上下文与上一/下一项；正文改挂 `ItemDetailContent`。
+`/item/{id}` 路由与页内语义未改。
+
+### 步骤 D4：第三层按钮改为 push 完整详情层
+
+文件：`src/components/layout/SideExplorerRail.tsx`
+
+Done
+
+「查看完整详情」由跳转 `/item/{id}` 改为 push `explorer-item-detail-{id}` 层。
+已展开的大类/列表/摘要层保持在栈内。
+
+### 步骤 D5：分类页速览的完整详情入口同步
+
+文件：`src/components/views/CategoryView.tsx`
+
+Done
+
+分类页速览层的完整详情按钮同样 push 详情层，不再跳路由。
+未改分类页卡片打开速览的行为。
+
+### 步骤 D6：门槛命令
+
+命令（无文件改动）
+
+Done
+
+`npm run typecheck`、`npm run lint`、`npm run verify:ui-shell` 退出码 0。
+lint 仅既有 `no-img-element` 警告；未改冻结业务文件。
+
+---
+
+## 输入文件导入与输出报告
+
+> 范围：在 `/comprehensive-analysis` 增加客户端文件入口。上传输入填表包后填充 61 项会话表，并生成可下载的输出书面报告。
+> 性质：演示会话导入/导出。不新增后端，不写入 `AnalysisResult`，不构成监管认定。
+> 约束：不修改 `src/data/characterization-items.ts`；不改变汇总算法与单项分析语义；自由文本仍不驱动判定（只解析明确的适用性/演示状态列或 JSON 字段）；每次只改一个文件。
+
+### 冻结约定（本功能）
+
+1. 接受 `.md` / `.txt` 填表包（A1 两列表 + A2 八列表）以及会话 JSON。未知 `itemId` 跳过并记警告。
+2. 演示状态只来自「演示判定状态」列或 JSON `demoStatus`，禁止对描述字段做关键词推断。
+3. 导入后用现有 `summarizeComprehensiveAssessment` 填表并汇总；输出报告复述选择器状态与录入文本，不另算科学结论。
+4. 输出文件在浏览器本地下载，不持久化到服务器或图谱数据库。
+
+### 步骤 I0：写入本章并冻结约定
+
+Done
+
+记录客户端导入填表包、填充 61 项会话并下载输出报告的范围与边界。
+未改业务代码；汇总算法与 `characterization-items.ts` 保持只读。
+
+### 步骤 I1：输入文件解析纯函数
+
+文件：`src/lib/comprehensive-analysis/parse-input.ts`
+
+Done
+
+解析 `.md` 填表包 A1/A2 表格与会话 JSON；演示状态只取状态列/字段，描述文本不做关键词推断。
+未知 itemId 跳过并记警告；空文件或无法识别时返回错误而不写入会话。
+
+### 步骤 I2：输出报告生成纯函数
+
+文件：`src/lib/comprehensive-analysis/build-output-report.ts`
+
+Done
+
+按 8 大类复述会话文本与选择器状态，总体结论取自既有汇总函数，不从描述关键词另算判定。
+输出为可下载 Markdown；文件名由候选药中文名派生。
+
+### 步骤 I3：补齐导入/导出中英文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+新增输入文件区标题、选择提示、成功/失败与下载输出按钮的中英文，未改既有键语义。
+说明自由文本不驱动判定；未改汇总或分析文案。
+
+### 步骤 I4：输入文件面板组件
+
+文件：`src/components/comprehensive-analysis/InputFilePanel.tsx`
+
+Done
+
+提供带 label 的文件选择与「下载输出文件」按钮，状态区用 `role="status"`。
+文件在浏览器内读取，限制 2 MB，不上传后端。
+
+### 步骤 I5：接入综合判别主视图
+
+文件：`src/components/comprehensive-analysis/ComprehensiveAnalysisView.tsx`
+
+Done
+
+页头下增加输入文件区：导入后替换会话、填充 61 项表，并立即下载输出报告。
+清空/恢复仍走原按钮；下载可对当前会话重复生成。不改汇总算法。
+
+### 步骤 I6：扩展综合判别校验脚本
+
+文件：`scripts/verify_comprehensive_analysis.mjs`
+
+Done
+
+新增 Markdown/JSON 导入、关键词不改写状态、空文件错误，以及岚岫珠单抗填表包 61 项全绿汇总。
+原 10 个汇总场景保留；失败仍非零退出。
+
+### 步骤 I7：门槛命令
+
+命令：`npm run typecheck`、`npm run lint`、`npm run verify:comprehensive-analysis`
+
+Done
+
+`tsc --noEmit` 退出码 0；eslint 对改动文件退出码 0；`verify:comprehensive-analysis` 15 个场景通过。
+未改 `characterization-items.ts` 与汇总算法；导入后结论仍由选择器状态汇总。
+
+### 步骤 I8：输入输出改为正式报告体例
+
+文件：`src/lib/comprehensive-analysis/build-output-report.ts`；`docs/demo-comprehensive-assessment/` 输入数据包与比对报告
+
+Done
+
+下载报告与静态书面报告改为正式药学比对报告体例：总体结论、产品对、分项结果、完整度与声明；正文去掉示意/演示页眉与标签。
+输入包表头改为「判定状态」；文件名改为药学比对数据包与药学相似性综合比对报告。
+
+### 步骤 I9：文件选择器不再把 PNG 滤掉
+
+文件：`src/lib/analysis-uploads.ts`，随后 `src/i18n/messages.ts`
+
+Done
+
+谱图+图片混用时清空 `accept`，避免 Windows 只显示 `.mzml` 而藏掉图谱库 PNG。
+综合判别提示改为：填表包在子文件夹，根目录 PNG 走检测方法上传。
+
+## 图谱库图进入详情输入区
+
+> 目标：完整详情的相似性分析输入区显示本机 `图谱数据库` 中已映射的 PNG，而不是空白「暂未开放」槽。
+> 约束：只提供目录中已编目的文件名；不把图拷进 git；分析仍走既有上传管线。
+
+### 步骤 F0：写入本章
+
+Done
+
+记录「输入区展示图谱库图、API 只读编目文件」约定。
+未改判定算法。
+
+### 步骤 F1：按项目列出图谱库条目
+
+文件：`src/data/figure-library-catalog.ts`
+
+Done
+
+按 itemId / methodId 列出已映射且 collection 为「图谱数据库」的条目。
+docx-media 副本不进输入区，避免接口读不到文件。
+
+### 步骤 F2：本机图谱库只读接口
+
+文件：`src/app/api/figure-library/route.ts`
+
+Done
+
+GET `?file=` 只读编目文件名，路径限制在 catalog 的 libraryRoot。
+越权路径与未编目文件名直接拒绝。
+
+### 步骤 F3：图谱库输入区文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+补 itemPage 与 methodAnalysis 的图谱库标题、提示、一键采用与失败文案。
+中英文对象字段对齐。
+
+### 步骤 F4：完整详情输入区展示图谱
+
+文件：`src/components/analysis/FigureLibraryInputSection.tsx`，随后 `ItemDetailContent.tsx`
+
+Done
+
+有编目图的项目在相似性分析区直接显示 PNG，不再只用「暂未开放」空槽。
+一张图同时含候选与参照曲线。
+
+### 步骤 F5：方法面板可一键采用图谱库图
+
+文件：`src/components/MethodAnalysisPanel.tsx`
+
+Done
+
+方法面板列出本方法图谱并一键写入比对文件槽，槽内显示缩略图。
+混用谱图与图片时省略 accept 属性，避免空字符串导致选中后输入仍为空。
+

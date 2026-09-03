@@ -94,7 +94,7 @@ function checkPanelStructure() {
   mustContain(resultView, "SequenceCoveragePlot", "AnalysisResultView");
   mustContain(resultView, "FragmentIonPlot", "AnalysisResultView");
   mustContain(resultView, "PeakMatchTable", "AnalysisResultView");
-  mustContain(resultView, "imageComparison", "AnalysisResultView dual-layer image comparison");
+  mustContain(resultView, "curveMetricsTitle", "AnalysisResultView curve overlay metrics");
   mustContain(resultView, "qualityGates", "AnalysisResultView quality gates");
   mustContain(resultView, "v2RuleConditionsTitle", "AnalysisResultView V2 rule conditions");
   mustContain(resultView, "AnalysisProvenancePanel", "AnalysisResultView");

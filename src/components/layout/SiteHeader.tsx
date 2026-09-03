@@ -10,13 +10,13 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 function primaryNavClassName(isActive: boolean): string {
   return `tap-target inline-flex items-center rounded-sm px-3 text-sm font-semibold transition-colors duration-150 ${
-    isActive ? "bg-brand-700 text-paper" : "text-navy-900 hover:bg-canvas-muted"
+    isActive ? "bg-coral-700 text-paper" : "text-navy-900 hover:bg-canvas-muted"
   }`;
 }
 
 function mobileNavClassName(isActive: boolean): string {
   return `tap-target flex items-center rounded-sm px-3 text-base font-semibold ${
-    isActive ? "bg-brand-700 text-paper" : "text-navy-900 hover:bg-canvas-muted"
+    isActive ? "bg-coral-700 text-paper" : "text-navy-900 hover:bg-canvas-muted"
   }`;
 }
 
@@ -97,12 +97,9 @@ function SiteHeaderChrome({ pathname }: { pathname: string }) {
             </button>
           </div>
         </div>
-        <p className="border-t border-white/15 bg-navy-950 px-4 py-1.5 text-center text-xs text-cyan-100 sm:px-6">
-          {messages.common.notAGovernmentSite}
-        </p>
       </div>
 
-      <div className="hidden border-b-4 border-brand-700 bg-paper lg:block">
+      <div className="hidden border-b-4 border-coral-700 bg-paper lg:block">
         <nav
           aria-label={messages.navigation.primaryLabel}
           className="mx-auto flex max-w-7xl items-center gap-1 px-4 py-2 sm:px-6"

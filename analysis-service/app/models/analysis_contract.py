@@ -55,6 +55,7 @@ class AnalysisProfileId(str, Enum):
     PEPTIDE_MAP = "peptide-map"
     MS1_COVERAGE = "ms1-coverage"
     MSMS_SEQUENCE = "msms-sequence"
+    CURVE_OVERLAY = "curve-overlay"
 
 
 class RuleEvaluationOutcome(str, Enum):

@@ -33,20 +33,17 @@ export function MethodLiveDemo({ method }: MethodLiveDemoProps) {
   }
 
   return (
-    <div className="rounded-lg border-2 border-teal-600 bg-white p-5">
+    <div className="glass-surface glass-edge relative border-l-4 border-l-cyan-700 p-5">
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <span className="rounded bg-teal-700 px-1.5 py-0.5 text-[11px] font-semibold text-white">
+        <span className="rounded-sm bg-cyan-700 px-1.5 py-0.5 text-[11px] font-semibold text-paper">
           {messages.liveDemo.badge}
         </span>
-        <p className="text-sm font-semibold text-slate-800">{localize(method.name)}</p>
+        <p className="text-sm font-semibold text-navy-900">{localize(method.name)}</p>
       </div>
-      <h3 className="text-sm font-semibold text-slate-900">{messages.liveDemo.title}</h3>
-      <p className="mt-1 mb-3 text-[11px] leading-relaxed text-slate-500">
-        {messages.liveDemo.disclaimer}
-      </p>
+      <h3 className="mb-3 text-sm font-semibold text-navy-900">{messages.liveDemo.title}</h3>
       <DemoBody kind={kind} />
       <LiveDemoProvenancePanel kind={kind} />
-      <p className="mt-4 border-t border-slate-200 pt-2 text-[11px] text-slate-400">
+      <p className="mt-4 border-t border-line pt-2 text-[11px] text-ink-secondary">
         {messages.liveDemo.sopStillPending}
       </p>
     </div>

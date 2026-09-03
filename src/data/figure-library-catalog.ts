@@ -30,3 +30,25 @@ export function figureLibraryEntryByFileName(
   const base = fileName.split(/[/\\]/).pop() ?? fileName;
   return figureLibraryEntries.find((entry) => entry.fileName === base);
 }
+
+export function figureLibraryEntriesForItem(itemId: string): FigureLibraryEntry[] {
+  return figureLibraryEntries.filter(
+    (entry) =>
+      entry.mapped &&
+      entry.itemId === itemId &&
+      entry.collection === "图谱数据库",
+  );
+}
+
+export function figureLibraryEntriesForMethod(methodId: string): FigureLibraryEntry[] {
+  return figureLibraryEntries.filter(
+    (entry) =>
+      entry.mapped &&
+      entry.methodId === methodId &&
+      entry.collection === "图谱数据库",
+  );
+}
+
+export function figureLibraryPublicUrl(fileName: string): string {
+  return `/api/figure-library?file=${encodeURIComponent(fileName)}`;
+}

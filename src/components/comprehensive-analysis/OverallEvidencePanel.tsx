@@ -15,6 +15,8 @@ import type {
 interface OverallEvidencePanelProps {
   productPair: ProductPairInput;
   aggregation: ComprehensiveAggregationResult;
+  /** Opens the item assessment layer for a critical item. */
+  onCriticalItemSelect: (itemId: string) => void;
 }
 
 function overallStatusSelection(
@@ -40,6 +42,7 @@ function formatCompletenessPercent(ratio: number): string {
 export function OverallEvidencePanel({
   productPair,
   aggregation,
+  onCriticalItemSelect,
 }: OverallEvidencePanelProps) {
   const { localize, messages } = useLanguage();
   const copy = messages.comprehensiveAnalysis;
@@ -70,9 +73,9 @@ export function OverallEvidencePanel({
   return (
     <section
       aria-labelledby="overall-evidence-conclusion-heading"
-      className="surface-card border-l-4 border-l-brand-700 p-5 sm:p-6"
+      className="glass-surface glass-edge relative border-l-4 border-l-brand-700 p-5 sm:p-6"
     >
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="relative z-[1] flex flex-wrap items-center gap-2">
         <span className="rounded-sm border border-navy-800 bg-canvas-muted px-2 py-0.5 text-xs font-semibold text-navy-900">
           {copy.demoDataBadge}
         </span>
@@ -82,6 +85,11 @@ export function OverallEvidencePanel({
         <span className="rounded-sm border border-line bg-paper px-2 py-0.5 text-xs font-semibold text-ink">
           {copy.notForRegulatoryJudgement}
         </span>
+        {/* Data-nature statement, not a disclaimer: it says this page is
+            preloaded with labelled illustrative/demo data. */}
+        <span className="rounded-sm border border-cyan-700 bg-cyan-100 px-2 py-0.5 text-xs font-semibold text-cyan-800">
+          {copy.demoUseBanner}
+        </span>
       </div>
 
       <h2
@@ -90,10 +98,11 @@ export function OverallEvidencePanel({
       >
         {copy.overallConclusionTitle}
       </h2>
-      <div className="mt-2">
+      <div className="mt-2 rounded-md border border-line bg-paper/70 px-4 py-3">
         <AssessmentStatusGlyph
           status={overallStatusSelection(aggregation.overallConclusion)}
           size="lg"
+          emphasis
           label={
             aggregation.overallConclusion ===
             OVERALL_EVIDENCE_CONCLUSION.supportsSimilarityEvidence
@@ -140,27 +149,20 @@ export function OverallEvidencePanel({
               const itemLabel = item === undefined ? itemId : localize(item.itemName);
               return (
                 <li key={itemId}>
-                  <a
-                    href={`#item-${itemId}`}
-                    className="text-sm font-semibold text-brand-800 underline-offset-2 hover:underline"
+                  <button
+                    type="button"
+                    onClick={() => onCriticalItemSelect(itemId)}
+                    className="tap-target text-left text-sm font-semibold text-brand-800 underline-offset-2 hover:underline"
                   >
                     {itemLabel}
                     <span className="sr-only"> — {copy.jumpToItem}</span>
-                  </a>
+                  </button>
                 </li>
               );
             })}
           </ul>
         )}
       </div>
-
-      <aside
-        aria-label={copy.disclaimer}
-        className="mt-5 rounded-md border border-navy-800 bg-canvas-muted px-4 py-3 text-sm leading-relaxed text-ink"
-      >
-        <p>{copy.disclaimer}</p>
-        <p className="mt-2">{copy.demoUseBanner}</p>
-      </aside>
     </section>
   );
 }

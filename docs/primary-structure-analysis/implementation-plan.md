@@ -507,6 +507,12 @@ BSA 切片禁用（仅演示夹具保留）；五个质量项目分剖面与动�
 
 详见 [`log/2026-08-22-p24-两点校准UI.md`](../../log/2026-08-22-p24-两点校准UI.md)。
 
+### Done — P26 — 非一级结构曲线比对演示
+
+SEC / 酸性电荷变异体 / 远紫外 CD 主方法共用 `curve-overlay`：合成两列曲线、叠加图、Pearson 与分区面积%。verdict 固定 REVIEW。正交方法未开放。
+
+详见 [`log/2026-08-30-p26-曲线比对演示.md`](../../log/2026-08-30-p26-曲线比对演示.md)。
+
 ---
 
 ## 六、工作规则
@@ -761,3 +767,9 @@ OCR 数字不作为可靠校准。
 操作员确认保留 0.95 CONSISTENT 条带。上传区可点选两点并提交 `imageCalibration`。
 
 **检查**：`pytest tests/test_image_fallback.py tests/test_image_fallback_adapter.py` 21 passed；`npm run check` exit 0。
+
+### Done — P26 非一级结构曲线比对演示
+
+SEC、酸性电荷变异体、远紫外 CD 主方法可在网页跑合成曲线叠加。法规判定固定 REVIEW。
+
+**检查**：`pytest` 110 passed / 7 deselected；`npm run check` exit 0。

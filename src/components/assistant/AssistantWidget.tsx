@@ -86,10 +86,7 @@ export function AssistantWidget() {
   const [sending, setSending] = useState(false);
   const [draft, setDraft] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [conversationId, setConversationId] = useState(() => {
-    if (typeof window === "undefined") return "";
-    return window.sessionStorage.getItem(CONVERSATION_STORAGE_KEY) ?? "";
-  });
+  const [conversationId, setConversationId] = useState("");
   const [chatMessages, setChatMessages] = useState<AssistantChatMessage[]>([]);
 
   const persistConversation = useCallback((nextId: string) => {
@@ -139,7 +136,10 @@ export function AssistantWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query,
-          conversationId,
+          conversationId:
+            conversationId ||
+            window.sessionStorage.getItem(CONVERSATION_STORAGE_KEY) ||
+            "",
           user,
           inputs: {
             ...pageContext,
@@ -223,8 +223,9 @@ export function AssistantWidget() {
   }, [conversationId, copy, draft, locale, pageContext, persistConversation, sending]);
 
   return (
-    <div className="fixed right-4 bottom-4 z-[70]">
-      <div className="absolute right-0 bottom-[9.75rem]">
+    // z-90 keeps the mascot above drawers (60), the left rail (65) and the skip link (80).
+    <div className="fixed right-4 bottom-4 z-[90]">
+      <div className="pointer-events-none absolute right-0 bottom-[calc(100%+0.5rem)]">
         <AssistantPanel
           copy={copy}
           open={open}
@@ -241,7 +242,7 @@ export function AssistantWidget() {
       </div>
       <button
         type="button"
-        className={`assistant-mascot-hit tap-target ${
+        className={`relative z-10 assistant-mascot-hit tap-target ${
           sending ? "assistant-mascot-think" : open ? "assistant-mascot-open" : "assistant-mascot-idle"
         }`}
         aria-expanded={open}
@@ -249,6 +250,10 @@ export function AssistantWidget() {
         aria-label={open ? copy.closeButton : copy.openButton}
         onClick={() => setOpen((current) => !current)}
       >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-2 bottom-1 h-16 rounded-full bg-cyan-700/25 blur-2xl"
+        />
         <AssistantMascot
           mood={sending ? "think" : open ? "open" : "idle"}
           greeting={copy.mascotGreeting}

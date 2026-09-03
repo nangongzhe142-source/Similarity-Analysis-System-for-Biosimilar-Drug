@@ -419,17 +419,6 @@ export function ReferenceCaseSection({
         {messages.referenceCase.sectionDescription}
       </p>
 
-      {referenceCases.length > 0 ? (
-        <details className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3">
-          <summary className="cursor-pointer text-sm font-semibold text-amber-900">
-            {messages.referenceCase.disclaimerTitle}
-          </summary>
-          <p className="mt-2 text-xs leading-relaxed text-amber-900">
-            {messages.referenceCase.disclaimerText}
-          </p>
-        </details>
-      ) : null}
-
       <div className="mt-4 space-y-4">
         {referenceCases.length === 0 ? (
           <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-6 text-center">

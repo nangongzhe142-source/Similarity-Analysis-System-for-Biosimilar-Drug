@@ -1,8 +1,27 @@
 # 生物类似药药学相似性分析系统
 
-基于《V0.1 生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表》构建的结构化 Web 框架。系统将 61 个检测项目、184 个检测方法条目组织为可浏览、可扩展的双语站点，并为每一类分析方法预留**嵌入路径**与**可行性证明**。
+本系统用于**生物类似药的药学（CMC）相似性分析**：把候选药与参照药放在同一套质量属性、检测方法和评价原则下，做头对头比对，并汇总总体证据。
 
-## 项目目标（当前阶段）
+它是一套可运行的完整产品，而不是只有表格目录的网站。打开后即可浏览特性鉴定与法规框架、对规则完整的项目上传数据进行分析、在综合判别页汇总 61 项证据并导出报告，也可向右下角助手询问方法、规则和当前分析结果。界面为中英文。
+
+分析所依据的质量属性、检测方法与相似性评价原则，来自《V2 生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表》（8 个大类、61 个检测项目、184 个方法条目）。
+
+本地默认地址：[http://localhost:3000](http://localhost:3000)。导航为总览、特性鉴定、综合判别、法规框架。
+
+| 你能做的事 | 在哪里 | 系统如何完成 |
+|------|------|------|
+| 按质量属性与方法做药学比对 | `/`、`/category/[key]`、`/item/[id]` | 方法学正文、工具实录、浏览器演示、审评参考案例 |
+| 对候选药 / 参照药数据跑分析 | 项目详情的方法分析区 | 经 `/api/analysis` 转到本机 FastAPI（8765），做质谱或曲线头对头比对 |
+| 汇总药学相似性证据 | `/comprehensive-analysis` | 61 项选择器保守汇总；可导入填表包、下载书面报告 |
+| 使用已有图谱 | 已编目项目的输入区 | 只读本机 `图谱数据库` 中已映射文件 |
+| 解释结果与方法 | 右下角助手 | 本站代理本机 Dify，浏览器不持有密钥 |
+
+本系统用于药学研究、教学与内部评估。它给出的是按项目、按方法的药学比对证据，**不构成生物类似药认定或监管建议**。
+
+> 「工具能运行」≠「方法学已验证」≠「符合 GxP / 21 CFR Part 11」；  
+> 「两组数据数值接近」≠「生物类似性成立」。
+
+## 方法覆盖与嵌入进度
 
 **核心任务：将全部 184 个检测分析方法完成嵌入。**
 
@@ -10,14 +29,11 @@
 
 - 为每个方法写明**可操作的分析路径**（原理、样品制备、仪器参数、系统适用性、数据解读、相似性判定衔接）；
 - 用**监管审评案例**、**开源工具部署实录**或**浏览器实机演示**证明该路径在生物类似药比对中的**可行性与可接受性**；
-- **不要求**对其余 7 个大类实现计算引擎；**不实现** GxP 合规或监管结论。
+- **不要求**对其余尚未嵌入的大类实现计算引擎；**不实现** GxP 合规或监管结论。
 
-一级结构中 V2 Sheet3 **规则完整的 7 个项目**已接入可运行的分析服务（计划 P0–P16，其后纠错见 P17–P22）：网页经 `/api/analysis` 转发到 FastAPI（8765）→ pyOpenMS / UniDec / Comet / 图片降级。其余 4 个一级结构项目按 D17 **不跑分析**。清单、版本与缺口见 [`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md)。
+一级结构中 V2 Sheet3 **规则完整的 7 个项目**已接入可运行的分析服务（计划 P0–P16，其后纠错见 P17–P24）：网页经 `/api/analysis` 转发到 FastAPI（8765）→ pyOpenMS / UniDec / Comet / 图片降级。游离巯基、二硫键等 Sheet3 未定义规则的项目按 D17 **不跑分析**。P26 另为 SEC 聚集体、酸性电荷变异体、远紫外 CD 三条主方法提供 `curve-overlay` 曲线比对演示，**verdict 固定 REVIEW**。清单与缺口见 [`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md) 及 [`log/CHANGELOG.md`](log/CHANGELOG.md)。
 
-知识库线（S0–S16）与分析软件线（P0–P16）**不互相覆盖**。
-
-> 「工具能运行」≠「方法学已验证」≠「符合 GxP / 21 CFR Part 11」；  
-> 「两组数据数值接近」≠「生物类似性成立」。
+知识库线（S0–S16）与分析软件线（P0–P16 及之后的 P 系列）**不互相覆盖**。
 
 ### 完成标准
 
@@ -34,16 +50,20 @@
 
 ## 当前进展
 
+数量来自 `characterization-items.ts`（生成文件）、sidecar 与校验脚本，不是估算。
+
 | 模块 | 规模 | 状态 |
 |------|------|------|
-| 质量属性大类 | 8 类 | 已完成 |
+| 质量属性大类 | 8 类（11 / 15 / 7 / 2 / 7 / 3 / 11 / 5 项） | 已完成 |
 | 检测项目 | 61 项（含 9 个补充项） | 已完成（Excel 驱动） |
-| 检测方法条目 | 184 条 | 框架已建立；**一级结构 33/33 已嵌入原理 + 工具 + 演示**；其余 151 条待嵌入 |
+| 检测方法条目 | 184 条 | 框架已建立；**一级结构 33/33 已嵌入原理 + 工具**；其余 151 条待嵌入 |
 | 法规框架 | CTD 申报要求 9 条 + 相似性评价关系 9 条 | 已完成 |
-| 参考案例 | 35 / 61 项已挂载案例 | 进行中（GP2015 试点） |
-| 相似性分析槽位 | 61 项均有入口 | 一级结构 7 项接分析面板；其余大类仍为占位 |
+| 参考案例 | 37 个项目已挂载 GP2015 案例 | 进行中（依那西普 BLA 761042 试点） |
+| 综合判别 | `/comprehensive-analysis` | 已完成（演示汇总 + 填表包导入/报告下载） |
+| 分层抽屉 UI | 全站轨 + 层栈 | 已完成 |
+| AI 助手 | 右下角 | 已完成（本机 Dify 代理） |
 | 开源工具 PoC | 一级结构 3 条 L4 链路 | 已完成（见 `tools-poc/`） |
-| 一级结构分析服务 | 7 个规则完整项目 / 20 条可分析方法 | 已完成（P0–P16，检查点 5） |
+| 分析服务 | 一级结构 20 条可分析 + P26 曲线比对 3 条 | P0–P16 完成；P17–P24、P26 见变更日志 |
 
 **一级结构（`primary-structure`）网站嵌入进度**
 
@@ -56,47 +76,119 @@
 
 参考案例试点来源：FDA 对 Sandoz GP2015（依那西普，BLA 761042）的多学科审评报告，经结构化转录并附带机械溯源校验。
 
-变更记录见 [`log/CHANGELOG.md`](log/CHANGELOG.md)。
+变更记录见 [`log/CHANGELOG.md`](log/CHANGELOG.md)。实施步骤见 [`implementation-plan.mdc`](implementation-plan.mdc)。
 
 ## 系统架构
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  展示层  Next.js App Router + React 19 + Tailwind CSS 4     │
-├─────────────────────────────────────────────────────────────┤
-│  组件层  ItemDetailView / MethodSelector / MethodContentPanel │
-│          MethodAnalysisPanel / MethodLiveDemo / MethodToolPanel │
-├─────────────────────────────────────────────────────────────┤
-│  数据层  src/data/  （全站唯一内容来源，数据驱动渲染）        │
-│    ├── characterization-items.ts   ← 61 项 + 184 方法（生成） │
-│    ├── method-content.ts           ← 方法学正文 sidecar       │
-│    ├── method-tools.ts             ← 开源工具调研 sidecar     │
-│    ├── method-analysis-config.ts   ← 33 条方法分析状态        │
-│    ├── live-demos.ts               ← 实机演示路由与默认数据   │
-│    ├── live-demo-provenance.ts     ← 演示溯源条目             │
-│    ├── reference-cases*.ts         ← 可行性证明案例           │
-│    ├── regulatory-framework.ts     ← 法规对照                 │
-│    └── categories.ts               ← 8 大类定义               │
-├─────────────────────────────────────────────────────────────┤
-│  计算层  src/lib/live-demo/        ← 浏览器演示公式（非后端） │
-│          analysis-service/         ← FastAPI 8765（一级结构） │
-├─────────────────────────────────────────────────────────────┤
-│  生成层  scripts/generate_data.py  ← Excel → TypeScript     │
-│  校验层  verify_*.mjs + verify:primary-analysis（pytest）    │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  展示层  Next.js 16.3 App Router + React 19 + Tailwind CSS 4  │
+│          页头导航 + 左侧 SideExplorerRail + 抽屉栈 + 看板娘助手 │
+├──────────────────────────────────────────────────────────────┤
+│  页面     /  /category/[key]  /item/[id]  /regulatory        │
+│          /comprehensive-analysis                              │
+├──────────────────────────────────────────────────────────────┤
+│  数据层  src/data/（全站内容来源；characterization-items 勿手改）│
+├──────────────────────────────────────────────────────────────┤
+│  计算层  src/lib/live-demo/     浏览器演示公式（非后端）       │
+│          src/lib/comprehensive-analysis/  演示汇总（无后端）   │
+│          analysis-service/      FastAPI 8765                 │
+│          Next rewrite /api/analysis → 8765                  │
+├──────────────────────────────────────────────────────────────┤
+│  助手    POST /api/assistant/chat → 本机 Dify /v1              │
+│          GET  /api/assistant/health                           │
+│          GET  /api/figure-library?file=  本机图谱只读          │
+├──────────────────────────────────────────────────────────────┤
+│  生成    scripts/generate_data.py  Excel → TypeScript          │
+│  校验    npm run check（typecheck + lint + verify:*）       │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-每个检测项目详情页由四块内容组成：
+项目详情页（`ItemDetailContent`，项目路由与抽屉层共用）主要包括：
 
 1. **评价字段** — 检测指标、相似性评价方法、判定原则、数值限度（来自 Excel）
-2. **检测方法** — 首选/正交方法切换；选中后在同一区块内按顺序展示：
-   - **方法学正文**（`MethodContentPanel`，原理已嵌入时）
-   - **分析面板**（`MethodAnalysisPanel`，一级结构 33 条方法均有配置；可分析项可上传）
-   - **实机演示**（`MethodLiveDemo`，有演示时；含可展开溯源）
-   - **虚线占位**（仅当既无正文又无演示时）
-   - **开源工具与部署实录**（`MethodToolPanel`）
+2. **检测方法** — 首选/正交方法；选中后按顺序展示方法学正文、分析面板、实机演示、工具面板
 3. **参考案例** — 监管审评实例或示意性说明
-4. **相似性分析预留区** — 非一级结构项目仍为槽位占位
+4. **相似性分析输入区** — 已编目项目展示图谱库图；可分析方法走 `MethodAnalysisPanel` 上传；其余仍为槽位
+
+## 页面与本地运行
+
+需要三件事才能用全功能（站点可单独打开浏览）：
+
+```bash
+npm install
+npm run dev          # http://localhost:3000 ，会加载 .env.local
+```
+
+分析服务（上传质谱 / 曲线比对时需要），命令见 [`analysis-service/README.md`](analysis-service/README.md)。默认：
+
+```powershell
+$venv = "..\tools-poc\.venv\Scripts"
+$env:WORKSPACE_ROOT = "$PWD\workspaces"
+$env:CORS_ORIGINS = "http://localhost:3000"
+& "$venv\python.exe" -m uvicorn app.main:app --host 127.0.0.1 --port 8765
+```
+
+Next 通过 `ANALYSIS_SERVICE_URL`（默认 `http://127.0.0.1:8765`）把 `/api/analysis/*` 转发到该进程。
+
+AI 助手需要本机已部署的 Dify（控制台默认 [http://127.0.0.1/](http://127.0.0.1/)），以及本仓库根目录 `.env.local`（已被 `.gitignore` 忽略）：
+
+```
+DIFY_API_BASE_URL=http://127.0.0.1/v1
+DIFY_APP_API_KEY=
+DIFY_TIMEOUT_MS=60000
+```
+
+不要写成 `NEXT_PUBLIC_*`。未配置 Key 时，`GET /api/assistant/health` 为 `configured: false`，聊天返回 `DIFY_UNCONFIGURED`。
+
+示例页面：
+
+- `/` — 总览
+- `/comprehensive-analysis` — 综合判别演示
+- `/regulatory` — 法规框架
+- `/item/intact-mass` — 原理 + 完整质量演示 + 分析面板
+- `/item/free-thiol` — 原理 + QR 演示（不进入分析服务）
+- `/item/disulfide-bonds` — 原理 + 工具面板（D17 不跑分析）
+
+其他脚本：
+
+```bash
+npm run build
+npm run start
+npm run lint
+npm run typecheck
+npm run verify:cases
+npm run verify:demo
+npm run verify:method-content
+npm run verify:schemes
+npm run verify:analysis-config
+npm run verify:analysis-contract
+npm run verify:primary-analysis
+npm run verify:comprehensive-analysis
+npm run verify:assistant
+npm run verify:ui-shell
+npm run check                 # 以上校验全部串联
+```
+
+## 综合判别（演示）
+
+`/comprehensive-analysis` 对 61 项做**交互式总体证据汇总**，不输出「该产品是生物类似药」。
+
+- 补充项永不进入总体分母；不适用项不进总体分母，但非补充项缺少不适用原因视为未完成。
+- 保守优先级：任一参与项「不支持相似」→ 不支持相似性证据；否则若有证据不足 / 未完成 / 无参与项 → 证据不足；全部支持且无缺口 → 支持相似性证据。
+- 自由文本不驱动判定；状态只来自选择器或填表包中的明确状态列。
+- 浏览器内读取 `.md` / `.txt` / JSON（限制 2 MB），导入后填充会话并可下载 Markdown 报告，不上传后端。示例包：[`docs/demo-comprehensive-assessment/`](docs/demo-comprehensive-assessment/)。
+
+## AI 助手
+
+右下角 Q 版看板娘打开聊天窗，经 `POST /api/assistant/chat` 调用本机 Dify Chatflow（`advanced-chat`）。助手只解释系统资料和已有分析结果。
+
+- 知识 Markdown：`knowledge/assistant/`
+- Chatflow DSL（导出无明文密钥）：`dify/biosimilar-assistant-chatflow.yml`
+- 开始节点上下文：`pageUrl, pageTitle, locale, categoryKey, itemId, itemName, methodId, methodName, analysisStatus, analysisResult, analysisProvenance`
+- `analysisResult` 只传白名单字段；回复按纯文本渲染
+- 固定话术拒绝：越权、整品认定、看图猜峰
+- 助手免责声明原文：「AI 助手仅用于解释系统资料和分析结果，不构成生物类似药认定或监管建议。」
 
 ## 分析方法嵌入路径
 
@@ -131,6 +223,8 @@ interface DetectionMethodContent {
 | 参考案例 | `src/data/reference-cases*.ts` | `npm run verify:cases` |
 | 分析契约 | `src/types/analysis-contract.ts` | `npm run verify:analysis-contract` |
 | 分析服务测试 | `analysis-service/tests/` | `npm run verify:primary-analysis` |
+| 综合判别 | `src/lib/comprehensive-analysis/` | `npm run verify:comprehensive-analysis` |
+| 助手代理 | `src/lib/assistant/` | `npm run verify:assistant` |
 
 **大类全覆盖规则**：某大类只要有一条方法写了原理，`verify:method-content` 会强制该大类**全部**方法都有原理。
 
@@ -139,10 +233,10 @@ interface DetectionMethodContent {
 ```
 方法标签
   → MethodContentPanel     （getMethodContent(id) 有值）
-  → MethodAnalysisPanel    （一级结构：method-analysis-config）
+  → MethodAnalysisPanel    （method-analysis-config 有条目）
   → MethodLiveDemo         （getLiveDemoKind(id) 有值）
   → MethodContentPlaceholder （正文与演示皆无）
-  → MethodToolPanel        （始终）
+  → MethodToolPanel        （始终；未调研大类显示未调研）
 ```
 
 新增演示时：先写 `live-demo-provenance.ts` 对应条目，再挂组件（计划 S15 强制）。
@@ -160,106 +254,69 @@ interface DetectionMethodContent {
 ### 嵌入优先级建议
 
 1. **按大类推进** — 完成 S11 + S14–S16 后再进入下一大类（见工具调研计划 S13）；
-2. **已有参考案例的 35 项** — 方法正文与案例中的 `methodUsed` 对齐；
+2. **已有参考案例的项目** — 方法正文与案例中的 `methodUsed` 对齐；
 3. **184 条方法** — 同一项目下多个方法可共享部分前处理/仪器参数描述，按 `method.id` 独立维护 sidecar。
 
 ## 技术栈
 
-- **前端**：Next.js 16（App Router）+ React 19 + TypeScript 5（严格模式）
-- **样式**：Tailwind CSS 4
-- **国际化**：自研 i18n（React Context + `localStorage` 持久化）
+- **前端**：Next.js 16.3.0（App Router）+ React 19.2.8 + TypeScript 5.9.3（严格模式）
+- **样式**：Tailwind CSS 4.3.3
+- **国际化**：自研 i18n（React Context + `localStorage`）
 - **数据生成**：Python 3 + openpyxl
-- **工具 PoC**：Python 3.10 虚拟环境（`tools-poc/.venv`，与 Next.js 隔离）
-- **质量校验**：ESLint + TypeScript + `verify:*.mjs` + 分析服务 pytest（`verify:primary-analysis`）
-
-## 安装与运行
-
-```bash
-npm install
-npm run dev          # 开发服务器，默认 http://localhost:3000
-```
-
-示例页面：
-
-- `/item/intact-mass` — 原理 + 完整质量演示 + 工具面板
-- `/item/free-thiol` — 原理 + QR 演示 + 工具面板
-- `/item/disulfide-bonds` — 原理 + 工具面板（无二硫键浏览器演示）
-
-其他脚本：
-
-```bash
-npm run build                 # 生产构建（74 页静态生成）
-npm run start                 # 运行生产构建
-npm run lint                  # ESLint
-npm run typecheck             # TypeScript
-npm run verify:cases          # 参考案例溯源（grep 翻译 chunk）
-npm run verify:demo           # 实机演示公式 vs PoC 预言机
-npm run verify:method-content # 方法学正文覆盖与 method id 链接
-npm run verify:schemes        # V2 相似性方案结构
-npm run verify:analysis-config
-npm run verify:analysis-contract
-npm run verify:primary-analysis  # 分析服务默认 pytest + 面板结构
-npm run check                 # 以上全部
-```
-
-本地分析服务启动命令见 [`analysis-service/README.md`](analysis-service/README.md)。
+- **分析服务**：FastAPI + pyOpenMS / UniDec / Comet（虚拟环境在 `tools-poc/.venv`）
+- **助手**：本机 Dify 1.14.x Chatflow，本站服务端代理
+- **质量校验**：ESLint + TypeScript + `verify:*.mjs` + 分析服务 pytest
 
 ## 目录结构
 
 ```
 src/
-├── app/                              # 路由
-│   ├── page.tsx                      # 总览 /
-│   ├── category/[key]/               # 大类页
-│   ├── item/[id]/                    # 项目详情（方法嵌入主战场）
-│   └── regulatory/                   # 法规框架
+├── app/
+│   ├── page.tsx
+│   ├── category/[key]/
+│   ├── item/[id]/
+│   ├── regulatory/
+│   ├── comprehensive-analysis/
+│   └── api/
+│       ├── assistant/chat|health
+│       └── figure-library/
 ├── components/
-│   ├── MethodContentPanel.tsx        # 方法学正文（原理 + 待嵌入标签）
-│   ├── MethodAnalysisPanel.tsx       # 一级结构上传 / 任务 / 结果
-│   ├── MethodContentPlaceholder.tsx  # 无正文且无演示时的虚线占位
-│   ├── MethodSelector.tsx            # 方法切换 + 堆叠面板
-│   ├── MethodToolPanel.tsx           # 开源工具与部署实录
-│   ├── analysis/                     # 镜像谱 / 覆盖图 / 溯源 SVG
-│   ├── live-demo/                    # 实机演示与溯源 UI
+│   ├── assistant/                   # 看板娘与聊天面板
+│   ├── drawer/                      # 层栈与层壳
+│   ├── layout/                      # 页头、页脚、左侧轨
+│   ├── comprehensive-analysis/
+│   ├── MethodContentPanel.tsx
+│   ├── MethodAnalysisPanel.tsx
+│   ├── MethodSelector.tsx
+│   ├── MethodToolPanel.tsx
+│   ├── analysis/                   # 图谱库输入、谱图可视化
+│   ├── live-demo/
 │   ├── reference-case/
 │   └── views/
-├── data/
-│   ├── characterization-items.ts     # 61 项 + 184 方法（脚本生成，勿手改）
-│   ├── method-content.ts             # 方法学正文 sidecar
-│   ├── method-tools.ts               # 工具调研 sidecar
-│   ├── method-analysis-config.ts     # 分析面板状态 sidecar
-│   ├── live-demos.ts                 # 演示 kind 映射
-│   ├── live-demo-provenance.ts       # 演示溯源
-│   ├── reference-cases*.ts
-│   ├── regulatory-framework.ts
-│   └── categories.ts
-├── lib/live-demo/                    # 浏览器演示计算（非 UniDec/pyOpenMS）
+├── data/                            # 见上表；characterization-items.ts 勿手改
+├── lib/assistant/
+├── lib/comprehensive-analysis/
+├── lib/live-demo/
 ├── lib/analysis-service-client.ts
 ├── i18n/
-└── types/models.ts
-scripts/
-├── generate_data.py
-├── verify_reference_cases.mjs
-├── verify_live_demo.mjs
-├── verify_method_content.mjs
-├── verify_similarity_schemes.mjs
-├── verify_method_analysis_config.mjs
-├── verify_analysis_contract.mjs
-├── verify_primary_analysis.mjs
-└── requirements.txt
-analysis-service/                     # FastAPI 分析服务（端口 8765）
-docs/primary-structure-analysis/      # P0–P16 计划与最终审计
-docs/tool-survey/                     # 工具调研计划、大类报告、PoC 证据
-tools-poc/                            # Python 隔离环境与 s09 链路（含分析服务 venv）
-log/                                  # 网站交付变更日志（非 PoC stdout）
+└── types/
+scripts/                             # 生成与 verify_*
+analysis-service/                   # FastAPI 8765
+knowledge/assistant/                 # 助手知识 Markdown
+dify/biosimilar-assistant-chatflow.yml
+docs/primary-structure-analysis/
+docs/tool-survey/
+docs/demo-comprehensive-assessment/
+tools-poc/
+log/
 ```
 
 ## 数据来源与再生成
 
-框架 Excel 的唯一真实来源：
+生成脚本当前读取的工作簿（V0.1 文件已不在工作区；V2 Sheet1/2 内容经列偏移后与已提交 TypeScript 一致，见 `scripts/generate_data.py`）：
 
 ```
-生物类似药评价指导原则/V0.1生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表(1).xlsx
+生物类似药评价指导原则/V2-生物类似药药学比对研究质量属性、检测方法及相似性评价原则汇总表.xlsx
 ```
 
 Excel 修改后重新生成：
@@ -277,15 +334,15 @@ python scripts/generate_data.py
 生物类似药审批报告/翻译/output/17_etanercept_szzs/chunks/
 ```
 
+图谱文件留在工作区 `图谱数据库/`，由 `src/data/figure-library-catalog.json` 编目；`GET /api/figure-library` 只返回已编目文件名。
+
 ## 双语说明
 
-- UI 外壳文案在 `src/i18n/messages.ts` 维护，`zh` / `en` 完整。
-- 正文数据的每个文本字段均为 `{ zh, en }` 结构：`zh` 来自 Excel 或人工撰写；`en` 为机器翻译或占位（**待校对**）。
-- 语言切换在页面右上角，选择持久化于 `localStorage`。
+- UI 外壳文案在 `src/i18n/messages.ts` 维护，`zh` / `en` 成对。
+- 正文数据的每个文本字段均为 `{ zh, en }`：`zh` 来自 Excel 或人工撰写；`en` 多为机器翻译或占位（**待校对**）。
+- 语言切换在页面右上角。
 
 ## 开源工具调研与可行性证明
-
-除方法内容嵌入外，并行工作线：调研每类分析方法可用的开源工具，**在本机装起来跑一遍**，用日志与输出说明能到哪一步，并把结论嵌入网站。
 
 | 资源 | 路径 |
 |------|------|
@@ -294,8 +351,8 @@ python scripts/generate_data.py
 | 一级结构分析最终审计 | [`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md) |
 | 一级结构大类报告 | [`docs/tool-survey/01-primary-structure.md`](docs/tool-survey/01-primary-structure.md) |
 | PoC 环境与脚本 | [`tools-poc/`](tools-poc/README.md) |
-| PoC 运行 stdout | `docs/tool-survey/evidence/*.log` |
 | 网站交付变更日志 | [`log/CHANGELOG.md`](log/CHANGELOG.md) |
+| 站点功能实施计划 | [`implementation-plan.mdc`](implementation-plan.mdc) |
 
 **进入下一大类前须满足**（计划 S13）：S11 工具嵌入 + S14–S15 实机演示与溯源 + S16 方法学原理全覆盖。
 
@@ -304,44 +361,28 @@ python scripts/generate_data.py
 | 一级结构（11 项 / 33 方法） | 已完成 | L4（3 条链路） | 27 / 33 | 33 / 33 |
 | 其余 7 个大类 | 未开始 | — | — | — |
 
-浏览器演示使用 TypeScript 当场计算（公开序列 UniProt P02769 或明示合成数据），**不**调用 `tools-poc` 中的 Python 进程。质谱 RAW / mzML 上传走 `MethodAnalysisPanel` → `analysis-service`，与演示层分离。
-
-## AI 助手（本机 Dify Chatflow）
-
-右下角悬浮窗经本站服务端代理调用本机 Dify，**浏览器不持有 API Key**。助手只解释系统资料和已有分析结果，**不构成生物类似药认定或监管建议**。
-
-本机 `.env.local`（已由 `.gitignore` 忽略，勿提交真实 Key）：
-
-```
-DIFY_API_BASE_URL=http://127.0.0.1/v1
-DIFY_APP_API_KEY=
-DIFY_TIMEOUT_MS=60000
-```
-
-不要把上述变量写成 `NEXT_PUBLIC_*`。未配置 `DIFY_APP_API_KEY` 时，健康检查返回 `configured: false`，聊天接口返回 `DIFY_UNCONFIGURED`。
-
-知识库与 Chatflow DSL 见 `knowledge/assistant/` 与 `dify/biosimilar-assistant-chatflow.yml`。校验：`npm run verify:assistant`。
-
-分析软件审计：[`docs/primary-structure-analysis/16-final-audit.md`](docs/primary-structure-analysis/16-final-audit.md)。
+浏览器演示使用 TypeScript 当场计算（公开序列 UniProt P02769 或明示合成数据），**不**调用 `tools-poc` 中的 Python 进程。质谱 RAW / mzML 上传走 `MethodAnalysisPanel` → `analysis-service`，与演示层分离。请先将厂商 RAW/WIFF 转为 mzML 或 TXT/CSV 再上传。
 
 ## 本期明确不做
 
 - 不实现面向生产的相似性判定、统计等效性检验或 GxP / 21 CFR Part 11 合规流程；
-- 不对其余 7 个大类、以及一级结构中规则未定义的 4 个项目运行分析（D17）；
+- 不输出整品「是/不是生物类似药」结论（综合判别页与助手均禁止）；
+- 不对一级结构中规则未定义的项目运行分析（D17）；不对看图结果做峰识别认定；
 - 不在参考案例、演示或图片降级中冒充实测图谱或监管结论；
 - 不把 UniDec / pyOpenMS / Comet 接入 Next.js 运行时（计算在 FastAPI 进程）；
-- 不根据图像相似度直接判定生物类似性；
+- 不把 Dify API Key 写入前端或 `NEXT_PUBLIC_*`；
 - 页面组件不硬编码业务内容，全部来自 `src/data/` 与 sidecar。
 
-（浏览器 QR 演示仅复现 PoC 判定**公式**与合成批次，不等于已完成方法学验证，也不进入分析服务。）
+（浏览器 QR 演示仅复现 PoC 判定**公式**与合成批次，不等于已完成方法学验证，也不进入分析服务。P26 曲线比对同样是演示，法规 verdict 为 REVIEW。）
 
 ## 路线图
 
 | 阶段 | 目标 | 状态 |
 |------|------|------|
-| V0.1 | 框架搭建：61 项 + 184 方法 + 法规 + 双语 UI | 已完成 |
-| V0.2 | 方法嵌入：184 条正文 + 工具实录 + 演示 + 61 项可行性证明 | **进行中**（一级结构网站层 S11/S14–S16 已完成） |
-| V0.3 | 一级结构分析软件：7 个规则完整项目全链路 | **已完成**（P0–P16，检查点 5） |
+| V0.1 | 框架：61 项 + 184 方法 + 法规 + 双语 UI | 已完成 |
+| V0.2 | 方法嵌入：184 条正文 + 工具实录 + 演示 + 可行性证明 | **进行中**（一级结构网站层 S11/S14–S16 已完成） |
+| V0.3 | 一级结构分析软件：7 个规则完整项目全链路 | **已完成**（P0–P16）；其后 P17–P24、P26 为纠错与演示扩展 |
+| 演示层 | 综合判别、抽屉 UI、Dify 助手、图谱库输入 | 已完成 |
 | V1.0 | 其余大类引擎、统计判定、GxP | 远期 |
 
 ## 许可证

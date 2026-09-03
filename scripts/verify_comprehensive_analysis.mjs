@@ -6,7 +6,7 @@
  * Usage: npm run verify:comprehensive-analysis
  * Exit code 0 = all checks pass; 1 = at least one hard failure.
  */
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { registerHooks } from "node:module";
@@ -56,6 +56,17 @@ const {
   createIllustrativeDemoSession,
 } = await import(
   pathToFileURL(join(srcRoot, "data/comprehensive-analysis-demo.ts")).href
+);
+
+const { parseComprehensiveInputFile } = await import(
+  pathToFileURL(join(srcRoot, "lib/comprehensive-analysis/parse-input.ts")).href
+);
+
+const {
+  buildComprehensiveOutputReport,
+  suggestOutputReportFileName,
+} = await import(
+  pathToFileURL(join(srcRoot, "lib/comprehensive-analysis/build-output-report.ts")).href
 );
 
 const CATEGORY_ORDER = categories.map((category) => category.key);
@@ -335,6 +346,145 @@ assertEqual(supplementaryItems.length, 9, "supplementary item count");
   );
 }
 
+const allowedItemIds = characterizationItems.map((item) => item.id);
+
+function parsePack(text) {
+  return parseComprehensiveInputFile({ text, allowedItemIds });
+}
+
+// 11. Markdown A2 row fills status from the status column only.
+{
+  const markdown = [
+    "| 网页标签 | 粘贴文本 |",
+    "|----------|----------|",
+    "| 分析名称 | 示意性分析 |",
+    "| 候选药名称 | 示意候选 |",
+    "",
+    "| itemId | 中文项目名 | 是否补充项 | 是否适用 | 演示判定状态 | 候选药数据或描述 | 参照药数据或描述 | 比对说明 |",
+    "|--------|------------|------------|----------|--------------|------------------|------------------|----------|",
+    "| intact-mass | 完整分子质量（intact mass） | 否 | 适用 | 支持相似 | 候选示意完整质量 | 参照示意完整质量 | 两边对应 |",
+  ].join("\n");
+  const parsed = parsePack(markdown);
+  assertEqual(parsed.ok, true, "11. markdown pack parses");
+  assertEqual(parsed.recognizedItemCount, 1, "11. one item recognized");
+  assertEqual(parsed.session?.productPair.analysisName.zh, "示意性分析", "11. analysis name");
+  assertEqual(
+    parsed.session?.itemEntries["intact-mass"]?.demoStatus,
+    DEMO_ASSESSMENT_STATUS.supportsSimilarity,
+    "11. status from column",
+  );
+  assertEqual(
+    parsed.session?.itemEntries["intact-mass"]?.candidateDescription.zh,
+    "候选示意完整质量",
+    "11. candidate text",
+  );
+}
+
+// 12. Description keywords do not rewrite demo status.
+{
+  const markdown = [
+    "| itemId | 中文项目名 | 是否补充项 | 是否适用 | 演示判定状态 | 候选药数据或描述 | 参照药数据或描述 | 比对说明 |",
+    "|--------|------------|------------|----------|--------------|------------------|------------------|----------|",
+    "| sialic-acid-ngna | NGNA | 否 | 适用 | 支持相似 | 文本写不支持相似也不应改写 | 参照未检出 | 两边同样低 |",
+  ].join("\n");
+  const parsed = parsePack(markdown);
+  assertEqual(parsed.ok, true, "12. keyword pack parses");
+  assertEqual(
+    parsed.session?.itemEntries["sialic-acid-ngna"]?.demoStatus,
+    DEMO_ASSESSMENT_STATUS.supportsSimilarity,
+    "12. status not inferred from 不支持相似 in description",
+  );
+}
+
+// 13. JSON session import.
+{
+  const json = JSON.stringify({
+    productPair: {
+      analysisName: { zh: "JSON分析", en: "" },
+      candidateName: { zh: "JSON候选", en: "" },
+      referenceName: { zh: "JSON参照", en: "" },
+      candidateLot: { zh: "C1", en: "" },
+      referenceLot: { zh: "R1", en: "" },
+      productTypeOrNotes: { zh: "IgG1κ illustrative", en: "" },
+    },
+    itemEntries: {
+      cdc: {
+        itemId: "cdc",
+        isApplicable: true,
+        demoStatus: DEMO_ASSESSMENT_STATUS.supportsSimilarity,
+        candidateDescription: { zh: "CDC候选", en: "" },
+        referenceDescription: { zh: "CDC参照", en: "" },
+        comparisonNotes: { zh: "CDC比对", en: "" },
+        notApplicableReason: { zh: "", en: "" },
+      },
+    },
+  });
+  const parsed = parsePack(json);
+  assertEqual(parsed.ok, true, "13. json parses");
+  assertEqual(parsed.recognizedItemCount, 1, "13. one json item");
+  assertEqual(parsed.session?.productPair.candidateName.zh, "JSON候选", "13. json candidate");
+  assertEqual(
+    parsed.session?.itemEntries.cdc?.demoStatus,
+    DEMO_ASSESSMENT_STATUS.supportsSimilarity,
+    "13. json cdc supports",
+  );
+}
+
+// 14. Empty file is an error.
+{
+  const parsed = parsePack("   ");
+  assertEqual(parsed.ok, false, "14. empty file not ok");
+  assertEqual(parsed.session, null, "14. no session");
+}
+
+// 15. Real fill-in pack loads 61 items and rolls up to supports.
+{
+  const packPath = join(
+    projectRoot,
+    "docs/demo-comprehensive-assessment/输入-岚岫珠单抗-药学比对数据包-v1.md",
+  );
+  assertEqual(existsSync(packPath), true, "15. fill-in pack exists");
+  if (existsSync(packPath)) {
+    const parsed = parsePack(readFileSync(packPath, "utf8"));
+    assertEqual(parsed.ok, true, "15. real pack parses");
+    assertEqual(parsed.recognizedItemCount, 61, "15. 61 items");
+    const result = summarize(characterizationItems, parsed.session.itemEntries);
+    assertEqual(
+      result.overallConclusion,
+      OVERALL_EVIDENCE_CONCLUSION.supportsSimilarityEvidence,
+      "15. overall supports",
+    );
+    assertEqual(result.dataCompletenessRatio, 1, "15. completeness 100%");
+    const report = buildComprehensiveOutputReport({
+      session: parsed.session,
+      aggregation: result,
+      items: characterizationItems,
+      categories,
+    });
+    assertEqual(report.includes("支持相似性证据"), true, "15. report has conclusion");
+    assertEqual(report.includes("illustrative"), false, "15. generated report has no illustrative tag");
+    assertEqual(report.includes("示意"), false, "15. generated report has no 示意 tag");
+    assertEqual(report.includes("演示会话"), false, "15. generated report has no 演示会话");
+    assertEqual(
+      suggestOutputReportFileName(parsed.session).includes("药学相似性综合比对报告"),
+      true,
+      "15. filename is formal report",
+    );
+    const writtenReportPath = join(
+      projectRoot,
+      "docs/demo-comprehensive-assessment/岚岫珠单抗-药学相似性综合比对报告-v1.md",
+    );
+    assertEqual(existsSync(writtenReportPath), true, "15. written report exists");
+    if (existsSync(writtenReportPath)) {
+      const writtenReport = readFileSync(writtenReportPath, "utf8");
+      assertEqual(writtenReport.includes("支持相似性证据"), true, "15. written report has conclusion");
+      assertEqual(writtenReport.includes("illustrative"), false, "15. written report has no illustrative tag");
+      assertEqual(writtenReport.includes("示意"), false, "15. written report has no 示意 tag");
+      assertEqual(writtenReport.includes("演示会话"), false, "15. written report has no 演示会话");
+    }
+  }
+}
+
 if (failures.length > 0) {
   console.error(`verify:comprehensive-analysis failed (${failures.length}):`);
   for (const failure of failures) {
@@ -343,4 +493,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("verify:comprehensive-analysis: 10 scenarios passed");
+console.log("verify:comprehensive-analysis: 15 scenarios passed");

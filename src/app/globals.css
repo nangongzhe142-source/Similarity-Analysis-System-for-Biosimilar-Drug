@@ -14,6 +14,10 @@
   --color-cyan-800: #0c5c73;
   --color-cyan-700: #0e7490;
   --color-cyan-100: #d5f0f6;
+  --color-coral-800: #9a3412;
+  --color-coral-700: #c2410c;
+  --color-coral-600: #ea580c;
+  --color-coral-100: #ffedd5;
   --color-signal-red: #b42318;
   --color-canvas: #eef3f8;
   --color-canvas-muted: #e3ebf3;
@@ -31,6 +35,26 @@
   --radius-lg: 0.5rem;
 
   --default-transition-duration: 180ms;
+
+  /* M1 additive layer: glass, aurora, depth. No frozen token above is changed. */
+  --shadow-depth-1: 0 2px 6px rgb(11 26 46 / 0.10), 0 14px 32px rgb(11 26 46 / 0.12);
+  --shadow-depth-2: 0 3px 10px rgb(11 26 46 / 0.14), 0 22px 48px rgb(11 26 46 / 0.18);
+  --shadow-depth-3: 0 4px 14px rgb(11 26 46 / 0.18), 0 32px 68px rgb(11 26 46 / 0.24);
+  --shadow-glow-brand: 0 0 0 1px rgb(11 92 171 / 0.30), 0 0 18px rgb(14 116 144 / 0.32);
+  --shadow-glow-signal: 0 0 0 1px rgb(180 35 24 / 0.32), 0 0 18px rgb(180 35 24 / 0.30);
+  --shadow-glow-coral: 0 0 0 1px rgb(194 65 12 / 0.35), 0 0 18px rgb(194 65 12 / 0.28);
+
+  --glass-tint: rgb(255 255 255 / 0.96);
+  --glass-tint-strong: rgb(255 255 255 / 0.98);
+  --glass-blur: 18px;
+  --glass-edge: linear-gradient(160deg, var(--color-brand-700), var(--color-coral-700));
+
+  --drawer-rail-width: 3.5rem;
+  --drawer-spine-width: 2.75rem;
+  --drawer-layer-width: min(46rem, calc(100vw - var(--drawer-rail-width) - 4rem));
+  --drawer-duration: 280ms;
+  --drawer-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --drawer-stagger-step: 50ms;
 }
 
 @layer base {
@@ -45,7 +69,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-brand-600);
+    outline: 3px solid var(--color-coral-700);
     outline-offset: 2px;
   }
 }
@@ -83,8 +107,9 @@
   overflow: hidden;
   color: var(--color-paper);
   background:
+    radial-gradient(900px 360px at 10% 115%, rgb(194 65 12 / 0.42), transparent 56%),
     radial-gradient(1100px 380px at 88% -8%, rgb(14 116 144 / 0.42), transparent 58%),
-    linear-gradient(135deg, var(--color-navy-950) 0%, var(--color-brand-700) 68%, var(--color-cyan-700) 100%);
+    linear-gradient(135deg, var(--color-navy-950) 0%, var(--color-brand-700) 58%, var(--color-coral-700) 100%);
 }
 
 .surface-hero::before {
@@ -114,7 +139,7 @@
 
 .metric-card {
   border: 1px solid var(--color-line);
-  border-left: 4px solid var(--color-brand-700);
+  border-left: 4px solid var(--color-coral-700);
   border-radius: var(--radius-lg);
   background: var(--color-paper);
   box-shadow: var(--shadow-card);
@@ -129,7 +154,7 @@
   display: flex;
   flex-direction: column;
   width: min(26.5rem, calc(100vw - 1.5rem));
-  height: min(38rem, 78vh);
+  height: min(38rem, calc(100vh - 12rem));
   overflow: hidden;
   border: 1px solid rgb(213 240 246 / 0.35);
   border-radius: 1.15rem;
@@ -146,13 +171,17 @@
 }
 
 .assistant-panel-closed {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(0.75rem) scale(0.96);
+  display: none;
+}
+
+.assistant-panel[hidden] {
+  display: none !important;
 }
 
 .assistant-panel-open {
+  visibility: visible;
   opacity: 1;
+  pointer-events: auto;
   transform: translateY(0) scale(1);
 }
 
@@ -442,6 +471,460 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+ * M1: layered drawer shell, aurora hero and status-glyph glow.
+ * Additive only — every rule below is a new class or keyframe.
+ * ------------------------------------------------------------------------- */
+
+.glass-surface {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-depth-1);
+}
+
+.glass-surface-strong {
+  background: var(--glass-tint-strong);
+}
+
+/* Gradient 1px ring. Do not use mask-composite here: on an element that also
+ * has backdrop-filter (the drawer layer), Chromium paints the fill opaque and
+ * the overlay sat at z-index 2 above the header/body (z-index 1), so the
+ * panel looked like a solid blue sheet with no content. */
+.glass-edge {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    var(--glass-edge) border-box;
+}
+
+/* Drawer layers must stay opaque paper. The glass-edge shorthand still paints
+ * the brand→coral gradient across the whole padding box in Chromium, which
+ * sits under the transparent body and hides dark text. */
+.drawer-layer.glass-edge::before,
+.assistant-panel.glass-edge::before {
+  content: none;
+}
+
+.drawer-layer > *,
+.assistant-panel > * {
+  position: relative;
+  z-index: 3;
+}
+
+.drawer-root {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgb(11 26 46 / 0.34);
+  backdrop-filter: blur(2px);
+  pointer-events: auto;
+  animation: drawer-scrim-in var(--drawer-duration) var(--drawer-ease) both;
+}
+
+.drawer-lanes {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  pointer-events: none;
+}
+
+.drawer-spine {
+  position: relative;
+  z-index: 1;
+  display: none;
+  width: var(--drawer-spine-width);
+  flex: none;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper);
+  color: var(--color-navy-900);
+  box-shadow: var(--shadow-depth-1);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.drawer-spine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgb(194 65 12 / 0.14), transparent);
+  animation: spine-sheen 6s ease-in-out infinite;
+}
+
+.drawer-spine-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.2rem;
+}
+
+.drawer-spine-index {
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-coral-700);
+}
+
+.drawer-spine-title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  overflow: hidden;
+  max-height: 14rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.drawer-layer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  backdrop-filter: none;
+  pointer-events: auto;
+  animation: drawer-layer-in-mobile var(--drawer-duration) var(--drawer-ease) both;
+}
+
+.drawer-depth-1 {
+  box-shadow: var(--shadow-depth-1);
+}
+
+.drawer-depth-2 {
+  box-shadow: var(--shadow-depth-2);
+}
+
+.drawer-depth-3 {
+  box-shadow: var(--shadow-depth-3);
+}
+
+.drawer-layer-body {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1rem;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.drawer-stagger > * {
+  animation: drawer-stagger-in 300ms var(--drawer-ease) both;
+}
+
+.drawer-stagger > *:nth-child(1) {
+  animation-delay: calc(var(--drawer-stagger-step) * 0);
+}
+
+.drawer-stagger > *:nth-child(2) {
+  animation-delay: calc(var(--drawer-stagger-step) * 1);
+}
+
+.drawer-stagger > *:nth-child(3) {
+  animation-delay: calc(var(--drawer-stagger-step) * 2);
+}
+
+.drawer-stagger > *:nth-child(4) {
+  animation-delay: calc(var(--drawer-stagger-step) * 3);
+}
+
+.drawer-stagger > *:nth-child(5) {
+  animation-delay: calc(var(--drawer-stagger-step) * 4);
+}
+
+.drawer-stagger > *:nth-child(n + 6) {
+  animation-delay: calc(var(--drawer-stagger-step) * 5);
+}
+
+@media (min-width: 768px) {
+  .drawer-lanes {
+    left: var(--drawer-rail-width);
+    right: auto;
+    gap: 0.375rem;
+    padding: 0.75rem 0;
+  }
+
+  .drawer-spine {
+    display: block;
+  }
+
+  .drawer-layer {
+    width: var(--drawer-layer-width);
+    flex: none;
+    border-radius: var(--radius-lg);
+    background: var(--color-paper);
+    animation-name: drawer-layer-in;
+  }
+}
+
+.rail-shell {
+  position: relative;
+  z-index: 30;
+  border-bottom: 1px solid var(--color-line);
+  background: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.rail-scroll {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.75rem;
+}
+
+.rail-button {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border-radius: var(--radius-md);
+  padding: 0 0.5rem;
+  color: var(--color-navy-900);
+  transition: background-color var(--default-transition-duration) ease;
+}
+
+.rail-button:hover {
+  background: var(--color-canvas-muted);
+}
+
+.rail-button-active {
+  background: var(--color-coral-100);
+  box-shadow: var(--shadow-glow-coral);
+}
+
+.rail-text-inline {
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.rail-label {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .rail-shell {
+    position: fixed;
+    left: 0.5rem;
+    top: 50%;
+    z-index: 65;
+    transform: translateY(-50%);
+    width: var(--drawer-rail-width);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-depth-1);
+  }
+
+  .rail-scroll {
+    flex-direction: column;
+    overflow-x: visible;
+    padding: 0.35rem;
+  }
+
+  .rail-button {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .rail-text-inline {
+    display: none;
+  }
+
+  .rail-label {
+    position: absolute;
+    left: calc(100% + 0.45rem);
+    display: block;
+    max-width: 14rem;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--glass-tint-strong);
+    padding: 0.35rem 0.6rem;
+    white-space: nowrap;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-navy-900);
+    opacity: 0;
+    box-shadow: var(--shadow-depth-1);
+    pointer-events: none;
+    transform: translateX(-0.35rem);
+    transition:
+      opacity var(--drawer-duration) var(--drawer-ease),
+      transform var(--drawer-duration) var(--drawer-ease);
+  }
+
+  .rail-button:hover .rail-label,
+  .rail-button:focus-visible .rail-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.aurora-layer {
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 44% at 22% 30%, rgb(14 116 144 / 0.55), transparent 70%),
+    radial-gradient(34% 40% at 78% 64%, rgb(26 110 192 / 0.5), transparent 72%),
+    radial-gradient(32% 36% at 12% 78%, rgb(194 65 12 / 0.42), transparent 70%),
+    radial-gradient(30% 34% at 54% 12%, rgb(213 240 246 / 0.28), transparent 70%);
+  filter: blur(26px);
+  animation: aurora-drift 24s ease-in-out infinite;
+}
+
+.hero-grid-parallax {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.6), transparent 90%);
+  animation: hero-grid-drift 30s linear infinite;
+}
+
+.glyph-glow {
+  filter: drop-shadow(0 0 6px rgb(14 116 144 / 0.45));
+}
+
+.glyph-glow-signal {
+  filter: drop-shadow(0 0 6px rgb(180 35 24 / 0.5));
+}
+
+.glyph-pulse {
+  animation: glyph-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes drawer-layer-in {
+  from {
+    opacity: 0;
+    transform: translateX(-1.5rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes drawer-layer-in-mobile {
+  from {
+    opacity: 0;
+    transform: translateX(2rem) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes drawer-scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawer-stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.55rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spine-sheen {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translateY(-40%);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(40%);
+  }
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-4%, 3%, 0) scale(1.03);
+  }
+}
+
+@keyframes hero-grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 28px 28px;
+  }
+}
+
+@keyframes glyph-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px rgb(180 35 24 / 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgb(180 35 24 / 0.7));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -458,5 +941,29 @@
   .assistant-mascot-bubble {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  /* M1: every animation added by the layered drawer shell is switched off by
+   * name here, so the reduced-motion contract does not rely on the wildcard
+   * rule above surviving future edits. */
+  .drawer-layer,
+  .drawer-scrim,
+  .drawer-stagger > *,
+  .aurora-layer,
+  .hero-grid-parallax,
+  .glyph-pulse {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .drawer-spine::after {
+    animation: none !important;
+    opacity: 0.2 !important;
+    transform: none !important;
+  }
+
+  .rail-label {
+    transition: none !important;
   }
 }

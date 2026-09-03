@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { CategoryMark } from "@/components/CategoryMark";
+import { AssessmentStatusGlyph } from "@/components/comprehensive-analysis/AssessmentStatusGlyph";
 import { ItemAssessmentCard } from "@/components/comprehensive-analysis/ItemAssessmentCard";
 import { createFallbackItemEntry } from "@/lib/comprehensive-analysis/summarize";
 import type { Category, CharacterizationItem } from "@/types/models";
@@ -19,6 +20,9 @@ interface CategoryAssessmentSectionProps {
   aggregation: ComprehensiveAggregationResult;
   defaultExpanded: boolean;
   onItemEntryChange: (entry: ItemAssessmentEntry) => void;
+  /** Set when this section is rendered inside a drawer layer: each item then
+   *  opens its own layer instead of expanding a full card in place. */
+  onOpenItemLayer?: (item: CharacterizationItem) => void;
 }
 
 export function CategoryAssessmentSection({
@@ -28,6 +32,7 @@ export function CategoryAssessmentSection({
   aggregation,
   defaultExpanded,
   onItemEntryChange,
+  onOpenItemLayer,
 }: CategoryAssessmentSectionProps) {
   const { localize, messages } = useLanguage();
   const copy = messages.comprehensiveAnalysis;
@@ -86,6 +91,30 @@ export function CategoryAssessmentSection({
             );
             if (aggregationRecord === undefined) {
               return null;
+            }
+            if (onOpenItemLayer !== undefined) {
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => onOpenItemLayer(item)}
+                  className="surface-card tap-target flex w-full items-center justify-between gap-3 p-3 text-left transition-shadow duration-150 hover:shadow-[var(--shadow-depth-2)]"
+                >
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-navy-900">
+                      {localize(item.itemName)}
+                    </span>
+                    <span className="mt-0.5 block text-xs text-ink-secondary">
+                      {aggregationRecord.isComplete
+                        ? copy.completenessComplete
+                        : copy.completenessIncomplete}
+                    </span>
+                  </span>
+                  <span className="shrink-0">
+                    <AssessmentStatusGlyph status={entry.demoStatus} />
+                  </span>
+                </button>
+              );
             }
             return (
               <ItemAssessmentCard

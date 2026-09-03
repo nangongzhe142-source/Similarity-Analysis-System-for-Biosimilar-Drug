@@ -537,7 +537,10 @@ export type AnalysisProfileId =
   /** MS1 peptide mass matching and sequence coverage; DOCX figure 4. */
   | "ms1-coverage"
   /** MS/MS fragment spectra and sequence confirmation; DOCX figures 5 and 6. */
-  | "msms-sequence";
+  | "msms-sequence"
+  /** Two-column curve overlay for SEC / charge / CD demos (P26). Not a
+   *  Sheet3 similarity engine. */
+  | "curve-overlay";
 
 /** What the panel is allowed to do for a method.
  *

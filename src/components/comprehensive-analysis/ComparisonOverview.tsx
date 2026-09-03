@@ -13,6 +13,9 @@ import type {
 interface ComparisonOverviewProps {
   productPair: ProductPairInput;
   aggregation: ComprehensiveAggregationResult;
+  /** Opens the category assessment layer. Replaces the former anchor scroll,
+   *  because the per-category detail no longer lives in the main flow. */
+  onCategorySelect: (categoryKey: string) => void;
 }
 
 function CountMeter({
@@ -47,7 +50,11 @@ function CountMeter({
   );
 }
 
-export function ComparisonOverview({ productPair, aggregation }: ComparisonOverviewProps) {
+export function ComparisonOverview({
+  productPair,
+  aggregation,
+  onCategorySelect,
+}: ComparisonOverviewProps) {
   const { localize, messages } = useLanguage();
   const copy = messages.comprehensiveAnalysis;
   const placeholder = copy.emptyValuePlaceholder;
@@ -55,14 +62,6 @@ export function ComparisonOverview({ productPair, aggregation }: ComparisonOverv
   const completedItemCount = aggregation.itemRecords.filter((record) => record.isComplete).length;
   const completedWidthPercent =
     totalItemCount <= 0 ? 0 : Math.round((completedItemCount / totalItemCount) * 100);
-
-  const scrollToCategory = (categoryKey: string) => {
-    const target = document.getElementById(`category-${categoryKey}`);
-    if (target !== null) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      target.focus();
-    }
-  };
 
   return (
     <section
@@ -183,8 +182,8 @@ export function ComparisonOverview({ productPair, aggregation }: ComparisonOverv
             <button
               key={category.key}
               type="button"
-              onClick={() => scrollToCategory(category.key)}
-              className="surface-card border-l-4 border-l-brand-700 p-3 text-left transition-shadow duration-150 hover:shadow-[var(--shadow-raised)]"
+              onClick={() => onCategorySelect(category.key)}
+              className="surface-card tap-target border-l-4 border-l-brand-700 p-3 text-left transition-shadow duration-150 hover:shadow-[var(--shadow-depth-2)]"
             >
               <span className="sr-only">{copy.jumpToCategory}</span>
               <div className="flex items-start justify-between gap-2">

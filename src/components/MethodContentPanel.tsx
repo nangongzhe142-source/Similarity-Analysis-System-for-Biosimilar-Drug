@@ -56,42 +56,42 @@ export function MethodContentPanel({ method }: MethodContentPanelProps) {
   const pendingFields = optionalFields.filter((field) => field.value === undefined);
 
   return (
-    <section className="rounded-lg border border-slate-300 bg-white p-5">
+    <section className="glass-surface glass-edge relative p-5">
       <div className="mb-3 flex flex-wrap items-baseline gap-2">
-        <h3 className="text-sm font-semibold text-slate-900">
+        <h3 className="text-sm font-semibold text-navy-900">
           {messages.methodContent.sectionTitle}
         </h3>
-        <p className="text-sm text-slate-600">{localize(method.name)}</p>
+        <p className="text-sm text-ink-secondary">{localize(method.name)}</p>
       </div>
 
-      <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+      <h4 className="text-xs font-semibold uppercase tracking-wide text-ink-secondary">
         {messages.methodContent.principleLabel}
       </h4>
-      <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-slate-700">
+      <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-ink">
         {localize(content.principle)}
       </p>
 
       {embeddedFields.map((field) => (
         <div key={field.key} className="mt-4">
-          <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <h4 className="text-xs font-semibold uppercase tracking-wide text-ink-secondary">
             {field.label}
           </h4>
-          <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-slate-700">
+          <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-ink">
             {localize(field.value as LocalizedText)}
           </p>
         </div>
       ))}
 
       {pendingFields.length > 0 ? (
-        <div className="mt-4 border-t border-slate-200 pt-3">
-          <p className="text-[11px] font-medium text-slate-500">
+        <div className="mt-4 border-t border-line pt-3">
+          <p className="text-[11px] font-medium text-ink-secondary">
             {messages.methodContent.pendingFieldsTitle}
           </p>
           <ul className="mt-1 flex flex-wrap gap-1.5">
             {pendingFields.map((field) => (
               <li
                 key={field.key}
-                className="rounded border border-dashed border-slate-300 px-1.5 py-0.5 text-[11px] text-slate-400"
+                className="rounded-sm border border-dashed border-line-strong px-1.5 py-0.5 text-[11px] text-ink-secondary"
               >
                 {field.label}
               </li>
@@ -99,10 +99,6 @@ export function MethodContentPanel({ method }: MethodContentPanelProps) {
           </ul>
         </div>
       ) : null}
-
-      <p className="mt-3 text-[11px] leading-relaxed text-slate-400">
-        {messages.methodContent.disclaimer}
-      </p>
     </section>
   );
 }

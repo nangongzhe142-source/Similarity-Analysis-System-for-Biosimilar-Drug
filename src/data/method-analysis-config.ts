@@ -324,6 +324,55 @@ export const analysisProfiles: AnalysisProfileConfig[] = [
       },
     ],
   },
+  {
+    id: "curve-overlay",
+    title: {
+      zh: "曲线叠加比对（SEC / 电荷 / CD 演示）",
+      en: "Curve overlay comparison (SEC / charge / CD demo)",
+    },
+    summary: {
+      zh:
+        "读取两列 x–y 表，对齐到同一网格后计算 Pearson 相关、RMSE、峰位置与分区面积%。" +
+        "用于 SEC 聚集体、酸性电荷变异体与远紫外 CD 的合成演示。没有 Sheet3 程序规则，结论固定为复核。",
+      en:
+        "Reads two-column x–y tables, interpolates them onto one grid, and reports Pearson " +
+        "correlation, RMSE, peak positions and region area %. Used for the SEC aggregate, " +
+        "acidic charge-variant and far-UV CD synthetic demos. There is no Sheet3 program " +
+        "rule; the verdict stays REVIEW.",
+    },
+    acceptedInputs: ["structured-export"],
+    requiredInputs: ["structured-export"],
+    evidenceByInput: {
+      "structured-export": "structured-export-analysis",
+    },
+    toolDependencies: [
+      {
+        tool: "numpy",
+        purpose: {
+          zh: "网格对齐、相关、积分与检峰。",
+          en: "Grid alignment, correlation, integration and peak picking.",
+        },
+        verifiedBy: "P26",
+        verified: true,
+      },
+    ],
+    docxFigures: [],
+    scientificBoundaries: [
+      {
+        zh:
+          "Pearson 相关与面积差百分点是算法质量门，不是生物类似性限度。本 profile 的输入可以是合成夹具。",
+        en:
+          "Pearson correlation and area-percentage deltas are algorithm quality gates, not " +
+          "biosimilarity limits. Inputs to this profile may be synthetic fixtures.",
+      },
+      {
+        zh:
+          "V2 Sheet3 未为这三项编写程序规则，因此不得输出相似性 PASS。",
+        en:
+          "V2 sheet 3 defines no program rule for these items, so a similarity PASS must not be emitted.",
+      },
+    ],
+  },
 ];
 
 export const analysisProfileById: Record<AnalysisProfileId, AnalysisProfileConfig> =
@@ -656,6 +705,30 @@ export const methodAnalysisConfigs: MethodAnalysisConfig[] = [
     status: "display-only",
     statusReason: WET_LAB_ONLY_REASON,
     allowsImageFallback: false,
+  },
+  {
+    methodId: "sec-hmw-aggregates-primary-1",
+    itemId: "sec-hmw-aggregates",
+    status: "analyzable",
+    profile: "curve-overlay",
+    allowsImageFallback: false,
+    plannedIn: "P26",
+  },
+  {
+    methodId: "acidic-charge-variants-primary-1",
+    itemId: "acidic-charge-variants",
+    status: "analyzable",
+    profile: "curve-overlay",
+    allowsImageFallback: false,
+    plannedIn: "P26",
+  },
+  {
+    methodId: "far-uv-cd-primary-1",
+    itemId: "far-uv-cd",
+    status: "analyzable",
+    profile: "curve-overlay",
+    allowsImageFallback: false,
+    plannedIn: "P26",
   },
 ];
 

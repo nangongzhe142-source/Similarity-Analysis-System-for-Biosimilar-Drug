@@ -107,7 +107,7 @@ export function ProductPairForm({
           <button
             type="button"
             onClick={onRestoreDemo}
-            className="tap-target rounded-sm bg-brand-700 px-3 text-sm font-semibold text-paper hover:bg-brand-800"
+            className="tap-target rounded-sm bg-coral-700 px-3 text-sm font-semibold text-paper hover:bg-coral-800"
           >
             {copy.restoreDemo}
           </button>

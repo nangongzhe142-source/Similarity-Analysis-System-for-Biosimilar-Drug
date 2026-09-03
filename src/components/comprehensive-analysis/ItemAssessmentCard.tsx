@@ -19,6 +19,9 @@ interface ItemAssessmentCardProps {
   entry: ItemAssessmentEntry;
   aggregationRecord: ItemAggregationRecord;
   onEntryChange: (entry: ItemAssessmentEntry) => void;
+  /** Set when this card is rendered inside a drawer layer: the seven-step
+   *  process then opens as the next layer instead of expanding in place. */
+  onOpenProcessLayer?: (item: CharacterizationItem) => void;
 }
 
 const SUMMARY_MAX_LENGTH = 80;
@@ -61,6 +64,7 @@ export function ItemAssessmentCard({
   entry,
   aggregationRecord,
   onEntryChange,
+  onOpenProcessLayer,
 }: ItemAssessmentCardProps) {
   const { locale, localize, messages } = useLanguage();
   const copy = messages.comprehensiveAnalysis;
@@ -314,19 +318,31 @@ export function ItemAssessmentCard({
         </div>
       )}
 
-      <button
-        type="button"
-        className="tap-target mt-4 rounded-sm px-1 text-sm font-semibold text-brand-800 underline-offset-2 hover:underline"
-        aria-expanded={isProcessExpanded}
-        aria-controls={processPanelId}
-        onClick={() => setIsProcessExpanded((expanded) => !expanded)}
-      >
-        {isProcessExpanded ? copy.collapseProcess : copy.expandProcess}
-      </button>
-      {isProcessExpanded && (
-        <div id={processPanelId}>
-          <ItemComparisonProcess item={item} entry={entry} processView={processView} />
-        </div>
+      {onOpenProcessLayer !== undefined ? (
+        <button
+          type="button"
+          className="tap-target mt-4 rounded-sm border border-line bg-paper px-3 text-sm font-semibold text-navy-900 hover:bg-canvas-muted"
+          onClick={() => onOpenProcessLayer(item)}
+        >
+          {copy.expandProcess} →
+        </button>
+      ) : (
+        <>
+          <button
+            type="button"
+            className="tap-target mt-4 rounded-sm px-1 text-sm font-semibold text-brand-800 underline-offset-2 hover:underline"
+            aria-expanded={isProcessExpanded}
+            aria-controls={processPanelId}
+            onClick={() => setIsProcessExpanded((expanded) => !expanded)}
+          >
+            {isProcessExpanded ? copy.collapseProcess : copy.expandProcess}
+          </button>
+          {isProcessExpanded && (
+            <div id={processPanelId}>
+              <ItemComparisonProcess item={item} entry={entry} processView={processView} />
+            </div>
+          )}
+        </>
       )}
     </article>
   );

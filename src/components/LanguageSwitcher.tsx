@@ -38,7 +38,7 @@ export function LanguageSwitcher({ variant = "light" }: LanguageSwitcherProps) {
               isPressed
                 ? isDark
                   ? "bg-paper text-navy-900"
-                  : "bg-brand-700 text-paper"
+                  : "bg-coral-700 text-paper"
                 : isDark
                   ? "text-cyan-100 hover:bg-white/10"
                   : "text-ink-secondary hover:text-brand-800"

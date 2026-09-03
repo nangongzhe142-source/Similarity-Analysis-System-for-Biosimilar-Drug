@@ -72,6 +72,7 @@ def write_chromatogram_overlay_plot(
     candidate_label: str,
     x_label: str,
     title: str,
+    y_label: str = "Relative intensity",
 ) -> Path:
     plt = _prepare_axis(output_path)
     figure, axis = plt.subplots(figsize=(8, 4))
@@ -82,7 +83,7 @@ def write_chromatogram_overlay_plot(
         xs, ys = zip(*candidate_points)
         axis.plot(xs, ys, color="tab:blue", linewidth=1.4, label=candidate_label)
     axis.set_xlabel(x_label)
-    axis.set_ylabel("Relative intensity")
+    axis.set_ylabel(y_label)
     axis.set_title(title)
     axis.legend(loc="upper right")
     axis.grid(True, alpha=0.2)

@@ -5,14 +5,8 @@ import { useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import type { Category, CharacterizationItem } from "@/types/models";
 import { getAdjacentItems } from "@/data/selectors";
-import { getReferenceCases } from "@/data/reference-cases";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { ApplicabilityBadge } from "@/components/ApplicabilityBadge";
-import { SupplementaryTag } from "@/components/SupplementaryTag";
-import { FieldBlock } from "@/components/FieldBlock";
-import { MethodSelector } from "@/components/MethodSelector";
-import { ReferenceCaseSection } from "@/components/reference-case/ReferenceCaseSection";
-import { SimilarityAnalysisPlaceholder } from "@/components/SimilarityAnalysisPlaceholder";
+import { ItemDetailContent } from "@/components/views/ItemDetailContent";
 import {
   publishAssistantPageContext,
   resetAssistantPageContext,
@@ -26,7 +20,6 @@ interface ItemDetailViewProps {
 export function ItemDetailView({ item, category }: ItemDetailViewProps) {
   const { localize, messages } = useLanguage();
   const { previous, next } = getAdjacentItems(item.id);
-  const referenceCases = getReferenceCases(item.id);
 
   useEffect(() => {
     publishAssistantPageContext({
@@ -58,66 +51,7 @@ export function ItemDetailView({ item, category }: ItemDetailViewProps) {
         ]}
       />
 
-      <header className="surface-card border-l-4 border-l-brand-700 p-5">
-        <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-bold text-navy-900">{localize(item.itemName)}</h1>
-          {item.isSupplementary && <SupplementaryTag />}
-        </div>
-        <p className="mt-2 text-sm text-ink-secondary">
-          {messages.itemPage.guidelineTermLabel}: {localize(item.guidelineTerm)}
-        </p>
-        <div className="mt-3">
-          <ApplicabilityBadge applicability={item.applicability} />
-        </div>
-      </header>
-
-      <section>
-        <h2 className="mb-3 text-lg font-bold text-navy-900">
-          {messages.itemPage.fieldSectionTitle}
-        </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <FieldBlock label={messages.itemPage.purposeLabel} value={item.purpose} />
-          <FieldBlock
-            label={messages.itemPage.detectionIndicatorsLabel}
-            value={item.detectionIndicators}
-          />
-          <FieldBlock
-            label={messages.itemPage.similarityMethodLabel}
-            value={item.similarityMethod}
-          />
-          <FieldBlock
-            label={messages.itemPage.judgingPrincipleLabel}
-            value={item.judgingPrinciple}
-            emphasized
-          />
-          <FieldBlock
-            label={messages.itemPage.numericLimitLabel}
-            value={item.numericLimit}
-            emphasized
-          />
-          <FieldBlock label={messages.itemPage.remarkLabel} value={item.remark} />
-        </div>
-      </section>
-
-      <ReferenceCaseSection referenceCases={referenceCases} />
-
-      <section>
-        <h2 className="text-lg font-bold text-navy-900">{messages.itemPage.methodSectionTitle}</h2>
-        <p className="mb-3 mt-1 text-sm text-ink-secondary">
-          {messages.itemPage.methodSectionDescription}
-        </p>
-        <MethodSelector itemId={item.id} methods={item.methods} />
-      </section>
-
-      <section>
-        <h2 className="text-lg font-bold text-navy-900">
-          {messages.itemPage.analysisSectionTitle}
-        </h2>
-        <p className="mb-3 mt-1 text-sm text-ink-secondary">
-          {messages.itemPage.analysisSectionDescription}
-        </p>
-        <SimilarityAnalysisPlaceholder analysisPlaceholder={item.analysisPlaceholder} />
-      </section>
+      <ItemDetailContent item={item} />
 
       <nav className="flex items-center justify-between border-t border-line pt-4 text-sm">
         {previous !== undefined ? (

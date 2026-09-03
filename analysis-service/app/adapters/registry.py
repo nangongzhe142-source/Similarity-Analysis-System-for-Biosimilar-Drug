@@ -6,6 +6,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from app.adapters.base import AdapterNotImplementedError, AnalysisAdapter
+from app.adapters.curve_overlay import CurveOverlayAdapter
 from app.adapters.image_fallback import ImageFallbackAdapter, looks_like_image
 from app.adapters.intact_mass import IntactMassAdapter
 from app.adapters.ms1_coverage import Ms1CoverageAdapter
@@ -20,6 +21,7 @@ PROFILE_ADAPTERS: dict[str, type[AnalysisAdapter]] = {
     "peptide-map": PeptideMapAdapter,
     "ms1-coverage": Ms1CoverageAdapter,
     "msms-sequence": MsmsSequenceAdapter,
+    "curve-overlay": CurveOverlayAdapter,
 }
 
 
@@ -53,7 +55,7 @@ def resolve_adapter(
     if settings.allow_stub_adapter:
         return StubAdapter()
 
-    if workspace is not None and inputs_are_images_only(workspace):
+    if workspace is not None and inputs_are_images_only(workspace) and profile != "curve-overlay":
         return ImageFallbackAdapter()
 
     adapter_type = PROFILE_ADAPTERS.get(profile)

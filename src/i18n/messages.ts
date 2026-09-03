@@ -101,6 +101,17 @@ export interface UiMessages {
     differenceNote: string;
     formSectionTitle: string;
     itemsSectionTitle: string;
+    inputFileSectionTitle: string;
+    inputFileSectionDescription: string;
+    inputFileLabel: string;
+    inputFileAcceptHint: string;
+    inputFileImportSuccess: string;
+    inputFileImportError: string;
+    inputFileEmptyError: string;
+    inputFileTooLarge: string;
+    downloadOutputFile: string;
+    outputFileReadyNote: string;
+    inputFileStatusColumnNote: string;
   };
   home: {
     heroTitle: string;
@@ -146,6 +157,8 @@ export interface UiMessages {
     noMethodsPlaceholder: string;
     analysisSectionTitle: string;
     analysisSectionDescription: string;
+    figureLibraryInputTitle: string;
+    figureLibraryInputHint: string;
     candidateSlotTitle: string;
     candidateSlotDescription: string;
     referenceSlotTitle: string;
@@ -339,6 +352,8 @@ export interface UiMessages {
     figureLibraryMismatch: string;
     figureLibraryExcluded: string;
     figureLibraryAnnotation: string;
+    figureLibraryUseButton: string;
+    figureLibraryLoadFailed: string;
     imageCalibrationTitle: string;
     imageCalibrationHint: string;
     imageCalibrationAxisMass: string;
@@ -353,6 +368,15 @@ export interface UiMessages {
     imageCalibrationClear: string;
     imagePeakAxisColumn: string;
     imageCalibrationLoadFailed: string;
+    curveMetricsTitle: string;
+    curvePearsonLabel: string;
+    curveRmseLabel: string;
+    curveRegionTableTitle: string;
+    curveRegionNameColumn: string;
+    curveReferencePercentColumn: string;
+    curveCandidatePercentColumn: string;
+    curveDeltaPpColumn: string;
+    curvePeakTableTitle: string;
   };
   regulatoryPage: {
     title: string;
@@ -451,6 +475,38 @@ export interface UiMessages {
     suggestionResult: string;
     suggestionInput: string;
   };
+  drawer: {
+    railLabel: string;
+    railTitle: string;
+    railCategoriesGroup: string;
+    railPagesGroup: string;
+    railContextGroup: string;
+    layerPositionTemplate: string;
+    backOneLayer: string;
+    closeAllLayers: string;
+    closeTopLayer: string;
+    returnToLayerTemplate: string;
+    collapsedLayersTemplate: string;
+    collapsedLayersHint: string;
+    categoryOverviewTitle: string;
+    categoryItemsTitle: string;
+    itemSummaryTitle: string;
+    itemDetailTitle: string;
+    viewFullDetail: string;
+    itemQuickLookTitle: string;
+    itemFieldsTitle: string;
+    methodSelectionTitle: string;
+    methodDetailTitle: string;
+    referenceCaseLayerTitle: string;
+    regulatoryRelationTitle: string;
+    categoryAssessmentTitle: string;
+    itemAssessmentTitle: string;
+    comparisonProcessTitle: string;
+    openCategoryLayer: string;
+    openItemLayer: string;
+    openRelationLayer: string;
+    emptyLayerNotice: string;
+  };
   common: {
     supplementaryTag: string;
     viewDetails: string;
@@ -463,6 +519,7 @@ export interface UiMessages {
     openSiteMenu: string;
     closeSiteMenu: string;
     notAGovernmentSite: string;
+    siteDisclaimerLine: string;
   };
 }
 
@@ -572,6 +629,20 @@ export const uiMessages: Record<Locale, UiMessages> = {
       differenceNote: "差异识别目前只比较规范化文本，不根据关键词自动改写演示状态。",
       formSectionTitle: "基础信息",
       itemsSectionTitle: "按质量属性大类逐项录入",
+      inputFileSectionTitle: "输入文件",
+      inputFileSectionDescription:
+        "选择输入填表包（Markdown）或会话 JSON。导入后填充 61 项综合判别表，并生成本地下载的输出书面报告。演示状态只来自表格中的状态列，描述文字不会改写结论。",
+      inputFileLabel: "选择输入文件",
+      inputFileAcceptHint:
+        "只接受填表包 .md、.txt、.json，不接受图谱 PNG。填表包在「综合判别-岚岫珠单抗」子文件夹；根目录那 8 张 PNG 请到检测方法的比对文件框上传。",
+      inputFileImportSuccess: "已导入并生成综合判别表与输出文件。",
+      inputFileImportError: "无法导入该文件。",
+      inputFileEmptyError: "没有选择文件，或文件为空。",
+      inputFileTooLarge: "文件过大。请使用小于 2 MB 的填表包。",
+      downloadOutputFile: "下载输出文件",
+      outputFileReadyNote: "输出文件由当前会话生成，可再次下载。",
+      inputFileStatusColumnNote:
+        "自由文本不驱动判定。总体结论仍按选择器状态汇总，不构成生物类似药认定。",
     },
     home: {
       heroTitle: "生物类似药药学相似性分析框架",
@@ -622,7 +693,10 @@ export const uiMessages: Record<Locale, UiMessages> = {
       noMethodsPlaceholder: "该项目未在汇总表中列出具体分析方法，需结合具体品种确定。",
       analysisSectionTitle: "相似性分析（预留）",
       analysisSectionDescription:
-        "以下为候选药/参照药数据录入与相似性结论展示的预留位置，本期不实现分析逻辑。",
+        "已编目的图谱库图会显示在下方。一张图同时含候选与参照。要跑分析，请到「方法选择」使用同一文件。",
+      figureLibraryInputTitle: "图谱库比对图",
+      figureLibraryInputHint:
+        "来自本机「图谱数据库」根目录，不是综合判别填表包。",
       candidateSlotTitle: "候选药数据/图谱",
       candidateSlotDescription: "候选药检测数据或图谱的录入位。",
       referenceSlotTitle: "参照药数据/图谱",
@@ -763,7 +837,7 @@ export const uiMessages: Record<Locale, UiMessages> = {
       headToHeadLabel: "声明为候选药与参照药头对头生物类似药设计",
       comparisonFileLabel: "候选/参照比对文件",
       comparisonFileHint:
-        "1 个文件：镜像谱、TIC 镜像、A/B 双面板或两侧同表的合成图。2 个文件须在同一对话框内一次选中：第 1 个=候选，第 2 个=参照（mzML、TXT/CSV；请先自行把 RAW/WIFF 转为 mzML）。",
+        "1 个文件：镜像谱、TIC 镜像、A/B 双面板或两侧同表的合成图（含图谱库 PNG）。2 个文件须在同一对话框内一次选中：第 1 个=候选，第 2 个=参照（mzML、TXT/CSV；请先自行把 RAW/WIFF 转为 mzML）。若对话框里看不到 PNG，把文件类型改成「所有文件」。",
       comparisonSelectedFirst: "第 1 个（候选，或合成图）",
       comparisonSelectedSecond: "第 2 个（参照）",
       sequenceFileLabel: "序列 FASTA（可选）",
@@ -839,6 +913,8 @@ export const uiMessages: Record<Locale, UiMessages> = {
         "所选文件在图谱库中归属于其他检测项目，分析仍会运行，但药物体系可能对不上。",
       figureLibraryExcluded: "该图已从第一阶段映射中排除（V2 Sheet3 无对应项目）。",
       figureLibraryAnnotation: "图谱库标注",
+      figureLibraryUseButton: "用作比对文件",
+      figureLibraryLoadFailed: "未能从本机图谱库读取该图。请确认文件仍在「图谱数据库」根目录。",
       imageCalibrationTitle: "坐标轴两点校准（可选）",
       imageCalibrationHint:
         "在图上点选横轴上两个已知刻度，并填入印刷值。两点像素间距须 ≥ 20。未校准则只做形状比对，不输出 Da / m·z⁻¹ / min。OCR 读数不能替代这一步。",
@@ -854,6 +930,15 @@ export const uiMessages: Record<Locale, UiMessages> = {
       imageCalibrationClear: "清除校准点",
       imagePeakAxisColumn: "轴值",
       imageCalibrationLoadFailed: "预览未能显示该图，无法在图上取点。请重新选择文件后再试。",
+      curveMetricsTitle: "曲线比对指标（算法观察）",
+      curvePearsonLabel: "Pearson 相关",
+      curveRmseLabel: "RMSE",
+      curveRegionTableTitle: "分区面积 %",
+      curveRegionNameColumn: "分区",
+      curveReferencePercentColumn: "参照 %",
+      curveCandidatePercentColumn: "候选 %",
+      curveDeltaPpColumn: "差值 (pp)",
+      curvePeakTableTitle: "检出峰",
     },
     regulatoryPage: {
       title: "法规框架",
@@ -962,6 +1047,38 @@ export const uiMessages: Record<Locale, UiMessages> = {
       suggestionResult: "当前页面的分析结果说明了什么？",
       suggestionInput: "如何准备分析输入数据？",
     },
+    drawer: {
+      railLabel: "分层浏览导航",
+      railTitle: "分层浏览",
+      railCategoriesGroup: "质量属性大类",
+      railPagesGroup: "全站入口",
+      railContextGroup: "当前页入口",
+      layerPositionTemplate: "第 {current} 层 / 共 {total} 层",
+      backOneLayer: "返回上一层",
+      closeAllLayers: "关闭全部层",
+      closeTopLayer: "关闭最上层",
+      returnToLayerTemplate: "返回第 {index} 层：{title}",
+      collapsedLayersTemplate: "上层 {count} 个",
+      collapsedLayersHint: "点击回跳到被折叠的最外层",
+      categoryOverviewTitle: "大类概览",
+      categoryItemsTitle: "检测项目列表",
+      itemSummaryTitle: "项目摘要",
+      itemDetailTitle: "完整详情",
+      viewFullDetail: "查看完整详情",
+      itemQuickLookTitle: "项目速览",
+      itemFieldsTitle: "适用性与评价字段",
+      methodSelectionTitle: "方法选择",
+      methodDetailTitle: "方法原理与演示",
+      referenceCaseLayerTitle: "参考案例与溯源",
+      regulatoryRelationTitle: "法规关系说明",
+      categoryAssessmentTitle: "大类判别明细",
+      itemAssessmentTitle: "检测项目判别",
+      comparisonProcessTitle: "七步比对过程",
+      openCategoryLayer: "展开该大类",
+      openItemLayer: "展开该项目",
+      openRelationLayer: "展开该条法规关系",
+      emptyLayerNotice: "该层暂无可展示内容。",
+    },
     common: {
       supplementaryTag: "补充项",
       viewDetails: "查看详情",
@@ -974,6 +1091,8 @@ export const uiMessages: Record<Locale, UiMessages> = {
       openSiteMenu: "打开站点菜单",
       closeSiteMenu: "关闭站点菜单",
       notAGovernmentSite: "本网站为研究与教学框架，不是政府机构官方网站。",
+      siteDisclaimerLine:
+        "本系统仅用于框架演示与教学，不构成生物类似药认定或监管建议。",
     },
   },
   en: {
@@ -1093,6 +1212,21 @@ export const uiMessages: Record<Locale, UiMessages> = {
         "Difference identification currently compares normalized text only and never rewrites the demo status from keywords.",
       formSectionTitle: "Basic information",
       itemsSectionTitle: "Item-by-item entry by quality-attribute category",
+      inputFileSectionTitle: "Input file",
+      inputFileSectionDescription:
+        "Choose an input fill-in pack (Markdown) or a session JSON. Import fills the 61-item assessment table and generates a locally downloaded written output report. Demo status comes only from the status column; description text never rewrites the conclusion.",
+      inputFileLabel: "Choose input file",
+      inputFileAcceptHint:
+        "Accepts .md, .txt, and .json fill-in packs, not spectrum PNGs. The pack is in the 综合判别-岚岫珠单抗 subfolder; upload the eight root PNGs in a method comparison slot.",
+      inputFileImportSuccess:
+        "Imported. The assessment table and the output file have been generated.",
+      inputFileImportError: "This file could not be imported.",
+      inputFileEmptyError: "No file was selected, or the file is empty.",
+      inputFileTooLarge: "The file is too large. Use a fill-in pack smaller than 2 MB.",
+      downloadOutputFile: "Download output file",
+      outputFileReadyNote: "The output file is generated from the current session and can be downloaded again.",
+      inputFileStatusColumnNote:
+        "Free text does not drive the verdict. The overall conclusion still rolls up selector status and is not a biosimilar determination.",
     },
     home: {
       heroTitle: "Biosimilar CMC Similarity Assessment Framework",
@@ -1146,7 +1280,10 @@ export const uiMessages: Record<Locale, UiMessages> = {
         "No specific analytical method is listed for this item in the summary table; it must be defined for the specific product.",
       analysisSectionTitle: "Similarity Analysis (Reserved)",
       analysisSectionDescription:
-        "The slots below are reserved for candidate/reference data entry and similarity results. No analysis logic is implemented in this phase.",
+        "Catalogued figure-library images appear below. Each figure contains both sides. To run analysis, use the same file under Method selection.",
+      figureLibraryInputTitle: "Figure-library comparison",
+      figureLibraryInputHint:
+        "From the local 图谱数据库 folder root, not the comprehensive-assessment fill-in pack.",
       candidateSlotTitle: "Candidate drug data / spectra",
       candidateSlotDescription: "Input slot for candidate drug test data or spectra.",
       referenceSlotTitle: "Reference drug data / spectra",
@@ -1288,7 +1425,7 @@ export const uiMessages: Record<Locale, UiMessages> = {
       headToHeadLabel: "Declare head-to-head biosimilar candidate vs reference design",
       comparisonFileLabel: "Candidate/reference comparison file",
       comparisonFileHint:
-        "One file: a combined mirror, TIC overlay, A/B panels, or a two-sided table. Two files must be chosen in the same dialog: first = candidate, second = reference (mzML or TXT/CSV; convert RAW/WIFF to mzML yourself first).",
+        "One file: a combined mirror, TIC overlay, A/B panels, or a two-sided table (including figure-library PNGs). Two files must be chosen in the same dialog: first = candidate, second = reference (mzML or TXT/CSV; convert RAW/WIFF to mzML yourself first). If PNGs are hidden, set the dialog type to All files.",
       comparisonSelectedFirst: "1st (candidate, or combined figure)",
       comparisonSelectedSecond: "2nd (reference)",
       sequenceFileLabel: "Sequence FASTA (optional)",
@@ -1367,6 +1504,9 @@ export const uiMessages: Record<Locale, UiMessages> = {
       figureLibraryExcluded:
         "This figure is excluded from the first-phase mapping (no matching V2 sheet 3 item).",
       figureLibraryAnnotation: "Library annotation",
+      figureLibraryUseButton: "Use as comparison file",
+      figureLibraryLoadFailed:
+        "Could not read this figure from the local library. Confirm it is still in the 图谱数据库 folder root.",
       imageCalibrationTitle: "Two-point axis calibration (optional)",
       imageCalibrationHint:
         "Click two known ticks on the horizontal axis and type the printed values. The pixel span must be ≥ 20. Without this, only shape comparison is reported — no Da / m·z⁻¹ / min. OCR readings cannot replace this step.",
@@ -1384,6 +1524,15 @@ export const uiMessages: Record<Locale, UiMessages> = {
       imagePeakAxisColumn: "Axis value",
       imageCalibrationLoadFailed:
         "The figure preview failed to load, so points cannot be picked. Reselect the file and try again.",
+      curveMetricsTitle: "Curve comparison metrics (algorithm observation)",
+      curvePearsonLabel: "Pearson correlation",
+      curveRmseLabel: "RMSE",
+      curveRegionTableTitle: "Region area %",
+      curveRegionNameColumn: "Region",
+      curveReferencePercentColumn: "Reference %",
+      curveCandidatePercentColumn: "Candidate %",
+      curveDeltaPpColumn: "Delta (pp)",
+      curvePeakTableTitle: "Picked peaks",
     },
     regulatoryPage: {
       title: "Regulatory Framework",
@@ -1496,6 +1645,38 @@ export const uiMessages: Record<Locale, UiMessages> = {
       suggestionResult: "What does the analysis result on this page mean?",
       suggestionInput: "How should I prepare analysis input data?",
     },
+    drawer: {
+      railLabel: "Layered browsing navigation",
+      railTitle: "Layered browsing",
+      railCategoriesGroup: "Quality attribute categories",
+      railPagesGroup: "Site entries",
+      railContextGroup: "Entries for this page",
+      layerPositionTemplate: "Layer {current} of {total}",
+      backOneLayer: "Back one layer",
+      closeAllLayers: "Close all layers",
+      closeTopLayer: "Close the top layer",
+      returnToLayerTemplate: "Back to layer {index}: {title}",
+      collapsedLayersTemplate: "{count} outer layers",
+      collapsedLayersHint: "Select to jump back to the outermost collapsed layer",
+      categoryOverviewTitle: "Category overview",
+      categoryItemsTitle: "Characterization items",
+      itemSummaryTitle: "Item summary",
+      itemDetailTitle: "Full detail",
+      viewFullDetail: "View full details",
+      itemQuickLookTitle: "Item quick look",
+      itemFieldsTitle: "Applicability and assessment fields",
+      methodSelectionTitle: "Method selection",
+      methodDetailTitle: "Method principle and demo",
+      referenceCaseLayerTitle: "Reference cases and provenance",
+      regulatoryRelationTitle: "Regulatory relation detail",
+      categoryAssessmentTitle: "Category assessment detail",
+      itemAssessmentTitle: "Item assessment",
+      comparisonProcessTitle: "Seven-step comparison process",
+      openCategoryLayer: "Open this category",
+      openItemLayer: "Open this item",
+      openRelationLayer: "Open this regulatory relation",
+      emptyLayerNotice: "This layer has no content to show.",
+    },
     common: {
       supplementaryTag: "Supplementary",
       viewDetails: "View details",
@@ -1510,6 +1691,8 @@ export const uiMessages: Record<Locale, UiMessages> = {
       closeSiteMenu: "Close site menu",
       notAGovernmentSite:
         "This website is a research and teaching framework, not an official government site.",
+      siteDisclaimerLine:
+        "This system is for framework demonstration and teaching only. It does not constitute a biosimilar determination or regulatory advice.",
     },
   },
 };

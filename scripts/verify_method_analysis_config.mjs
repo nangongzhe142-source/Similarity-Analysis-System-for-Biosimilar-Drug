@@ -23,6 +23,11 @@ const SCHEMES_PATH = path.join(PROJECT_ROOT, "src", "data", "similarity-schemes.
 const PRIMARY_STRUCTURE = "primary-structure";
 const EXPECTED_METHOD_COUNT = 33;
 const EXPECTED_ITEM_COUNT = 11;
+const CURVE_OVERLAY_METHOD_IDS = new Set([
+  "sec-hmw-aggregates-primary-1",
+  "acidic-charge-variants-primary-1",
+  "far-uv-cd-primary-1",
+]);
 
 /** Statuses that must NOT carry a profile, because they admit no workflow. */
 const STATUSES_WITHOUT_PROFILE = new Set(["display-only", "rule-not-defined"]);
@@ -59,6 +64,21 @@ function loadPrimaryStructureMethods() {
     }
   }
   return { byMethodId, itemIds };
+}
+
+function loadAllMethods() {
+  const text = readFileSync(ITEMS_PATH, "utf8");
+  const anchor = text.indexOf("characterizationItems");
+  const start = text.indexOf("= [", anchor) + 2;
+  const end = text.lastIndexOf("]") + 1;
+  const items = JSON.parse(text.slice(start, end));
+  const byMethodId = new Map();
+  for (const item of items) {
+    for (const method of item.methods) {
+      byMethodId.set(method.id, { itemId: item.id, name: method.name.zh });
+    }
+  }
+  return byMethodId;
 }
 
 /** Split the hand-written config into one text block per entry, then read the
@@ -148,6 +168,7 @@ function loadUnverifiedGatingTools() {
 
 function main() {
   const { byMethodId, itemIds } = loadPrimaryStructureMethods();
+  const allMethods = loadAllMethods();
   const configs = loadConfigBlocks();
   const completeness = loadSchemeCompleteness();
   const gatingTools = loadUnverifiedGatingTools();
@@ -176,9 +197,13 @@ function main() {
     }
     seen.add(config.methodId);
 
-    const method = byMethodId.get(config.methodId);
+    const method = byMethodId.get(config.methodId) ?? allMethods.get(config.methodId);
     if (!method) {
-      fail(`${config.methodId}: not a primary-structure method id`);
+      fail(`${config.methodId}: not a characterization method id`);
+      continue;
+    }
+    if (!byMethodId.has(config.methodId) && !CURVE_OVERLAY_METHOD_IDS.has(config.methodId)) {
+      fail(`${config.methodId}: extra configs are limited to the P26 curve-overlay primaries`);
       continue;
     }
     if (config.itemId !== method.itemId) {
@@ -190,6 +215,12 @@ function main() {
   }
   for (const methodId of byMethodId.keys()) {
     if (!seen.has(methodId)) fail(`${methodId}: no analysis config entry`);
+  }
+  for (const methodId of CURVE_OVERLAY_METHOD_IDS) {
+    if (!seen.has(methodId)) fail(`${methodId}: P26 curve-overlay primary has no config entry`);
+    if (!allMethods.has(methodId)) {
+      fail(`${methodId}: not present in characterization-items.ts`);
+    }
   }
 
   // 2. Status invariants.
@@ -318,6 +349,8 @@ function main() {
   console.log("----------------------------");
   console.log(`primary-structure methods    : ${byMethodId.size}`);
   console.log(`configured                   : ${configs.length}`);
+  console.log(`  primary-structure covered  : ${[...byMethodId.keys()].filter((id) => seen.has(id)).length}`);
+  console.log(`  curve-overlay extras       : ${[...CURVE_OVERLAY_METHOD_IDS].filter((id) => seen.has(id)).length}`);
   console.log(`  by status                  : ${JSON.stringify(statusCounts)}`);
   console.log(`  by profile                 : ${JSON.stringify(profileCounts)}`);
   console.log(
@@ -330,9 +363,9 @@ function main() {
 
   if (failures.length === 0) {
     console.log("");
-    console.log("Every primary-structure method has exactly one config entry, every");
-    console.log("method has at most one profile, and no method claims to be analyzable");
-    console.log("while its rule is absent or its tools are unverified.");
+    console.log("Every primary-structure method has exactly one config entry; P26 adds three");
+    console.log("curve-overlay primaries that exist in characterization-items.ts. Analyzable");
+    console.log("methods must not depend on unverified gating tools.");
     console.log("");
     console.log("Note: this checks coverage, id linkage and status invariants only, NOT");
     console.log("whether the profile assignment is scientifically the right one.");

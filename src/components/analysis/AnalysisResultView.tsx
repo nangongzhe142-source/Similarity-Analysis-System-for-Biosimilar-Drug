@@ -77,6 +77,68 @@ function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
 
+interface CurveRegionRow {
+  id: string;
+  referencePercent: number;
+  candidatePercent: number;
+  deltaPp: number;
+}
+
+function curveRegionsFromParameters(parameters: Record<string, unknown>): CurveRegionRow[] {
+  const raw = parameters.curveRegions;
+  if (!Array.isArray(raw)) {
+    return [];
+  }
+  const rows: CurveRegionRow[] = [];
+  for (const entry of raw) {
+    const record = asRecord(entry);
+    if (!record || typeof record.id !== "string") continue;
+    if (
+      !isFiniteNumber(record.referencePercent) ||
+      !isFiniteNumber(record.candidatePercent) ||
+      !isFiniteNumber(record.deltaPp)
+    ) {
+      continue;
+    }
+    rows.push({
+      id: record.id,
+      referencePercent: record.referencePercent,
+      candidatePercent: record.candidatePercent,
+      deltaPp: record.deltaPp,
+    });
+  }
+  return rows;
+}
+
+interface CurvePeakRow {
+  x: number;
+  height: number;
+}
+
+function curvePeaksFromParameters(
+  parameters: Record<string, unknown>,
+): { reference: CurvePeakRow[]; candidate: CurvePeakRow[] } {
+  const raw = asRecord(parameters.curvePeaks);
+  if (!raw) {
+    return { reference: [], candidate: [] };
+  }
+  const parseSide = (value: unknown): CurvePeakRow[] => {
+    if (!Array.isArray(value)) return [];
+    const rows: CurvePeakRow[] = [];
+    for (const entry of value) {
+      const record = asRecord(entry);
+      if (!record) continue;
+      if (!isFiniteNumber(record.x) || !isFiniteNumber(record.height)) continue;
+      rows.push({ x: record.x, height: record.height });
+    }
+    return rows;
+  };
+  return {
+    reference: parseSide(raw.reference),
+    candidate: parseSide(raw.candidate),
+  };
+}
+
 function sequenceLengthFromResult(result: AnalysisResult): number {
   const raw = result.evidence.parameters.sequenceLength;
   if (typeof raw === "number" && raw > 0) {
@@ -177,9 +239,24 @@ export function AnalysisResultView({ result }: AnalysisResultViewProps) {
   const overlayCandidate =
     candidateChromatogram.length > 0 ? candidateChromatogram : normalizedOverlay.candidate;
   const notRetentionTime = result.evidence.parameters.normalizedTracesAreNotRetentionTime === true;
-  const overlayXLabel = notRetentionTime
-    ? messages.methodAnalysis.normalizedColumnLabel
-    : messages.methodAnalysis.retentionTimeLabel;
+  const overlayXFromParams = asRecord(result.evidence.parameters.overlayXLabel);
+  const overlayXLabel =
+    overlayXFromParams && typeof overlayXFromParams.zh === "string"
+      ? localize({
+          zh: overlayXFromParams.zh,
+          en: typeof overlayXFromParams.en === "string" ? overlayXFromParams.en : overlayXFromParams.zh,
+        })
+      : notRetentionTime
+        ? messages.methodAnalysis.normalizedColumnLabel
+        : messages.methodAnalysis.retentionTimeLabel;
+  const pearsonR = isFiniteNumber(result.evidence.parameters.pearsonR)
+    ? result.evidence.parameters.pearsonR
+    : null;
+  const rmse = isFiniteNumber(result.evidence.parameters.rmse)
+    ? result.evidence.parameters.rmse
+    : null;
+  const curveRegions = curveRegionsFromParameters(result.evidence.parameters);
+  const curvePeaks = curvePeaksFromParameters(result.evidence.parameters);
   const signatures = asRecord(result.evidence.parameters.signaturePeptides);
   const innovatorPeptide =
     typeof signatures?.innovator === "string" ? signatures.innovator : undefined;
@@ -234,12 +311,78 @@ export function AnalysisResultView({ result }: AnalysisResultViewProps) {
             title={messages.methodAnalysis.imageComparisonTitle}
             localize={localize}
           />
-        ) : (
+        ) : result.profile === "curve-overlay" ? null : (
           <div className="rounded border border-dashed border-slate-200 p-3 text-[11px] text-slate-500">
             {messages.methodAnalysis.imageComparisonTitle}
           </div>
         )}
       </div>
+
+      {pearsonR !== null || rmse !== null || curveRegions.length > 0 ? (
+        <div className="rounded border border-slate-200 bg-slate-50 p-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            {messages.methodAnalysis.curveMetricsTitle}
+          </p>
+          <dl className="mt-2 grid gap-2 text-sm sm:grid-cols-2">
+            {pearsonR !== null ? (
+              <div>
+                <dt className="font-semibold text-slate-600">
+                  {messages.methodAnalysis.curvePearsonLabel}
+                </dt>
+                <dd className="font-mono text-slate-800">{pearsonR.toFixed(4)}</dd>
+              </div>
+            ) : null}
+            {rmse !== null ? (
+              <div>
+                <dt className="font-semibold text-slate-600">{messages.methodAnalysis.curveRmseLabel}</dt>
+                <dd className="font-mono text-slate-800">{rmse.toFixed(4)}</dd>
+              </div>
+            ) : null}
+          </dl>
+          {curveRegions.length > 0 ? (
+            <div className="mt-3 max-h-40 overflow-auto rounded border border-slate-200 bg-white">
+              <table className="w-full text-left text-[11px]">
+                <thead className="bg-slate-50 text-slate-600">
+                  <tr>
+                    <th className="px-2 py-1 font-semibold">
+                      {messages.methodAnalysis.curveRegionNameColumn}
+                    </th>
+                    <th className="px-2 py-1 font-semibold">
+                      {messages.methodAnalysis.curveReferencePercentColumn}
+                    </th>
+                    <th className="px-2 py-1 font-semibold">
+                      {messages.methodAnalysis.curveCandidatePercentColumn}
+                    </th>
+                    <th className="px-2 py-1 font-semibold">
+                      {messages.methodAnalysis.curveDeltaPpColumn}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {curveRegions.map((row) => (
+                    <tr key={row.id} className="border-t border-slate-100 font-mono">
+                      <td className="px-2 py-0.5">{row.id}</td>
+                      <td className="px-2 py-0.5">{row.referencePercent.toFixed(2)}</td>
+                      <td className="px-2 py-0.5">{row.candidatePercent.toFixed(2)}</td>
+                      <td className="px-2 py-0.5">{row.deltaPp.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+          {curvePeaks.reference.length > 0 || curvePeaks.candidate.length > 0 ? (
+            <p className="mt-2 text-[11px] text-slate-600">
+              {messages.methodAnalysis.curvePeakTableTitle}:{" "}
+              {messages.methodAnalysis.referenceTrace}{" "}
+              {curvePeaks.reference.map((peak) => peak.x.toFixed(2)).join(", ") || "—"}
+              {" · "}
+              {messages.methodAnalysis.candidateTrace}{" "}
+              {curvePeaks.candidate.map((peak) => peak.x.toFixed(2)).join(", ") || "—"}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       <dl className="grid gap-2 text-sm sm:grid-cols-2">
         {masses.length > 0 ? (

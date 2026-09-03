@@ -132,19 +132,21 @@ export function MethodToolPanel({ methodId }: MethodToolPanelProps) {
 
   if (!survey) {
     return (
-      <section className="rounded-lg border border-slate-200 bg-white p-4">
-        <h3 className="text-sm font-semibold text-slate-700">{toolMessages.sectionTitle}</h3>
-        <p className="mt-2 text-sm font-medium text-slate-500">{toolMessages.notSurveyedTitle}</p>
-        <p className="mt-1 text-xs leading-relaxed text-slate-400">{toolMessages.notSurveyedText}</p>
+      <section className="glass-surface glass-edge relative p-4">
+        <h3 className="text-sm font-semibold text-navy-900">{toolMessages.sectionTitle}</h3>
+        <p className="mt-2 text-sm font-medium text-ink">{toolMessages.notSurveyedTitle}</p>
+        <p className="mt-1 text-xs leading-relaxed text-ink-secondary">
+          {toolMessages.notSurveyedText}
+        </p>
       </section>
     );
   }
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-4">
+    <section className="glass-surface glass-edge relative p-4">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-sm font-semibold text-slate-700">{toolMessages.sectionTitle}</h3>
-        <span className="text-xs text-slate-400">
+        <h3 className="text-sm font-semibold text-navy-900">{toolMessages.sectionTitle}</h3>
+        <span className="text-xs text-ink-secondary">
           {toolMessages.surveyedOnLabel} {survey.surveyedOn}
         </span>
       </div>
@@ -163,10 +165,6 @@ export function MethodToolPanel({ methodId }: MethodToolPanelProps) {
           ))}
         </div>
       ) : null}
-
-      <p className="mt-3 border-t border-slate-200 pt-2 text-[11px] leading-relaxed text-slate-500">
-        {toolMessages.disclaimer}
-      </p>
     </section>
   );
 }
