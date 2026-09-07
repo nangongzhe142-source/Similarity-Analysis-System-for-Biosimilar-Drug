@@ -1834,3 +1834,319 @@ Done
 未连上时每 4 秒再打 `/api/analysis/health`，本仓库 FastAPI 起来后红框与侧栏引擎状态会自行恢复。
 仍只走本仓库 8765 转发，不读对方 8000 后端。
 
+---
+
+## 申报输入：审评员读屏采集与药企逐项填报（T 系列）
+
+> 范围：在本仓库新增两种申报输入通道——审评员从屏幕采集本帧、药企在单一向导中逐项填入。只改当前仓库，不改 `a branch/`。
+> 性质：浏览器内会话草稿。读屏结果是屏幕截图 + 视觉 API 草稿，必须人工复核；药企填报是多批数值 + 图谱，不是综合判别的支持/不支持。
+> 约束：不改 `src/data/characterization-items.ts`、`src/data/categories.ts`；不改 `AnalysisResultView` 语义；不改综合判别汇总与 `demoStatus`；不登录/不爬取/不注入药审中心；不把截图送进 Dify 聊天；不把视觉密钥写入前端或 `NEXT_PUBLIC_*`；未确认不得调用 analysis-service；每次只改一个文件。
+
+### 已核实现状（实施前只读，2026-09-04）
+
+- 写入目标：`D:\生物类似药判别系统\生物类似药相似性分析系统`，App Router 在 `src/app/`。
+- 技术栈：Next.js 16.3.0 / React 19.2.8 / TypeScript 5.9.3 strict / Tailwind CSS 4.3.3。
+- 工作台首页：`src/app/project/page.tsx`（`/` 已 redirect 到 `/project`）。现有「企业整套申报材料统一入口」只按扩展名表面分类。
+- 61 项目录：`src/data/characterization-items.ts`（只读）。8 大类：`src/data/categories.ts`（只读）。
+- 可计算项：`method-analysis-config.ts` 的 `status === "analyzable"` 且落入 `computableItemIds`。
+- 分析上传：`MethodAnalysisPanel` + `analysis-uploads.ts`；图轴标定：`ImageAxisCalibrationPicker`。
+- 助手：`src/lib/assistant/chat-request.ts` 拦「从截图读峰」；读屏识别不得走该聊天白名单。
+- 冻结业务哈希：`characterization-items.ts` = `57b5e99ab521b925b2e12dbffa7cd710e823ac473e419e617dd523793037c3df`。
+
+### 冻结实现约定
+
+1. 角色仅本地切换：`reviewer` | `sponsor`，存 localStorage。不接药审中心账号，不新做完整登录产品。
+2. 路由仅：`/project`（身份 + 两张入口卡 + 既有文件 dropzone 第三通道）、`/project/intake/screen`（审评员）、`/project/intake/sponsor`（药企 61 项向导）。不新建 `/modules/*`，不建根级 `app/`。非对应身份 redirect 回 `/project`。`/item/[id]` 不新增药企表单。`/comprehensive-analysis` 不改判定逻辑。
+3. 审评员必须亲手点分享，使用 `navigator.mediaDevices.getDisplayMedia({ video: true, audio: false })`。禁止连接药审 URL、注入药审 DOM、无授权持续录像、按秒自动抓帧、本轮做视频文件。
+4. 主操作是「捕获本帧」：从当前视频流截 PNG，可连点多次成图库。unmount / 停止分享必须 `track.stop()`。
+5. 每帧经可配置视觉 API 抽取。来源写死：`source = screen-capture`，`extractor = vision-api`，`reviewState = draft | confirmed | rejected`。界面标明「屏幕截图 / 非仪器原始文件 / AI 草稿须复核」。禁止写成药审中心官方导出。
+6. AI 只建议：能对应 `itemId` 的表数字写入药企同构数值表草稿；图谱须用户完成坐标轴标定，且仅当 item 属于 `computableItemIds` 且方法 `allowsImageFallback` 或接受 `figure-image` 才允许「送入本项分析」；其余只当附件。未确认不得送 analysis-service，不得 createJob。
+7. 药企向导是唯一逐项填入界面：左 8 类、主区一项、可省略（省略不进完成度分母、不改 `demoStatus`）。数值为参照/候选多批 + 单位；图谱受 `acceptAttributeForInputKinds` 约束。可计算且双侧图谱备齐时只链到 `/item/{id}`，不在向导里 createJob。
+8. 视觉密钥仅服务端：`SCREEN_INTAKE_VISION_URL`、`SCREEN_INTAKE_VISION_KEY`（禁止 git、禁止 `NEXT_PUBLIC_*`）。路由 `POST /api/screen-intake/extract` 收 png/jpeg/webp，≤ 8MB/帧，魔数校验，内存限流，不落盘。浏览器不持有密钥。未配置时仍可截帧并人工填写。mock 仅 `NODE_ENV=test` 或 `SCREEN_INTAKE_VISION_MOCK=1`。
+9. 视觉契约冻结：`{ regions: Array<{ kind: "table"|"spectrum"|"other"; itemId: string | null; confidence: number; text?: string; lots?: Array<{ role: "reference"|"candidate"; lotId: string; value: number; unit?: string }>; note?: string }> }`。未知 `itemId` 强制 `null`，进未匹配收件箱，禁止 AI 自造项目。适配器内部可换 OpenAI/Qwen/Claude 兼容 HTTP JSON，契约不许改。本轮不把截图送 Dify。
+10. 会话：`IntakeProvider` 内存为主，刷新丢失可接受；药企 61 项初始 key 必须是 `item.id`。数值表与图谱不写入 `AnalysisResult`，不调用质谱引擎。图像分析仍用现有 provenance，并叠加 `screen-capture` 或 `sponsor-upload`。禁止用抽出文字判断相似/不相似。
+
+### 步骤清单
+
+- T0 本实施计划新章节（本节）
+- T1 `src/types/intake.ts`
+- T2 `src/lib/screen-intake/vision-contract.ts`
+- T3 `src/lib/screen-intake/session-rules.ts`
+- T4 `src/lib/screen-intake/vision-client.ts`
+- T5 `src/app/api/screen-intake/extract/route.ts`
+- T6 `src/i18n/messages.ts`
+- T7 `src/components/intake/IntakeProvider.tsx`
+- T8 `src/app/layout.tsx` 挂载 IntakeProvider
+- T9 `src/app/project/page.tsx` 身份切换 + 两张入口卡
+- T10 `src/components/intake/ScreenIntakeView.tsx` 分享/捕获本帧/图库
+- T11 `src/app/project/intake/screen/page.tsx`
+- T12 区域确认、未匹配收件箱、草稿复核（续写读屏视图）
+- T13 `src/components/intake/SponsorIntakeView.tsx` 向导壳
+- T14 `src/app/project/intake/sponsor/page.tsx`
+- T15 药企数值表 + 双图谱上传（续写向导）
+- T16 `src/components/intake/IntakeSourceBar.tsx` 与分析页只读来源条
+- T17 `scripts/verify_intake.mjs` + `package.json` 的 check
+- T18 `npm run check` 全绿
+
+### 步骤 T0：写入本实施计划并冻结约定
+
+文件：`implementation-plan.mdc`
+
+Done
+
+记录读屏采集与药企逐项填报的路由、来源标记、视觉契约、未确认不得送分析、以及禁止登录药审中心。
+未改业务代码；`characterization-items.ts` 与综合判别汇总保持只读。
+
+### 步骤 T1：申报输入类型
+
+文件：`src/types/intake.ts`
+
+Done
+
+定义角色、多批数值行、药企条目、读屏帧/区域与会话结构，来源与抽取器为字面量常量。
+未写入 AnalysisResult，也未改 models.ts。
+
+### 步骤 T2：视觉契约与未知 itemId 清洗
+
+文件：`src/lib/screen-intake/vision-contract.ts`
+
+Done
+
+未知 itemId 强制为 null；非法 kind 降为 other。契约 JSON 与清洗纯函数可被路由与校验脚本共用。
+
+### 步骤 T3：完成度与送分析闸门纯函数
+
+文件：`src/lib/screen-intake/session-rules.ts`
+
+Done
+
+省略项不进完成度分母；mock/抽取写入保持 draft；未确认或未标定不得送分析。
+不改 computableItemIds 生成逻辑。
+
+### 步骤 T4：视觉客户端
+
+文件：`src/lib/screen-intake/vision-client.ts`
+
+Done
+
+从服务端环境变量读 URL/Key；mock 仅 test 或 SCREEN_INTAKE_VISION_MOCK=1。
+适配器走 OpenAI 兼容 HTTP JSON，返回值经契约清洗。
+
+### 步骤 T5：抽取路由
+
+文件：`src/app/api/screen-intake/extract/route.ts`
+
+Done
+
+multipart 收图，魔数与 8MB 上限、内存限流；服务端不落盘、不把密钥给浏览器。
+日志只记字节数、kind 与 itemId。
+
+### 步骤 T6：中英文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+补齐身份、入口卡、同意声明、读屏工作台与药企向导的 zh/en。
+未改既有键语义。
+
+### 步骤 T7：会话 Provider
+
+文件：`src/components/intake/IntakeProvider.tsx`
+
+Done
+
+内存会话持有帧、药企 61 项草稿与未匹配区；角色写入 localStorage。
+抽取走 `/api/screen-intake/extract`，不走助手聊天。
+
+### 步骤 T8：根布局挂载
+
+文件：`src/app/layout.tsx`
+
+Done
+
+在 WorkbenchProvider 内挂 IntakeProvider，使 `/project` 与向导共享会话。
+未改探索轨、抽屉与助手挂载。
+
+### 步骤 T9：工作台首页入口
+
+文件：`src/app/project/page.tsx`
+
+Done
+
+本机身份切换后显示对应入口卡；药企只见逐项填入，审评员只见读屏采集。
+既有整套文件 dropzone 仍只按扩展名分类。
+
+### 步骤 T10–T12：读屏工作台
+
+文件：`src/components/intake/ScreenIntakeView.tsx`；`src/app/project/intake/screen/page.tsx`
+
+Done
+
+同意后 getDisplayMedia，捕获本帧进图库，停止分享时 track.stop。
+区域可指定 61 id、确认/驳回；未知 id 进未匹配收件箱；全部已复核需对话框。
+
+### 步骤 T13–T15：药企向导
+
+文件：`src/components/intake/SponsorIntakeView.tsx`；`src/app/project/intake/sponsor/page.tsx`
+
+Done
+
+八大类导航 + 翻项 + 省略原因；数值表与双侧图谱上传。可计算项只链到 `/item/{id}`，不 createJob。
+
+### 步骤 T16：分析页只读来源条
+
+文件：`src/components/intake/IntakeSourceBar.tsx`；`MethodAnalysisPanel.tsx`；`ItemAnalysisFrame.tsx`
+
+Done
+
+已确认读屏图或药企图谱显示来源与复核状态；未确认不能填入比对槽。
+未改 AnalysisResultView 与 createJob 语义。
+
+### 步骤 T17：校验脚本接入 check
+
+文件：`scripts/verify_intake.mjs`；`package.json`
+
+Done
+
+锁定 characterization-items 哈希、未知 id 丢弃、省略不分母、草稿不可送分析、助手白名单不放宽。
+
+### 步骤 T18：全量校验
+
+命令：`npm run check`
+
+Done
+
+`npm run check` 退出码 0，含新增 `verify:intake`。lint 仅既有 `no-img-element` 警告。
+
+### 步骤 T19：实质化「捕获本帧」
+
+> 目标：三次点击必须得到三张 PNG。分享后须等到视频有解码帧才允许捕获；连点串行写出，禁止 `videoWidth===0` 时静默丢弃。
+> 约束：生产路径仍是用户点选后的 `getDisplayMedia`；不自动按秒抓；不装 Playwright。探针仅用本机 Edge/Chrome 的 display-capture 自动选源参数去点同一套按钮。
+
+- T19a `implementation-plan.mdc`（本节）
+- T19b `src/lib/screen-intake/capture-frame.ts`
+- T19c `src/i18n/messages.ts` 等待首帧 / 已捕获 n 帧
+- T19d 改 `ScreenIntakeView.tsx`：等帧、串行捕获、停轨、data-testid
+- T19e `scripts/verify_intake.mjs` 覆盖 stop/ready/队列断言
+- T19f `scripts/probe_screen_capture.mjs` 本机浏览器实点三次
+
+### 步骤 T19a：写入实质化捕获步骤
+
+文件：`implementation-plan.mdc`
+
+Done
+
+冻结「等首帧再捕获、连点串行成三张 PNG、探针仍走 getDisplayMedia」。
+不新增 Playwright 依赖，不改分析语义。
+
+### 步骤 T19b：捕获纯函数
+
+文件：`src/lib/screen-intake/capture-frame.ts`
+
+Done
+
+抽出等首帧、按序号写 PNG、停轨与串行队列。零尺寸或未解码画面不得捕获。
+
+### 步骤 T19c：捕获状态文案
+
+文件：`src/i18n/messages.ts`
+
+Done
+
+补齐等待首帧、画面就绪、捕获失败与已捕获帧数的中英文。
+
+### 步骤 T19d：读屏视图接上串行捕获
+
+文件：`src/components/intake/ScreenIntakeView.tsx`
+
+Done
+
+「捕获本帧」在首帧就绪前禁用；连点进入队列，每点一张 PNG。停止分享与卸载仍 stopMediaTracks。
+
+### 步骤 T19e：校验捕获闸门
+
+文件：`scripts/verify_intake.mjs`
+
+Done
+
+断言 live track 可被 stop、未就绪视频不可捕获、连点文件名不碰撞、视图使用等待首帧与队列。
+
+### 步骤 T19f：本机浏览器实点探针
+
+文件：`scripts/probe_screen_capture.mjs`
+
+Done
+
+用本机 Chrome/Edge 自动接受 display-capture 选源后，点同意、分享、捕获三次、停止，并确认轨道 ended。
+不进入 `npm run check`；命令为 `npm run probe:screen-capture`。
+
+### 步骤 T20：水合后再实点三次捕获
+
+> 目标：生产路径仍是用户点选后的 getDisplayMedia；三次点击必须得到三张 PNG。探针须等到 `data-intake-ready` 后再点身份与分享，并用真实鼠标手势保留 getDisplayMedia 所需的瞬时激活。等帧须避免漏掉已经发生的 loadeddata。
+> 约束：不装 Playwright；探针不进入 `npm run check`；不把 canvas.captureStream 当成正式分享。
+
+- T20a `implementation-plan.mdc`（本节）
+- T20b `src/lib/screen-intake/capture-frame.ts` 订阅后再查一次、轮询首帧
+- T20c `src/components/intake/ScreenIntakeView.tsx` 分享中轮询就绪，首帧超时不停轨
+- T20d `src/components/intake/IntakeProvider.tsx` `data-intake-ready` / `data-intake-role`
+- T20e `scripts/probe_screen_capture.mjs` 水合闸门 + Input.dispatchMouseEvent
+- T20f `scripts/verify_intake.mjs` 覆盖上述闸门
+- T20g `next.config.ts` `allowedDevOrigins: ['127.0.0.1']`
+
+### 步骤 T20a：写入水合后实点步骤
+
+文件：`implementation-plan.mdc`
+
+Done
+
+冻结「等水合再点、真实鼠标手势、等帧竞态补查」。不改分析语义。
+
+### 步骤 T20b：等帧补查与轮询
+
+文件：`src/lib/screen-intake/capture-frame.ts`
+
+Done
+
+订阅 loadedmetadata/loadeddata/canplay/playing/resize 后再立即 onReady，并以 interval 轮询，避免首帧事件被错过。
+
+### 步骤 T20c：分享中仍可等到画面
+
+文件：`src/components/intake/ScreenIntakeView.tsx`
+
+Done
+
+getDisplayMedia 成功后即使首帧等待超时也保持分享；sharing 期间轮询 isVideoFrameReady 再启用「捕获本帧」。
+
+### 步骤 T20d：水合与身份标记
+
+文件：`src/components/intake/IntakeProvider.tsx`
+
+Done
+
+客户端挂载后写 data-intake-ready；身份变化写 data-intake-role，供探针等待 React 已接管点击。
+
+### 步骤 T20e：探针真实鼠标
+
+文件：`scripts/probe_screen_capture.mjs`
+
+Done
+
+等到 data-intake-ready 再点审评员；用 Input.dispatchMouseEvent 点同意、分享、捕获三次、停止。仍走 getDisplayMedia。
+
+### 步骤 T20f：校验水合闸门
+
+文件：`scripts/verify_intake.mjs`
+
+Done
+
+断言等帧会补查、Provider 写水合标记、探针使用真实鼠标手势。
+
+### 步骤 T20g：开发机允许 127.0.0.1 加载客户端包
+
+文件：`next.config.ts`
+
+Done
+
+Next 16 把 127.0.0.1 与 localhost 视为跨源，不放行则探针页只有 SSR、按钮无 React 处理函数。
+

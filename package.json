@@ -19,7 +19,9 @@
     "verify:assistant": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify_assistant.mjs",
     "verify:ui-shell": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify_ui_shell.mjs",
     "verify:workbench-shell": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify_workbench_shell.mjs",
-    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content && npm run verify:schemes && npm run verify:analysis-config && npm run verify:analysis-contract && npm run verify:primary-analysis && npm run verify:comprehensive-analysis && npm run verify:assistant && npm run verify:ui-shell && npm run verify:workbench-shell"
+    "verify:intake": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify_intake.mjs",
+    "probe:screen-capture": "node scripts/probe_screen_capture.mjs",
+    "check": "npm run typecheck && npm run lint && npm run verify:cases && npm run verify:demo && npm run verify:method-content && npm run verify:schemes && npm run verify:analysis-config && npm run verify:analysis-contract && npm run verify:primary-analysis && npm run verify:comprehensive-analysis && npm run verify:assistant && npm run verify:ui-shell && npm run verify:workbench-shell && npm run verify:intake"
   },
   "dependencies": {
     "next": "16.3.0",

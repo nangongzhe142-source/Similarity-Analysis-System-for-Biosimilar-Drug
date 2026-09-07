@@ -30,6 +30,7 @@ import type { AnalysisJobSnapshot } from "@/types/analysis-contract";
 import type { DetectionMethod, MethodAnalysisStatus } from "@/types/models";
 import { AnalysisResultView } from "@/components/analysis/AnalysisResultView";
 import { ImageAxisCalibrationPicker } from "@/components/analysis/ImageAxisCalibrationPicker";
+import { IntakeSourceBar } from "@/components/intake/IntakeSourceBar";
 import {
   isFigureImageFileName,
   type ImageCalibrationPayload,
@@ -491,6 +492,17 @@ export function MethodAnalysisPanel({ itemId, method }: MethodAnalysisPanelProps
 
       {showWorkflow && workflowProfile ? (
         <div className="mt-4 border-t border-slate-200/80 pt-4">
+          <IntakeSourceBar
+            itemId={itemId}
+            onUseFiles={(files) => {
+              const next = [files.candidate, files.reference].filter(
+                (file): file is File => file !== null,
+              );
+              if (next.length > 0) {
+                setMeasurementFiles(next);
+              }
+            }}
+          />
           {serviceOnline === false ? (
             <div className="rounded border border-rose-300 bg-white p-3 text-sm text-rose-900">
               <p className="font-semibold">{messages.methodAnalysis.serviceOfflineTitle}</p>

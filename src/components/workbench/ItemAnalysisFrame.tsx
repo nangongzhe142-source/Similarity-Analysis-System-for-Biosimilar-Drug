@@ -1,6 +1,7 @@
 "use client";
 
 import { MethodSelector } from "@/components/MethodSelector";
+import { IntakeSourceBar } from "@/components/intake/IntakeSourceBar";
 import {
   getItemFiles,
   getItemRun,
@@ -86,10 +87,14 @@ export function ItemAnalysisFrame({
         </div>
         {computable ? (
           <div style={{ padding: "16px 20px 20px" }}>
+            <IntakeSourceBar itemId={itemId} />
             <MethodSelector itemId={item.id} methods={item.methods} />
           </div>
         ) : (
           <>
+            <div style={{ padding: "16px 20px 0" }}>
+              <IntakeSourceBar itemId={itemId} />
+            </div>
             <div className="module-input-summary">
               <label className="input-card">
                 <span>{copy.colCandidate}</span>

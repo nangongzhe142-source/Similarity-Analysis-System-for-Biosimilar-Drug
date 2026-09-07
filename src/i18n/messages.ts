@@ -522,6 +522,7 @@ export interface UiMessages {
     siteDisclaimerLine: string;
   };
   workbench: WorkbenchMessages;
+  intake: IntakeMessages;
 }
 
 export interface WorkbenchMessages {
@@ -860,6 +861,108 @@ export interface WorkbenchMessages {
   batchAttentionCount: string;
   waitingRun: string;
   siteDisclaimerLine: string;
+}
+
+export interface IntakeMessages {
+  roleLabel: string;
+  roleReviewer: string;
+  roleSponsor: string;
+  roleHint: string;
+  cardScreenEyebrow: string;
+  cardScreenTitle: string;
+  cardScreenBody: string;
+  cardScreenAction: string;
+  cardSponsorEyebrow: string;
+  cardSponsorTitle: string;
+  cardSponsorBody: string;
+  cardSponsorAction: string;
+  cardDisabledHint: string;
+  existingChannelNote: string;
+  consentTitle: string;
+  consentText: string;
+  consentCheckbox: string;
+  startShare: string;
+  stopShare: string;
+  captureFrame: string;
+  videoWaiting: string;
+  videoReadyHint: string;
+  captureFailed: string;
+  capturedCount: string;
+  sharing: string;
+  notSharing: string;
+  shareFailed: string;
+  galleryTitle: string;
+  noFrames: string;
+  extractQueued: string;
+  extractRunning: string;
+  extractSucceeded: string;
+  extractFailed: string;
+  extractSkipped: string;
+  visionUnconfigured: string;
+  extractNow: string;
+  mockEnabled: string;
+  regionKindTable: string;
+  regionKindSpectrum: string;
+  regionKindOther: string;
+  assignItem: string;
+  assignRole: string;
+  pickItemPlaceholder: string;
+  confirmWrite: string;
+  rejectRegion: string;
+  unmatchedTitle: string;
+  unmatchedEmpty: string;
+  unmatchedHint: string;
+  draftsTitle: string;
+  draftChip: string;
+  confirmAll: string;
+  confirmAllDialog: string;
+  confirmAllYes: string;
+  confirmAllNo: string;
+  sourceScreenCapture: string;
+  sourceSponsorUpload: string;
+  extractorVision: string;
+  notInstrumentRaw: string;
+  aiDraftNeedsReview: string;
+  sendToAnalysis: string;
+  sendToAnalysisBlocked: string;
+  attachmentOnly: string;
+  calibrationRequired: string;
+  backToProject: string;
+  wizardProgress: string;
+  omitItem: string;
+  omitReason: string;
+  unitLabel: string;
+  addLot: string;
+  removeLot: string;
+  lotRole: string;
+  lotId: string;
+  lotValue: string;
+  notes: string;
+  candidateFigure: string;
+  referenceFigure: string;
+  previousItem: string;
+  nextItem: string;
+  finishReturn: string;
+  incompleteList: string;
+  goToItem: string;
+  openItemAnalysis: string;
+  purposeSummary: string;
+  indicatorSummary: string;
+  completenessLabel: string;
+  omittedExcludedNote: string;
+  reviewStateDraft: string;
+  reviewStateConfirmed: string;
+  reviewStateRejected: string;
+  roleCandidate: string;
+  roleReference: string;
+  noItemSelected: string;
+  fileTooLarge: string;
+  fileTypeRejected: string;
+  rateLimited: string;
+  sourceBarTitle: string;
+  sourceBarReview: string;
+  sourceBarUseFiles: string;
+  sourceBarCannotRun: string;
 }
 
 export const uiMessages: Record<Locale, UiMessages> = {
@@ -1757,6 +1860,110 @@ export const uiMessages: Record<Locale, UiMessages> = {
       waitingRun: "等待运行",
       siteDisclaimerLine:
         "本系统仅用于框架演示与教学，不构成生物类似药认定或监管建议。",
+    },
+    intake: {
+      roleLabel: "本机身份",
+      roleReviewer: "审评员",
+      roleSponsor: "药企",
+      roleHint: "只在本机切换身份，不登录药审中心，不对接药审账号。",
+      cardScreenEyebrow: "REVIEWER SCREEN INTAKE",
+      cardScreenTitle: "从屏幕采集",
+      cardScreenBody:
+        "亲手分享窗口后捕获本帧。结果是屏幕截图与 AI 草稿，须人工复核，不是仪器原始文件。",
+      cardScreenAction: "进入读屏工作台",
+      cardSponsorEyebrow: "SPONSOR ITEM WIZARD",
+      cardSponsorTitle: "逐项填入",
+      cardSponsorBody:
+        "按 8 大类、61 项一次填一项：多批数值与图谱。不要打开 61 个项目页去填报。",
+      cardSponsorAction: "进入逐项向导",
+      cardDisabledHint: "请先选择对应身份。",
+      existingChannelNote: "下方整套文件入口仍只按扩展名分类，除非你把文件明确挂到某一项。",
+      consentTitle: "采集同意",
+      consentText:
+        "只采集您亲手选择分享的窗口或屏幕。本系统不登录药审中心、不连接药审网站、不在后台持续录像。截图含申报信息，一旦送视觉 API 即离开本机。",
+      consentCheckbox: "我已阅读并同意上述说明",
+      startShare: "开始分享",
+      stopShare: "停止分享",
+      captureFrame: "捕获本帧",
+      videoWaiting: "正在等待分享画面出现第一帧…",
+      videoReadyHint: "画面已就绪，可连点捕获本帧",
+      captureFailed: "本帧未能写成 PNG。请待预览出现后再点。",
+      capturedCount: "已捕获 {count} 帧",
+      sharing: "正在分享所选窗口",
+      notSharing: "尚未分享",
+      shareFailed: "浏览器拒绝或取消了屏幕分享。不会自动重试。",
+      galleryTitle: "本帧图库",
+      noFrames: "尚未捕获帧。",
+      extractQueued: "排队",
+      extractRunning: "抽取中",
+      extractSucceeded: "抽取成功",
+      extractFailed: "抽取失败",
+      extractSkipped: "未抽取",
+      visionUnconfigured: "未配置视觉 API",
+      extractNow: "抽取本帧",
+      mockEnabled: "当前为 mock 抽取（仅测试/开关）",
+      regionKindTable: "表格",
+      regionKindSpectrum: "图谱",
+      regionKindOther: "其他",
+      assignItem: "指定项目",
+      assignRole: "指定候选或参照",
+      pickItemPlaceholder: "选择 61 项之一",
+      confirmWrite: "确认写入",
+      rejectRegion: "驳回",
+      unmatchedTitle: "未匹配收件箱",
+      unmatchedEmpty: "没有未匹配区域。",
+      unmatchedHint: "未知项目不会被写入任何项，须人工指定后再确认。",
+      draftsTitle: "已写入草稿的项",
+      draftChip: "AI 草稿",
+      confirmAll: "全部标为已复核",
+      confirmAllDialog: "确认把当前全部 AI 草稿标为已复核？未打开对话框前不会改状态。",
+      confirmAllYes: "确认全部已复核",
+      confirmAllNo: "取消",
+      sourceScreenCapture: "屏幕截图",
+      sourceSponsorUpload: "药企上传",
+      extractorVision: "视觉 API",
+      notInstrumentRaw: "非仪器原始文件",
+      aiDraftNeedsReview: "AI 草稿须复核",
+      sendToAnalysis: "送入本项分析",
+      sendToAnalysisBlocked: "未确认、未标定或不可计算，不能送入分析。",
+      attachmentOnly: "仅附件预览，不参与计算。",
+      calibrationRequired: "图谱须先完成坐标轴标定。",
+      backToProject: "返回工作台首页",
+      wizardProgress: "完成度 {filled}/{total}",
+      omitItem: "本包不含此项",
+      omitReason: "省略原因",
+      unitLabel: "单位",
+      addLot: "增加批次行",
+      removeLot: "删除行",
+      lotRole: "角色",
+      lotId: "批号",
+      lotValue: "数值",
+      notes: "备注",
+      candidateFigure: "候选图谱",
+      referenceFigure: "参照图谱",
+      previousItem: "上一项",
+      nextItem: "下一项",
+      finishReturn: "完成并返回",
+      incompleteList: "未完成项",
+      goToItem: "跳到该项",
+      openItemAnalysis: "到本项分析页运行",
+      purposeSummary: "评价目的",
+      indicatorSummary: "检测指标",
+      completenessLabel: "向导完成度",
+      omittedExcludedNote: "省略项不计入完成度分母，也不是综合判别的「不适用」。",
+      reviewStateDraft: "草稿",
+      reviewStateConfirmed: "已确认",
+      reviewStateRejected: "已驳回",
+      roleCandidate: "候选药",
+      roleReference: "参照药",
+      noItemSelected: "请先指定项目。",
+      fileTooLarge: "单帧超过 8 MB。",
+      fileTypeRejected: "只接受 PNG / JPEG / WebP。",
+      rateLimited: "抽取过于频繁，请稍后再试。",
+      sourceBarTitle: "申报输入来源",
+      sourceBarReview: "复核状态",
+      sourceBarUseFiles: "填入本项比对槽",
+      sourceBarCannotRun: "未确认的读屏草稿不能送入分析服务。",
     },
     common: {
       supplementaryTag: "补充项",
@@ -2695,6 +2902,110 @@ export const uiMessages: Record<Locale, UiMessages> = {
       waitingRun: "Waiting to run",
       siteDisclaimerLine:
         "This system is for framework demonstration and teaching only. It does not constitute a biosimilar determination or regulatory advice.",
+    },
+    intake: {
+      roleLabel: "Local identity",
+      roleReviewer: "Reviewer",
+      roleSponsor: "Sponsor",
+      roleHint: "Switch identity on this device only. This does not log into a drug-review centre or use its accounts.",
+      cardScreenEyebrow: "REVIEWER SCREEN INTAKE",
+      cardScreenTitle: "Capture from the screen",
+      cardScreenBody:
+        "You share a window, then capture this frame. Results are screenshots and AI drafts that need human review — not instrument raw files.",
+      cardScreenAction: "Open screen intake",
+      cardSponsorEyebrow: "SPONSOR ITEM WIZARD",
+      cardSponsorTitle: "Fill in item by item",
+      cardSponsorBody:
+        "One wizard for 8 categories and 61 items: multi-lot values and figures. Do not open 61 item pages to fill this in.",
+      cardSponsorAction: "Open the item wizard",
+      cardDisabledHint: "Select the matching identity first.",
+      existingChannelNote: "The pack dropzone below still classifies by extension only, unless you attach a file to a specific item.",
+      consentTitle: "Capture consent",
+      consentText:
+        "Only the window or screen you choose to share is captured. This system does not log into a drug-review centre, does not connect to its website, and does not record in the background. Screenshots contain submission information and leave this device if sent to the vision API.",
+      consentCheckbox: "I have read and agree",
+      startShare: "Start sharing",
+      stopShare: "Stop sharing",
+      captureFrame: "Capture this frame",
+      videoWaiting: "Waiting for the first frame of the shared window…",
+      videoReadyHint: "The picture is ready. You can capture this frame repeatedly.",
+      captureFailed: "This frame could not be written as PNG. Wait until the preview appears.",
+      capturedCount: "{count} frames captured",
+      sharing: "Sharing the selected window",
+      notSharing: "Not sharing",
+      shareFailed: "The browser denied or cancelled display capture. It will not retry in a loop.",
+      galleryTitle: "Captured frames",
+      noFrames: "No frames captured yet.",
+      extractQueued: "Queued",
+      extractRunning: "Extracting",
+      extractSucceeded: "Extracted",
+      extractFailed: "Extract failed",
+      extractSkipped: "Not extracted",
+      visionUnconfigured: "Vision API is not configured",
+      extractNow: "Extract this frame",
+      mockEnabled: "Mock extraction is on (test / flag only)",
+      regionKindTable: "Table",
+      regionKindSpectrum: "Spectrum",
+      regionKindOther: "Other",
+      assignItem: "Assign item",
+      assignRole: "Assign candidate or reference",
+      pickItemPlaceholder: "Choose one of the 61 items",
+      confirmWrite: "Confirm and write",
+      rejectRegion: "Reject",
+      unmatchedTitle: "Unmatched inbox",
+      unmatchedEmpty: "No unmatched regions.",
+      unmatchedHint: "Unknown items are not written anywhere. Assign an item, then confirm.",
+      draftsTitle: "Items with AI drafts",
+      draftChip: "AI draft",
+      confirmAll: "Mark all as reviewed",
+      confirmAllDialog: "Mark every current AI draft as reviewed? Status does not change until you confirm this dialog.",
+      confirmAllYes: "Mark all reviewed",
+      confirmAllNo: "Cancel",
+      sourceScreenCapture: "Screen capture",
+      sourceSponsorUpload: "Sponsor upload",
+      extractorVision: "Vision API",
+      notInstrumentRaw: "Not an instrument raw file",
+      aiDraftNeedsReview: "AI draft must be reviewed",
+      sendToAnalysis: "Send to this item's analysis",
+      sendToAnalysisBlocked: "Unconfirmed, uncalibrated, or not computable — cannot send to analysis.",
+      attachmentOnly: "Attachment preview only; not used in computation.",
+      calibrationRequired: "Spectrum regions need axis calibration first.",
+      backToProject: "Back to the project home",
+      wizardProgress: "Complete {filled}/{total}",
+      omitItem: "This pack does not include this item",
+      omitReason: "Reason omitted",
+      unitLabel: "Unit",
+      addLot: "Add lot row",
+      removeLot: "Remove row",
+      lotRole: "Role",
+      lotId: "Lot id",
+      lotValue: "Value",
+      notes: "Notes",
+      candidateFigure: "Candidate figure",
+      referenceFigure: "Reference figure",
+      previousItem: "Previous item",
+      nextItem: "Next item",
+      finishReturn: "Finish and return",
+      incompleteList: "Incomplete items",
+      goToItem: "Jump to item",
+      openItemAnalysis: "Run on this item's analysis page",
+      purposeSummary: "Purpose",
+      indicatorSummary: "Readouts",
+      completenessLabel: "Wizard completeness",
+      omittedExcludedNote: "Omitted items are excluded from the completeness denominator and are not comprehensive-assessment “not applicable”.",
+      reviewStateDraft: "Draft",
+      reviewStateConfirmed: "Confirmed",
+      reviewStateRejected: "Rejected",
+      roleCandidate: "Candidate",
+      roleReference: "Reference",
+      noItemSelected: "Assign an item first.",
+      fileTooLarge: "A frame may not exceed 8 MB.",
+      fileTypeRejected: "Only PNG / JPEG / WebP are accepted.",
+      rateLimited: "Extraction is rate-limited. Try again shortly.",
+      sourceBarTitle: "Intake source",
+      sourceBarReview: "Review state",
+      sourceBarUseFiles: "Fill this item's comparison slots",
+      sourceBarCannotRun: "Unconfirmed screen-capture drafts cannot be sent to the analysis service.",
     },
     common: {
       supplementaryTag: "Supplementary",

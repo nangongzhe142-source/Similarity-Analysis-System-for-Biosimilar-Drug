@@ -6,6 +6,7 @@ import { AssistantWidget } from "@/components/assistant/AssistantWidget";
 import { DrawerStackProvider } from "@/components/drawer/DrawerStackProvider";
 import { DrawerStack } from "@/components/drawer/DrawerStack";
 import { SideExplorerRail } from "@/components/layout/SideExplorerRail";
+import { IntakeProvider } from "@/components/intake/IntakeProvider";
 import { WorkbenchProvider } from "@/components/workbench/WorkbenchProvider";
 import { WorkspaceShell } from "@/components/workbench/WorkspaceShell";
 
@@ -25,10 +26,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <LanguageProvider>
           <DrawerStackProvider>
             <WorkbenchProvider>
-              <WorkspaceShell>{children}</WorkspaceShell>
-              <SideExplorerRail />
-              <DrawerStack />
-              <AssistantWidget />
+              <IntakeProvider>
+                <WorkspaceShell>{children}</WorkspaceShell>
+                <SideExplorerRail />
+                <DrawerStack />
+                <AssistantWidget />
+              </IntakeProvider>
             </WorkbenchProvider>
           </DrawerStackProvider>
         </LanguageProvider>

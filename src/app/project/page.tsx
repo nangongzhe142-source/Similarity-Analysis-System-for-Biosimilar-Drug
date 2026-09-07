@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { useIntake } from "@/components/intake/IntakeProvider";
 import { CountUp } from "@/components/workbench/CountUp";
 import { ProjectOverviewDisclosure } from "@/components/workbench/ProjectOverviewDisclosure";
 import {
@@ -34,6 +35,8 @@ function formatDuration(startedAt: string | undefined, updatedAt: string | undef
 export default function ProjectPage() {
   const { messages, localize } = useLanguage();
   const copy = messages.workbench;
+  const intakeCopy = messages.intake;
+  const { role, setRole } = useIntake();
   const {
     batchRunning,
     dispatchMode,
@@ -118,6 +121,72 @@ export default function ProjectPage() {
             <strong>{heroState}</strong>
           </div>
         </div>
+      </section>
+
+      <section className="panel">
+        <div className="unified-ingest-head">
+          <div>
+            <span className="eyebrow">{intakeCopy.roleLabel}</span>
+            <h2>{intakeCopy.roleHint}</h2>
+          </div>
+        </div>
+        <div className="ingest-actions" style={{ marginTop: 12 }}>
+          <button
+            data-testid="intake-role-reviewer"
+            className={role === "reviewer" ? "primary" : "secondary"}
+            type="button"
+            onClick={() => setRole("reviewer")}
+          >
+            {intakeCopy.roleReviewer}
+          </button>
+          <button
+            data-testid="intake-role-sponsor"
+            className={role === "sponsor" ? "primary" : "secondary"}
+            type="button"
+            onClick={() => setRole("sponsor")}
+          >
+            {intakeCopy.roleSponsor}
+          </button>
+        </div>
+        <div className="metrics kpi-strip" style={{ marginTop: 16 }}>
+          {role !== "sponsor" ? (
+            <div className="metric">
+              <span>{intakeCopy.cardScreenEyebrow}</span>
+              <strong>{intakeCopy.cardScreenTitle}</strong>
+              <small>{intakeCopy.cardScreenBody}</small>
+              {role === "reviewer" ? (
+                <Link
+                  data-testid="intake-open-screen"
+                  className="primary link-button"
+                  href="/project/intake/screen"
+                >
+                  {intakeCopy.cardScreenAction}
+                </Link>
+              ) : (
+                <button className="primary" type="button" disabled>
+                  {intakeCopy.cardDisabledHint}
+                </button>
+              )}
+            </div>
+          ) : null}
+          {role !== "reviewer" ? (
+            <div className="metric accent">
+              <span>{intakeCopy.cardSponsorEyebrow}</span>
+              <strong>{intakeCopy.cardSponsorTitle}</strong>
+              <small>{intakeCopy.cardSponsorBody}</small>
+              {role === "sponsor" ? (
+                <Link className="primary link-button" href="/project/intake/sponsor">
+                  {intakeCopy.cardSponsorAction}
+                </Link>
+              ) : (
+                <button className="primary" type="button" disabled>
+                  {intakeCopy.cardDisabledHint}
+                </button>
+              )}
+            </div>
+          ) : null}
+        </div>
+        <p className="parser-trace">{intakeCopy.existingChannelNote}</p>
       </section>
 
       <section className="panel unified-ingest">

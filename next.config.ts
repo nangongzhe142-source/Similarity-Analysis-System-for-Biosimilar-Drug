@@ -4,6 +4,7 @@ const analysisServiceOrigin =
   process.env.ANALYSIS_SERVICE_URL ?? "http://127.0.0.1:8765";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["127.0.0.1"],
   async rewrites() {
     return [
       {
